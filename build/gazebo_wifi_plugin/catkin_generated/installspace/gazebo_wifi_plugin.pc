@@ -1,0 +1,8 @@
+prefix=/home/jxie/rossim/install
+
+Name: gazebo_wifi_plugin
+Description: Description of gazebo_wifi_plugin
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

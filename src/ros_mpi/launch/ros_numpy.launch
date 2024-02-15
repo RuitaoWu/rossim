@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<launch>
+
+<!-- <node name="listener" pkg="ros_mpi" type="listener.py" output = "screen"/>
+<node name="talker" pkg="ros_mpi" type="talker.py"/> -->
+<arg name="index" default="0"/>
+<param name="index" value="$(arg index)" />
+<node name="talker" pkg="ros_mpi" type="do_nothing.py" output="screen">
+
+</node>
+  <!--<node name="cadrl_avodiance" pkg="smile_mobile_dynamic" type="cadrl_custom.py"/>-->
+</launch>

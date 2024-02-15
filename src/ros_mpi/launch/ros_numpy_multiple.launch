@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<launch>
+
+<param name="num_uavs" value="2" />
+
+<group ns="uav0">
+  <include file="$(find ros_mpi)/launch/ros_numpy.launch">
+    <arg name="index" value="1" />
+  </include>
+</group>
+
+<group ns="uav1">
+  <include file="$(find ros_mpi)/launch/ros_numpy.launch">
+    <arg name="index" value="2" />
+  </include>
+</group>
+<!-- <node name="listener" pkg="ros_mpi" type="listener.py" output = "screen"/>
+<node name="talker" pkg="ros_mpi" type="talker.py"/> -->
+  <!--<node name="cadrl_avodiance" pkg="smile_mobile_dynamic" type="cadrl_custom.py"/>-->
+</launch>
