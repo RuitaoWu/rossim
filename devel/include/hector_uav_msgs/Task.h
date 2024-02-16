@@ -27,13 +27,17 @@ struct Task_
     : task_idx(0)
     , size(0)
     , processor_id(0)
-    , dependency()  {
+    , dependency()
+    , st(0.0)
+    , et(0.0)  {
     }
   Task_(const ContainerAllocator& _alloc)
     : task_idx(0)
     , size(0)
     , processor_id(0)
-    , dependency(_alloc)  {
+    , dependency(_alloc)
+    , st(0.0)
+    , et(0.0)  {
   (void)_alloc;
     }
 
@@ -50,6 +54,12 @@ struct Task_
 
    typedef std::vector<int16_t, typename std::allocator_traits<ContainerAllocator>::template rebind_alloc<int16_t>> _dependency_type;
   _dependency_type dependency;
+
+   typedef float _st_type;
+  _st_type st;
+
+   typedef float _et_type;
+  _et_type et;
 
 
 
@@ -83,7 +93,9 @@ bool operator==(const ::hector_uav_msgs::Task_<ContainerAllocator1> & lhs, const
   return lhs.task_idx == rhs.task_idx &&
     lhs.size == rhs.size &&
     lhs.processor_id == rhs.processor_id &&
-    lhs.dependency == rhs.dependency;
+    lhs.dependency == rhs.dependency &&
+    lhs.st == rhs.st &&
+    lhs.et == rhs.et;
 }
 
 template<typename ContainerAllocator1, typename ContainerAllocator2>
@@ -140,12 +152,12 @@ struct MD5Sum< ::hector_uav_msgs::Task_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "c0a76fc7e9a4dae61b315833b98d9564";
+    return "ebe954c7abe191b746293c22f87ec843";
   }
 
   static const char* value(const ::hector_uav_msgs::Task_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0xc0a76fc7e9a4dae6ULL;
-  static const uint64_t static_value2 = 0x1b315833b98d9564ULL;
+  static const uint64_t static_value1 = 0xebe954c7abe191b7ULL;
+  static const uint64_t static_value2 = 0x46293c22f87ec843ULL;
 };
 
 template<class ContainerAllocator>
@@ -168,6 +180,8 @@ struct Definition< ::hector_uav_msgs::Task_<ContainerAllocator> >
 "int32 size\n"
 "int16 processor_id\n"
 "int16[] dependency\n"
+"float32 st\n"
+"float32 et\n"
 ;
   }
 
@@ -190,6 +204,8 @@ namespace serialization
       stream.next(m.size);
       stream.next(m.processor_id);
       stream.next(m.dependency);
+      stream.next(m.st);
+      stream.next(m.et);
     }
 
     ROS_DECLARE_ALLINONE_SERIALIZER
@@ -220,6 +236,10 @@ struct Printer< ::hector_uav_msgs::Task_<ContainerAllocator> >
       s << indent << "  dependency[" << i << "]: ";
       Printer<int16_t>::stream(s, indent + "  ", v.dependency[i]);
     }
+    s << indent << "st: ";
+    Printer<float>::stream(s, indent + "  ", v.st);
+    s << indent << "et: ";
+    Printer<float>::stream(s, indent + "  ", v.et);
   }
 };
 

@@ -7,4 +7,8 @@
           PROCESSOR_ID
           DEPENDENCY-VAL
           DEPENDENCY
+          ST-VAL
+          ST
+          ET-VAL
+          ET
 ))

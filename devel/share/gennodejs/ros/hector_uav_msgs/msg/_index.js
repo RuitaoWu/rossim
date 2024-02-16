@@ -20,7 +20,6 @@ let YawrateCommand = require('./YawrateCommand.js');
 let HeightCommand = require('./HeightCommand.js');
 let ControllerState = require('./ControllerState.js');
 let VelocityXYCommand = require('./VelocityXYCommand.js');
-let FinishTime = require('./FinishTime.js');
 let RawMagnetic = require('./RawMagnetic.js');
 let RuddersCommand = require('./RuddersCommand.js');
 let MotorStatus = require('./MotorStatus.js');
@@ -66,7 +65,6 @@ module.exports = {
   HeightCommand: HeightCommand,
   ControllerState: ControllerState,
   VelocityXYCommand: VelocityXYCommand,
-  FinishTime: FinishTime,
   RawMagnetic: RawMagnetic,
   RuddersCommand: RuddersCommand,
   MotorStatus: MotorStatus,

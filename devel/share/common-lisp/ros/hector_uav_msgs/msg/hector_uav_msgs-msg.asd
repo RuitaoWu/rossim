@@ -15,8 +15,6 @@
     (:file "_package_Compass" :depends-on ("_package"))
     (:file "ControllerState" :depends-on ("_package_ControllerState"))
     (:file "_package_ControllerState" :depends-on ("_package"))
-    (:file "FinishTime" :depends-on ("_package_FinishTime"))
-    (:file "_package_FinishTime" :depends-on ("_package"))
     (:file "HeadingCommand" :depends-on ("_package_HeadingCommand"))
     (:file "_package_HeadingCommand" :depends-on ("_package"))
     (:file "HeightCommand" :depends-on ("_package_HeightCommand"))

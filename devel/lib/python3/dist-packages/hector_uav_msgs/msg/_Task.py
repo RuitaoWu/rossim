@@ -8,16 +8,17 @@ import struct
 
 
 class Task(genpy.Message):
-  _md5sum = "c0a76fc7e9a4dae61b315833b98d9564"
+  _md5sum = "ebe954c7abe191b746293c22f87ec843"
   _type = "hector_uav_msgs/Task"
   _has_header = False  # flag to mark the presence of a Header object
   _full_text = """int16 task_idx
 int32 size
 int16 processor_id
 int16[] dependency
-"""
-  __slots__ = ['task_idx','size','processor_id','dependency']
-  _slot_types = ['int16','int32','int16','int16[]']
+float32 st
+float32 et"""
+  __slots__ = ['task_idx','size','processor_id','dependency','st','et']
+  _slot_types = ['int16','int32','int16','int16[]','float32','float32']
 
   def __init__(self, *args, **kwds):
     """
@@ -27,7 +28,7 @@ int16[] dependency
     changes.  You cannot mix in-order arguments and keyword arguments.
 
     The available fields are:
-       task_idx,size,processor_id,dependency
+       task_idx,size,processor_id,dependency,st,et
 
     :param args: complete set of field values, in .msg order
     :param kwds: use keyword arguments corresponding to message field names
@@ -44,11 +45,17 @@ int16[] dependency
         self.processor_id = 0
       if self.dependency is None:
         self.dependency = []
+      if self.st is None:
+        self.st = 0.
+      if self.et is None:
+        self.et = 0.
     else:
       self.task_idx = 0
       self.size = 0
       self.processor_id = 0
       self.dependency = []
+      self.st = 0.
+      self.et = 0.
 
   def _get_types(self):
     """
@@ -68,6 +75,8 @@ int16[] dependency
       buff.write(_struct_I.pack(length))
       pattern = '<%sh'%length
       buff.write(struct.Struct(pattern).pack(*self.dependency))
+      _x = self
+      buff.write(_get_struct_2f().pack(_x.st, _x.et))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -92,6 +101,10 @@ int16[] dependency
       s = struct.Struct(pattern)
       end += s.size
       self.dependency = s.unpack(str[start:end])
+      _x = self
+      start = end
+      end += 8
+      (_x.st, _x.et,) = _get_struct_2f().unpack(str[start:end])
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e)  # most likely buffer underfill
@@ -110,6 +123,8 @@ int16[] dependency
       buff.write(_struct_I.pack(length))
       pattern = '<%sh'%length
       buff.write(self.dependency.tostring())
+      _x = self
+      buff.write(_get_struct_2f().pack(_x.st, _x.et))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -135,6 +150,10 @@ int16[] dependency
       s = struct.Struct(pattern)
       end += s.size
       self.dependency = numpy.frombuffer(str[start:end], dtype=numpy.int16, count=length)
+      _x = self
+      start = end
+      end += 8
+      (_x.st, _x.et,) = _get_struct_2f().unpack(str[start:end])
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e)  # most likely buffer underfill
@@ -143,6 +162,12 @@ _struct_I = genpy.struct_I
 def _get_struct_I():
     global _struct_I
     return _struct_I
+_struct_2f = None
+def _get_struct_2f():
+    global _struct_2f
+    if _struct_2f is None:
+        _struct_2f = struct.Struct("<2f")
+    return _struct_2f
 _struct_hih = None
 def _get_struct_hih():
     global _struct_hih

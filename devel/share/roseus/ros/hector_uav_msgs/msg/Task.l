@@ -14,7 +14,7 @@
 
 (defclass hector_uav_msgs::Task
   :super ros::object
-  :slots (_task_idx _size _processor_id _dependency ))
+  :slots (_task_idx _size _processor_id _dependency _st _et ))
 
 (defmethod hector_uav_msgs::Task
   (:init
@@ -23,12 +23,16 @@
     ((:size __size) 0)
     ((:processor_id __processor_id) 0)
     ((:dependency __dependency) (make-array 0 :initial-element 0 :element-type :integer))
+    ((:st __st) 0.0)
+    ((:et __et) 0.0)
     )
    (send-super :init)
    (setq _task_idx (round __task_idx))
    (setq _size (round __size))
    (setq _processor_id (round __processor_id))
    (setq _dependency __dependency)
+   (setq _st (float __st))
+   (setq _et (float __et))
    self)
   (:task_idx
    (&optional __task_idx)
@@ -42,6 +46,12 @@
   (:dependency
    (&optional __dependency)
    (if __dependency (setq _dependency __dependency)) _dependency)
+  (:st
+   (&optional __st)
+   (if __st (setq _st __st)) _st)
+  (:et
+   (&optional __et)
+   (if __et (setq _et __et)) _et)
   (:serialization-length
    ()
    (+
@@ -53,6 +63,10 @@
     2
     ;; int16[] _dependency
     (* 2    (length _dependency)) 4
+    ;; float32 _st
+    4
+    ;; float32 _et
+    4
     ))
   (:serialize
    (&optional strm)
@@ -69,6 +83,10 @@
      (dotimes (i (length _dependency))
        (write-word (elt _dependency i) s)
        )
+     ;; float32 _st
+       (sys::poke _st (send s :buffer) (send s :count) :float) (incf (stream-count s) 4)
+     ;; float32 _et
+       (sys::poke _et (send s :buffer) (send s :count) :float) (incf (stream-count s) 4)
      ;;
      (if (null strm) (get-output-stream-string s))))
   (:deserialize
@@ -86,22 +104,27 @@
      (dotimes (i n)
      (setf (elt _dependency i) (sys::peek buf ptr- :short)) (incf ptr- 2)
      ))
+   ;; float32 _st
+     (setq _st (sys::peek buf ptr- :float)) (incf ptr- 4)
+   ;; float32 _et
+     (setq _et (sys::peek buf ptr- :float)) (incf ptr- 4)
    ;;
    self)
   )
 
-(setf (get hector_uav_msgs::Task :md5sum-) "c0a76fc7e9a4dae61b315833b98d9564")
+(setf (get hector_uav_msgs::Task :md5sum-) "ebe954c7abe191b746293c22f87ec843")
 (setf (get hector_uav_msgs::Task :datatype-) "hector_uav_msgs/Task")
 (setf (get hector_uav_msgs::Task :definition-)
       "int16 task_idx
 int32 size
 int16 processor_id
 int16[] dependency
-
+float32 st
+float32 et
 ")
 
 
 
-(provide :hector_uav_msgs/Task "c0a76fc7e9a4dae61b315833b98d9564")
+(provide :hector_uav_msgs/Task "ebe954c7abe191b746293c22f87ec843")
 
 

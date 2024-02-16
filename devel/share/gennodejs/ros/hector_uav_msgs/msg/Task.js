@@ -22,6 +22,8 @@ class Task {
       this.size = null;
       this.processor_id = null;
       this.dependency = null;
+      this.st = null;
+      this.et = null;
     }
     else {
       if (initObj.hasOwnProperty('task_idx')) {
@@ -48,6 +50,18 @@ class Task {
       else {
         this.dependency = [];
       }
+      if (initObj.hasOwnProperty('st')) {
+        this.st = initObj.st
+      }
+      else {
+        this.st = 0.0;
+      }
+      if (initObj.hasOwnProperty('et')) {
+        this.et = initObj.et
+      }
+      else {
+        this.et = 0.0;
+      }
     }
   }
 
@@ -61,6 +75,10 @@ class Task {
     bufferOffset = _serializer.int16(obj.processor_id, buffer, bufferOffset);
     // Serialize message field [dependency]
     bufferOffset = _arraySerializer.int16(obj.dependency, buffer, bufferOffset, null);
+    // Serialize message field [st]
+    bufferOffset = _serializer.float32(obj.st, buffer, bufferOffset);
+    // Serialize message field [et]
+    bufferOffset = _serializer.float32(obj.et, buffer, bufferOffset);
     return bufferOffset;
   }
 
@@ -76,13 +94,17 @@ class Task {
     data.processor_id = _deserializer.int16(buffer, bufferOffset);
     // Deserialize message field [dependency]
     data.dependency = _arrayDeserializer.int16(buffer, bufferOffset, null)
+    // Deserialize message field [st]
+    data.st = _deserializer.float32(buffer, bufferOffset);
+    // Deserialize message field [et]
+    data.et = _deserializer.float32(buffer, bufferOffset);
     return data;
   }
 
   static getMessageSize(object) {
     let length = 0;
     length += 2 * object.dependency.length;
-    return length + 12;
+    return length + 20;
   }
 
   static datatype() {
@@ -92,7 +114,7 @@ class Task {
 
   static md5sum() {
     //Returns md5sum for a message object
-    return 'c0a76fc7e9a4dae61b315833b98d9564';
+    return 'ebe954c7abe191b746293c22f87ec843';
   }
 
   static messageDefinition() {
@@ -102,7 +124,8 @@ class Task {
     int32 size
     int16 processor_id
     int16[] dependency
-    
+    float32 st
+    float32 et
     `;
   }
 
@@ -138,6 +161,20 @@ class Task {
     }
     else {
       resolved.dependency = []
+    }
+
+    if (msg.st !== undefined) {
+      resolved.st = msg.st;
+    }
+    else {
+      resolved.st = 0.0
+    }
+
+    if (msg.et !== undefined) {
+      resolved.et = msg.et;
+    }
+    else {
+      resolved.et = 0.0
     }
 
     return resolved;
