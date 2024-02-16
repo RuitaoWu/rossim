@@ -1,24 +1,14 @@
-task_idx: 0
+task_idx: 2
 size: 1000000
 processor_id: 2
-dependency: []
-st: 10
-et: 11.0
-task_idx: 4
+dependency: [1]
+st: 0
+et: 0.0061638223287336195
+
+task_idx: 9
 size: 1000000
 processor_id: 2
-dependency: [0]
-st: 10
-et: 11.0
-task_idx: 5
-size: 1000000
-processor_id: 2
-dependency: [0]
-st: 10
-et: 11.0
-task_idx: 6
-size: 1000000
-processor_id: 2
-dependency: [2]
-st: 10
-et: 11.0
+dependency: [0, 2, 3, 4, 6, 7, 8]
+st: 6.0
+et: 6.006163822328734
+
