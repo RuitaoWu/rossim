@@ -1,11 +1,13 @@
 
 from concurrent.futures import thread
+import pickle
 from turtle import pos
 from collections import defaultdict
 from hector_uav_msgs.msg import Task, FinishTime
 from orchestrator import Orchestrator
 import rospy,threading
 from geometry_msgs.msg import PoseStamped
+from std_msgs.msg import Float32MultiArray
 
 
 
@@ -23,55 +25,58 @@ class Master:
         self.rate = rospy.Rate(1) # 10hz
         self.master_task = []
         self.task_received = []
-        # self.sch_list = sch
         print('master node is completed')
+    # def pred_aft(self,t):
+    #     temp =[0]
+    #     for pre in t.dependency:
+    #         if task_aft[pre]:
+    #             temp.append(task_aft[pre])
+    #     return max(temp)
     def pred_aft(self,t):
         temp =[0]
         for pre in t.dependency:
-            if task_aft[pre]:
-                temp.append(task_aft[pre])
+            for x in self.task_received:
+                if pre == x.task_idx:
+                    temp.append(x.et)
+        print(f'max finished time for task {t.task_idx} is {temp}')
         return max(temp)
+    def update_time(self):
+        for x in self.master_task:
+            x.st = max(self.pred_aft(x),x.st)
+            x.et = x.st + (x.size/1000000)
+        print('at line 46: ',x.st)
     def sub_callback(self,data):
         if data:
-            print('subscriber call back function...')
             self.task_received.append(data)
+            self.update_time()
         else:
             print('nothing...')
-    # def received_call_back(self):
-    #     print('call receive threading...')
-    #     rospy.Subscriber(self.worker_to_uav,Task,self.sub_callback)
+    def received_call_back(self):
+        print('call receive threading...')
+        rospy.Subscriber(self.worker_to_uav,Task,self.sub_callback)
     def run(self,dt):
         print(f'publishing...')
-        # thread = threading.Thread(target= self.received_call_back)
-        # thread.start()
-        rospy.Subscriber(self.worker_to_uav,Task,self.sub_callback)
+        thread = threading.Thread(target= self.received_call_back)
+        thread.start()
+        # rospy.Subscriber(self.worker_to_uav,Task,self.sub_callback)
+        
         for x in dt:
-            print(f'publishing task {x.task_idx}')
             if x.processor_id == 0:
                 x.st = self.master_task[-1].et if self.master_task else 0
                 x.et = x.st + (x.size/1000000)
                 self.master_task.append(x)
-                # if self.master_task[-1] and task_ast[self.master_task[-1].task_idx]:
-                #     task_ast[x.task_idx] = max(self.pred_aft(x),task_ast[self.master_task[-1].task_idx])
-                # else:
-                #     task_ast[x.task_idx] = self.pred_aft(x)
-                # task_aft[x.task_idx] = task_ast[x.task_idx] + 10
-            print(f'x start {x.st} and x end {x.et}')
             self.pub.publish(x)
-            print(f'completed task {x.task_idx}')
-            rospy.sleep(1)
+            rospy.sleep(1)  
+        
         #all tasks
         with open('/home/jxie/rossim/src/ros_mpi/data/task_ast_master.txt','w') as file:
-            # for key, values in task_ast.items():
-            #     file.write(f"{key}: {values}\n")
             for ele in self.task_received :
                 file.write(f"{ele}\n\n")
         #task on master
         with open('/home/jxie/rossim/src/ros_mpi/data/task_on_master.txt','w') as file:
-            # for key, values in task_ast.items():
-            #     file.write(f"{key}: {values}\n")
             for ele in self.master_task :
                 file.write(f"{ele}\n\n")
+
 
 
 
@@ -96,16 +101,8 @@ class Worker:
     def callback_func(self,data):
         if data.processor_id == self.worker_id:
             print(f'task time at line 90 {data.st}')
-            # if self.worker_task[-1] and task_ast[self.worker_task[-1].task_idx]:
-            #     # task_ast[data.task_idx] = max(self.pred_aft(data),task_ast[self.worker_task[-1].task_idx])
-            #     data.st = max(self.pred_aft(data),task_ast[self.worker_task[-1].task_idx])
-            # else:
-            #     # task_ast[data.task_idx] = self.pred_aft(data)
-            #     # task_aft[data.task_idx] = task_ast[data.task_idx] + 10
-            #     data.st = max(self.pred_aft(data),task_ast[self.worker_task[-1].task_idx])
-            #     data.et = data.st + 10
-            print('dependency',data.dependency)
             data.st = 10
+            data.et = data.st +(data.size / 1000000)
             self.pub.publish(data)
             rospy.sleep(1)
             print(f'task time at line 103: {data.st}')

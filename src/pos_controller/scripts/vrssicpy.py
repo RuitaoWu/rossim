@@ -5,16 +5,16 @@ from mpl_toolkits.mplot3d import Axes3D
 import numpy as np
 import argparse
 from matplotlib.ticker import MaxNLocator
-import pickle
+import pickle,math
 from scipy.interpolate import interp1d
 
 num_uavs = 3
 
 # rssi_file_name = '../data/rssi_data.pkl'
-rssi_file_name = '/home/jxie/Workspace/hzhang3986/nac_sim/src/ros_mpi/data/comp_rssi.pkl'
+# rssi_file_name = '/home/jxie/rossim/src/ros_mpi/data/comp_rssi.pkl'
 # rssi_file_name='/home/jxie/Workspace/hzhang3986/nac_sim/src/ros_mpi/data/comp_rssi.pkl'
-with open(rssi_file_name, 'rb') as fp:
-    rssi_data = pickle.load(fp)
+# with open(rssi_file_name, 'rb') as fp:
+#     rssi_data = pickle.load(fp)
 
 plt.figure()
 font_size = 24
@@ -50,16 +50,6 @@ for i in range(1, num_uavs+1):
     path_y_file = '../data/path_y%d.pkl' %i
     path_z_file = '../data/path_z%d.pkl' %i
     time_file = '../data/path_time%d.pkl' %i
-    #exp-1
-    # path_x_file = '/home/jxie/Workspace/hzhang3986/nac_sim/src/ros_mpi/exp-1/path_exp1/path_x%d.pkl' %i
-    # path_y_file = '/home/jxie/Workspace/hzhang3986/nac_sim/src/ros_mpi/exp-1/path_exp1/path_y%d.pkl' %i
-    # path_z_file = '/home/jxie/Workspace/hzhang3986/nac_sim/src/ros_mpi/exp-1/path_exp1/path_z%d.pkl' %i
-    # time_file = '/home/jxie/Workspace/hzhang3986/nac_sim/src/ros_mpi/exp-1/path_exp1/path_time%d.pkl' %i
-    #exp-2
-    # path_x_file = '/home/jxie/Workspace/hzhang3986/nac_sim/src/ros_mpi/exp-2/10-workers-path/data/path_x%d.pkl' %i
-    # path_y_file = '/home/jxie/Workspace/hzhang3986/nac_sim/src/ros_mpi/exp-2/10-workers-path/data/path_y%d.pkl' %i
-    # path_z_file = '/home/jxie/Workspace/hzhang3986/nac_sim/src/ros_mpi/exp-2/10-workers-path/data/path_z%d.pkl' %i
-    # time_file = '/home/jxie/Workspace/hzhang3986/nac_sim/src/ros_mpi/exp-2/10-workers-path/data/path_time%d.pkl' %i
     with open(time_file, 'rb') as fp:
         time = pickle.load(fp)
 
@@ -114,35 +104,83 @@ def comm_bandwidth(rssi):
     bandwidth = 1.2 * 10 ** 6  * np.log2(b)
     return bandwidth
 
+m_x_file = '../data/path_x%d.pkl' %i
+m_y_file = '../data/path_y%d.pkl' %i
+m_z_file = '../data/path_z%d.pkl' %i
+with open(m_x_file, 'rb') as fp:
+    m_x = pickle.load(fp)
 
-plt.figure()
-num_workers = 2
-# rssi_file_name = '/home/smile/nac_sim/src/ros_mpi/data/comp_rssi.pkl'
-rssi_file_name='/home/jxie/Workspace/hzhang3986/nac_sim/src/ros_mpi/data/comp_rssi.pkl'
-# rssi_file_name='/home/jxie/Workspace/hzhang3986/nac_sim/src/ros_mpi/exp-5/one-worker-away/comp_rssi.pkl'
-with open(rssi_file_name, 'rb') as fp:
-    rssi_data = pickle.load(fp)
-#print(rssi_data[1])
-time = [value[0] for value in rssi_data]
-data_comms = []
-for i in range(num_workers):
-    data_comms.append([comm_bandwidth(value[1+i])*10**(-6) for value in rssi_data])
-    #data_comms.append([value[1+i] for value in rssi_data])
-    #plt.plot(time, data_comms[i], label='UAV%d comm'  %(i+2))
+with open(m_x_file, 'rb') as fp:
+    m_y = pickle.load(fp)
 
+with open(m_x_file, 'rb') as fp:
+    m_z = pickle.load(fp)
 
+_distance = []
+for i in range(2, num_uavs+1):
+    path_x_file = '../data/path_x%d.pkl' %i
+    path_y_file = '../data/path_y%d.pkl' %i
+    path_z_file = '../data/path_z%d.pkl' %i
+    with open(path_x_file, 'rb') as fp:
+        temp_x = pickle.load(fp)
 
-font_size = 15
-for j in range(1, num_uavs):
-    dist = [np.sqrt((paths_x[j][k]-masterx[k])**2 + (paths_y[j][k]-mastery[k])**2 + (paths_z[j][k]-masterz[k])**2) for k in range(length)]
-    plt.plot(new_t, dist, linestyle=linestyles[j-1], linewidth = 3.5, label = 'Master and worker %d' %(j))
-plt.subplots_adjust(bottom=0.15, left=0.2, top=0.95, wspace=0, hspace=0)
-plt.xlabel('Time (s)', fontsize=24)
-plt.ylabel('Distance (m)', fontsize=24)
-# plt.xlim([0, 0])
-# plt.ylim([0, 20])
-plt.xticks(fontsize=18)
-plt.yticks(fontsize=18)
-plt.legend(fontsize=16)
-# plt.savefig('ros_dist')
+    with open(path_y_file, 'rb') as fp:
+        temp_y = pickle.load(fp)
+
+    with open(path_z_file, 'rb') as fp:
+        temp_z = pickle.load(fp)
+    temp_d = []
+    for x,y,z,x1,y1,z1 in zip(m_x,m_y,m_z,temp_x,temp_y,temp_z):
+        temp_d.append(math.sqrt((x - x1)**2 + (y - y1)**2 + (z - z1)**2))
+    _distance.append(temp_d)
+
+def channel_gain(distance, alpha=4.0):
+        return distance ** (-alpha)
+def data_rate(cg, noise=0.000000001,band_width=5000000, transmission_power=0.5):
+    return band_width * math.log2(1 + (transmission_power* cg))/noise
+bandwidth = []
+for i in _distance:
+    temp = []
+    for j in i:
+        c = channel_gain(j)
+        temp.append(data_rate(cg=c)/1000000)
+    bandwidth.append(temp)
+print(max(bandwidth[0]))
+print(max(bandwidth[1]))
+for x in bandwidth:
+    plt.plot(x)
 plt.show()
+
+
+
+# plt.figure()
+# num_workers = 2
+# # rssi_file_name = '/home/smile/nac_sim/src/ros_mpi/data/comp_rssi.pkl'
+# rssi_file_name='/home/rossim/src/ros_mpi/data/comp_rssi.pkl'
+# # rssi_file_name='/home/jxie/Workspace/hzhang3986/nac_sim/src/ros_mpi/exp-5/one-worker-away/comp_rssi.pkl'
+# with open(rssi_file_name, 'rb') as fp:
+#     rssi_data = pickle.load(fp)
+# #print(rssi_data[1])
+# time = [value[0] for value in rssi_data]
+# data_comms = []
+# for i in range(num_workers):
+#     data_comms.append([comm_bandwidth(value[1+i])*10**(-6) for value in rssi_data])
+#     #data_comms.append([value[1+i] for value in rssi_data])
+#     #plt.plot(time, data_comms[i], label='UAV%d comm'  %(i+2))
+
+
+
+# font_size = 15
+# for j in range(1, num_uavs):
+#     dist = [np.sqrt((paths_x[j][k]-masterx[k])**2 + (paths_y[j][k]-mastery[k])**2 + (paths_z[j][k]-masterz[k])**2) for k in range(length)]
+#     plt.plot(new_t, dist, linestyle=linestyles[j-1], linewidth = 3.5, label = 'Master and worker %d' %(j))
+# plt.subplots_adjust(bottom=0.15, left=0.2, top=0.95, wspace=0, hspace=0)
+# plt.xlabel('Time (s)', fontsize=24)
+# plt.ylabel('Distance (m)', fontsize=24)
+# # plt.xlim([0, 0])
+# # plt.ylim([0, 20])
+# plt.xticks(fontsize=18)
+# plt.yticks(fontsize=18)
+# plt.legend(fontsize=16)
+# # plt.savefig('ros_dist')
+# plt.show()
