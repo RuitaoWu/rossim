@@ -1,5 +1,7 @@
+from cgi import test
+from re import T
 import numpy as np
-
+from hector_uav_msgs.msg import Task
 from taskgen import TaskGen
 class Orchestrator:
     def __init__(self,comm,comp):
@@ -9,6 +11,7 @@ class Orchestrator:
         self.AST = [float('-inf')]*len(comp)
         self.AFT = [float('-inf')]*len(comp)
         self.task_schedule_list=  [[] for _ in range(len(comp[0]))]
+        self.mes = []
     def calculate_rank_up_recursive(self,comp, comm, i):
         successors = [j for j in range(len(comp)) if comm[i][j] > 0]
         
@@ -73,6 +76,7 @@ class Orchestrator:
     def update_aft(self,eft,est,task):
         self.AFT[task] = min(eft)
         self.AST[task] = est[np.argmin(eft)]
+
     def heft(self):
         TASK_FLAG=[False]*len(self.comp)
         self.rank_up_values = [self.calculate_rank_up_recursive(self.comp,self.comm,i) for i in range(len(self.comp))]
@@ -86,6 +90,15 @@ class Orchestrator:
             if TASK_FLAG[task] == False:
                 self.task_schedule_list[np.argmin(eft)].append(task) # append task to the processor with earliest finish time
                 TASK_FLAG[task] = True
+        for row in self.task_schedule_list:
+            for col in row:
+                task = Task()
+                task.task_idx = col
+                task.processor_id = self.task_schedule_list.index(row)
+                task.dependency=self.predecessor_task(col)
+                task.size = 1000000
+                self.mes.append(task)
+        
 
 
     
@@ -102,46 +115,47 @@ class Orchestrator:
         print(f'aft {self.AFT}')
         return np.argmin(eft)
 
-if __name__ == '__main__':
+# if __name__ == '__main__':
 
-    comp = [[14, 16, 9],
-                    [13, 19, 18],
-                    [11, 13, 19],
-                    [13, 8, 17],
-                    [12, 13, 10],
-                    [13, 16, 9],
-                    [7, 15, 11],
-                    [5, 11, 4],
-                    [18, 12, 20],
-                    [21, 7, 16]]
-    # comm = [[0, 1, 1, 1, 1, 1, 0, 0, 0, 0],
-    #              [0, 0, 0, 0, 0, 0, 0, 1, 1, 0],
-    #              [0, 0, 0, 0, 0, 0, 1, 0, 0, 0],
-    #              [0, 0, 0, 0, 0, 0, 0, 1, 1, 0],
-    #              [0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
-    #              [0, 0, 0, 0, 0, 0, 0, 1, 0, 0],
-    #              [0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    #              [0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    #              [0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    #              [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
-    comm = [[0, 18, 12, 9, 11, 14, 0, 0, 0, 0],
-                    [0, 0, 0, 0, 0, 0, 0, 19, 16, 0],
-                    [0, 0, 0, 0, 0, 0, 23, 0, 0, 0],
-                    [0, 0, 0, 0, 0, 0, 0, 27, 23, 0],
-                    [0, 0, 0, 0, 0, 0, 0, 0, 13, 0],
-                    [0, 0, 0, 0, 0, 0, 0, 15, 0, 0],
-                    [0, 0, 0, 0, 0, 0, 0, 0, 0, 17],
-                    [0, 0, 0, 0, 0, 0, 0, 0, 0, 11],
-                    [0, 0, 0, 0, 0, 0, 0, 0, 0, 13],
-                    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
-    # taskgen = TaskGen(5,3)
-    # comm = taskgen.generate_random_dag()
-    # comp = taskgen.gen_comp_matrix()
-    # print(comm)
-    # print(comp)
+#     comp = [[14, 16, 9],
+#                     [13, 19, 18],
+#                     [11, 13, 19],
+#                     [13, 8, 17],
+#                     [12, 13, 10],
+#                     [13, 16, 9],
+#                     [7, 15, 11],
+#                     [5, 11, 4],
+#                     [18, 12, 20],
+#                     [21, 7, 16]]
+#     # comm = [[0, 1, 1, 1, 1, 1, 0, 0, 0, 0],
+#     #              [0, 0, 0, 0, 0, 0, 0, 1, 1, 0],
+#     #              [0, 0, 0, 0, 0, 0, 1, 0, 0, 0],
+#     #              [0, 0, 0, 0, 0, 0, 0, 1, 1, 0],
+#     #              [0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
+#     #              [0, 0, 0, 0, 0, 0, 0, 1, 0, 0],
+#     #              [0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+#     #              [0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+#     #              [0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+#     #              [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
+#     comm = [[0, 18, 12, 9, 11, 14, 0, 0, 0, 0],
+#                     [0, 0, 0, 0, 0, 0, 0, 19, 16, 0],
+#                     [0, 0, 0, 0, 0, 0, 23, 0, 0, 0],
+#                     [0, 0, 0, 0, 0, 0, 0, 27, 23, 0],
+#                     [0, 0, 0, 0, 0, 0, 0, 0, 13, 0],
+#                     [0, 0, 0, 0, 0, 0, 0, 15, 0, 0],
+#                     [0, 0, 0, 0, 0, 0, 0, 0, 0, 17],
+#                     [0, 0, 0, 0, 0, 0, 0, 0, 0, 11],
+#                     [0, 0, 0, 0, 0, 0, 0, 0, 0, 13],
+#                     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
+#     # taskgen = TaskGen(5,3)
+#     # comm = taskgen.generate_random_dag()
+#     # comp = taskgen.gen_comp_matrix()
+#     # print(comm)
+#     # print(comp)
 
-    testobj = Orchestrator(comm,comp)
-    for x in np.argsort([testobj.calculate_rank_up_recursive(testobj.comp,testobj.comm,i) for i in range(len(testobj.comp))])[::-1]:testobj.heft2(x,[0,1,2])
-    # print(comm)
-    # print(comp)
-    print(testobj.task_schedule_list)
+#     testobj = Orchestrator(comm,comp)
+#     testobj.heft()
+#     # print(comm)
+#     # print(comp)
+#     print(testobj.task_schedule_list)
+#     print(testobj.mes)
