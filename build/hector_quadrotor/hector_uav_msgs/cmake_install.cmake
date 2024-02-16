@@ -66,7 +66,6 @@ if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT
     "/home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg/VelocityZCommand.msg"
     "/home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg/YawrateCommand.msg"
     "/home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg/Task.msg"
-    "/home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg/FinishTime.msg"
     )
 endif()
 

@@ -88,7 +88,6 @@ hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_generate_messages_py
 hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_generate_messages_py: /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_VelocityZCommand.py
 hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_generate_messages_py: /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_YawrateCommand.py
 hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_generate_messages_py: /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_Task.py
-hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_generate_messages_py: /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_FinishTime.py
 hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_generate_messages_py: /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_PoseAction.py
 hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_generate_messages_py: /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_PoseActionGoal.py
 hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_generate_messages_py: /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_PoseActionResult.py
@@ -138,338 +137,333 @@ hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_generate_messages_py
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Generating Python from MSG hector_uav_msgs/ControllerState"
 	cd /home/jxie/rossim/build/hector_quadrotor/hector_uav_msgs && ../../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py /home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg/ControllerState.msg -Ihector_uav_msgs:/home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg -Ihector_uav_msgs:/home/jxie/rossim/devel/share/hector_uav_msgs/msg -Iactionlib_msgs:/opt/ros/noetic/share/actionlib_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -p hector_uav_msgs -o /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg
 
-/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_FinishTime.py: /opt/ros/noetic/lib/genpy/genmsg_py.py
-/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_FinishTime.py: /home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg/FinishTime.msg
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Generating Python from MSG hector_uav_msgs/FinishTime"
-	cd /home/jxie/rossim/build/hector_quadrotor/hector_uav_msgs && ../../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py /home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg/FinishTime.msg -Ihector_uav_msgs:/home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg -Ihector_uav_msgs:/home/jxie/rossim/devel/share/hector_uav_msgs/msg -Iactionlib_msgs:/opt/ros/noetic/share/actionlib_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -p hector_uav_msgs -o /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg
-
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_HeadingCommand.py: /opt/ros/noetic/lib/genpy/genmsg_py.py
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_HeadingCommand.py: /home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg/HeadingCommand.msg
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_HeadingCommand.py: /opt/ros/noetic/share/std_msgs/msg/Header.msg
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Generating Python from MSG hector_uav_msgs/HeadingCommand"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Generating Python from MSG hector_uav_msgs/HeadingCommand"
 	cd /home/jxie/rossim/build/hector_quadrotor/hector_uav_msgs && ../../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py /home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg/HeadingCommand.msg -Ihector_uav_msgs:/home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg -Ihector_uav_msgs:/home/jxie/rossim/devel/share/hector_uav_msgs/msg -Iactionlib_msgs:/opt/ros/noetic/share/actionlib_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -p hector_uav_msgs -o /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg
 
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_HeightCommand.py: /opt/ros/noetic/lib/genpy/genmsg_py.py
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_HeightCommand.py: /home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg/HeightCommand.msg
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_HeightCommand.py: /opt/ros/noetic/share/std_msgs/msg/Header.msg
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Generating Python from MSG hector_uav_msgs/HeightCommand"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Generating Python from MSG hector_uav_msgs/HeightCommand"
 	cd /home/jxie/rossim/build/hector_quadrotor/hector_uav_msgs && ../../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py /home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg/HeightCommand.msg -Ihector_uav_msgs:/home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg -Ihector_uav_msgs:/home/jxie/rossim/devel/share/hector_uav_msgs/msg -Iactionlib_msgs:/opt/ros/noetic/share/actionlib_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -p hector_uav_msgs -o /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg
 
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_LandingAction.py: /opt/ros/noetic/lib/genpy/genmsg_py.py
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_LandingAction.py: /home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingAction.msg
-/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_LandingAction.py: /opt/ros/noetic/share/actionlib_msgs/msg/GoalStatus.msg
-/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_LandingAction.py: /home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingGoal.msg
-/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_LandingAction.py: /home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingActionGoal.msg
-/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_LandingAction.py: /home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingResult.msg
-/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_LandingAction.py: /home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingActionFeedback.msg
-/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_LandingAction.py: /opt/ros/noetic/share/std_msgs/msg/Header.msg
-/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_LandingAction.py: /opt/ros/noetic/share/actionlib_msgs/msg/GoalID.msg
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_LandingAction.py: /opt/ros/noetic/share/geometry_msgs/msg/Point.msg
-/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_LandingAction.py: /opt/ros/noetic/share/geometry_msgs/msg/Pose.msg
-/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_LandingAction.py: /home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingFeedback.msg
+/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_LandingAction.py: /home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingActionGoal.msg
+/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_LandingAction.py: /opt/ros/noetic/share/actionlib_msgs/msg/GoalID.msg
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_LandingAction.py: /opt/ros/noetic/share/geometry_msgs/msg/PoseStamped.msg
+/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_LandingAction.py: /home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingGoal.msg
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_LandingAction.py: /home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingActionResult.msg
+/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_LandingAction.py: /home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingFeedback.msg
+/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_LandingAction.py: /home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingActionFeedback.msg
+/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_LandingAction.py: /opt/ros/noetic/share/actionlib_msgs/msg/GoalStatus.msg
+/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_LandingAction.py: /home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingResult.msg
+/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_LandingAction.py: /opt/ros/noetic/share/std_msgs/msg/Header.msg
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_LandingAction.py: /opt/ros/noetic/share/geometry_msgs/msg/Quaternion.msg
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Generating Python from MSG hector_uav_msgs/LandingAction"
+/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_LandingAction.py: /opt/ros/noetic/share/geometry_msgs/msg/Pose.msg
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Generating Python from MSG hector_uav_msgs/LandingAction"
 	cd /home/jxie/rossim/build/hector_quadrotor/hector_uav_msgs && ../../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py /home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingAction.msg -Ihector_uav_msgs:/home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg -Ihector_uav_msgs:/home/jxie/rossim/devel/share/hector_uav_msgs/msg -Iactionlib_msgs:/opt/ros/noetic/share/actionlib_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -p hector_uav_msgs -o /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg
 
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_LandingActionFeedback.py: /opt/ros/noetic/lib/genpy/genmsg_py.py
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_LandingActionFeedback.py: /home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingActionFeedback.msg
+/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_LandingActionFeedback.py: /opt/ros/noetic/share/geometry_msgs/msg/Point.msg
+/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_LandingActionFeedback.py: /opt/ros/noetic/share/actionlib_msgs/msg/GoalID.msg
+/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_LandingActionFeedback.py: /opt/ros/noetic/share/geometry_msgs/msg/PoseStamped.msg
+/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_LandingActionFeedback.py: /home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingFeedback.msg
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_LandingActionFeedback.py: /opt/ros/noetic/share/actionlib_msgs/msg/GoalStatus.msg
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_LandingActionFeedback.py: /opt/ros/noetic/share/std_msgs/msg/Header.msg
-/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_LandingActionFeedback.py: /opt/ros/noetic/share/actionlib_msgs/msg/GoalID.msg
-/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_LandingActionFeedback.py: /opt/ros/noetic/share/geometry_msgs/msg/Point.msg
-/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_LandingActionFeedback.py: /opt/ros/noetic/share/geometry_msgs/msg/Pose.msg
-/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_LandingActionFeedback.py: /home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingFeedback.msg
-/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_LandingActionFeedback.py: /opt/ros/noetic/share/geometry_msgs/msg/PoseStamped.msg
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_LandingActionFeedback.py: /opt/ros/noetic/share/geometry_msgs/msg/Quaternion.msg
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Generating Python from MSG hector_uav_msgs/LandingActionFeedback"
+/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_LandingActionFeedback.py: /opt/ros/noetic/share/geometry_msgs/msg/Pose.msg
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Generating Python from MSG hector_uav_msgs/LandingActionFeedback"
 	cd /home/jxie/rossim/build/hector_quadrotor/hector_uav_msgs && ../../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py /home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingActionFeedback.msg -Ihector_uav_msgs:/home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg -Ihector_uav_msgs:/home/jxie/rossim/devel/share/hector_uav_msgs/msg -Iactionlib_msgs:/opt/ros/noetic/share/actionlib_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -p hector_uav_msgs -o /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg
 
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_LandingActionGoal.py: /opt/ros/noetic/lib/genpy/genmsg_py.py
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_LandingActionGoal.py: /home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingActionGoal.msg
+/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_LandingActionGoal.py: /opt/ros/noetic/share/geometry_msgs/msg/Point.msg
+/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_LandingActionGoal.py: /opt/ros/noetic/share/actionlib_msgs/msg/GoalID.msg
+/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_LandingActionGoal.py: /opt/ros/noetic/share/geometry_msgs/msg/PoseStamped.msg
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_LandingActionGoal.py: /home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingGoal.msg
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_LandingActionGoal.py: /opt/ros/noetic/share/std_msgs/msg/Header.msg
-/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_LandingActionGoal.py: /opt/ros/noetic/share/actionlib_msgs/msg/GoalID.msg
-/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_LandingActionGoal.py: /opt/ros/noetic/share/geometry_msgs/msg/Point.msg
-/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_LandingActionGoal.py: /opt/ros/noetic/share/geometry_msgs/msg/Pose.msg
-/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_LandingActionGoal.py: /opt/ros/noetic/share/geometry_msgs/msg/PoseStamped.msg
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_LandingActionGoal.py: /opt/ros/noetic/share/geometry_msgs/msg/Quaternion.msg
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Generating Python from MSG hector_uav_msgs/LandingActionGoal"
+/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_LandingActionGoal.py: /opt/ros/noetic/share/geometry_msgs/msg/Pose.msg
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Generating Python from MSG hector_uav_msgs/LandingActionGoal"
 	cd /home/jxie/rossim/build/hector_quadrotor/hector_uav_msgs && ../../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py /home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingActionGoal.msg -Ihector_uav_msgs:/home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg -Ihector_uav_msgs:/home/jxie/rossim/devel/share/hector_uav_msgs/msg -Iactionlib_msgs:/opt/ros/noetic/share/actionlib_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -p hector_uav_msgs -o /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg
 
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_LandingActionResult.py: /opt/ros/noetic/lib/genpy/genmsg_py.py
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_LandingActionResult.py: /home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingActionResult.msg
-/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_LandingActionResult.py: /opt/ros/noetic/share/actionlib_msgs/msg/GoalStatus.msg
-/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_LandingActionResult.py: /opt/ros/noetic/share/actionlib_msgs/msg/GoalID.msg
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_LandingActionResult.py: /home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingResult.msg
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_LandingActionResult.py: /opt/ros/noetic/share/std_msgs/msg/Header.msg
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Generating Python from MSG hector_uav_msgs/LandingActionResult"
+/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_LandingActionResult.py: /opt/ros/noetic/share/actionlib_msgs/msg/GoalID.msg
+/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_LandingActionResult.py: /opt/ros/noetic/share/actionlib_msgs/msg/GoalStatus.msg
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Generating Python from MSG hector_uav_msgs/LandingActionResult"
 	cd /home/jxie/rossim/build/hector_quadrotor/hector_uav_msgs && ../../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py /home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingActionResult.msg -Ihector_uav_msgs:/home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg -Ihector_uav_msgs:/home/jxie/rossim/devel/share/hector_uav_msgs/msg -Iactionlib_msgs:/opt/ros/noetic/share/actionlib_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -p hector_uav_msgs -o /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg
 
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_LandingFeedback.py: /opt/ros/noetic/lib/genpy/genmsg_py.py
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_LandingFeedback.py: /home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingFeedback.msg
-/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_LandingFeedback.py: /opt/ros/noetic/share/std_msgs/msg/Header.msg
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_LandingFeedback.py: /opt/ros/noetic/share/geometry_msgs/msg/Point.msg
-/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_LandingFeedback.py: /opt/ros/noetic/share/geometry_msgs/msg/Pose.msg
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_LandingFeedback.py: /opt/ros/noetic/share/geometry_msgs/msg/PoseStamped.msg
+/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_LandingFeedback.py: /opt/ros/noetic/share/std_msgs/msg/Header.msg
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_LandingFeedback.py: /opt/ros/noetic/share/geometry_msgs/msg/Quaternion.msg
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Generating Python from MSG hector_uav_msgs/LandingFeedback"
+/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_LandingFeedback.py: /opt/ros/noetic/share/geometry_msgs/msg/Pose.msg
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Generating Python from MSG hector_uav_msgs/LandingFeedback"
 	cd /home/jxie/rossim/build/hector_quadrotor/hector_uav_msgs && ../../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py /home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingFeedback.msg -Ihector_uav_msgs:/home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg -Ihector_uav_msgs:/home/jxie/rossim/devel/share/hector_uav_msgs/msg -Iactionlib_msgs:/opt/ros/noetic/share/actionlib_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -p hector_uav_msgs -o /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg
 
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_LandingGoal.py: /opt/ros/noetic/lib/genpy/genmsg_py.py
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_LandingGoal.py: /home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingGoal.msg
-/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_LandingGoal.py: /opt/ros/noetic/share/std_msgs/msg/Header.msg
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_LandingGoal.py: /opt/ros/noetic/share/geometry_msgs/msg/Point.msg
-/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_LandingGoal.py: /opt/ros/noetic/share/geometry_msgs/msg/Pose.msg
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_LandingGoal.py: /opt/ros/noetic/share/geometry_msgs/msg/PoseStamped.msg
+/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_LandingGoal.py: /opt/ros/noetic/share/std_msgs/msg/Header.msg
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_LandingGoal.py: /opt/ros/noetic/share/geometry_msgs/msg/Quaternion.msg
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Generating Python from MSG hector_uav_msgs/LandingGoal"
+/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_LandingGoal.py: /opt/ros/noetic/share/geometry_msgs/msg/Pose.msg
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Generating Python from MSG hector_uav_msgs/LandingGoal"
 	cd /home/jxie/rossim/build/hector_quadrotor/hector_uav_msgs && ../../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py /home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingGoal.msg -Ihector_uav_msgs:/home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg -Ihector_uav_msgs:/home/jxie/rossim/devel/share/hector_uav_msgs/msg -Iactionlib_msgs:/opt/ros/noetic/share/actionlib_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -p hector_uav_msgs -o /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg
 
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_LandingResult.py: /opt/ros/noetic/lib/genpy/genmsg_py.py
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_LandingResult.py: /home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingResult.msg
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Generating Python from MSG hector_uav_msgs/LandingResult"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Generating Python from MSG hector_uav_msgs/LandingResult"
 	cd /home/jxie/rossim/build/hector_quadrotor/hector_uav_msgs && ../../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py /home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingResult.msg -Ihector_uav_msgs:/home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg -Ihector_uav_msgs:/home/jxie/rossim/devel/share/hector_uav_msgs/msg -Iactionlib_msgs:/opt/ros/noetic/share/actionlib_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -p hector_uav_msgs -o /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg
 
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_MotorCommand.py: /opt/ros/noetic/lib/genpy/genmsg_py.py
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_MotorCommand.py: /home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg/MotorCommand.msg
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_MotorCommand.py: /opt/ros/noetic/share/std_msgs/msg/Header.msg
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Generating Python from MSG hector_uav_msgs/MotorCommand"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Generating Python from MSG hector_uav_msgs/MotorCommand"
 	cd /home/jxie/rossim/build/hector_quadrotor/hector_uav_msgs && ../../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py /home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg/MotorCommand.msg -Ihector_uav_msgs:/home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg -Ihector_uav_msgs:/home/jxie/rossim/devel/share/hector_uav_msgs/msg -Iactionlib_msgs:/opt/ros/noetic/share/actionlib_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -p hector_uav_msgs -o /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg
 
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_MotorPWM.py: /opt/ros/noetic/lib/genpy/genmsg_py.py
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_MotorPWM.py: /home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg/MotorPWM.msg
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_MotorPWM.py: /opt/ros/noetic/share/std_msgs/msg/Header.msg
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Generating Python from MSG hector_uav_msgs/MotorPWM"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Generating Python from MSG hector_uav_msgs/MotorPWM"
 	cd /home/jxie/rossim/build/hector_quadrotor/hector_uav_msgs && ../../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py /home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg/MotorPWM.msg -Ihector_uav_msgs:/home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg -Ihector_uav_msgs:/home/jxie/rossim/devel/share/hector_uav_msgs/msg -Iactionlib_msgs:/opt/ros/noetic/share/actionlib_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -p hector_uav_msgs -o /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg
 
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_MotorStatus.py: /opt/ros/noetic/lib/genpy/genmsg_py.py
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_MotorStatus.py: /home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg/MotorStatus.msg
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_MotorStatus.py: /opt/ros/noetic/share/std_msgs/msg/Header.msg
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Generating Python from MSG hector_uav_msgs/MotorStatus"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Generating Python from MSG hector_uav_msgs/MotorStatus"
 	cd /home/jxie/rossim/build/hector_quadrotor/hector_uav_msgs && ../../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py /home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg/MotorStatus.msg -Ihector_uav_msgs:/home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg -Ihector_uav_msgs:/home/jxie/rossim/devel/share/hector_uav_msgs/msg -Iactionlib_msgs:/opt/ros/noetic/share/actionlib_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -p hector_uav_msgs -o /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg
 
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_PoseAction.py: /opt/ros/noetic/lib/genpy/genmsg_py.py
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_PoseAction.py: /home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseAction.msg
-/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_PoseAction.py: /opt/ros/noetic/share/actionlib_msgs/msg/GoalStatus.msg
-/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_PoseAction.py: /home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseFeedback.msg
-/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_PoseAction.py: /home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseActionResult.msg
-/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_PoseAction.py: /opt/ros/noetic/share/std_msgs/msg/Header.msg
-/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_PoseAction.py: /home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseResult.msg
-/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_PoseAction.py: /opt/ros/noetic/share/actionlib_msgs/msg/GoalID.msg
-/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_PoseAction.py: /home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseGoal.msg
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_PoseAction.py: /opt/ros/noetic/share/geometry_msgs/msg/Point.msg
-/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_PoseAction.py: /opt/ros/noetic/share/geometry_msgs/msg/Pose.msg
+/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_PoseAction.py: /home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseResult.msg
+/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_PoseAction.py: /home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseFeedback.msg
+/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_PoseAction.py: /opt/ros/noetic/share/actionlib_msgs/msg/GoalID.msg
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_PoseAction.py: /opt/ros/noetic/share/geometry_msgs/msg/PoseStamped.msg
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_PoseAction.py: /home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseActionGoal.msg
+/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_PoseAction.py: /opt/ros/noetic/share/actionlib_msgs/msg/GoalStatus.msg
+/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_PoseAction.py: /home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseGoal.msg
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_PoseAction.py: /home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseActionFeedback.msg
+/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_PoseAction.py: /home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseActionResult.msg
+/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_PoseAction.py: /opt/ros/noetic/share/std_msgs/msg/Header.msg
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_PoseAction.py: /opt/ros/noetic/share/geometry_msgs/msg/Quaternion.msg
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Generating Python from MSG hector_uav_msgs/PoseAction"
+/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_PoseAction.py: /opt/ros/noetic/share/geometry_msgs/msg/Pose.msg
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Generating Python from MSG hector_uav_msgs/PoseAction"
 	cd /home/jxie/rossim/build/hector_quadrotor/hector_uav_msgs && ../../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py /home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseAction.msg -Ihector_uav_msgs:/home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg -Ihector_uav_msgs:/home/jxie/rossim/devel/share/hector_uav_msgs/msg -Iactionlib_msgs:/opt/ros/noetic/share/actionlib_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -p hector_uav_msgs -o /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg
 
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_PoseActionFeedback.py: /opt/ros/noetic/lib/genpy/genmsg_py.py
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_PoseActionFeedback.py: /home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseActionFeedback.msg
-/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_PoseActionFeedback.py: /opt/ros/noetic/share/actionlib_msgs/msg/GoalStatus.msg
-/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_PoseActionFeedback.py: /home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseFeedback.msg
-/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_PoseActionFeedback.py: /opt/ros/noetic/share/std_msgs/msg/Header.msg
-/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_PoseActionFeedback.py: /opt/ros/noetic/share/actionlib_msgs/msg/GoalID.msg
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_PoseActionFeedback.py: /opt/ros/noetic/share/geometry_msgs/msg/Point.msg
-/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_PoseActionFeedback.py: /opt/ros/noetic/share/geometry_msgs/msg/Pose.msg
+/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_PoseActionFeedback.py: /home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseFeedback.msg
+/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_PoseActionFeedback.py: /opt/ros/noetic/share/actionlib_msgs/msg/GoalID.msg
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_PoseActionFeedback.py: /opt/ros/noetic/share/geometry_msgs/msg/PoseStamped.msg
+/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_PoseActionFeedback.py: /opt/ros/noetic/share/actionlib_msgs/msg/GoalStatus.msg
+/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_PoseActionFeedback.py: /opt/ros/noetic/share/std_msgs/msg/Header.msg
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_PoseActionFeedback.py: /opt/ros/noetic/share/geometry_msgs/msg/Quaternion.msg
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Generating Python from MSG hector_uav_msgs/PoseActionFeedback"
+/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_PoseActionFeedback.py: /opt/ros/noetic/share/geometry_msgs/msg/Pose.msg
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Generating Python from MSG hector_uav_msgs/PoseActionFeedback"
 	cd /home/jxie/rossim/build/hector_quadrotor/hector_uav_msgs && ../../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py /home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseActionFeedback.msg -Ihector_uav_msgs:/home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg -Ihector_uav_msgs:/home/jxie/rossim/devel/share/hector_uav_msgs/msg -Iactionlib_msgs:/opt/ros/noetic/share/actionlib_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -p hector_uav_msgs -o /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg
 
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_PoseActionGoal.py: /opt/ros/noetic/lib/genpy/genmsg_py.py
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_PoseActionGoal.py: /home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseActionGoal.msg
-/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_PoseActionGoal.py: /opt/ros/noetic/share/std_msgs/msg/Header.msg
-/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_PoseActionGoal.py: /opt/ros/noetic/share/actionlib_msgs/msg/GoalID.msg
-/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_PoseActionGoal.py: /home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseGoal.msg
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_PoseActionGoal.py: /opt/ros/noetic/share/geometry_msgs/msg/Point.msg
-/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_PoseActionGoal.py: /opt/ros/noetic/share/geometry_msgs/msg/Pose.msg
+/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_PoseActionGoal.py: /opt/ros/noetic/share/actionlib_msgs/msg/GoalID.msg
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_PoseActionGoal.py: /opt/ros/noetic/share/geometry_msgs/msg/PoseStamped.msg
+/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_PoseActionGoal.py: /home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseGoal.msg
+/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_PoseActionGoal.py: /opt/ros/noetic/share/std_msgs/msg/Header.msg
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_PoseActionGoal.py: /opt/ros/noetic/share/geometry_msgs/msg/Quaternion.msg
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Generating Python from MSG hector_uav_msgs/PoseActionGoal"
+/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_PoseActionGoal.py: /opt/ros/noetic/share/geometry_msgs/msg/Pose.msg
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Generating Python from MSG hector_uav_msgs/PoseActionGoal"
 	cd /home/jxie/rossim/build/hector_quadrotor/hector_uav_msgs && ../../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py /home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseActionGoal.msg -Ihector_uav_msgs:/home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg -Ihector_uav_msgs:/home/jxie/rossim/devel/share/hector_uav_msgs/msg -Iactionlib_msgs:/opt/ros/noetic/share/actionlib_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -p hector_uav_msgs -o /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg
 
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_PoseActionResult.py: /opt/ros/noetic/lib/genpy/genmsg_py.py
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_PoseActionResult.py: /home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseActionResult.msg
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_PoseActionResult.py: /home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseResult.msg
-/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_PoseActionResult.py: /opt/ros/noetic/share/actionlib_msgs/msg/GoalStatus.msg
-/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_PoseActionResult.py: /opt/ros/noetic/share/actionlib_msgs/msg/GoalID.msg
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_PoseActionResult.py: /opt/ros/noetic/share/std_msgs/msg/Header.msg
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Generating Python from MSG hector_uav_msgs/PoseActionResult"
+/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_PoseActionResult.py: /opt/ros/noetic/share/actionlib_msgs/msg/GoalID.msg
+/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_PoseActionResult.py: /opt/ros/noetic/share/actionlib_msgs/msg/GoalStatus.msg
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Generating Python from MSG hector_uav_msgs/PoseActionResult"
 	cd /home/jxie/rossim/build/hector_quadrotor/hector_uav_msgs && ../../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py /home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseActionResult.msg -Ihector_uav_msgs:/home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg -Ihector_uav_msgs:/home/jxie/rossim/devel/share/hector_uav_msgs/msg -Iactionlib_msgs:/opt/ros/noetic/share/actionlib_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -p hector_uav_msgs -o /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg
 
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_PoseFeedback.py: /opt/ros/noetic/lib/genpy/genmsg_py.py
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_PoseFeedback.py: /home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseFeedback.msg
-/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_PoseFeedback.py: /opt/ros/noetic/share/std_msgs/msg/Header.msg
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_PoseFeedback.py: /opt/ros/noetic/share/geometry_msgs/msg/Point.msg
-/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_PoseFeedback.py: /opt/ros/noetic/share/geometry_msgs/msg/Pose.msg
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_PoseFeedback.py: /opt/ros/noetic/share/geometry_msgs/msg/PoseStamped.msg
+/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_PoseFeedback.py: /opt/ros/noetic/share/std_msgs/msg/Header.msg
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_PoseFeedback.py: /opt/ros/noetic/share/geometry_msgs/msg/Quaternion.msg
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Generating Python from MSG hector_uav_msgs/PoseFeedback"
+/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_PoseFeedback.py: /opt/ros/noetic/share/geometry_msgs/msg/Pose.msg
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Generating Python from MSG hector_uav_msgs/PoseFeedback"
 	cd /home/jxie/rossim/build/hector_quadrotor/hector_uav_msgs && ../../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py /home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseFeedback.msg -Ihector_uav_msgs:/home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg -Ihector_uav_msgs:/home/jxie/rossim/devel/share/hector_uav_msgs/msg -Iactionlib_msgs:/opt/ros/noetic/share/actionlib_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -p hector_uav_msgs -o /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg
 
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_PoseGoal.py: /opt/ros/noetic/lib/genpy/genmsg_py.py
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_PoseGoal.py: /home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseGoal.msg
-/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_PoseGoal.py: /opt/ros/noetic/share/std_msgs/msg/Header.msg
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_PoseGoal.py: /opt/ros/noetic/share/geometry_msgs/msg/Point.msg
-/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_PoseGoal.py: /opt/ros/noetic/share/geometry_msgs/msg/Pose.msg
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_PoseGoal.py: /opt/ros/noetic/share/geometry_msgs/msg/PoseStamped.msg
+/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_PoseGoal.py: /opt/ros/noetic/share/std_msgs/msg/Header.msg
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_PoseGoal.py: /opt/ros/noetic/share/geometry_msgs/msg/Quaternion.msg
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Generating Python from MSG hector_uav_msgs/PoseGoal"
+/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_PoseGoal.py: /opt/ros/noetic/share/geometry_msgs/msg/Pose.msg
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Generating Python from MSG hector_uav_msgs/PoseGoal"
 	cd /home/jxie/rossim/build/hector_quadrotor/hector_uav_msgs && ../../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py /home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseGoal.msg -Ihector_uav_msgs:/home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg -Ihector_uav_msgs:/home/jxie/rossim/devel/share/hector_uav_msgs/msg -Iactionlib_msgs:/opt/ros/noetic/share/actionlib_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -p hector_uav_msgs -o /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg
 
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_PoseResult.py: /opt/ros/noetic/lib/genpy/genmsg_py.py
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_PoseResult.py: /home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseResult.msg
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Generating Python from MSG hector_uav_msgs/PoseResult"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Generating Python from MSG hector_uav_msgs/PoseResult"
 	cd /home/jxie/rossim/build/hector_quadrotor/hector_uav_msgs && ../../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py /home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseResult.msg -Ihector_uav_msgs:/home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg -Ihector_uav_msgs:/home/jxie/rossim/devel/share/hector_uav_msgs/msg -Iactionlib_msgs:/opt/ros/noetic/share/actionlib_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -p hector_uav_msgs -o /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg
 
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_PositionXYCommand.py: /opt/ros/noetic/lib/genpy/genmsg_py.py
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_PositionXYCommand.py: /home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg/PositionXYCommand.msg
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_PositionXYCommand.py: /opt/ros/noetic/share/std_msgs/msg/Header.msg
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Generating Python from MSG hector_uav_msgs/PositionXYCommand"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Generating Python from MSG hector_uav_msgs/PositionXYCommand"
 	cd /home/jxie/rossim/build/hector_quadrotor/hector_uav_msgs && ../../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py /home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg/PositionXYCommand.msg -Ihector_uav_msgs:/home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg -Ihector_uav_msgs:/home/jxie/rossim/devel/share/hector_uav_msgs/msg -Iactionlib_msgs:/opt/ros/noetic/share/actionlib_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -p hector_uav_msgs -o /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg
 
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_RC.py: /opt/ros/noetic/lib/genpy/genmsg_py.py
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_RC.py: /home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg/RC.msg
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_RC.py: /opt/ros/noetic/share/std_msgs/msg/Header.msg
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Generating Python from MSG hector_uav_msgs/RC"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Generating Python from MSG hector_uav_msgs/RC"
 	cd /home/jxie/rossim/build/hector_quadrotor/hector_uav_msgs && ../../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py /home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg/RC.msg -Ihector_uav_msgs:/home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg -Ihector_uav_msgs:/home/jxie/rossim/devel/share/hector_uav_msgs/msg -Iactionlib_msgs:/opt/ros/noetic/share/actionlib_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -p hector_uav_msgs -o /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg
 
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_RawImu.py: /opt/ros/noetic/lib/genpy/genmsg_py.py
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_RawImu.py: /home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg/RawImu.msg
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_RawImu.py: /opt/ros/noetic/share/std_msgs/msg/Header.msg
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Generating Python from MSG hector_uav_msgs/RawImu"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Generating Python from MSG hector_uav_msgs/RawImu"
 	cd /home/jxie/rossim/build/hector_quadrotor/hector_uav_msgs && ../../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py /home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg/RawImu.msg -Ihector_uav_msgs:/home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg -Ihector_uav_msgs:/home/jxie/rossim/devel/share/hector_uav_msgs/msg -Iactionlib_msgs:/opt/ros/noetic/share/actionlib_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -p hector_uav_msgs -o /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg
 
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_RawMagnetic.py: /opt/ros/noetic/lib/genpy/genmsg_py.py
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_RawMagnetic.py: /home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg/RawMagnetic.msg
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_RawMagnetic.py: /opt/ros/noetic/share/std_msgs/msg/Header.msg
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_28) "Generating Python from MSG hector_uav_msgs/RawMagnetic"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Generating Python from MSG hector_uav_msgs/RawMagnetic"
 	cd /home/jxie/rossim/build/hector_quadrotor/hector_uav_msgs && ../../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py /home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg/RawMagnetic.msg -Ihector_uav_msgs:/home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg -Ihector_uav_msgs:/home/jxie/rossim/devel/share/hector_uav_msgs/msg -Iactionlib_msgs:/opt/ros/noetic/share/actionlib_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -p hector_uav_msgs -o /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg
 
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_RawRC.py: /opt/ros/noetic/lib/genpy/genmsg_py.py
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_RawRC.py: /home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg/RawRC.msg
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_RawRC.py: /opt/ros/noetic/share/std_msgs/msg/Header.msg
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_29) "Generating Python from MSG hector_uav_msgs/RawRC"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_28) "Generating Python from MSG hector_uav_msgs/RawRC"
 	cd /home/jxie/rossim/build/hector_quadrotor/hector_uav_msgs && ../../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py /home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg/RawRC.msg -Ihector_uav_msgs:/home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg -Ihector_uav_msgs:/home/jxie/rossim/devel/share/hector_uav_msgs/msg -Iactionlib_msgs:/opt/ros/noetic/share/actionlib_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -p hector_uav_msgs -o /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg
 
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_RuddersCommand.py: /opt/ros/noetic/lib/genpy/genmsg_py.py
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_RuddersCommand.py: /home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg/RuddersCommand.msg
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_RuddersCommand.py: /opt/ros/noetic/share/std_msgs/msg/Header.msg
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_30) "Generating Python from MSG hector_uav_msgs/RuddersCommand"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_29) "Generating Python from MSG hector_uav_msgs/RuddersCommand"
 	cd /home/jxie/rossim/build/hector_quadrotor/hector_uav_msgs && ../../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py /home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg/RuddersCommand.msg -Ihector_uav_msgs:/home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg -Ihector_uav_msgs:/home/jxie/rossim/devel/share/hector_uav_msgs/msg -Iactionlib_msgs:/opt/ros/noetic/share/actionlib_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -p hector_uav_msgs -o /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg
 
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_ServoCommand.py: /opt/ros/noetic/lib/genpy/genmsg_py.py
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_ServoCommand.py: /home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg/ServoCommand.msg
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_ServoCommand.py: /opt/ros/noetic/share/std_msgs/msg/Header.msg
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_31) "Generating Python from MSG hector_uav_msgs/ServoCommand"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_30) "Generating Python from MSG hector_uav_msgs/ServoCommand"
 	cd /home/jxie/rossim/build/hector_quadrotor/hector_uav_msgs && ../../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py /home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg/ServoCommand.msg -Ihector_uav_msgs:/home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg -Ihector_uav_msgs:/home/jxie/rossim/devel/share/hector_uav_msgs/msg -Iactionlib_msgs:/opt/ros/noetic/share/actionlib_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -p hector_uav_msgs -o /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg
 
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_Supply.py: /opt/ros/noetic/lib/genpy/genmsg_py.py
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_Supply.py: /home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg/Supply.msg
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_Supply.py: /opt/ros/noetic/share/std_msgs/msg/Header.msg
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_32) "Generating Python from MSG hector_uav_msgs/Supply"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_31) "Generating Python from MSG hector_uav_msgs/Supply"
 	cd /home/jxie/rossim/build/hector_quadrotor/hector_uav_msgs && ../../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py /home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg/Supply.msg -Ihector_uav_msgs:/home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg -Ihector_uav_msgs:/home/jxie/rossim/devel/share/hector_uav_msgs/msg -Iactionlib_msgs:/opt/ros/noetic/share/actionlib_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -p hector_uav_msgs -o /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg
 
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_TakeoffAction.py: /opt/ros/noetic/lib/genpy/genmsg_py.py
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_TakeoffAction.py: /home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffAction.msg
-/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_TakeoffAction.py: /home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffActionGoal.msg
-/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_TakeoffAction.py: /opt/ros/noetic/share/actionlib_msgs/msg/GoalStatus.msg
-/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_TakeoffAction.py: /home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffActionFeedback.msg
-/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_TakeoffAction.py: /home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffResult.msg
-/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_TakeoffAction.py: /opt/ros/noetic/share/std_msgs/msg/Header.msg
+/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_TakeoffAction.py: /opt/ros/noetic/share/geometry_msgs/msg/Point.msg
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_TakeoffAction.py: /opt/ros/noetic/share/actionlib_msgs/msg/GoalID.msg
+/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_TakeoffAction.py: /opt/ros/noetic/share/geometry_msgs/msg/PoseStamped.msg
+/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_TakeoffAction.py: /home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffGoal.msg
+/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_TakeoffAction.py: /home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffActionGoal.msg
+/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_TakeoffAction.py: /home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffResult.msg
+/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_TakeoffAction.py: /home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffActionFeedback.msg
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_TakeoffAction.py: /home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffActionResult.msg
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_TakeoffAction.py: /home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffFeedback.msg
-/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_TakeoffAction.py: /opt/ros/noetic/share/geometry_msgs/msg/Pose.msg
-/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_TakeoffAction.py: /home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffGoal.msg
-/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_TakeoffAction.py: /opt/ros/noetic/share/geometry_msgs/msg/Point.msg
-/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_TakeoffAction.py: /opt/ros/noetic/share/geometry_msgs/msg/PoseStamped.msg
+/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_TakeoffAction.py: /opt/ros/noetic/share/actionlib_msgs/msg/GoalStatus.msg
+/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_TakeoffAction.py: /opt/ros/noetic/share/std_msgs/msg/Header.msg
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_TakeoffAction.py: /opt/ros/noetic/share/geometry_msgs/msg/Quaternion.msg
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_33) "Generating Python from MSG hector_uav_msgs/TakeoffAction"
+/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_TakeoffAction.py: /opt/ros/noetic/share/geometry_msgs/msg/Pose.msg
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_32) "Generating Python from MSG hector_uav_msgs/TakeoffAction"
 	cd /home/jxie/rossim/build/hector_quadrotor/hector_uav_msgs && ../../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py /home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffAction.msg -Ihector_uav_msgs:/home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg -Ihector_uav_msgs:/home/jxie/rossim/devel/share/hector_uav_msgs/msg -Iactionlib_msgs:/opt/ros/noetic/share/actionlib_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -p hector_uav_msgs -o /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg
 
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_TakeoffActionFeedback.py: /opt/ros/noetic/lib/genpy/genmsg_py.py
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_TakeoffActionFeedback.py: /home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffActionFeedback.msg
+/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_TakeoffActionFeedback.py: /opt/ros/noetic/share/geometry_msgs/msg/Point.msg
+/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_TakeoffActionFeedback.py: /opt/ros/noetic/share/actionlib_msgs/msg/GoalID.msg
+/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_TakeoffActionFeedback.py: /opt/ros/noetic/share/geometry_msgs/msg/PoseStamped.msg
+/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_TakeoffActionFeedback.py: /home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffFeedback.msg
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_TakeoffActionFeedback.py: /opt/ros/noetic/share/actionlib_msgs/msg/GoalStatus.msg
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_TakeoffActionFeedback.py: /opt/ros/noetic/share/std_msgs/msg/Header.msg
-/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_TakeoffActionFeedback.py: /opt/ros/noetic/share/actionlib_msgs/msg/GoalID.msg
-/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_TakeoffActionFeedback.py: /home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffFeedback.msg
-/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_TakeoffActionFeedback.py: /opt/ros/noetic/share/geometry_msgs/msg/Point.msg
-/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_TakeoffActionFeedback.py: /opt/ros/noetic/share/geometry_msgs/msg/Pose.msg
-/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_TakeoffActionFeedback.py: /opt/ros/noetic/share/geometry_msgs/msg/PoseStamped.msg
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_TakeoffActionFeedback.py: /opt/ros/noetic/share/geometry_msgs/msg/Quaternion.msg
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_34) "Generating Python from MSG hector_uav_msgs/TakeoffActionFeedback"
+/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_TakeoffActionFeedback.py: /opt/ros/noetic/share/geometry_msgs/msg/Pose.msg
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_33) "Generating Python from MSG hector_uav_msgs/TakeoffActionFeedback"
 	cd /home/jxie/rossim/build/hector_quadrotor/hector_uav_msgs && ../../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py /home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffActionFeedback.msg -Ihector_uav_msgs:/home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg -Ihector_uav_msgs:/home/jxie/rossim/devel/share/hector_uav_msgs/msg -Iactionlib_msgs:/opt/ros/noetic/share/actionlib_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -p hector_uav_msgs -o /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg
 
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_TakeoffActionGoal.py: /opt/ros/noetic/lib/genpy/genmsg_py.py
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_TakeoffActionGoal.py: /home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffActionGoal.msg
-/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_TakeoffActionGoal.py: /opt/ros/noetic/share/actionlib_msgs/msg/GoalID.msg
-/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_TakeoffActionGoal.py: /opt/ros/noetic/share/std_msgs/msg/Header.msg
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_TakeoffActionGoal.py: /home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffGoal.msg
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_35) "Generating Python from MSG hector_uav_msgs/TakeoffActionGoal"
+/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_TakeoffActionGoal.py: /opt/ros/noetic/share/std_msgs/msg/Header.msg
+/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_TakeoffActionGoal.py: /opt/ros/noetic/share/actionlib_msgs/msg/GoalID.msg
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_34) "Generating Python from MSG hector_uav_msgs/TakeoffActionGoal"
 	cd /home/jxie/rossim/build/hector_quadrotor/hector_uav_msgs && ../../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py /home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffActionGoal.msg -Ihector_uav_msgs:/home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg -Ihector_uav_msgs:/home/jxie/rossim/devel/share/hector_uav_msgs/msg -Iactionlib_msgs:/opt/ros/noetic/share/actionlib_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -p hector_uav_msgs -o /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg
 
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_TakeoffActionResult.py: /opt/ros/noetic/lib/genpy/genmsg_py.py
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_TakeoffActionResult.py: /home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffActionResult.msg
-/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_TakeoffActionResult.py: /opt/ros/noetic/share/actionlib_msgs/msg/GoalStatus.msg
-/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_TakeoffActionResult.py: /opt/ros/noetic/share/actionlib_msgs/msg/GoalID.msg
-/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_TakeoffActionResult.py: /home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffResult.msg
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_TakeoffActionResult.py: /opt/ros/noetic/share/std_msgs/msg/Header.msg
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_36) "Generating Python from MSG hector_uav_msgs/TakeoffActionResult"
+/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_TakeoffActionResult.py: /home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffResult.msg
+/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_TakeoffActionResult.py: /opt/ros/noetic/share/actionlib_msgs/msg/GoalID.msg
+/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_TakeoffActionResult.py: /opt/ros/noetic/share/actionlib_msgs/msg/GoalStatus.msg
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_35) "Generating Python from MSG hector_uav_msgs/TakeoffActionResult"
 	cd /home/jxie/rossim/build/hector_quadrotor/hector_uav_msgs && ../../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py /home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffActionResult.msg -Ihector_uav_msgs:/home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg -Ihector_uav_msgs:/home/jxie/rossim/devel/share/hector_uav_msgs/msg -Iactionlib_msgs:/opt/ros/noetic/share/actionlib_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -p hector_uav_msgs -o /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg
 
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_TakeoffFeedback.py: /opt/ros/noetic/lib/genpy/genmsg_py.py
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_TakeoffFeedback.py: /home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffFeedback.msg
-/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_TakeoffFeedback.py: /opt/ros/noetic/share/std_msgs/msg/Header.msg
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_TakeoffFeedback.py: /opt/ros/noetic/share/geometry_msgs/msg/Point.msg
-/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_TakeoffFeedback.py: /opt/ros/noetic/share/geometry_msgs/msg/Pose.msg
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_TakeoffFeedback.py: /opt/ros/noetic/share/geometry_msgs/msg/PoseStamped.msg
+/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_TakeoffFeedback.py: /opt/ros/noetic/share/std_msgs/msg/Header.msg
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_TakeoffFeedback.py: /opt/ros/noetic/share/geometry_msgs/msg/Quaternion.msg
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_37) "Generating Python from MSG hector_uav_msgs/TakeoffFeedback"
+/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_TakeoffFeedback.py: /opt/ros/noetic/share/geometry_msgs/msg/Pose.msg
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_36) "Generating Python from MSG hector_uav_msgs/TakeoffFeedback"
 	cd /home/jxie/rossim/build/hector_quadrotor/hector_uav_msgs && ../../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py /home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffFeedback.msg -Ihector_uav_msgs:/home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg -Ihector_uav_msgs:/home/jxie/rossim/devel/share/hector_uav_msgs/msg -Iactionlib_msgs:/opt/ros/noetic/share/actionlib_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -p hector_uav_msgs -o /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg
 
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_TakeoffGoal.py: /opt/ros/noetic/lib/genpy/genmsg_py.py
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_TakeoffGoal.py: /home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffGoal.msg
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_38) "Generating Python from MSG hector_uav_msgs/TakeoffGoal"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_37) "Generating Python from MSG hector_uav_msgs/TakeoffGoal"
 	cd /home/jxie/rossim/build/hector_quadrotor/hector_uav_msgs && ../../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py /home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffGoal.msg -Ihector_uav_msgs:/home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg -Ihector_uav_msgs:/home/jxie/rossim/devel/share/hector_uav_msgs/msg -Iactionlib_msgs:/opt/ros/noetic/share/actionlib_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -p hector_uav_msgs -o /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg
 
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_TakeoffResult.py: /opt/ros/noetic/lib/genpy/genmsg_py.py
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_TakeoffResult.py: /home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffResult.msg
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_39) "Generating Python from MSG hector_uav_msgs/TakeoffResult"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_38) "Generating Python from MSG hector_uav_msgs/TakeoffResult"
 	cd /home/jxie/rossim/build/hector_quadrotor/hector_uav_msgs && ../../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py /home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffResult.msg -Ihector_uav_msgs:/home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg -Ihector_uav_msgs:/home/jxie/rossim/devel/share/hector_uav_msgs/msg -Iactionlib_msgs:/opt/ros/noetic/share/actionlib_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -p hector_uav_msgs -o /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg
 
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_Task.py: /opt/ros/noetic/lib/genpy/genmsg_py.py
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_Task.py: /home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg/Task.msg
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_40) "Generating Python from MSG hector_uav_msgs/Task"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_39) "Generating Python from MSG hector_uav_msgs/Task"
 	cd /home/jxie/rossim/build/hector_quadrotor/hector_uav_msgs && ../../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py /home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg/Task.msg -Ihector_uav_msgs:/home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg -Ihector_uav_msgs:/home/jxie/rossim/devel/share/hector_uav_msgs/msg -Iactionlib_msgs:/opt/ros/noetic/share/actionlib_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -p hector_uav_msgs -o /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg
 
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_ThrustCommand.py: /opt/ros/noetic/lib/genpy/genmsg_py.py
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_ThrustCommand.py: /home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg/ThrustCommand.msg
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_ThrustCommand.py: /opt/ros/noetic/share/std_msgs/msg/Header.msg
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_41) "Generating Python from MSG hector_uav_msgs/ThrustCommand"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_40) "Generating Python from MSG hector_uav_msgs/ThrustCommand"
 	cd /home/jxie/rossim/build/hector_quadrotor/hector_uav_msgs && ../../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py /home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg/ThrustCommand.msg -Ihector_uav_msgs:/home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg -Ihector_uav_msgs:/home/jxie/rossim/devel/share/hector_uav_msgs/msg -Iactionlib_msgs:/opt/ros/noetic/share/actionlib_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -p hector_uav_msgs -o /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg
 
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_VelocityXYCommand.py: /opt/ros/noetic/lib/genpy/genmsg_py.py
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_VelocityXYCommand.py: /home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg/VelocityXYCommand.msg
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_VelocityXYCommand.py: /opt/ros/noetic/share/std_msgs/msg/Header.msg
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_42) "Generating Python from MSG hector_uav_msgs/VelocityXYCommand"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_41) "Generating Python from MSG hector_uav_msgs/VelocityXYCommand"
 	cd /home/jxie/rossim/build/hector_quadrotor/hector_uav_msgs && ../../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py /home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg/VelocityXYCommand.msg -Ihector_uav_msgs:/home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg -Ihector_uav_msgs:/home/jxie/rossim/devel/share/hector_uav_msgs/msg -Iactionlib_msgs:/opt/ros/noetic/share/actionlib_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -p hector_uav_msgs -o /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg
 
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_VelocityZCommand.py: /opt/ros/noetic/lib/genpy/genmsg_py.py
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_VelocityZCommand.py: /home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg/VelocityZCommand.msg
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_VelocityZCommand.py: /opt/ros/noetic/share/std_msgs/msg/Header.msg
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_43) "Generating Python from MSG hector_uav_msgs/VelocityZCommand"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_42) "Generating Python from MSG hector_uav_msgs/VelocityZCommand"
 	cd /home/jxie/rossim/build/hector_quadrotor/hector_uav_msgs && ../../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py /home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg/VelocityZCommand.msg -Ihector_uav_msgs:/home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg -Ihector_uav_msgs:/home/jxie/rossim/devel/share/hector_uav_msgs/msg -Iactionlib_msgs:/opt/ros/noetic/share/actionlib_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -p hector_uav_msgs -o /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg
 
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_YawrateCommand.py: /opt/ros/noetic/lib/genpy/genmsg_py.py
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_YawrateCommand.py: /home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg/YawrateCommand.msg
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_YawrateCommand.py: /opt/ros/noetic/share/std_msgs/msg/Header.msg
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_44) "Generating Python from MSG hector_uav_msgs/YawrateCommand"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_43) "Generating Python from MSG hector_uav_msgs/YawrateCommand"
 	cd /home/jxie/rossim/build/hector_quadrotor/hector_uav_msgs && ../../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py /home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg/YawrateCommand.msg -Ihector_uav_msgs:/home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg -Ihector_uav_msgs:/home/jxie/rossim/devel/share/hector_uav_msgs/msg -Iactionlib_msgs:/opt/ros/noetic/share/actionlib_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -p hector_uav_msgs -o /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg
 
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/__init__.py: /opt/ros/noetic/lib/genpy/genmsg_py.py
@@ -495,7 +489,6 @@ hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_generate_messages_py
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/__init__.py: /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_VelocityZCommand.py
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/__init__.py: /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_YawrateCommand.py
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/__init__.py: /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_Task.py
-/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/__init__.py: /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_FinishTime.py
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/__init__.py: /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_PoseAction.py
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/__init__.py: /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_PoseActionGoal.py
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/__init__.py: /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_PoseActionResult.py
@@ -518,12 +511,12 @@ hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_generate_messages_py
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/__init__.py: /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_TakeoffResult.py
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/__init__.py: /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_TakeoffFeedback.py
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/__init__.py: /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/srv/_EnableMotors.py
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_45) "Generating Python msg __init__.py for hector_uav_msgs"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_44) "Generating Python msg __init__.py for hector_uav_msgs"
 	cd /home/jxie/rossim/build/hector_quadrotor/hector_uav_msgs && ../../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py -o /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg --initpy
 
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/srv/_EnableMotors.py: /opt/ros/noetic/lib/genpy/gensrv_py.py
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/srv/_EnableMotors.py: /home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/srv/EnableMotors.srv
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_46) "Generating Python code from SRV hector_uav_msgs/EnableMotors"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_45) "Generating Python code from SRV hector_uav_msgs/EnableMotors"
 	cd /home/jxie/rossim/build/hector_quadrotor/hector_uav_msgs && ../../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/gensrv_py.py /home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/srv/EnableMotors.srv -Ihector_uav_msgs:/home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg -Ihector_uav_msgs:/home/jxie/rossim/devel/share/hector_uav_msgs/msg -Iactionlib_msgs:/opt/ros/noetic/share/actionlib_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -p hector_uav_msgs -o /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/srv
 
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/srv/__init__.py: /opt/ros/noetic/lib/genpy/genmsg_py.py
@@ -549,7 +542,6 @@ hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_generate_messages_py
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/srv/__init__.py: /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_VelocityZCommand.py
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/srv/__init__.py: /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_YawrateCommand.py
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/srv/__init__.py: /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_Task.py
-/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/srv/__init__.py: /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_FinishTime.py
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/srv/__init__.py: /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_PoseAction.py
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/srv/__init__.py: /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_PoseActionGoal.py
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/srv/__init__.py: /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_PoseActionResult.py
@@ -572,7 +564,7 @@ hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_generate_messages_py
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/srv/__init__.py: /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_TakeoffResult.py
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/srv/__init__.py: /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_TakeoffFeedback.py
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/srv/__init__.py: /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/srv/_EnableMotors.py
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_47) "Generating Python srv __init__.py for hector_uav_msgs"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_46) "Generating Python srv __init__.py for hector_uav_msgs"
 	cd /home/jxie/rossim/build/hector_quadrotor/hector_uav_msgs && ../../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py -o /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/srv --initpy
 
 hector_uav_msgs_generate_messages_py: hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_generate_messages_py
@@ -580,7 +572,6 @@ hector_uav_msgs_generate_messages_py: /home/jxie/rossim/devel/lib/python3/dist-p
 hector_uav_msgs_generate_messages_py: /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_AttitudeCommand.py
 hector_uav_msgs_generate_messages_py: /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_Compass.py
 hector_uav_msgs_generate_messages_py: /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_ControllerState.py
-hector_uav_msgs_generate_messages_py: /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_FinishTime.py
 hector_uav_msgs_generate_messages_py: /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_HeadingCommand.py
 hector_uav_msgs_generate_messages_py: /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_HeightCommand.py
 hector_uav_msgs_generate_messages_py: /home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_LandingAction.py

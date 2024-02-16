@@ -3,7 +3,6 @@ file(REMOVE_RECURSE
   "/home/jxie/rossim/devel/share/gennodejs/ros/hector_uav_msgs/msg/AttitudeCommand.js"
   "/home/jxie/rossim/devel/share/gennodejs/ros/hector_uav_msgs/msg/Compass.js"
   "/home/jxie/rossim/devel/share/gennodejs/ros/hector_uav_msgs/msg/ControllerState.js"
-  "/home/jxie/rossim/devel/share/gennodejs/ros/hector_uav_msgs/msg/FinishTime.js"
   "/home/jxie/rossim/devel/share/gennodejs/ros/hector_uav_msgs/msg/HeadingCommand.js"
   "/home/jxie/rossim/devel/share/gennodejs/ros/hector_uav_msgs/msg/HeightCommand.js"
   "/home/jxie/rossim/devel/share/gennodejs/ros/hector_uav_msgs/msg/LandingAction.js"

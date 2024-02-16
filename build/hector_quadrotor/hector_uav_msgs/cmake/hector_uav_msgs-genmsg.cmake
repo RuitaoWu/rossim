@@ -1,6 +1,6 @@
 # generated from genmsg/cmake/pkg-genmsg.cmake.em
 
-message(STATUS "hector_uav_msgs: 44 messages, 1 services")
+message(STATUS "hector_uav_msgs: 43 messages, 1 services")
 
 set(MSG_I_FLAGS "-Ihector_uav_msgs:/home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg;-Ihector_uav_msgs:/home/jxie/rossim/devel/share/hector_uav_msgs/msg;-Iactionlib_msgs:/opt/ros/noetic/share/actionlib_msgs/cmake/../msg;-Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg;-Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg")
 
@@ -127,34 +127,29 @@ add_custom_target(_hector_uav_msgs_generate_messages_check_deps_${_filename}
   COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "hector_uav_msgs" "/home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg/Task.msg" ""
 )
 
-get_filename_component(_filename "/home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg/FinishTime.msg" NAME_WE)
-add_custom_target(_hector_uav_msgs_generate_messages_check_deps_${_filename}
-  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "hector_uav_msgs" "/home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg/FinishTime.msg" ""
-)
-
 get_filename_component(_filename "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseAction.msg" NAME_WE)
 add_custom_target(_hector_uav_msgs_generate_messages_check_deps_${_filename}
-  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "hector_uav_msgs" "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseAction.msg" "actionlib_msgs/GoalStatus:hector_uav_msgs/PoseFeedback:hector_uav_msgs/PoseActionResult:std_msgs/Header:hector_uav_msgs/PoseResult:actionlib_msgs/GoalID:hector_uav_msgs/PoseGoal:geometry_msgs/Point:geometry_msgs/Pose:geometry_msgs/PoseStamped:hector_uav_msgs/PoseActionGoal:hector_uav_msgs/PoseActionFeedback:geometry_msgs/Quaternion"
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "hector_uav_msgs" "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseAction.msg" "geometry_msgs/Point:hector_uav_msgs/PoseResult:hector_uav_msgs/PoseFeedback:actionlib_msgs/GoalID:geometry_msgs/PoseStamped:hector_uav_msgs/PoseActionGoal:actionlib_msgs/GoalStatus:hector_uav_msgs/PoseGoal:hector_uav_msgs/PoseActionFeedback:hector_uav_msgs/PoseActionResult:std_msgs/Header:geometry_msgs/Quaternion:geometry_msgs/Pose"
 )
 
 get_filename_component(_filename "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseActionGoal.msg" NAME_WE)
 add_custom_target(_hector_uav_msgs_generate_messages_check_deps_${_filename}
-  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "hector_uav_msgs" "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseActionGoal.msg" "std_msgs/Header:actionlib_msgs/GoalID:hector_uav_msgs/PoseGoal:geometry_msgs/Point:geometry_msgs/Pose:geometry_msgs/PoseStamped:geometry_msgs/Quaternion"
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "hector_uav_msgs" "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseActionGoal.msg" "geometry_msgs/Point:actionlib_msgs/GoalID:geometry_msgs/PoseStamped:hector_uav_msgs/PoseGoal:std_msgs/Header:geometry_msgs/Quaternion:geometry_msgs/Pose"
 )
 
 get_filename_component(_filename "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseActionResult.msg" NAME_WE)
 add_custom_target(_hector_uav_msgs_generate_messages_check_deps_${_filename}
-  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "hector_uav_msgs" "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseActionResult.msg" "hector_uav_msgs/PoseResult:actionlib_msgs/GoalStatus:actionlib_msgs/GoalID:std_msgs/Header"
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "hector_uav_msgs" "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseActionResult.msg" "hector_uav_msgs/PoseResult:std_msgs/Header:actionlib_msgs/GoalID:actionlib_msgs/GoalStatus"
 )
 
 get_filename_component(_filename "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseActionFeedback.msg" NAME_WE)
 add_custom_target(_hector_uav_msgs_generate_messages_check_deps_${_filename}
-  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "hector_uav_msgs" "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseActionFeedback.msg" "actionlib_msgs/GoalStatus:hector_uav_msgs/PoseFeedback:std_msgs/Header:actionlib_msgs/GoalID:geometry_msgs/Point:geometry_msgs/Pose:geometry_msgs/PoseStamped:geometry_msgs/Quaternion"
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "hector_uav_msgs" "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseActionFeedback.msg" "geometry_msgs/Point:hector_uav_msgs/PoseFeedback:actionlib_msgs/GoalID:geometry_msgs/PoseStamped:actionlib_msgs/GoalStatus:std_msgs/Header:geometry_msgs/Quaternion:geometry_msgs/Pose"
 )
 
 get_filename_component(_filename "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseGoal.msg" NAME_WE)
 add_custom_target(_hector_uav_msgs_generate_messages_check_deps_${_filename}
-  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "hector_uav_msgs" "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseGoal.msg" "std_msgs/Header:geometry_msgs/Point:geometry_msgs/Pose:geometry_msgs/PoseStamped:geometry_msgs/Quaternion"
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "hector_uav_msgs" "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseGoal.msg" "geometry_msgs/Point:geometry_msgs/PoseStamped:std_msgs/Header:geometry_msgs/Quaternion:geometry_msgs/Pose"
 )
 
 get_filename_component(_filename "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseResult.msg" NAME_WE)
@@ -164,32 +159,32 @@ add_custom_target(_hector_uav_msgs_generate_messages_check_deps_${_filename}
 
 get_filename_component(_filename "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseFeedback.msg" NAME_WE)
 add_custom_target(_hector_uav_msgs_generate_messages_check_deps_${_filename}
-  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "hector_uav_msgs" "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseFeedback.msg" "std_msgs/Header:geometry_msgs/Point:geometry_msgs/Pose:geometry_msgs/PoseStamped:geometry_msgs/Quaternion"
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "hector_uav_msgs" "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseFeedback.msg" "geometry_msgs/Point:geometry_msgs/PoseStamped:std_msgs/Header:geometry_msgs/Quaternion:geometry_msgs/Pose"
 )
 
 get_filename_component(_filename "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingAction.msg" NAME_WE)
 add_custom_target(_hector_uav_msgs_generate_messages_check_deps_${_filename}
-  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "hector_uav_msgs" "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingAction.msg" "actionlib_msgs/GoalStatus:hector_uav_msgs/LandingGoal:hector_uav_msgs/LandingActionGoal:hector_uav_msgs/LandingResult:hector_uav_msgs/LandingActionFeedback:std_msgs/Header:actionlib_msgs/GoalID:geometry_msgs/Point:geometry_msgs/Pose:hector_uav_msgs/LandingFeedback:geometry_msgs/PoseStamped:hector_uav_msgs/LandingActionResult:geometry_msgs/Quaternion"
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "hector_uav_msgs" "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingAction.msg" "geometry_msgs/Point:hector_uav_msgs/LandingActionGoal:actionlib_msgs/GoalID:geometry_msgs/PoseStamped:hector_uav_msgs/LandingGoal:hector_uav_msgs/LandingActionResult:hector_uav_msgs/LandingFeedback:hector_uav_msgs/LandingActionFeedback:actionlib_msgs/GoalStatus:hector_uav_msgs/LandingResult:std_msgs/Header:geometry_msgs/Quaternion:geometry_msgs/Pose"
 )
 
 get_filename_component(_filename "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingActionGoal.msg" NAME_WE)
 add_custom_target(_hector_uav_msgs_generate_messages_check_deps_${_filename}
-  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "hector_uav_msgs" "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingActionGoal.msg" "hector_uav_msgs/LandingGoal:std_msgs/Header:actionlib_msgs/GoalID:geometry_msgs/Point:geometry_msgs/Pose:geometry_msgs/PoseStamped:geometry_msgs/Quaternion"
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "hector_uav_msgs" "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingActionGoal.msg" "geometry_msgs/Point:actionlib_msgs/GoalID:geometry_msgs/PoseStamped:hector_uav_msgs/LandingGoal:std_msgs/Header:geometry_msgs/Quaternion:geometry_msgs/Pose"
 )
 
 get_filename_component(_filename "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingActionResult.msg" NAME_WE)
 add_custom_target(_hector_uav_msgs_generate_messages_check_deps_${_filename}
-  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "hector_uav_msgs" "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingActionResult.msg" "actionlib_msgs/GoalStatus:actionlib_msgs/GoalID:hector_uav_msgs/LandingResult:std_msgs/Header"
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "hector_uav_msgs" "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingActionResult.msg" "hector_uav_msgs/LandingResult:std_msgs/Header:actionlib_msgs/GoalID:actionlib_msgs/GoalStatus"
 )
 
 get_filename_component(_filename "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingActionFeedback.msg" NAME_WE)
 add_custom_target(_hector_uav_msgs_generate_messages_check_deps_${_filename}
-  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "hector_uav_msgs" "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingActionFeedback.msg" "actionlib_msgs/GoalStatus:std_msgs/Header:actionlib_msgs/GoalID:geometry_msgs/Point:geometry_msgs/Pose:hector_uav_msgs/LandingFeedback:geometry_msgs/PoseStamped:geometry_msgs/Quaternion"
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "hector_uav_msgs" "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingActionFeedback.msg" "geometry_msgs/Point:actionlib_msgs/GoalID:geometry_msgs/PoseStamped:hector_uav_msgs/LandingFeedback:actionlib_msgs/GoalStatus:std_msgs/Header:geometry_msgs/Quaternion:geometry_msgs/Pose"
 )
 
 get_filename_component(_filename "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingGoal.msg" NAME_WE)
 add_custom_target(_hector_uav_msgs_generate_messages_check_deps_${_filename}
-  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "hector_uav_msgs" "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingGoal.msg" "std_msgs/Header:geometry_msgs/Point:geometry_msgs/Pose:geometry_msgs/PoseStamped:geometry_msgs/Quaternion"
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "hector_uav_msgs" "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingGoal.msg" "geometry_msgs/Point:geometry_msgs/PoseStamped:std_msgs/Header:geometry_msgs/Quaternion:geometry_msgs/Pose"
 )
 
 get_filename_component(_filename "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingResult.msg" NAME_WE)
@@ -199,27 +194,27 @@ add_custom_target(_hector_uav_msgs_generate_messages_check_deps_${_filename}
 
 get_filename_component(_filename "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingFeedback.msg" NAME_WE)
 add_custom_target(_hector_uav_msgs_generate_messages_check_deps_${_filename}
-  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "hector_uav_msgs" "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingFeedback.msg" "std_msgs/Header:geometry_msgs/Point:geometry_msgs/Pose:geometry_msgs/PoseStamped:geometry_msgs/Quaternion"
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "hector_uav_msgs" "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingFeedback.msg" "geometry_msgs/Point:geometry_msgs/PoseStamped:std_msgs/Header:geometry_msgs/Quaternion:geometry_msgs/Pose"
 )
 
 get_filename_component(_filename "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffAction.msg" NAME_WE)
 add_custom_target(_hector_uav_msgs_generate_messages_check_deps_${_filename}
-  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "hector_uav_msgs" "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffAction.msg" "hector_uav_msgs/TakeoffActionGoal:actionlib_msgs/GoalStatus:hector_uav_msgs/TakeoffActionFeedback:hector_uav_msgs/TakeoffResult:std_msgs/Header:actionlib_msgs/GoalID:hector_uav_msgs/TakeoffActionResult:hector_uav_msgs/TakeoffFeedback:geometry_msgs/Pose:hector_uav_msgs/TakeoffGoal:geometry_msgs/Point:geometry_msgs/PoseStamped:geometry_msgs/Quaternion"
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "hector_uav_msgs" "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffAction.msg" "geometry_msgs/Point:actionlib_msgs/GoalID:geometry_msgs/PoseStamped:hector_uav_msgs/TakeoffGoal:hector_uav_msgs/TakeoffActionGoal:hector_uav_msgs/TakeoffResult:hector_uav_msgs/TakeoffActionFeedback:hector_uav_msgs/TakeoffActionResult:hector_uav_msgs/TakeoffFeedback:actionlib_msgs/GoalStatus:std_msgs/Header:geometry_msgs/Quaternion:geometry_msgs/Pose"
 )
 
 get_filename_component(_filename "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffActionGoal.msg" NAME_WE)
 add_custom_target(_hector_uav_msgs_generate_messages_check_deps_${_filename}
-  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "hector_uav_msgs" "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffActionGoal.msg" "actionlib_msgs/GoalID:std_msgs/Header:hector_uav_msgs/TakeoffGoal"
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "hector_uav_msgs" "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffActionGoal.msg" "hector_uav_msgs/TakeoffGoal:std_msgs/Header:actionlib_msgs/GoalID"
 )
 
 get_filename_component(_filename "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffActionResult.msg" NAME_WE)
 add_custom_target(_hector_uav_msgs_generate_messages_check_deps_${_filename}
-  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "hector_uav_msgs" "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffActionResult.msg" "actionlib_msgs/GoalStatus:actionlib_msgs/GoalID:hector_uav_msgs/TakeoffResult:std_msgs/Header"
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "hector_uav_msgs" "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffActionResult.msg" "std_msgs/Header:hector_uav_msgs/TakeoffResult:actionlib_msgs/GoalID:actionlib_msgs/GoalStatus"
 )
 
 get_filename_component(_filename "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffActionFeedback.msg" NAME_WE)
 add_custom_target(_hector_uav_msgs_generate_messages_check_deps_${_filename}
-  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "hector_uav_msgs" "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffActionFeedback.msg" "actionlib_msgs/GoalStatus:std_msgs/Header:actionlib_msgs/GoalID:hector_uav_msgs/TakeoffFeedback:geometry_msgs/Point:geometry_msgs/Pose:geometry_msgs/PoseStamped:geometry_msgs/Quaternion"
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "hector_uav_msgs" "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffActionFeedback.msg" "geometry_msgs/Point:actionlib_msgs/GoalID:geometry_msgs/PoseStamped:hector_uav_msgs/TakeoffFeedback:actionlib_msgs/GoalStatus:std_msgs/Header:geometry_msgs/Quaternion:geometry_msgs/Pose"
 )
 
 get_filename_component(_filename "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffGoal.msg" NAME_WE)
@@ -234,7 +229,7 @@ add_custom_target(_hector_uav_msgs_generate_messages_check_deps_${_filename}
 
 get_filename_component(_filename "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffFeedback.msg" NAME_WE)
 add_custom_target(_hector_uav_msgs_generate_messages_check_deps_${_filename}
-  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "hector_uav_msgs" "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffFeedback.msg" "std_msgs/Header:geometry_msgs/Point:geometry_msgs/Pose:geometry_msgs/PoseStamped:geometry_msgs/Quaternion"
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "hector_uav_msgs" "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffFeedback.msg" "geometry_msgs/Point:geometry_msgs/PoseStamped:std_msgs/Header:geometry_msgs/Quaternion:geometry_msgs/Pose"
 )
 
 get_filename_component(_filename "/home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/srv/EnableMotors.srv" NAME_WE)
@@ -381,39 +376,33 @@ _generate_msg_cpp(hector_uav_msgs
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/hector_uav_msgs
 )
 _generate_msg_cpp(hector_uav_msgs
-  "/home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg/FinishTime.msg"
-  "${MSG_I_FLAGS}"
-  ""
-  ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/hector_uav_msgs
-)
-_generate_msg_cpp(hector_uav_msgs
   "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseAction.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseFeedback.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseActionResult.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseResult.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseGoal.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseActionGoal.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseActionFeedback.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseResult.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseFeedback.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseActionGoal.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseGoal.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseActionFeedback.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseActionResult.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg"
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/hector_uav_msgs
 )
 _generate_msg_cpp(hector_uav_msgs
   "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseActionGoal.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseGoal.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseGoal.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg"
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/hector_uav_msgs
 )
 _generate_msg_cpp(hector_uav_msgs
   "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseActionResult.msg"
   "${MSG_I_FLAGS}"
-  "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseResult.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
+  "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseResult.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg"
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/hector_uav_msgs
 )
 _generate_msg_cpp(hector_uav_msgs
   "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseActionFeedback.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseFeedback.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseFeedback.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg"
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/hector_uav_msgs
 )
 _generate_msg_cpp(hector_uav_msgs
   "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseGoal.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg"
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/hector_uav_msgs
 )
 _generate_msg_cpp(hector_uav_msgs
@@ -425,37 +414,37 @@ _generate_msg_cpp(hector_uav_msgs
 _generate_msg_cpp(hector_uav_msgs
   "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseFeedback.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg"
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/hector_uav_msgs
 )
 _generate_msg_cpp(hector_uav_msgs
   "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingAction.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingGoal.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingActionGoal.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingResult.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingActionFeedback.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingFeedback.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingActionResult.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingActionGoal.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingGoal.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingActionResult.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingFeedback.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingActionFeedback.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingResult.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg"
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/hector_uav_msgs
 )
 _generate_msg_cpp(hector_uav_msgs
   "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingActionGoal.msg"
   "${MSG_I_FLAGS}"
-  "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingGoal.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingGoal.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg"
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/hector_uav_msgs
 )
 _generate_msg_cpp(hector_uav_msgs
   "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingActionResult.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingResult.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
+  "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingResult.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg"
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/hector_uav_msgs
 )
 _generate_msg_cpp(hector_uav_msgs
   "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingActionFeedback.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingFeedback.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingFeedback.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg"
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/hector_uav_msgs
 )
 _generate_msg_cpp(hector_uav_msgs
   "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingGoal.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg"
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/hector_uav_msgs
 )
 _generate_msg_cpp(hector_uav_msgs
@@ -467,31 +456,31 @@ _generate_msg_cpp(hector_uav_msgs
 _generate_msg_cpp(hector_uav_msgs
   "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingFeedback.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg"
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/hector_uav_msgs
 )
 _generate_msg_cpp(hector_uav_msgs
   "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffAction.msg"
   "${MSG_I_FLAGS}"
-  "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffActionGoal.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffActionFeedback.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffResult.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffActionResult.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffFeedback.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffGoal.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffGoal.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffActionGoal.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffResult.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffActionFeedback.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffActionResult.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffFeedback.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg"
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/hector_uav_msgs
 )
 _generate_msg_cpp(hector_uav_msgs
   "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffActionGoal.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffGoal.msg"
+  "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffGoal.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg"
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/hector_uav_msgs
 )
 _generate_msg_cpp(hector_uav_msgs
   "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffActionResult.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffResult.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
+  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffResult.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg"
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/hector_uav_msgs
 )
 _generate_msg_cpp(hector_uav_msgs
   "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffActionFeedback.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffFeedback.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffFeedback.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg"
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/hector_uav_msgs
 )
 _generate_msg_cpp(hector_uav_msgs
@@ -509,7 +498,7 @@ _generate_msg_cpp(hector_uav_msgs
 _generate_msg_cpp(hector_uav_msgs
   "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffFeedback.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg"
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/hector_uav_msgs
 )
 
@@ -576,8 +565,6 @@ add_dependencies(hector_uav_msgs_generate_messages_cpp _hector_uav_msgs_generate
 get_filename_component(_filename "/home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg/YawrateCommand.msg" NAME_WE)
 add_dependencies(hector_uav_msgs_generate_messages_cpp _hector_uav_msgs_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg/Task.msg" NAME_WE)
-add_dependencies(hector_uav_msgs_generate_messages_cpp _hector_uav_msgs_generate_messages_check_deps_${_filename})
-get_filename_component(_filename "/home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg/FinishTime.msg" NAME_WE)
 add_dependencies(hector_uav_msgs_generate_messages_cpp _hector_uav_msgs_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseAction.msg" NAME_WE)
 add_dependencies(hector_uav_msgs_generate_messages_cpp _hector_uav_msgs_generate_messages_check_deps_${_filename})
@@ -766,39 +753,33 @@ _generate_msg_eus(hector_uav_msgs
   ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/hector_uav_msgs
 )
 _generate_msg_eus(hector_uav_msgs
-  "/home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg/FinishTime.msg"
-  "${MSG_I_FLAGS}"
-  ""
-  ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/hector_uav_msgs
-)
-_generate_msg_eus(hector_uav_msgs
   "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseAction.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseFeedback.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseActionResult.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseResult.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseGoal.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseActionGoal.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseActionFeedback.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseResult.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseFeedback.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseActionGoal.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseGoal.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseActionFeedback.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseActionResult.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg"
   ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/hector_uav_msgs
 )
 _generate_msg_eus(hector_uav_msgs
   "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseActionGoal.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseGoal.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseGoal.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg"
   ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/hector_uav_msgs
 )
 _generate_msg_eus(hector_uav_msgs
   "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseActionResult.msg"
   "${MSG_I_FLAGS}"
-  "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseResult.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
+  "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseResult.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg"
   ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/hector_uav_msgs
 )
 _generate_msg_eus(hector_uav_msgs
   "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseActionFeedback.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseFeedback.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseFeedback.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg"
   ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/hector_uav_msgs
 )
 _generate_msg_eus(hector_uav_msgs
   "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseGoal.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg"
   ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/hector_uav_msgs
 )
 _generate_msg_eus(hector_uav_msgs
@@ -810,37 +791,37 @@ _generate_msg_eus(hector_uav_msgs
 _generate_msg_eus(hector_uav_msgs
   "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseFeedback.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg"
   ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/hector_uav_msgs
 )
 _generate_msg_eus(hector_uav_msgs
   "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingAction.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingGoal.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingActionGoal.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingResult.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingActionFeedback.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingFeedback.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingActionResult.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingActionGoal.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingGoal.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingActionResult.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingFeedback.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingActionFeedback.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingResult.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg"
   ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/hector_uav_msgs
 )
 _generate_msg_eus(hector_uav_msgs
   "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingActionGoal.msg"
   "${MSG_I_FLAGS}"
-  "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingGoal.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingGoal.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg"
   ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/hector_uav_msgs
 )
 _generate_msg_eus(hector_uav_msgs
   "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingActionResult.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingResult.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
+  "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingResult.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg"
   ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/hector_uav_msgs
 )
 _generate_msg_eus(hector_uav_msgs
   "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingActionFeedback.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingFeedback.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingFeedback.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg"
   ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/hector_uav_msgs
 )
 _generate_msg_eus(hector_uav_msgs
   "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingGoal.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg"
   ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/hector_uav_msgs
 )
 _generate_msg_eus(hector_uav_msgs
@@ -852,31 +833,31 @@ _generate_msg_eus(hector_uav_msgs
 _generate_msg_eus(hector_uav_msgs
   "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingFeedback.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg"
   ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/hector_uav_msgs
 )
 _generate_msg_eus(hector_uav_msgs
   "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffAction.msg"
   "${MSG_I_FLAGS}"
-  "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffActionGoal.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffActionFeedback.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffResult.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffActionResult.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffFeedback.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffGoal.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffGoal.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffActionGoal.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffResult.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffActionFeedback.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffActionResult.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffFeedback.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg"
   ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/hector_uav_msgs
 )
 _generate_msg_eus(hector_uav_msgs
   "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffActionGoal.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffGoal.msg"
+  "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffGoal.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg"
   ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/hector_uav_msgs
 )
 _generate_msg_eus(hector_uav_msgs
   "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffActionResult.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffResult.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
+  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffResult.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg"
   ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/hector_uav_msgs
 )
 _generate_msg_eus(hector_uav_msgs
   "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffActionFeedback.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffFeedback.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffFeedback.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg"
   ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/hector_uav_msgs
 )
 _generate_msg_eus(hector_uav_msgs
@@ -894,7 +875,7 @@ _generate_msg_eus(hector_uav_msgs
 _generate_msg_eus(hector_uav_msgs
   "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffFeedback.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg"
   ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/hector_uav_msgs
 )
 
@@ -961,8 +942,6 @@ add_dependencies(hector_uav_msgs_generate_messages_eus _hector_uav_msgs_generate
 get_filename_component(_filename "/home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg/YawrateCommand.msg" NAME_WE)
 add_dependencies(hector_uav_msgs_generate_messages_eus _hector_uav_msgs_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg/Task.msg" NAME_WE)
-add_dependencies(hector_uav_msgs_generate_messages_eus _hector_uav_msgs_generate_messages_check_deps_${_filename})
-get_filename_component(_filename "/home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg/FinishTime.msg" NAME_WE)
 add_dependencies(hector_uav_msgs_generate_messages_eus _hector_uav_msgs_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseAction.msg" NAME_WE)
 add_dependencies(hector_uav_msgs_generate_messages_eus _hector_uav_msgs_generate_messages_check_deps_${_filename})
@@ -1151,39 +1130,33 @@ _generate_msg_lisp(hector_uav_msgs
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/hector_uav_msgs
 )
 _generate_msg_lisp(hector_uav_msgs
-  "/home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg/FinishTime.msg"
-  "${MSG_I_FLAGS}"
-  ""
-  ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/hector_uav_msgs
-)
-_generate_msg_lisp(hector_uav_msgs
   "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseAction.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseFeedback.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseActionResult.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseResult.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseGoal.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseActionGoal.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseActionFeedback.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseResult.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseFeedback.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseActionGoal.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseGoal.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseActionFeedback.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseActionResult.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg"
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/hector_uav_msgs
 )
 _generate_msg_lisp(hector_uav_msgs
   "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseActionGoal.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseGoal.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseGoal.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg"
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/hector_uav_msgs
 )
 _generate_msg_lisp(hector_uav_msgs
   "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseActionResult.msg"
   "${MSG_I_FLAGS}"
-  "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseResult.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
+  "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseResult.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg"
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/hector_uav_msgs
 )
 _generate_msg_lisp(hector_uav_msgs
   "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseActionFeedback.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseFeedback.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseFeedback.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg"
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/hector_uav_msgs
 )
 _generate_msg_lisp(hector_uav_msgs
   "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseGoal.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg"
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/hector_uav_msgs
 )
 _generate_msg_lisp(hector_uav_msgs
@@ -1195,37 +1168,37 @@ _generate_msg_lisp(hector_uav_msgs
 _generate_msg_lisp(hector_uav_msgs
   "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseFeedback.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg"
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/hector_uav_msgs
 )
 _generate_msg_lisp(hector_uav_msgs
   "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingAction.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingGoal.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingActionGoal.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingResult.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingActionFeedback.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingFeedback.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingActionResult.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingActionGoal.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingGoal.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingActionResult.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingFeedback.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingActionFeedback.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingResult.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg"
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/hector_uav_msgs
 )
 _generate_msg_lisp(hector_uav_msgs
   "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingActionGoal.msg"
   "${MSG_I_FLAGS}"
-  "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingGoal.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingGoal.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg"
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/hector_uav_msgs
 )
 _generate_msg_lisp(hector_uav_msgs
   "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingActionResult.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingResult.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
+  "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingResult.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg"
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/hector_uav_msgs
 )
 _generate_msg_lisp(hector_uav_msgs
   "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingActionFeedback.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingFeedback.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingFeedback.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg"
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/hector_uav_msgs
 )
 _generate_msg_lisp(hector_uav_msgs
   "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingGoal.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg"
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/hector_uav_msgs
 )
 _generate_msg_lisp(hector_uav_msgs
@@ -1237,31 +1210,31 @@ _generate_msg_lisp(hector_uav_msgs
 _generate_msg_lisp(hector_uav_msgs
   "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingFeedback.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg"
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/hector_uav_msgs
 )
 _generate_msg_lisp(hector_uav_msgs
   "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffAction.msg"
   "${MSG_I_FLAGS}"
-  "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffActionGoal.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffActionFeedback.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffResult.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffActionResult.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffFeedback.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffGoal.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffGoal.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffActionGoal.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffResult.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffActionFeedback.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffActionResult.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffFeedback.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg"
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/hector_uav_msgs
 )
 _generate_msg_lisp(hector_uav_msgs
   "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffActionGoal.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffGoal.msg"
+  "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffGoal.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg"
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/hector_uav_msgs
 )
 _generate_msg_lisp(hector_uav_msgs
   "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffActionResult.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffResult.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
+  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffResult.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg"
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/hector_uav_msgs
 )
 _generate_msg_lisp(hector_uav_msgs
   "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffActionFeedback.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffFeedback.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffFeedback.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg"
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/hector_uav_msgs
 )
 _generate_msg_lisp(hector_uav_msgs
@@ -1279,7 +1252,7 @@ _generate_msg_lisp(hector_uav_msgs
 _generate_msg_lisp(hector_uav_msgs
   "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffFeedback.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg"
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/hector_uav_msgs
 )
 
@@ -1346,8 +1319,6 @@ add_dependencies(hector_uav_msgs_generate_messages_lisp _hector_uav_msgs_generat
 get_filename_component(_filename "/home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg/YawrateCommand.msg" NAME_WE)
 add_dependencies(hector_uav_msgs_generate_messages_lisp _hector_uav_msgs_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg/Task.msg" NAME_WE)
-add_dependencies(hector_uav_msgs_generate_messages_lisp _hector_uav_msgs_generate_messages_check_deps_${_filename})
-get_filename_component(_filename "/home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg/FinishTime.msg" NAME_WE)
 add_dependencies(hector_uav_msgs_generate_messages_lisp _hector_uav_msgs_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseAction.msg" NAME_WE)
 add_dependencies(hector_uav_msgs_generate_messages_lisp _hector_uav_msgs_generate_messages_check_deps_${_filename})
@@ -1536,39 +1507,33 @@ _generate_msg_nodejs(hector_uav_msgs
   ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/hector_uav_msgs
 )
 _generate_msg_nodejs(hector_uav_msgs
-  "/home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg/FinishTime.msg"
-  "${MSG_I_FLAGS}"
-  ""
-  ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/hector_uav_msgs
-)
-_generate_msg_nodejs(hector_uav_msgs
   "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseAction.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseFeedback.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseActionResult.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseResult.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseGoal.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseActionGoal.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseActionFeedback.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseResult.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseFeedback.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseActionGoal.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseGoal.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseActionFeedback.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseActionResult.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg"
   ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/hector_uav_msgs
 )
 _generate_msg_nodejs(hector_uav_msgs
   "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseActionGoal.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseGoal.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseGoal.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg"
   ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/hector_uav_msgs
 )
 _generate_msg_nodejs(hector_uav_msgs
   "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseActionResult.msg"
   "${MSG_I_FLAGS}"
-  "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseResult.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
+  "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseResult.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg"
   ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/hector_uav_msgs
 )
 _generate_msg_nodejs(hector_uav_msgs
   "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseActionFeedback.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseFeedback.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseFeedback.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg"
   ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/hector_uav_msgs
 )
 _generate_msg_nodejs(hector_uav_msgs
   "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseGoal.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg"
   ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/hector_uav_msgs
 )
 _generate_msg_nodejs(hector_uav_msgs
@@ -1580,37 +1545,37 @@ _generate_msg_nodejs(hector_uav_msgs
 _generate_msg_nodejs(hector_uav_msgs
   "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseFeedback.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg"
   ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/hector_uav_msgs
 )
 _generate_msg_nodejs(hector_uav_msgs
   "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingAction.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingGoal.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingActionGoal.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingResult.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingActionFeedback.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingFeedback.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingActionResult.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingActionGoal.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingGoal.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingActionResult.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingFeedback.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingActionFeedback.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingResult.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg"
   ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/hector_uav_msgs
 )
 _generate_msg_nodejs(hector_uav_msgs
   "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingActionGoal.msg"
   "${MSG_I_FLAGS}"
-  "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingGoal.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingGoal.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg"
   ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/hector_uav_msgs
 )
 _generate_msg_nodejs(hector_uav_msgs
   "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingActionResult.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingResult.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
+  "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingResult.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg"
   ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/hector_uav_msgs
 )
 _generate_msg_nodejs(hector_uav_msgs
   "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingActionFeedback.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingFeedback.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingFeedback.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg"
   ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/hector_uav_msgs
 )
 _generate_msg_nodejs(hector_uav_msgs
   "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingGoal.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg"
   ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/hector_uav_msgs
 )
 _generate_msg_nodejs(hector_uav_msgs
@@ -1622,31 +1587,31 @@ _generate_msg_nodejs(hector_uav_msgs
 _generate_msg_nodejs(hector_uav_msgs
   "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingFeedback.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg"
   ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/hector_uav_msgs
 )
 _generate_msg_nodejs(hector_uav_msgs
   "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffAction.msg"
   "${MSG_I_FLAGS}"
-  "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffActionGoal.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffActionFeedback.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffResult.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffActionResult.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffFeedback.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffGoal.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffGoal.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffActionGoal.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffResult.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffActionFeedback.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffActionResult.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffFeedback.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg"
   ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/hector_uav_msgs
 )
 _generate_msg_nodejs(hector_uav_msgs
   "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffActionGoal.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffGoal.msg"
+  "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffGoal.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg"
   ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/hector_uav_msgs
 )
 _generate_msg_nodejs(hector_uav_msgs
   "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffActionResult.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffResult.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
+  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffResult.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg"
   ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/hector_uav_msgs
 )
 _generate_msg_nodejs(hector_uav_msgs
   "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffActionFeedback.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffFeedback.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffFeedback.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg"
   ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/hector_uav_msgs
 )
 _generate_msg_nodejs(hector_uav_msgs
@@ -1664,7 +1629,7 @@ _generate_msg_nodejs(hector_uav_msgs
 _generate_msg_nodejs(hector_uav_msgs
   "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffFeedback.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg"
   ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/hector_uav_msgs
 )
 
@@ -1731,8 +1696,6 @@ add_dependencies(hector_uav_msgs_generate_messages_nodejs _hector_uav_msgs_gener
 get_filename_component(_filename "/home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg/YawrateCommand.msg" NAME_WE)
 add_dependencies(hector_uav_msgs_generate_messages_nodejs _hector_uav_msgs_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg/Task.msg" NAME_WE)
-add_dependencies(hector_uav_msgs_generate_messages_nodejs _hector_uav_msgs_generate_messages_check_deps_${_filename})
-get_filename_component(_filename "/home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg/FinishTime.msg" NAME_WE)
 add_dependencies(hector_uav_msgs_generate_messages_nodejs _hector_uav_msgs_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseAction.msg" NAME_WE)
 add_dependencies(hector_uav_msgs_generate_messages_nodejs _hector_uav_msgs_generate_messages_check_deps_${_filename})
@@ -1921,39 +1884,33 @@ _generate_msg_py(hector_uav_msgs
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/hector_uav_msgs
 )
 _generate_msg_py(hector_uav_msgs
-  "/home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg/FinishTime.msg"
-  "${MSG_I_FLAGS}"
-  ""
-  ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/hector_uav_msgs
-)
-_generate_msg_py(hector_uav_msgs
   "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseAction.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseFeedback.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseActionResult.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseResult.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseGoal.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseActionGoal.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseActionFeedback.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseResult.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseFeedback.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseActionGoal.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseGoal.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseActionFeedback.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseActionResult.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg"
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/hector_uav_msgs
 )
 _generate_msg_py(hector_uav_msgs
   "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseActionGoal.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseGoal.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseGoal.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg"
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/hector_uav_msgs
 )
 _generate_msg_py(hector_uav_msgs
   "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseActionResult.msg"
   "${MSG_I_FLAGS}"
-  "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseResult.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
+  "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseResult.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg"
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/hector_uav_msgs
 )
 _generate_msg_py(hector_uav_msgs
   "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseActionFeedback.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseFeedback.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseFeedback.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg"
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/hector_uav_msgs
 )
 _generate_msg_py(hector_uav_msgs
   "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseGoal.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg"
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/hector_uav_msgs
 )
 _generate_msg_py(hector_uav_msgs
@@ -1965,37 +1922,37 @@ _generate_msg_py(hector_uav_msgs
 _generate_msg_py(hector_uav_msgs
   "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseFeedback.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg"
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/hector_uav_msgs
 )
 _generate_msg_py(hector_uav_msgs
   "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingAction.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingGoal.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingActionGoal.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingResult.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingActionFeedback.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingFeedback.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingActionResult.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingActionGoal.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingGoal.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingActionResult.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingFeedback.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingActionFeedback.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingResult.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg"
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/hector_uav_msgs
 )
 _generate_msg_py(hector_uav_msgs
   "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingActionGoal.msg"
   "${MSG_I_FLAGS}"
-  "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingGoal.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingGoal.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg"
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/hector_uav_msgs
 )
 _generate_msg_py(hector_uav_msgs
   "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingActionResult.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingResult.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
+  "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingResult.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg"
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/hector_uav_msgs
 )
 _generate_msg_py(hector_uav_msgs
   "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingActionFeedback.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingFeedback.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingFeedback.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg"
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/hector_uav_msgs
 )
 _generate_msg_py(hector_uav_msgs
   "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingGoal.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg"
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/hector_uav_msgs
 )
 _generate_msg_py(hector_uav_msgs
@@ -2007,31 +1964,31 @@ _generate_msg_py(hector_uav_msgs
 _generate_msg_py(hector_uav_msgs
   "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/LandingFeedback.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg"
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/hector_uav_msgs
 )
 _generate_msg_py(hector_uav_msgs
   "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffAction.msg"
   "${MSG_I_FLAGS}"
-  "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffActionGoal.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffActionFeedback.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffResult.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffActionResult.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffFeedback.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffGoal.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffGoal.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffActionGoal.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffResult.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffActionFeedback.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffActionResult.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffFeedback.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg"
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/hector_uav_msgs
 )
 _generate_msg_py(hector_uav_msgs
   "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffActionGoal.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffGoal.msg"
+  "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffGoal.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg"
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/hector_uav_msgs
 )
 _generate_msg_py(hector_uav_msgs
   "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffActionResult.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffResult.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
+  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffResult.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg"
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/hector_uav_msgs
 )
 _generate_msg_py(hector_uav_msgs
   "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffActionFeedback.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffFeedback.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalID.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffFeedback.msg;/opt/ros/noetic/share/actionlib_msgs/cmake/../msg/GoalStatus.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg"
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/hector_uav_msgs
 )
 _generate_msg_py(hector_uav_msgs
@@ -2049,7 +2006,7 @@ _generate_msg_py(hector_uav_msgs
 _generate_msg_py(hector_uav_msgs
   "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/TakeoffFeedback.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Point.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/PoseStamped.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Pose.msg"
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/hector_uav_msgs
 )
 
@@ -2116,8 +2073,6 @@ add_dependencies(hector_uav_msgs_generate_messages_py _hector_uav_msgs_generate_
 get_filename_component(_filename "/home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg/YawrateCommand.msg" NAME_WE)
 add_dependencies(hector_uav_msgs_generate_messages_py _hector_uav_msgs_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg/Task.msg" NAME_WE)
-add_dependencies(hector_uav_msgs_generate_messages_py _hector_uav_msgs_generate_messages_check_deps_${_filename})
-get_filename_component(_filename "/home/jxie/rossim/src/hector_quadrotor/hector_uav_msgs/msg/FinishTime.msg" NAME_WE)
 add_dependencies(hector_uav_msgs_generate_messages_py _hector_uav_msgs_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseAction.msg" NAME_WE)
 add_dependencies(hector_uav_msgs_generate_messages_py _hector_uav_msgs_generate_messages_check_deps_${_filename})

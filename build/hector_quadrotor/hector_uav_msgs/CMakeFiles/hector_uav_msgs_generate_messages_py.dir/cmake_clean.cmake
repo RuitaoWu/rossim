@@ -3,7 +3,6 @@ file(REMOVE_RECURSE
   "/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_AttitudeCommand.py"
   "/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_Compass.py"
   "/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_ControllerState.py"
-  "/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_FinishTime.py"
   "/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_HeadingCommand.py"
   "/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_HeightCommand.py"
   "/home/jxie/rossim/devel/lib/python3/dist-packages/hector_uav_msgs/msg/_LandingAction.py"

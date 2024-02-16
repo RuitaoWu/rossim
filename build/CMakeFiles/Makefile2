@@ -822,7 +822,6 @@ hector_quadrotor/hector_uav_msgs/clean: hector_quadrotor/hector_uav_msgs/CMakeFi
 hector_quadrotor/hector_uav_msgs/clean: hector_quadrotor/hector_uav_msgs/CMakeFiles/_hector_uav_msgs_generate_messages_check_deps_VelocityZCommand.dir/clean
 hector_quadrotor/hector_uav_msgs/clean: hector_quadrotor/hector_uav_msgs/CMakeFiles/_hector_uav_msgs_generate_messages_check_deps_YawrateCommand.dir/clean
 hector_quadrotor/hector_uav_msgs/clean: hector_quadrotor/hector_uav_msgs/CMakeFiles/_hector_uav_msgs_generate_messages_check_deps_Task.dir/clean
-hector_quadrotor/hector_uav_msgs/clean: hector_quadrotor/hector_uav_msgs/CMakeFiles/_hector_uav_msgs_generate_messages_check_deps_FinishTime.dir/clean
 hector_quadrotor/hector_uav_msgs/clean: hector_quadrotor/hector_uav_msgs/CMakeFiles/_hector_uav_msgs_generate_messages_check_deps_PoseAction.dir/clean
 hector_quadrotor/hector_uav_msgs/clean: hector_quadrotor/hector_uav_msgs/CMakeFiles/_hector_uav_msgs_generate_messages_check_deps_PoseActionGoal.dir/clean
 hector_quadrotor/hector_uav_msgs/clean: hector_quadrotor/hector_uav_msgs/CMakeFiles/_hector_uav_msgs_generate_messages_check_deps_PoseActionResult.dir/clean
@@ -2819,32 +2818,6 @@ hector_quadrotor/hector_uav_msgs/CMakeFiles/_hector_uav_msgs_generate_messages_c
 .PHONY : hector_quadrotor/hector_uav_msgs/CMakeFiles/_hector_uav_msgs_generate_messages_check_deps_Task.dir/clean
 
 #=============================================================================
-# Target rules for target hector_quadrotor/hector_uav_msgs/CMakeFiles/_hector_uav_msgs_generate_messages_check_deps_FinishTime.dir
-
-# All Build rule for target.
-hector_quadrotor/hector_uav_msgs/CMakeFiles/_hector_uav_msgs_generate_messages_check_deps_FinishTime.dir/all:
-	$(MAKE) $(MAKESILENT) -f hector_quadrotor/hector_uav_msgs/CMakeFiles/_hector_uav_msgs_generate_messages_check_deps_FinishTime.dir/build.make hector_quadrotor/hector_uav_msgs/CMakeFiles/_hector_uav_msgs_generate_messages_check_deps_FinishTime.dir/depend
-	$(MAKE) $(MAKESILENT) -f hector_quadrotor/hector_uav_msgs/CMakeFiles/_hector_uav_msgs_generate_messages_check_deps_FinishTime.dir/build.make hector_quadrotor/hector_uav_msgs/CMakeFiles/_hector_uav_msgs_generate_messages_check_deps_FinishTime.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num= "Built target _hector_uav_msgs_generate_messages_check_deps_FinishTime"
-.PHONY : hector_quadrotor/hector_uav_msgs/CMakeFiles/_hector_uav_msgs_generate_messages_check_deps_FinishTime.dir/all
-
-# Build rule for subdir invocation for target.
-hector_quadrotor/hector_uav_msgs/CMakeFiles/_hector_uav_msgs_generate_messages_check_deps_FinishTime.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 0
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 hector_quadrotor/hector_uav_msgs/CMakeFiles/_hector_uav_msgs_generate_messages_check_deps_FinishTime.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 0
-.PHONY : hector_quadrotor/hector_uav_msgs/CMakeFiles/_hector_uav_msgs_generate_messages_check_deps_FinishTime.dir/rule
-
-# Convenience name for target.
-_hector_uav_msgs_generate_messages_check_deps_FinishTime: hector_quadrotor/hector_uav_msgs/CMakeFiles/_hector_uav_msgs_generate_messages_check_deps_FinishTime.dir/rule
-.PHONY : _hector_uav_msgs_generate_messages_check_deps_FinishTime
-
-# clean rule for target.
-hector_quadrotor/hector_uav_msgs/CMakeFiles/_hector_uav_msgs_generate_messages_check_deps_FinishTime.dir/clean:
-	$(MAKE) $(MAKESILENT) -f hector_quadrotor/hector_uav_msgs/CMakeFiles/_hector_uav_msgs_generate_messages_check_deps_FinishTime.dir/build.make hector_quadrotor/hector_uav_msgs/CMakeFiles/_hector_uav_msgs_generate_messages_check_deps_FinishTime.dir/clean
-.PHONY : hector_quadrotor/hector_uav_msgs/CMakeFiles/_hector_uav_msgs_generate_messages_check_deps_FinishTime.dir/clean
-
-#=============================================================================
 # Target rules for target hector_quadrotor/hector_uav_msgs/CMakeFiles/_hector_uav_msgs_generate_messages_check_deps_PoseAction.dir
 
 # All Build rule for target.
@@ -3445,7 +3418,6 @@ hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_generate_messages_cp
 hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_generate_messages_cpp.dir/all: hector_quadrotor/hector_uav_msgs/CMakeFiles/_hector_uav_msgs_generate_messages_check_deps_VelocityZCommand.dir/all
 hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_generate_messages_cpp.dir/all: hector_quadrotor/hector_uav_msgs/CMakeFiles/_hector_uav_msgs_generate_messages_check_deps_YawrateCommand.dir/all
 hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_generate_messages_cpp.dir/all: hector_quadrotor/hector_uav_msgs/CMakeFiles/_hector_uav_msgs_generate_messages_check_deps_Task.dir/all
-hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_generate_messages_cpp.dir/all: hector_quadrotor/hector_uav_msgs/CMakeFiles/_hector_uav_msgs_generate_messages_check_deps_FinishTime.dir/all
 hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_generate_messages_cpp.dir/all: hector_quadrotor/hector_uav_msgs/CMakeFiles/_hector_uav_msgs_generate_messages_check_deps_PoseAction.dir/all
 hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_generate_messages_cpp.dir/all: hector_quadrotor/hector_uav_msgs/CMakeFiles/_hector_uav_msgs_generate_messages_check_deps_PoseActionGoal.dir/all
 hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_generate_messages_cpp.dir/all: hector_quadrotor/hector_uav_msgs/CMakeFiles/_hector_uav_msgs_generate_messages_check_deps_PoseActionResult.dir/all
@@ -3544,7 +3516,6 @@ hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_generate_messages_eu
 hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_generate_messages_eus.dir/all: hector_quadrotor/hector_uav_msgs/CMakeFiles/_hector_uav_msgs_generate_messages_check_deps_VelocityZCommand.dir/all
 hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_generate_messages_eus.dir/all: hector_quadrotor/hector_uav_msgs/CMakeFiles/_hector_uav_msgs_generate_messages_check_deps_YawrateCommand.dir/all
 hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_generate_messages_eus.dir/all: hector_quadrotor/hector_uav_msgs/CMakeFiles/_hector_uav_msgs_generate_messages_check_deps_Task.dir/all
-hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_generate_messages_eus.dir/all: hector_quadrotor/hector_uav_msgs/CMakeFiles/_hector_uav_msgs_generate_messages_check_deps_FinishTime.dir/all
 hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_generate_messages_eus.dir/all: hector_quadrotor/hector_uav_msgs/CMakeFiles/_hector_uav_msgs_generate_messages_check_deps_PoseAction.dir/all
 hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_generate_messages_eus.dir/all: hector_quadrotor/hector_uav_msgs/CMakeFiles/_hector_uav_msgs_generate_messages_check_deps_PoseActionGoal.dir/all
 hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_generate_messages_eus.dir/all: hector_quadrotor/hector_uav_msgs/CMakeFiles/_hector_uav_msgs_generate_messages_check_deps_PoseActionResult.dir/all
@@ -3569,12 +3540,12 @@ hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_generate_messages_eu
 hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_generate_messages_eus.dir/all: hector_quadrotor/hector_uav_msgs/CMakeFiles/_hector_uav_msgs_generate_messages_check_deps_EnableMotors.dir/all
 	$(MAKE) $(MAKESILENT) -f hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_generate_messages_eus.dir/build.make hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_generate_messages_eus.dir/depend
 	$(MAKE) $(MAKESILENT) -f hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_generate_messages_eus.dir/build.make hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_generate_messages_eus.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=25,26,27,28,29,30,31,32 "Built target hector_uav_msgs_generate_messages_eus"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=25,26,27,28,29,30,31 "Built target hector_uav_msgs_generate_messages_eus"
 .PHONY : hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_generate_messages_eus.dir/all
 
 # Build rule for subdir invocation for target.
 hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_generate_messages_eus.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 8
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 7
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_generate_messages_eus.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 0
 .PHONY : hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_generate_messages_eus.dir/rule
@@ -3600,7 +3571,7 @@ hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_geneus.dir/all: hect
 
 # Build rule for subdir invocation for target.
 hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_geneus.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 8
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 7
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_geneus.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 0
 .PHONY : hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_geneus.dir/rule
@@ -3643,7 +3614,6 @@ hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_generate_messages_li
 hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_generate_messages_lisp.dir/all: hector_quadrotor/hector_uav_msgs/CMakeFiles/_hector_uav_msgs_generate_messages_check_deps_VelocityZCommand.dir/all
 hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_generate_messages_lisp.dir/all: hector_quadrotor/hector_uav_msgs/CMakeFiles/_hector_uav_msgs_generate_messages_check_deps_YawrateCommand.dir/all
 hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_generate_messages_lisp.dir/all: hector_quadrotor/hector_uav_msgs/CMakeFiles/_hector_uav_msgs_generate_messages_check_deps_Task.dir/all
-hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_generate_messages_lisp.dir/all: hector_quadrotor/hector_uav_msgs/CMakeFiles/_hector_uav_msgs_generate_messages_check_deps_FinishTime.dir/all
 hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_generate_messages_lisp.dir/all: hector_quadrotor/hector_uav_msgs/CMakeFiles/_hector_uav_msgs_generate_messages_check_deps_PoseAction.dir/all
 hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_generate_messages_lisp.dir/all: hector_quadrotor/hector_uav_msgs/CMakeFiles/_hector_uav_msgs_generate_messages_check_deps_PoseActionGoal.dir/all
 hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_generate_messages_lisp.dir/all: hector_quadrotor/hector_uav_msgs/CMakeFiles/_hector_uav_msgs_generate_messages_check_deps_PoseActionResult.dir/all
@@ -3668,12 +3638,12 @@ hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_generate_messages_li
 hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_generate_messages_lisp.dir/all: hector_quadrotor/hector_uav_msgs/CMakeFiles/_hector_uav_msgs_generate_messages_check_deps_EnableMotors.dir/all
 	$(MAKE) $(MAKESILENT) -f hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_generate_messages_lisp.dir/build.make hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_generate_messages_lisp.dir/depend
 	$(MAKE) $(MAKESILENT) -f hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_generate_messages_lisp.dir/build.make hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_generate_messages_lisp.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=33,34,35,36,37,38,39 "Built target hector_uav_msgs_generate_messages_lisp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=32,33,34,35,36,37,38,39 "Built target hector_uav_msgs_generate_messages_lisp"
 .PHONY : hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_generate_messages_lisp.dir/all
 
 # Build rule for subdir invocation for target.
 hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_generate_messages_lisp.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 7
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 8
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_generate_messages_lisp.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 0
 .PHONY : hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_generate_messages_lisp.dir/rule
@@ -3699,7 +3669,7 @@ hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_genlisp.dir/all: hec
 
 # Build rule for subdir invocation for target.
 hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_genlisp.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 7
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 8
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_genlisp.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 0
 .PHONY : hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_genlisp.dir/rule
@@ -3742,7 +3712,6 @@ hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_generate_messages_no
 hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_generate_messages_nodejs.dir/all: hector_quadrotor/hector_uav_msgs/CMakeFiles/_hector_uav_msgs_generate_messages_check_deps_VelocityZCommand.dir/all
 hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_generate_messages_nodejs.dir/all: hector_quadrotor/hector_uav_msgs/CMakeFiles/_hector_uav_msgs_generate_messages_check_deps_YawrateCommand.dir/all
 hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_generate_messages_nodejs.dir/all: hector_quadrotor/hector_uav_msgs/CMakeFiles/_hector_uav_msgs_generate_messages_check_deps_Task.dir/all
-hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_generate_messages_nodejs.dir/all: hector_quadrotor/hector_uav_msgs/CMakeFiles/_hector_uav_msgs_generate_messages_check_deps_FinishTime.dir/all
 hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_generate_messages_nodejs.dir/all: hector_quadrotor/hector_uav_msgs/CMakeFiles/_hector_uav_msgs_generate_messages_check_deps_PoseAction.dir/all
 hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_generate_messages_nodejs.dir/all: hector_quadrotor/hector_uav_msgs/CMakeFiles/_hector_uav_msgs_generate_messages_check_deps_PoseActionGoal.dir/all
 hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_generate_messages_nodejs.dir/all: hector_quadrotor/hector_uav_msgs/CMakeFiles/_hector_uav_msgs_generate_messages_check_deps_PoseActionResult.dir/all
@@ -3767,12 +3736,12 @@ hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_generate_messages_no
 hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_generate_messages_nodejs.dir/all: hector_quadrotor/hector_uav_msgs/CMakeFiles/_hector_uav_msgs_generate_messages_check_deps_EnableMotors.dir/all
 	$(MAKE) $(MAKESILENT) -f hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_generate_messages_nodejs.dir/build.make hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_generate_messages_nodejs.dir/depend
 	$(MAKE) $(MAKESILENT) -f hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_generate_messages_nodejs.dir/build.make hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_generate_messages_nodejs.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=40,41,42,43,44,45,46,47 "Built target hector_uav_msgs_generate_messages_nodejs"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=40,41,42,43,44,45,46 "Built target hector_uav_msgs_generate_messages_nodejs"
 .PHONY : hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_generate_messages_nodejs.dir/all
 
 # Build rule for subdir invocation for target.
 hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_generate_messages_nodejs.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 8
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 7
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_generate_messages_nodejs.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 0
 .PHONY : hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_generate_messages_nodejs.dir/rule
@@ -3798,7 +3767,7 @@ hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_gennodejs.dir/all: h
 
 # Build rule for subdir invocation for target.
 hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_gennodejs.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 8
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 7
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_gennodejs.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 0
 .PHONY : hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_gennodejs.dir/rule
@@ -3841,7 +3810,6 @@ hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_generate_messages_py
 hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_generate_messages_py.dir/all: hector_quadrotor/hector_uav_msgs/CMakeFiles/_hector_uav_msgs_generate_messages_check_deps_VelocityZCommand.dir/all
 hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_generate_messages_py.dir/all: hector_quadrotor/hector_uav_msgs/CMakeFiles/_hector_uav_msgs_generate_messages_check_deps_YawrateCommand.dir/all
 hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_generate_messages_py.dir/all: hector_quadrotor/hector_uav_msgs/CMakeFiles/_hector_uav_msgs_generate_messages_check_deps_Task.dir/all
-hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_generate_messages_py.dir/all: hector_quadrotor/hector_uav_msgs/CMakeFiles/_hector_uav_msgs_generate_messages_check_deps_FinishTime.dir/all
 hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_generate_messages_py.dir/all: hector_quadrotor/hector_uav_msgs/CMakeFiles/_hector_uav_msgs_generate_messages_check_deps_PoseAction.dir/all
 hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_generate_messages_py.dir/all: hector_quadrotor/hector_uav_msgs/CMakeFiles/_hector_uav_msgs_generate_messages_check_deps_PoseActionGoal.dir/all
 hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_generate_messages_py.dir/all: hector_quadrotor/hector_uav_msgs/CMakeFiles/_hector_uav_msgs_generate_messages_check_deps_PoseActionResult.dir/all
@@ -3866,12 +3834,12 @@ hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_generate_messages_py
 hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_generate_messages_py.dir/all: hector_quadrotor/hector_uav_msgs/CMakeFiles/_hector_uav_msgs_generate_messages_check_deps_EnableMotors.dir/all
 	$(MAKE) $(MAKESILENT) -f hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_generate_messages_py.dir/build.make hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_generate_messages_py.dir/depend
 	$(MAKE) $(MAKESILENT) -f hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_generate_messages_py.dir/build.make hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_generate_messages_py.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=48,49,50,51,52,53,54 "Built target hector_uav_msgs_generate_messages_py"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=47,48,49,50,51,52,53,54 "Built target hector_uav_msgs_generate_messages_py"
 .PHONY : hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_generate_messages_py.dir/all
 
 # Build rule for subdir invocation for target.
 hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_generate_messages_py.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 7
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 8
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_generate_messages_py.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 0
 .PHONY : hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_generate_messages_py.dir/rule
@@ -3897,7 +3865,7 @@ hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_genpy.dir/all: hecto
 
 # Build rule for subdir invocation for target.
 hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_genpy.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 7
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 8
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_genpy.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 0
 .PHONY : hector_quadrotor/hector_uav_msgs/CMakeFiles/hector_uav_msgs_genpy.dir/rule
@@ -3927,7 +3895,7 @@ mav_comm/mav_state_machine_msgs/CMakeFiles/mav_state_machine_msgs_generate_messa
 
 # Build rule for subdir invocation for target.
 mav_comm/mav_state_machine_msgs/CMakeFiles/mav_state_machine_msgs_generate_messages.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 3
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 2
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 mav_comm/mav_state_machine_msgs/CMakeFiles/mav_state_machine_msgs_generate_messages.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 0
 .PHONY : mav_comm/mav_state_machine_msgs/CMakeFiles/mav_state_machine_msgs_generate_messages.dir/rule
@@ -4110,12 +4078,12 @@ mav_comm/mav_state_machine_msgs/CMakeFiles/mav_state_machine_msgs_generate_messa
 mav_comm/mav_state_machine_msgs/CMakeFiles/mav_state_machine_msgs_generate_messages_lisp.dir/all: mav_comm/mav_state_machine_msgs/CMakeFiles/_mav_state_machine_msgs_generate_messages_check_deps_RunTaskService.dir/all
 	$(MAKE) $(MAKESILENT) -f mav_comm/mav_state_machine_msgs/CMakeFiles/mav_state_machine_msgs_generate_messages_lisp.dir/build.make mav_comm/mav_state_machine_msgs/CMakeFiles/mav_state_machine_msgs_generate_messages_lisp.dir/depend
 	$(MAKE) $(MAKESILENT) -f mav_comm/mav_state_machine_msgs/CMakeFiles/mav_state_machine_msgs_generate_messages_lisp.dir/build.make mav_comm/mav_state_machine_msgs/CMakeFiles/mav_state_machine_msgs_generate_messages_lisp.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=85 "Built target mav_state_machine_msgs_generate_messages_lisp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num= "Built target mav_state_machine_msgs_generate_messages_lisp"
 .PHONY : mav_comm/mav_state_machine_msgs/CMakeFiles/mav_state_machine_msgs_generate_messages_lisp.dir/all
 
 # Build rule for subdir invocation for target.
 mav_comm/mav_state_machine_msgs/CMakeFiles/mav_state_machine_msgs_generate_messages_lisp.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 1
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 0
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 mav_comm/mav_state_machine_msgs/CMakeFiles/mav_state_machine_msgs_generate_messages_lisp.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 0
 .PHONY : mav_comm/mav_state_machine_msgs/CMakeFiles/mav_state_machine_msgs_generate_messages_lisp.dir/rule
@@ -4141,7 +4109,7 @@ mav_comm/mav_state_machine_msgs/CMakeFiles/mav_state_machine_msgs_genlisp.dir/al
 
 # Build rule for subdir invocation for target.
 mav_comm/mav_state_machine_msgs/CMakeFiles/mav_state_machine_msgs_genlisp.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 1
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 0
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 mav_comm/mav_state_machine_msgs/CMakeFiles/mav_state_machine_msgs_genlisp.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 0
 .PHONY : mav_comm/mav_state_machine_msgs/CMakeFiles/mav_state_machine_msgs_genlisp.dir/rule
@@ -4164,12 +4132,12 @@ mav_comm/mav_state_machine_msgs/CMakeFiles/mav_state_machine_msgs_generate_messa
 mav_comm/mav_state_machine_msgs/CMakeFiles/mav_state_machine_msgs_generate_messages_nodejs.dir/all: mav_comm/mav_state_machine_msgs/CMakeFiles/_mav_state_machine_msgs_generate_messages_check_deps_RunTaskService.dir/all
 	$(MAKE) $(MAKESILENT) -f mav_comm/mav_state_machine_msgs/CMakeFiles/mav_state_machine_msgs_generate_messages_nodejs.dir/build.make mav_comm/mav_state_machine_msgs/CMakeFiles/mav_state_machine_msgs_generate_messages_nodejs.dir/depend
 	$(MAKE) $(MAKESILENT) -f mav_comm/mav_state_machine_msgs/CMakeFiles/mav_state_machine_msgs_generate_messages_nodejs.dir/build.make mav_comm/mav_state_machine_msgs/CMakeFiles/mav_state_machine_msgs_generate_messages_nodejs.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num= "Built target mav_state_machine_msgs_generate_messages_nodejs"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=85 "Built target mav_state_machine_msgs_generate_messages_nodejs"
 .PHONY : mav_comm/mav_state_machine_msgs/CMakeFiles/mav_state_machine_msgs_generate_messages_nodejs.dir/all
 
 # Build rule for subdir invocation for target.
 mav_comm/mav_state_machine_msgs/CMakeFiles/mav_state_machine_msgs_generate_messages_nodejs.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 1
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 mav_comm/mav_state_machine_msgs/CMakeFiles/mav_state_machine_msgs_generate_messages_nodejs.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 0
 .PHONY : mav_comm/mav_state_machine_msgs/CMakeFiles/mav_state_machine_msgs_generate_messages_nodejs.dir/rule
@@ -4195,7 +4163,7 @@ mav_comm/mav_state_machine_msgs/CMakeFiles/mav_state_machine_msgs_gennodejs.dir/
 
 # Build rule for subdir invocation for target.
 mav_comm/mav_state_machine_msgs/CMakeFiles/mav_state_machine_msgs_gennodejs.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 1
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 mav_comm/mav_state_machine_msgs/CMakeFiles/mav_state_machine_msgs_gennodejs.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 0
 .PHONY : mav_comm/mav_state_machine_msgs/CMakeFiles/mav_state_machine_msgs_gennodejs.dir/rule
@@ -4218,12 +4186,12 @@ mav_comm/mav_state_machine_msgs/CMakeFiles/mav_state_machine_msgs_generate_messa
 mav_comm/mav_state_machine_msgs/CMakeFiles/mav_state_machine_msgs_generate_messages_py.dir/all: mav_comm/mav_state_machine_msgs/CMakeFiles/_mav_state_machine_msgs_generate_messages_check_deps_RunTaskService.dir/all
 	$(MAKE) $(MAKESILENT) -f mav_comm/mav_state_machine_msgs/CMakeFiles/mav_state_machine_msgs_generate_messages_py.dir/build.make mav_comm/mav_state_machine_msgs/CMakeFiles/mav_state_machine_msgs_generate_messages_py.dir/depend
 	$(MAKE) $(MAKESILENT) -f mav_comm/mav_state_machine_msgs/CMakeFiles/mav_state_machine_msgs_generate_messages_py.dir/build.make mav_comm/mav_state_machine_msgs/CMakeFiles/mav_state_machine_msgs_generate_messages_py.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=86 "Built target mav_state_machine_msgs_generate_messages_py"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num= "Built target mav_state_machine_msgs_generate_messages_py"
 .PHONY : mav_comm/mav_state_machine_msgs/CMakeFiles/mav_state_machine_msgs_generate_messages_py.dir/all
 
 # Build rule for subdir invocation for target.
 mav_comm/mav_state_machine_msgs/CMakeFiles/mav_state_machine_msgs_generate_messages_py.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 1
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 0
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 mav_comm/mav_state_machine_msgs/CMakeFiles/mav_state_machine_msgs_generate_messages_py.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 0
 .PHONY : mav_comm/mav_state_machine_msgs/CMakeFiles/mav_state_machine_msgs_generate_messages_py.dir/rule
@@ -4249,7 +4217,7 @@ mav_comm/mav_state_machine_msgs/CMakeFiles/mav_state_machine_msgs_genpy.dir/all:
 
 # Build rule for subdir invocation for target.
 mav_comm/mav_state_machine_msgs/CMakeFiles/mav_state_machine_msgs_genpy.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 1
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 0
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 mav_comm/mav_state_machine_msgs/CMakeFiles/mav_state_machine_msgs_genpy.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 0
 .PHONY : mav_comm/mav_state_machine_msgs/CMakeFiles/mav_state_machine_msgs_genpy.dir/rule
@@ -4354,12 +4322,12 @@ mav_comm/mav_system_msgs/CMakeFiles/mav_system_msgs_generate_messages_cpp.dir/al
 mav_comm/mav_system_msgs/CMakeFiles/mav_system_msgs_generate_messages_cpp.dir/all: mav_comm/mav_system_msgs/CMakeFiles/_mav_system_msgs_generate_messages_check_deps_ProcessInfo.dir/all
 	$(MAKE) $(MAKESILENT) -f mav_comm/mav_system_msgs/CMakeFiles/mav_system_msgs_generate_messages_cpp.dir/build.make mav_comm/mav_system_msgs/CMakeFiles/mav_system_msgs_generate_messages_cpp.dir/depend
 	$(MAKE) $(MAKESILENT) -f mav_comm/mav_system_msgs/CMakeFiles/mav_system_msgs_generate_messages_cpp.dir/build.make mav_comm/mav_system_msgs/CMakeFiles/mav_system_msgs_generate_messages_cpp.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num= "Built target mav_system_msgs_generate_messages_cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=86 "Built target mav_system_msgs_generate_messages_cpp"
 .PHONY : mav_comm/mav_system_msgs/CMakeFiles/mav_system_msgs_generate_messages_cpp.dir/all
 
 # Build rule for subdir invocation for target.
 mav_comm/mav_system_msgs/CMakeFiles/mav_system_msgs_generate_messages_cpp.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 1
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 mav_comm/mav_system_msgs/CMakeFiles/mav_system_msgs_generate_messages_cpp.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 0
 .PHONY : mav_comm/mav_system_msgs/CMakeFiles/mav_system_msgs_generate_messages_cpp.dir/rule
@@ -4385,7 +4353,7 @@ mav_comm/mav_system_msgs/CMakeFiles/mav_system_msgs_gencpp.dir/all: mav_comm/mav
 
 # Build rule for subdir invocation for target.
 mav_comm/mav_system_msgs/CMakeFiles/mav_system_msgs_gencpp.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 1
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 mav_comm/mav_system_msgs/CMakeFiles/mav_system_msgs_gencpp.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 0
 .PHONY : mav_comm/mav_system_msgs/CMakeFiles/mav_system_msgs_gencpp.dir/rule
@@ -4570,12 +4538,12 @@ mav_comm/mav_system_msgs/CMakeFiles/mav_system_msgs_generate_messages_py.dir/all
 mav_comm/mav_system_msgs/CMakeFiles/mav_system_msgs_generate_messages_py.dir/all: mav_comm/mav_system_msgs/CMakeFiles/_mav_system_msgs_generate_messages_check_deps_ProcessInfo.dir/all
 	$(MAKE) $(MAKESILENT) -f mav_comm/mav_system_msgs/CMakeFiles/mav_system_msgs_generate_messages_py.dir/build.make mav_comm/mav_system_msgs/CMakeFiles/mav_system_msgs_generate_messages_py.dir/depend
 	$(MAKE) $(MAKESILENT) -f mav_comm/mav_system_msgs/CMakeFiles/mav_system_msgs_generate_messages_py.dir/build.make mav_comm/mav_system_msgs/CMakeFiles/mav_system_msgs_generate_messages_py.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=88 "Built target mav_system_msgs_generate_messages_py"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num= "Built target mav_system_msgs_generate_messages_py"
 .PHONY : mav_comm/mav_system_msgs/CMakeFiles/mav_system_msgs_generate_messages_py.dir/all
 
 # Build rule for subdir invocation for target.
 mav_comm/mav_system_msgs/CMakeFiles/mav_system_msgs_generate_messages_py.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 1
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 0
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 mav_comm/mav_system_msgs/CMakeFiles/mav_system_msgs_generate_messages_py.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 0
 .PHONY : mav_comm/mav_system_msgs/CMakeFiles/mav_system_msgs_generate_messages_py.dir/rule
@@ -4601,7 +4569,7 @@ mav_comm/mav_system_msgs/CMakeFiles/mav_system_msgs_genpy.dir/all: mav_comm/mav_
 
 # Build rule for subdir invocation for target.
 mav_comm/mav_system_msgs/CMakeFiles/mav_system_msgs_genpy.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 1
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 0
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 mav_comm/mav_system_msgs/CMakeFiles/mav_system_msgs_genpy.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 0
 .PHONY : mav_comm/mav_system_msgs/CMakeFiles/mav_system_msgs_genpy.dir/rule
@@ -4865,12 +4833,12 @@ rotors_simulator/rotors_comm/CMakeFiles/rotors_comm_generate_messages_cpp.dir/al
 rotors_simulator/rotors_comm/CMakeFiles/rotors_comm_generate_messages_cpp.dir/all: rotors_simulator/rotors_comm/CMakeFiles/_rotors_comm_generate_messages_check_deps_RecordRosbag.dir/all
 	$(MAKE) $(MAKESILENT) -f rotors_simulator/rotors_comm/CMakeFiles/rotors_comm_generate_messages_cpp.dir/build.make rotors_simulator/rotors_comm/CMakeFiles/rotors_comm_generate_messages_cpp.dir/depend
 	$(MAKE) $(MAKESILENT) -f rotors_simulator/rotors_comm/CMakeFiles/rotors_comm_generate_messages_cpp.dir/build.make rotors_simulator/rotors_comm/CMakeFiles/rotors_comm_generate_messages_cpp.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num= "Built target rotors_comm_generate_messages_cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=90 "Built target rotors_comm_generate_messages_cpp"
 .PHONY : rotors_simulator/rotors_comm/CMakeFiles/rotors_comm_generate_messages_cpp.dir/all
 
 # Build rule for subdir invocation for target.
 rotors_simulator/rotors_comm/CMakeFiles/rotors_comm_generate_messages_cpp.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 1
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 rotors_simulator/rotors_comm/CMakeFiles/rotors_comm_generate_messages_cpp.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 0
 .PHONY : rotors_simulator/rotors_comm/CMakeFiles/rotors_comm_generate_messages_cpp.dir/rule
@@ -4896,7 +4864,7 @@ rotors_simulator/rotors_comm/CMakeFiles/rotors_comm_gencpp.dir/all: rotors_simul
 
 # Build rule for subdir invocation for target.
 rotors_simulator/rotors_comm/CMakeFiles/rotors_comm_gencpp.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 1
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 rotors_simulator/rotors_comm/CMakeFiles/rotors_comm_gencpp.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 0
 .PHONY : rotors_simulator/rotors_comm/CMakeFiles/rotors_comm_gencpp.dir/rule
@@ -5093,12 +5061,12 @@ rotors_simulator/rotors_comm/CMakeFiles/rotors_comm_generate_messages_py.dir/all
 rotors_simulator/rotors_comm/CMakeFiles/rotors_comm_generate_messages_py.dir/all: rotors_simulator/rotors_comm/CMakeFiles/_rotors_comm_generate_messages_check_deps_RecordRosbag.dir/all
 	$(MAKE) $(MAKESILENT) -f rotors_simulator/rotors_comm/CMakeFiles/rotors_comm_generate_messages_py.dir/build.make rotors_simulator/rotors_comm/CMakeFiles/rotors_comm_generate_messages_py.dir/depend
 	$(MAKE) $(MAKESILENT) -f rotors_simulator/rotors_comm/CMakeFiles/rotors_comm_generate_messages_py.dir/build.make rotors_simulator/rotors_comm/CMakeFiles/rotors_comm_generate_messages_py.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=93 "Built target rotors_comm_generate_messages_py"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num= "Built target rotors_comm_generate_messages_py"
 .PHONY : rotors_simulator/rotors_comm/CMakeFiles/rotors_comm_generate_messages_py.dir/all
 
 # Build rule for subdir invocation for target.
 rotors_simulator/rotors_comm/CMakeFiles/rotors_comm_generate_messages_py.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 1
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 0
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 rotors_simulator/rotors_comm/CMakeFiles/rotors_comm_generate_messages_py.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 0
 .PHONY : rotors_simulator/rotors_comm/CMakeFiles/rotors_comm_generate_messages_py.dir/rule
@@ -5124,7 +5092,7 @@ rotors_simulator/rotors_comm/CMakeFiles/rotors_comm_genpy.dir/all: rotors_simula
 
 # Build rule for subdir invocation for target.
 rotors_simulator/rotors_comm/CMakeFiles/rotors_comm_genpy.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 1
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 0
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 rotors_simulator/rotors_comm/CMakeFiles/rotors_comm_genpy.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 0
 .PHONY : rotors_simulator/rotors_comm/CMakeFiles/rotors_comm_genpy.dir/rule
@@ -5715,12 +5683,12 @@ mav_comm/mav_msgs/CMakeFiles/mav_msgs_generate_messages_eus.dir/all: mav_comm/ma
 mav_comm/mav_msgs/CMakeFiles/mav_msgs_generate_messages_eus.dir/all: mav_comm/mav_msgs/CMakeFiles/_mav_msgs_generate_messages_check_deps_GpsWaypoint.dir/all
 	$(MAKE) $(MAKESILENT) -f mav_comm/mav_msgs/CMakeFiles/mav_msgs_generate_messages_eus.dir/build.make mav_comm/mav_msgs/CMakeFiles/mav_msgs_generate_messages_eus.dir/depend
 	$(MAKE) $(MAKESILENT) -f mav_comm/mav_msgs/CMakeFiles/mav_msgs_generate_messages_eus.dir/build.make mav_comm/mav_msgs/CMakeFiles/mav_msgs_generate_messages_eus.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=68,69 "Built target mav_msgs_generate_messages_eus"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=68 "Built target mav_msgs_generate_messages_eus"
 .PHONY : mav_comm/mav_msgs/CMakeFiles/mav_msgs_generate_messages_eus.dir/all
 
 # Build rule for subdir invocation for target.
 mav_comm/mav_msgs/CMakeFiles/mav_msgs_generate_messages_eus.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 1
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 mav_comm/mav_msgs/CMakeFiles/mav_msgs_generate_messages_eus.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 0
 .PHONY : mav_comm/mav_msgs/CMakeFiles/mav_msgs_generate_messages_eus.dir/rule
@@ -5746,7 +5714,7 @@ mav_comm/mav_msgs/CMakeFiles/mav_msgs_geneus.dir/all: mav_comm/mav_msgs/CMakeFil
 
 # Build rule for subdir invocation for target.
 mav_comm/mav_msgs/CMakeFiles/mav_msgs_geneus.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 1
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 mav_comm/mav_msgs/CMakeFiles/mav_msgs_geneus.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 0
 .PHONY : mav_comm/mav_msgs/CMakeFiles/mav_msgs_geneus.dir/rule
@@ -5777,12 +5745,12 @@ mav_comm/mav_msgs/CMakeFiles/mav_msgs_generate_messages_lisp.dir/all: mav_comm/m
 mav_comm/mav_msgs/CMakeFiles/mav_msgs_generate_messages_lisp.dir/all: mav_comm/mav_msgs/CMakeFiles/_mav_msgs_generate_messages_check_deps_GpsWaypoint.dir/all
 	$(MAKE) $(MAKESILENT) -f mav_comm/mav_msgs/CMakeFiles/mav_msgs_generate_messages_lisp.dir/build.make mav_comm/mav_msgs/CMakeFiles/mav_msgs_generate_messages_lisp.dir/depend
 	$(MAKE) $(MAKESILENT) -f mav_comm/mav_msgs/CMakeFiles/mav_msgs_generate_messages_lisp.dir/build.make mav_comm/mav_msgs/CMakeFiles/mav_msgs_generate_messages_lisp.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=70 "Built target mav_msgs_generate_messages_lisp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=69,70 "Built target mav_msgs_generate_messages_lisp"
 .PHONY : mav_comm/mav_msgs/CMakeFiles/mav_msgs_generate_messages_lisp.dir/all
 
 # Build rule for subdir invocation for target.
 mav_comm/mav_msgs/CMakeFiles/mav_msgs_generate_messages_lisp.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 1
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 2
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 mav_comm/mav_msgs/CMakeFiles/mav_msgs_generate_messages_lisp.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 0
 .PHONY : mav_comm/mav_msgs/CMakeFiles/mav_msgs_generate_messages_lisp.dir/rule
@@ -5808,7 +5776,7 @@ mav_comm/mav_msgs/CMakeFiles/mav_msgs_genlisp.dir/all: mav_comm/mav_msgs/CMakeFi
 
 # Build rule for subdir invocation for target.
 mav_comm/mav_msgs/CMakeFiles/mav_msgs_genlisp.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 1
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 2
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 mav_comm/mav_msgs/CMakeFiles/mav_msgs_genlisp.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 0
 .PHONY : mav_comm/mav_msgs/CMakeFiles/mav_msgs_genlisp.dir/rule
@@ -6566,7 +6534,7 @@ mav_comm/mav_planning_msgs/CMakeFiles/mav_planning_msgs_generate_messages_eus.di
 
 # Build rule for subdir invocation for target.
 mav_comm/mav_planning_msgs/CMakeFiles/mav_planning_msgs_generate_messages_eus.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 4
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 3
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 mav_comm/mav_planning_msgs/CMakeFiles/mav_planning_msgs_generate_messages_eus.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 0
 .PHONY : mav_comm/mav_planning_msgs/CMakeFiles/mav_planning_msgs_generate_messages_eus.dir/rule
@@ -6592,7 +6560,7 @@ mav_comm/mav_planning_msgs/CMakeFiles/mav_planning_msgs_geneus.dir/all: mav_comm
 
 # Build rule for subdir invocation for target.
 mav_comm/mav_planning_msgs/CMakeFiles/mav_planning_msgs_geneus.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 4
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 3
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 mav_comm/mav_planning_msgs/CMakeFiles/mav_planning_msgs_geneus.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 0
 .PHONY : mav_comm/mav_planning_msgs/CMakeFiles/mav_planning_msgs_geneus.dir/rule
@@ -6634,7 +6602,7 @@ mav_comm/mav_planning_msgs/CMakeFiles/mav_planning_msgs_generate_messages_lisp.d
 
 # Build rule for subdir invocation for target.
 mav_comm/mav_planning_msgs/CMakeFiles/mav_planning_msgs_generate_messages_lisp.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 3
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 4
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 mav_comm/mav_planning_msgs/CMakeFiles/mav_planning_msgs_generate_messages_lisp.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 0
 .PHONY : mav_comm/mav_planning_msgs/CMakeFiles/mav_planning_msgs_generate_messages_lisp.dir/rule
@@ -6660,7 +6628,7 @@ mav_comm/mav_planning_msgs/CMakeFiles/mav_planning_msgs_genlisp.dir/all: mav_com
 
 # Build rule for subdir invocation for target.
 mav_comm/mav_planning_msgs/CMakeFiles/mav_planning_msgs_genlisp.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 3
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 4
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 mav_comm/mav_planning_msgs/CMakeFiles/mav_planning_msgs_genlisp.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 0
 .PHONY : mav_comm/mav_planning_msgs/CMakeFiles/mav_planning_msgs_genlisp.dir/rule
@@ -7002,12 +6970,12 @@ rotors_simulator/rotors_control/CMakeFiles/lee_position_controller_node.dir/all:
 rotors_simulator/rotors_control/CMakeFiles/lee_position_controller_node.dir/all: rotors_simulator/rotors_control/CMakeFiles/lee_position_controller.dir/all
 	$(MAKE) $(MAKESILENT) -f rotors_simulator/rotors_control/CMakeFiles/lee_position_controller_node.dir/build.make rotors_simulator/rotors_control/CMakeFiles/lee_position_controller_node.dir/depend
 	$(MAKE) $(MAKESILENT) -f rotors_simulator/rotors_control/CMakeFiles/lee_position_controller_node.dir/build.make rotors_simulator/rotors_control/CMakeFiles/lee_position_controller_node.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=56 "Built target lee_position_controller_node"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num= "Built target lee_position_controller_node"
 .PHONY : rotors_simulator/rotors_control/CMakeFiles/lee_position_controller_node.dir/all
 
 # Build rule for subdir invocation for target.
 rotors_simulator/rotors_control/CMakeFiles/lee_position_controller_node.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 8
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 7
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 rotors_simulator/rotors_control/CMakeFiles/lee_position_controller_node.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 0
 .PHONY : rotors_simulator/rotors_control/CMakeFiles/lee_position_controller_node.dir/rule
@@ -7073,12 +7041,12 @@ rotors_simulator/rotors_control/CMakeFiles/roll_pitch_yawrate_thrust_controller_
 rotors_simulator/rotors_control/CMakeFiles/roll_pitch_yawrate_thrust_controller_node.dir/all: rotors_simulator/rotors_control/CMakeFiles/roll_pitch_yawrate_thrust_controller.dir/all
 	$(MAKE) $(MAKESILENT) -f rotors_simulator/rotors_control/CMakeFiles/roll_pitch_yawrate_thrust_controller_node.dir/build.make rotors_simulator/rotors_control/CMakeFiles/roll_pitch_yawrate_thrust_controller_node.dir/depend
 	$(MAKE) $(MAKESILENT) -f rotors_simulator/rotors_control/CMakeFiles/roll_pitch_yawrate_thrust_controller_node.dir/build.make rotors_simulator/rotors_control/CMakeFiles/roll_pitch_yawrate_thrust_controller_node.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=90 "Built target roll_pitch_yawrate_thrust_controller_node"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num= "Built target roll_pitch_yawrate_thrust_controller_node"
 .PHONY : rotors_simulator/rotors_control/CMakeFiles/roll_pitch_yawrate_thrust_controller_node.dir/all
 
 # Build rule for subdir invocation for target.
 rotors_simulator/rotors_control/CMakeFiles/roll_pitch_yawrate_thrust_controller_node.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 8
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 7
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 rotors_simulator/rotors_control/CMakeFiles/roll_pitch_yawrate_thrust_controller_node.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 0
 .PHONY : rotors_simulator/rotors_control/CMakeFiles/roll_pitch_yawrate_thrust_controller_node.dir/rule
@@ -9064,12 +9032,12 @@ hector_localization/hector_pose_estimation/CMakeFiles/pose_estimation.dir/all: h
 hector_localization/hector_pose_estimation/CMakeFiles/pose_estimation.dir/all: hector_localization/hector_pose_estimation/CMakeFiles/hector_pose_estimation_node.dir/all
 	$(MAKE) $(MAKESILENT) -f hector_localization/hector_pose_estimation/CMakeFiles/pose_estimation.dir/build.make hector_localization/hector_pose_estimation/CMakeFiles/pose_estimation.dir/depend
 	$(MAKE) $(MAKESILENT) -f hector_localization/hector_pose_estimation/CMakeFiles/pose_estimation.dir/build.make hector_localization/hector_pose_estimation/CMakeFiles/pose_estimation.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=89 "Built target pose_estimation"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num= "Built target pose_estimation"
 .PHONY : hector_localization/hector_pose_estimation/CMakeFiles/pose_estimation.dir/all
 
 # Build rule for subdir invocation for target.
 hector_localization/hector_pose_estimation/CMakeFiles/pose_estimation.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 5
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 4
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 hector_localization/hector_pose_estimation/CMakeFiles/pose_estimation.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 0
 .PHONY : hector_localization/hector_pose_estimation/CMakeFiles/pose_estimation.dir/rule
@@ -9417,12 +9385,12 @@ hector_localization/message_to_tf/CMakeFiles/topic_tools_generate_messages_py.di
 hector_localization/message_to_tf/CMakeFiles/message_to_tf.dir/all:
 	$(MAKE) $(MAKESILENT) -f hector_localization/message_to_tf/CMakeFiles/message_to_tf.dir/build.make hector_localization/message_to_tf/CMakeFiles/message_to_tf.dir/depend
 	$(MAKE) $(MAKESILENT) -f hector_localization/message_to_tf/CMakeFiles/message_to_tf.dir/build.make hector_localization/message_to_tf/CMakeFiles/message_to_tf.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num= "Built target message_to_tf"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=88 "Built target message_to_tf"
 .PHONY : hector_localization/message_to_tf/CMakeFiles/message_to_tf.dir/all
 
 # Build rule for subdir invocation for target.
 hector_localization/message_to_tf/CMakeFiles/message_to_tf.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 1
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 hector_localization/message_to_tf/CMakeFiles/message_to_tf.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 0
 .PHONY : hector_localization/message_to_tf/CMakeFiles/message_to_tf.dir/rule
@@ -9863,12 +9831,12 @@ hector_quadrotor/hector_quadrotor_actions/CMakeFiles/landing_action.dir/all: hec
 hector_quadrotor/hector_quadrotor_actions/CMakeFiles/landing_action.dir/all: hector_quadrotor/hector_quadrotor_interface/CMakeFiles/hector_quadrotor_interface.dir/all
 	$(MAKE) $(MAKESILENT) -f hector_quadrotor/hector_quadrotor_actions/CMakeFiles/landing_action.dir/build.make hector_quadrotor/hector_quadrotor_actions/CMakeFiles/landing_action.dir/depend
 	$(MAKE) $(MAKESILENT) -f hector_quadrotor/hector_quadrotor_actions/CMakeFiles/landing_action.dir/build.make hector_quadrotor/hector_quadrotor_actions/CMakeFiles/landing_action.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num= "Built target landing_action"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=55 "Built target landing_action"
 .PHONY : hector_quadrotor/hector_quadrotor_actions/CMakeFiles/landing_action.dir/all
 
 # Build rule for subdir invocation for target.
 hector_quadrotor/hector_quadrotor_actions/CMakeFiles/landing_action.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 39
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 40
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 hector_quadrotor/hector_quadrotor_actions/CMakeFiles/landing_action.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 0
 .PHONY : hector_quadrotor/hector_quadrotor_actions/CMakeFiles/landing_action.dir/rule
@@ -10514,12 +10482,12 @@ hector_quadrotor/hector_quadrotor_teleop/CMakeFiles/quadrotor_teleop.dir/all: he
 hector_quadrotor/hector_quadrotor_teleop/CMakeFiles/quadrotor_teleop.dir/all: hector_quadrotor/hector_quadrotor_interface/CMakeFiles/hector_quadrotor_interface.dir/all
 	$(MAKE) $(MAKESILENT) -f hector_quadrotor/hector_quadrotor_teleop/CMakeFiles/quadrotor_teleop.dir/build.make hector_quadrotor/hector_quadrotor_teleop/CMakeFiles/quadrotor_teleop.dir/depend
 	$(MAKE) $(MAKESILENT) -f hector_quadrotor/hector_quadrotor_teleop/CMakeFiles/quadrotor_teleop.dir/build.make hector_quadrotor/hector_quadrotor_teleop/CMakeFiles/quadrotor_teleop.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num= "Built target quadrotor_teleop"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=89 "Built target quadrotor_teleop"
 .PHONY : hector_quadrotor/hector_quadrotor_teleop/CMakeFiles/quadrotor_teleop.dir/all
 
 # Build rule for subdir invocation for target.
 hector_quadrotor/hector_quadrotor_teleop/CMakeFiles/quadrotor_teleop.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 39
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 40
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 hector_quadrotor/hector_quadrotor_teleop/CMakeFiles/quadrotor_teleop.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 0
 .PHONY : hector_quadrotor/hector_quadrotor_teleop/CMakeFiles/quadrotor_teleop.dir/rule
@@ -10696,12 +10664,12 @@ hector_quadrotor/hector_quadrotor_controller_gazebo/CMakeFiles/hector_quadrotor_
 rotors_simulator/rotors_gazebo_plugins/CMakeFiles/mav_msgs.dir/all:
 	$(MAKE) $(MAKESILENT) -f rotors_simulator/rotors_gazebo_plugins/CMakeFiles/mav_msgs.dir/build.make rotors_simulator/rotors_gazebo_plugins/CMakeFiles/mav_msgs.dir/depend
 	$(MAKE) $(MAKESILENT) -f rotors_simulator/rotors_gazebo_plugins/CMakeFiles/mav_msgs.dir/build.make rotors_simulator/rotors_gazebo_plugins/CMakeFiles/mav_msgs.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=57,58,59,60,61,62,63,64,65,66 "Built target mav_msgs"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=56,57,58,59,60,61,62,63,64,65,66 "Built target mav_msgs"
 .PHONY : rotors_simulator/rotors_gazebo_plugins/CMakeFiles/mav_msgs.dir/all
 
 # Build rule for subdir invocation for target.
 rotors_simulator/rotors_gazebo_plugins/CMakeFiles/mav_msgs.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 10
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 11
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 rotors_simulator/rotors_gazebo_plugins/CMakeFiles/mav_msgs.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 0
 .PHONY : rotors_simulator/rotors_gazebo_plugins/CMakeFiles/mav_msgs.dir/rule
@@ -10832,12 +10800,12 @@ rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_bag_plugin.dir/a
 rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_bag_plugin.dir/all: rotors_simulator/rotors_gazebo_plugins/CMakeFiles/mav_msgs.dir/all
 	$(MAKE) $(MAKESILENT) -f rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_bag_plugin.dir/build.make rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_bag_plugin.dir/depend
 	$(MAKE) $(MAKESILENT) -f rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_bag_plugin.dir/build.make rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_bag_plugin.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num= "Built target rotors_gazebo_bag_plugin"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=93 "Built target rotors_gazebo_bag_plugin"
 .PHONY : rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_bag_plugin.dir/all
 
 # Build rule for subdir invocation for target.
 rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_bag_plugin.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 20
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 22
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_bag_plugin.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 0
 .PHONY : rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_bag_plugin.dir/rule
@@ -10973,7 +10941,7 @@ rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_controller_inter
 
 # Build rule for subdir invocation for target.
 rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_controller_interface.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 20
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 21
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_controller_interface.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 0
 .PHONY : rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_controller_interface.dir/rule
@@ -11109,7 +11077,7 @@ rotors_simulator/rotors_gazebo_plugins/CMakeFiles/gazebo_geotagged_images_plugin
 
 # Build rule for subdir invocation for target.
 rotors_simulator/rotors_gazebo_plugins/CMakeFiles/gazebo_geotagged_images_plugin.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 20
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 21
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 rotors_simulator/rotors_gazebo_plugins/CMakeFiles/gazebo_geotagged_images_plugin.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 0
 .PHONY : rotors_simulator/rotors_gazebo_plugins/CMakeFiles/gazebo_geotagged_images_plugin.dir/rule
@@ -11240,7 +11208,7 @@ rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_fw_dynamics_plug
 rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_fw_dynamics_plugin.dir/all: rotors_simulator/rotors_gazebo_plugins/CMakeFiles/mav_msgs.dir/all
 	$(MAKE) $(MAKESILENT) -f rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_fw_dynamics_plugin.dir/build.make rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_fw_dynamics_plugin.dir/depend
 	$(MAKE) $(MAKESILENT) -f rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_fw_dynamics_plugin.dir/build.make rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_fw_dynamics_plugin.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=94 "Built target rotors_gazebo_fw_dynamics_plugin"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num= "Built target rotors_gazebo_fw_dynamics_plugin"
 .PHONY : rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_fw_dynamics_plugin.dir/all
 
 # Build rule for subdir invocation for target.
@@ -11376,12 +11344,12 @@ rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_gps_plugin.dir/a
 rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_gps_plugin.dir/all: rotors_simulator/rotors_gazebo_plugins/CMakeFiles/mav_msgs.dir/all
 	$(MAKE) $(MAKESILENT) -f rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_gps_plugin.dir/build.make rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_gps_plugin.dir/depend
 	$(MAKE) $(MAKESILENT) -f rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_gps_plugin.dir/build.make rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_gps_plugin.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num= "Built target rotors_gazebo_gps_plugin"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=94 "Built target rotors_gazebo_gps_plugin"
 .PHONY : rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_gps_plugin.dir/all
 
 # Build rule for subdir invocation for target.
 rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_gps_plugin.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 20
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 22
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_gps_plugin.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 0
 .PHONY : rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_gps_plugin.dir/rule
@@ -11517,7 +11485,7 @@ rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_imu_plugin.dir/a
 
 # Build rule for subdir invocation for target.
 rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_imu_plugin.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 20
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 21
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_imu_plugin.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 0
 .PHONY : rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_imu_plugin.dir/rule
@@ -11648,12 +11616,12 @@ rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_noisydepth_plugi
 rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_noisydepth_plugin.dir/all: rotors_simulator/rotors_gazebo_plugins/CMakeFiles/mav_msgs.dir/all
 	$(MAKE) $(MAKESILENT) -f rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_noisydepth_plugin.dir/build.make rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_noisydepth_plugin.dir/depend
 	$(MAKE) $(MAKESILENT) -f rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_noisydepth_plugin.dir/build.make rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_noisydepth_plugin.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num= "Built target rotors_gazebo_noisydepth_plugin"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=96 "Built target rotors_gazebo_noisydepth_plugin"
 .PHONY : rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_noisydepth_plugin.dir/all
 
 # Build rule for subdir invocation for target.
 rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_noisydepth_plugin.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 20
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 22
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_noisydepth_plugin.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 0
 .PHONY : rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_noisydepth_plugin.dir/rule
@@ -11784,7 +11752,7 @@ rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_lidar_plugin.dir
 rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_lidar_plugin.dir/all: rotors_simulator/rotors_gazebo_plugins/CMakeFiles/mav_msgs.dir/all
 	$(MAKE) $(MAKESILENT) -f rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_lidar_plugin.dir/build.make rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_lidar_plugin.dir/depend
 	$(MAKE) $(MAKESILENT) -f rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_lidar_plugin.dir/build.make rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_lidar_plugin.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=95 "Built target rotors_gazebo_lidar_plugin"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num= "Built target rotors_gazebo_lidar_plugin"
 .PHONY : rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_lidar_plugin.dir/all
 
 # Build rule for subdir invocation for target.
@@ -11920,12 +11888,12 @@ rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_magnetometer_plu
 rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_magnetometer_plugin.dir/all: rotors_simulator/rotors_gazebo_plugins/CMakeFiles/mav_msgs.dir/all
 	$(MAKE) $(MAKESILENT) -f rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_magnetometer_plugin.dir/build.make rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_magnetometer_plugin.dir/depend
 	$(MAKE) $(MAKESILENT) -f rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_magnetometer_plugin.dir/build.make rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_magnetometer_plugin.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num= "Built target rotors_gazebo_magnetometer_plugin"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=95 "Built target rotors_gazebo_magnetometer_plugin"
 .PHONY : rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_magnetometer_plugin.dir/all
 
 # Build rule for subdir invocation for target.
 rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_magnetometer_plugin.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 20
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 22
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_magnetometer_plugin.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 0
 .PHONY : rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_magnetometer_plugin.dir/rule
@@ -12061,7 +12029,7 @@ rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_motor_model.dir/
 
 # Build rule for subdir invocation for target.
 rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_motor_model.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 20
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 21
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_motor_model.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 0
 .PHONY : rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_motor_model.dir/rule
@@ -12192,7 +12160,7 @@ rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_multirotor_base_
 rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_multirotor_base_plugin.dir/all: rotors_simulator/rotors_gazebo_plugins/CMakeFiles/mav_msgs.dir/all
 	$(MAKE) $(MAKESILENT) -f rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_multirotor_base_plugin.dir/build.make rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_multirotor_base_plugin.dir/depend
 	$(MAKE) $(MAKESILENT) -f rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_multirotor_base_plugin.dir/build.make rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_multirotor_base_plugin.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=96 "Built target rotors_gazebo_multirotor_base_plugin"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num= "Built target rotors_gazebo_multirotor_base_plugin"
 .PHONY : rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_multirotor_base_plugin.dir/all
 
 # Build rule for subdir invocation for target.
@@ -12333,7 +12301,7 @@ rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_odometry_plugin.
 
 # Build rule for subdir invocation for target.
 rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_odometry_plugin.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 20
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 21
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_odometry_plugin.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 0
 .PHONY : rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_odometry_plugin.dir/rule
@@ -12469,7 +12437,7 @@ rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_pressure_plugin.
 
 # Build rule for subdir invocation for target.
 rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_pressure_plugin.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 21
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 22
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_pressure_plugin.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 0
 .PHONY : rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_pressure_plugin.dir/rule
@@ -12605,7 +12573,7 @@ rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_ros_interface_pl
 
 # Build rule for subdir invocation for target.
 rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_ros_interface_plugin.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 20
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 21
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_ros_interface_plugin.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 0
 .PHONY : rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_ros_interface_plugin.dir/rule
@@ -12741,7 +12709,7 @@ rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_wind_plugin.dir/
 
 # Build rule for subdir invocation for target.
 rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_wind_plugin.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 20
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 21
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_wind_plugin.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 0
 .PHONY : rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_wind_plugin.dir/rule
@@ -12877,7 +12845,7 @@ rotors_simulator/rotors_gazebo_plugins/CMakeFiles/LiftDragPlugin.dir/all: rotors
 
 # Build rule for subdir invocation for target.
 rotors_simulator/rotors_gazebo_plugins/CMakeFiles/LiftDragPlugin.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 20
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 21
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 rotors_simulator/rotors_gazebo_plugins/CMakeFiles/LiftDragPlugin.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 0
 .PHONY : rotors_simulator/rotors_gazebo_plugins/CMakeFiles/LiftDragPlugin.dir/rule
@@ -12978,12 +12946,12 @@ rotors_simulator/rotors_gazebo/CMakeFiles/waypoint_publisher.dir/all: hector_gaz
 rotors_simulator/rotors_gazebo/CMakeFiles/waypoint_publisher.dir/all: hector_gazebo/hector_gazebo_thermal_camera/CMakeFiles/gazebo_msgs_generate_messages_py.dir/all
 	$(MAKE) $(MAKESILENT) -f rotors_simulator/rotors_gazebo/CMakeFiles/waypoint_publisher.dir/build.make rotors_simulator/rotors_gazebo/CMakeFiles/waypoint_publisher.dir/depend
 	$(MAKE) $(MAKESILENT) -f rotors_simulator/rotors_gazebo/CMakeFiles/waypoint_publisher.dir/build.make rotors_simulator/rotors_gazebo/CMakeFiles/waypoint_publisher.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=99 "Built target waypoint_publisher"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num= "Built target waypoint_publisher"
 .PHONY : rotors_simulator/rotors_gazebo/CMakeFiles/waypoint_publisher.dir/all
 
 # Build rule for subdir invocation for target.
 rotors_simulator/rotors_gazebo/CMakeFiles/waypoint_publisher.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 8
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 7
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 rotors_simulator/rotors_gazebo/CMakeFiles/waypoint_publisher.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 0
 .PHONY : rotors_simulator/rotors_gazebo/CMakeFiles/waypoint_publisher.dir/rule
@@ -13058,12 +13026,12 @@ rotors_simulator/rotors_gazebo/CMakeFiles/waypoint_publisher_file.dir/all: hecto
 rotors_simulator/rotors_gazebo/CMakeFiles/waypoint_publisher_file.dir/all: hector_gazebo/hector_gazebo_thermal_camera/CMakeFiles/gazebo_msgs_generate_messages_py.dir/all
 	$(MAKE) $(MAKESILENT) -f rotors_simulator/rotors_gazebo/CMakeFiles/waypoint_publisher_file.dir/build.make rotors_simulator/rotors_gazebo/CMakeFiles/waypoint_publisher_file.dir/depend
 	$(MAKE) $(MAKESILENT) -f rotors_simulator/rotors_gazebo/CMakeFiles/waypoint_publisher_file.dir/build.make rotors_simulator/rotors_gazebo/CMakeFiles/waypoint_publisher_file.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num= "Built target waypoint_publisher_file"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=99 "Built target waypoint_publisher_file"
 .PHONY : rotors_simulator/rotors_gazebo/CMakeFiles/waypoint_publisher_file.dir/all
 
 # Build rule for subdir invocation for target.
 rotors_simulator/rotors_gazebo/CMakeFiles/waypoint_publisher_file.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 7
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 8
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 rotors_simulator/rotors_gazebo/CMakeFiles/waypoint_publisher_file.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 0
 .PHONY : rotors_simulator/rotors_gazebo/CMakeFiles/waypoint_publisher_file.dir/rule
@@ -13138,12 +13106,12 @@ rotors_simulator/rotors_gazebo/CMakeFiles/hovering_example.dir/all: hector_gazeb
 rotors_simulator/rotors_gazebo/CMakeFiles/hovering_example.dir/all: hector_gazebo/hector_gazebo_thermal_camera/CMakeFiles/gazebo_msgs_generate_messages_py.dir/all
 	$(MAKE) $(MAKESILENT) -f rotors_simulator/rotors_gazebo/CMakeFiles/hovering_example.dir/build.make rotors_simulator/rotors_gazebo/CMakeFiles/hovering_example.dir/depend
 	$(MAKE) $(MAKESILENT) -f rotors_simulator/rotors_gazebo/CMakeFiles/hovering_example.dir/build.make rotors_simulator/rotors_gazebo/CMakeFiles/hovering_example.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=55 "Built target hovering_example"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num= "Built target hovering_example"
 .PHONY : rotors_simulator/rotors_gazebo/CMakeFiles/hovering_example.dir/all
 
 # Build rule for subdir invocation for target.
 rotors_simulator/rotors_gazebo/CMakeFiles/hovering_example.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 8
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 7
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 rotors_simulator/rotors_gazebo/CMakeFiles/hovering_example.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/jxie/rossim/build/CMakeFiles 0
 .PHONY : rotors_simulator/rotors_gazebo/CMakeFiles/hovering_example.dir/rule

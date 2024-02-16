@@ -3,7 +3,6 @@ file(REMOVE_RECURSE
   "/home/jxie/rossim/devel/share/common-lisp/ros/hector_uav_msgs/msg/AttitudeCommand.lisp"
   "/home/jxie/rossim/devel/share/common-lisp/ros/hector_uav_msgs/msg/Compass.lisp"
   "/home/jxie/rossim/devel/share/common-lisp/ros/hector_uav_msgs/msg/ControllerState.lisp"
-  "/home/jxie/rossim/devel/share/common-lisp/ros/hector_uav_msgs/msg/FinishTime.lisp"
   "/home/jxie/rossim/devel/share/common-lisp/ros/hector_uav_msgs/msg/HeadingCommand.lisp"
   "/home/jxie/rossim/devel/share/common-lisp/ros/hector_uav_msgs/msg/HeightCommand.lisp"
   "/home/jxie/rossim/devel/share/common-lisp/ros/hector_uav_msgs/msg/LandingAction.lisp"

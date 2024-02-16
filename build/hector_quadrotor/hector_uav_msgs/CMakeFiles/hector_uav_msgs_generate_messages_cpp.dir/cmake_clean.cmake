@@ -4,7 +4,6 @@ file(REMOVE_RECURSE
   "/home/jxie/rossim/devel/include/hector_uav_msgs/Compass.h"
   "/home/jxie/rossim/devel/include/hector_uav_msgs/ControllerState.h"
   "/home/jxie/rossim/devel/include/hector_uav_msgs/EnableMotors.h"
-  "/home/jxie/rossim/devel/include/hector_uav_msgs/FinishTime.h"
   "/home/jxie/rossim/devel/include/hector_uav_msgs/HeadingCommand.h"
   "/home/jxie/rossim/devel/include/hector_uav_msgs/HeightCommand.h"
   "/home/jxie/rossim/devel/include/hector_uav_msgs/LandingAction.h"

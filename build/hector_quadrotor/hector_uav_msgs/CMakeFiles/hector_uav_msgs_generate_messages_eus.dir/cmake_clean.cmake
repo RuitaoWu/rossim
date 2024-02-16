@@ -4,7 +4,6 @@ file(REMOVE_RECURSE
   "/home/jxie/rossim/devel/share/roseus/ros/hector_uav_msgs/msg/AttitudeCommand.l"
   "/home/jxie/rossim/devel/share/roseus/ros/hector_uav_msgs/msg/Compass.l"
   "/home/jxie/rossim/devel/share/roseus/ros/hector_uav_msgs/msg/ControllerState.l"
-  "/home/jxie/rossim/devel/share/roseus/ros/hector_uav_msgs/msg/FinishTime.l"
   "/home/jxie/rossim/devel/share/roseus/ros/hector_uav_msgs/msg/HeadingCommand.l"
   "/home/jxie/rossim/devel/share/roseus/ros/hector_uav_msgs/msg/HeightCommand.l"
   "/home/jxie/rossim/devel/share/roseus/ros/hector_uav_msgs/msg/LandingAction.l"

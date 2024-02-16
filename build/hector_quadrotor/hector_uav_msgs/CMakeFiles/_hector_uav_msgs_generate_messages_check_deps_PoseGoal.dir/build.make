@@ -67,7 +67,7 @@ include hector_quadrotor/hector_uav_msgs/CMakeFiles/_hector_uav_msgs_generate_me
 include hector_quadrotor/hector_uav_msgs/CMakeFiles/_hector_uav_msgs_generate_messages_check_deps_PoseGoal.dir/progress.make
 
 hector_quadrotor/hector_uav_msgs/CMakeFiles/_hector_uav_msgs_generate_messages_check_deps_PoseGoal:
-	cd /home/jxie/rossim/build/hector_quadrotor/hector_uav_msgs && ../../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py hector_uav_msgs /home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseGoal.msg std_msgs/Header:geometry_msgs/Point:geometry_msgs/Pose:geometry_msgs/PoseStamped:geometry_msgs/Quaternion
+	cd /home/jxie/rossim/build/hector_quadrotor/hector_uav_msgs && ../../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py hector_uav_msgs /home/jxie/rossim/devel/share/hector_uav_msgs/msg/PoseGoal.msg geometry_msgs/Point:geometry_msgs/PoseStamped:std_msgs/Header:geometry_msgs/Quaternion:geometry_msgs/Pose
 
 _hector_uav_msgs_generate_messages_check_deps_PoseGoal: hector_quadrotor/hector_uav_msgs/CMakeFiles/_hector_uav_msgs_generate_messages_check_deps_PoseGoal
 _hector_uav_msgs_generate_messages_check_deps_PoseGoal: hector_quadrotor/hector_uav_msgs/CMakeFiles/_hector_uav_msgs_generate_messages_check_deps_PoseGoal.dir/build.make
