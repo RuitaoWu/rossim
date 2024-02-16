@@ -15,7 +15,7 @@ task_ast = defaultdict(list)
 task_aft = defaultdict(list)
 
 class Master:
-    def __init__(self) -> None:
+    def __init__(self,cpu) -> None:
         print('construcing master node')
         self.topic = '/uav1/task'
         self.loc = '/uav1/ground_truth_to_tf/pose'
@@ -25,6 +25,8 @@ class Master:
         self.rate = rospy.Rate(1) # 10hz
         self.master_task = []
         self.task_received = []
+        self.cpu = cpu
+        print('print cpu of uav', self.cpu)
         print('master node is completed')
     # def pred_aft(self,t):
     #     temp =[0]
@@ -43,17 +45,19 @@ class Master:
     def update_time(self):
         for x in self.master_task:
             x.st = max(self.pred_aft(x),x.st)
-            x.et = x.st + (x.size/1000000)
-        print('at line 46: ',x.st)
+            x.et = x.st + (x.size/self.cpu)
+
     def sub_callback(self,data):
         if data:
             self.task_received.append(data)
             self.update_time()
         else:
             print('nothing...')
+
     def received_call_back(self):
         print('call receive threading...')
         rospy.Subscriber(self.worker_to_uav,Task,self.sub_callback)
+
     def run(self,dt):
         print(f'publishing...')
         thread = threading.Thread(target= self.received_call_back)
@@ -82,7 +86,7 @@ class Master:
 
 
 class Worker:
-    def __init__(self,worker_id) -> None:
+    def __init__(self,worker_id,cpu) -> None:
         print('constructing worker node ',worker_id)
         self.worker_id = worker_id
         self.topic = '/uav1/task'
@@ -91,28 +95,30 @@ class Worker:
         rospy.init_node('Worker%d'%self.worker_id , anonymous=True)
         self.pub = rospy.Publisher(self.worker_to_uav,Task,queue_size=20)
         self.worker_task = []
-    
+        self.all_task = []
+        self.cpu = cpu
     def pred_aft(self,t):
         temp =[0]
         for pre in t.dependency:
-            if task_aft[pre]:
-                temp.append(task_aft[pre])
+            for x in self.all_task:
+                if pre == x.task_idx:
+                    temp.append(x.et)
         return max(temp)
+
+
     def callback_func(self,data):
+
+        self.all_task.append(data)
+
         if data.processor_id == self.worker_id:
-            print(f'task time at line 90 {data.st}')
-            data.st = 10
-            data.et = data.st +(data.size / 1000000)
+            data.st = max(self.worker_task[-1].et, self.pred_aft(data)) if self.worker_task else 0
+            data.et = data.st +(data.size / self.cpu)
             self.pub.publish(data)
             rospy.sleep(1)
-            print(f'task time at line 103: {data.st}')
-            print('**********************************************************')
             self.worker_task.append(data)
             with open('/home/jxie/rossim/src/ros_mpi/data/task_ast_worker%d.txt'%self.worker_id,'w') as file:
-                # for key, values in task_ast.items():
-                #     file.write(f"{key}: {values}\n")
                 for ele in self.worker_task:
-                    file.write(f"{ele}\n")
+                    file.write(f"{ele}\n\n")
         else:
             print('empty')
     #sub location information
@@ -124,11 +130,6 @@ class Worker:
     def run(self):
         print('call worker%d'%self.worker_id )
         rospy.Subscriber(self.topic, Task, self.callback_func)
-        # pos = rospy.wait_for_message(self.loc, PoseStamped)
-        # print(f'current worker location : ({pos.pose.position.x},{pos.pose.position.y})')
-        # thread_sub = threading.Thread(target=self.sub_thread)
-        # thread_loc = threading.Thread(target=self.location_thread)
-        # thread_sub.start()
-        # thread_loc.start()
+
         print(f'worker {self.worker_id} done')
         rospy.spin()

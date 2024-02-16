@@ -6,7 +6,7 @@ class TaskGen():
         self.num_nodes = num_nodes
     def gen_comp_matrix(self):
         return [[random.randint(20,40) for _ in range(self.computing_node)] for _ in range(self.num_nodes)]
-    def generate_random_dag(self,density=0.8):
+    def generate_random_dag(self,density):
         # Initialize an empty adjacency matrix
         adjacency_matrix = [[0] * self.num_nodes for _ in range(self.num_nodes)]
 
@@ -54,12 +54,12 @@ class TaskGen():
     
 if __name__ == '__main__':
 # Example usage:
-    num_nodes = 5
+    num_nodes = 5 #number of tasks
     density = 0.8
     random_dag = TaskGen(num_nodes,3)
     print(random_dag.gen_comp_matrix())
-    test_dag = random_dag.generate_random_dag()
-    print(type(random_dag))
+    test_dag = random_dag.generate_random_dag(density)
+
     print(test_dag)
 
 
