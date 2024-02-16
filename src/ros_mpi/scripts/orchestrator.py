@@ -97,6 +97,8 @@ class Orchestrator:
                 task.processor_id = self.task_schedule_list.index(row)
                 task.dependency=self.predecessor_task(col)
                 task.size = 1000000
+                task.st = -1.1
+                task.et = -1.1
                 self.mes.append(task)
         
 

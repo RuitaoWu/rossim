@@ -63,7 +63,8 @@ class WaypoingFollower:
         pub = rospy.Publisher(self.pub_topic, geometry_msgs.msg.Twist, queue_size=10)
         rospy.Subscriber(self.sub_topic, PoseStamped, self.get_pos)
         print("namespace: ",ns)
-        filename = '/home/jxie/Workspace/hzhang3986/nac_sim/src/pos_controller/scripts/path.txt'
+        #src/pos_controller/scripts/path.txt
+        filename = '/home/jxie/rossim/src/pos_controller/scripts/path.txt'
         with open(filename, 'r') as fd:
             path=json.load(fd)
         path = path['uav%d'%index]

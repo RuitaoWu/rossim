@@ -21,10 +21,11 @@ time = []
 pos_x = []
 pos_y = []
 pos_z = []
-time_file_name = '/home/jxie/Workspace/hzhang3986/nac_sim/src/pos_controller/data/path_time%d.pkl' %index
-path_x_name = '/home/jxie/Workspace/hzhang3986/nac_sim/src/pos_controller/data/path_x%d.pkl' %index
-path_y_name = '/home/jxie/Workspace/hzhang3986/nac_sim/src/pos_controller/data/path_y%d.pkl' %index
-path_z_name = '/home/jxie/Workspace/hzhang3986/nac_sim/src/pos_controller/data/path_z%d.pkl' %index
+#/home/jxie/rossim/src/pos_controller/data
+time_file_name = '/home/jxie/rossim/src/pos_controller/data/path_time%d.pkl' %index
+path_x_name = '/home/jxie/rossim/src/pos_controller/data/path_x%d.pkl' %index
+path_y_name = '/home/jxie/rossim/src/pos_controller/data/path_y%d.pkl' %index
+path_z_name = '/home/jxie/rossim/src/pos_controller/data/path_z%d.pkl' %index
 
 
 def path_cb(data):
