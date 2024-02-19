@@ -166,15 +166,55 @@ from sympy import li
 #     content = pickle.load(file)
 
 from collections import defaultdict
-sch_list = []
-
+task_time = []
+task_sch = []
 number_of_uav = 3
 
 
 for i in range(0,number_of_uav):
     temp =[]
+    sch = []
     with open('/home/jxie/rossim/src/ros_mpi/data/uav%d.pkl'%i, 'rb') as file:
         content = pickle.load(file)
     for j in content:
-        temp_dict = {'task_id': j.task_idx, 'start_time': j.st, 'end_time': j.et, 'duration': j.et - j.st}
-        
+        temp.append({'task_id': j.task_idx, 'start_time': j.st, 'end_time': j.et, 'duration': j.et - j.st})
+        sch.append(j.task_idx)
+    task_time.append(temp)
+    task_sch.append(sch)
+
+task_colors = ['b', 'g', 'r', 'c', 'm', 'y', 'k','black','white','gray']
+
+# Create a figure and axis
+fig, ax = plt.subplots()
+fast,faft = [-1]*10,[-1]*10
+for x in task_time:
+    for y in x:
+        fast[y['task_id']] = y['start_time']
+        faft[y['task_id']] = y['end_time']
+
+# Iterate through task_schedule_list and plot the bars
+for i, task_indices in enumerate(task_sch):
+    for task_index in task_indices:
+        start_time = fast[task_index]
+        end_time = faft[task_index]
+        task_name = f'Task {task_index+1}'  # Task number label
+        w = end_time - start_time
+        ax.barh(i, width=w, left=start_time, height=0.6,align='center', edgecolor='black', color='white', alpha=0.95)
+        ax.text(start_time + (end_time - start_time) / 2, i, task_name, ha='center', va='center', color=task_colors[(i)], fontweight='bold', fontsize=18, alpha=0.75)
+
+# Set labels and title
+ax.set_xlabel('Time', fontsize=20)
+ax.set_ylabel('Tasks', fontsize=20)
+ax.set_title('Gantt Chart', fontsize=20)
+
+# Set the y-axis ticks and labels
+ax.set_yticks(range(3))
+ax.set_yticklabels([f'Schedule {i+1}' for i in range(3)])
+
+# Set the x-axis range
+ax.set_xlim(0, max(faft))
+
+# Show the plot
+# plt.grid(axis='x',color='r', linestyle='-', linewidth=2)
+plt.grid(axis='x')
+plt.show()
