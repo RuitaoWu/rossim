@@ -77,20 +77,21 @@ class Master:
                 self.master_task.append(x)
             else:
                 x.st = self.pred_aft(x)
-            dt[dt.index(x)].st = x.st
-
-            self.pub.publish(dt[dt.index(x)])
+            self.pub.publish(x)
 
             rospy.sleep(self.sleepTime)  
         
         #all tasks
-        with open('/home/jxie/rossim/src/ros_mpi/data/task_ast_master.txt','w') as file:
-            for ele in self.task_received :
-                file.write(f"{ele}\n\n")
+        # with open('/home/jxie/rossim/src/ros_mpi/data/task_ast_master.pkl','w') as file:
+            # for ele in self.task_received :
+            #     file.write(f"{ele}\n\n")
+        with open('/home/jxie/rossim/src/ros_mpi/data/uav0.pkl','wb') as file:
+            pickle.dump(self.master_task,file)
         #task on master
-        with open('/home/jxie/rossim/src/ros_mpi/data/task_on_master.txt','w') as file:
-            for ele in self.master_task :
-                file.write(f"{ele}\n\n")
+        # with open('/home/jxie/rossim/src/ros_mpi/data/task_on_master.txt','w') as file:
+        #     for ele in self.master_task :
+        #         file.write(f"{ele}\n\n")
+        
 
 
 
@@ -123,15 +124,15 @@ class Worker:
         print(f'current worker location : ({pos.pose.position.x},{pos.pose.position.y})')
     def callback_func(self,data):
         self.all_task.append(data)
+        print(f'at line 124 received task  {data.task_idx} start {data.st}')
         if data.processor_id == self.worker_id:
-            data.st = max(self.worker_task[-1].et, self.pred_aft(data),data.st) if self.worker_task else self.pred_aft(data)
+            data.st = max(self.worker_task[-1].et, self.pred_aft(data),data.st) if self.worker_task else max(self.pred_aft(data),data.st)
             data.et = data.st +(data.size / self.cpu)
             self.pub.publish(data)
             rospy.sleep(self.sleepTime)
             self.worker_task.append(data)
-            with open('/home/jxie/rossim/src/ros_mpi/data/task_ast_worker%d.txt'%self.worker_id,'w') as file:
-                for ele in self.worker_task:
-                    file.write(f"{ele}\n\n")
+            with open('/home/jxie/rossim/src/ros_mpi/data/uav%d.pkl'%self.worker_id,'wb') as file:
+                pickle.dump(self.worker_task,file)
         else:
             print('empty')
 
