@@ -76,6 +76,9 @@ class Orchestrator:
     def update_aft(self,eft,est,task):
         self.AFT[task] = min(eft)
         self.AST[task] = est[np.argmin(eft)]
+    def locate_task(self,t):
+        for row in self.task_schedule_list:
+                if t in row: return self.task_schedule_list.index(row)
 
     def heft(self):
         TASK_FLAG=[False]*len(self.comp)
@@ -90,16 +93,34 @@ class Orchestrator:
             if TASK_FLAG[task] == False:
                 self.task_schedule_list[np.argmin(eft)].append(task) # append task to the processor with earliest finish time
                 TASK_FLAG[task] = True
-        for row in self.task_schedule_list:
-            for col in row:
+        task = Task()
+        task.task_idx = -1
+        task.processor_id = -1
+        task.dependency=[]
+        task.size = -1
+        task.st = -1
+        task.et = -1
+        self.mes.append(task)
+        for t in np.argsort(self.rank_up_values)[::-1]:
                 task = Task()
-                task.task_idx = col
-                task.processor_id = self.task_schedule_list.index(row)
-                task.dependency=self.predecessor_task(col)
+                task.task_idx = t
+                task.processor_id = self.locate_task(t)
+                task.dependency=self.predecessor_task(t)
                 task.size = 1000000
-                task.st = -1.1
-                task.et = -1.1
+                task.st = 0
+                task.et = 0
                 self.mes.append(task)
+        # print(f'self.mes is {self.mes}')
+        # for row in self.task_schedule_list:
+        #     for col in row:
+        #         task = Task()
+        #         task.task_idx = col
+        #         task.processor_id = self.task_schedule_list.index(row)
+        #         task.dependency=self.predecessor_task(col)
+        #         task.size = 1000000
+        #         task.st = -1.1
+        #         task.et = -1.1
+        #         self.mes.append(task)
         
 
 
