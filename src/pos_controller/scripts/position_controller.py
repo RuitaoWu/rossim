@@ -13,12 +13,6 @@ def control_callback(message, cargs):
     pub, msg, goal = cargs
 
     # Tunable parameters
-    # kdx = 0.5
-    # kdy = 0.5
-    # kdz = 0.5
-    # kdx = 4
-    # kdy = 4
-    # kdz = 4
     kdx = 0.1
     kdy = 0.1
     kdz = 0.1

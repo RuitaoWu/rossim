@@ -4,6 +4,7 @@ Author: BaoqianWang
 Date Created: 03/16/2022
 Description: Waypoint follower
 '''
+from mobility import random_direction
 from operator import index
 import rospy, tf
 import geometry_msgs.msg, nav_msgs.msg
@@ -45,13 +46,26 @@ class WaypoingFollower:
         self.kdx = 0.15
         self.kdy = 0.15
         self.kdz = 0.15
-        # self.kdx = 1.5
-        # self.kdy = 1.5
-        # self.kdz = 1.5
+
         self.sub_topic = '/uav%d/ground_truth_to_tf/pose' %index
         self.pub_topic = '/uav%d/cmd_vel' %index
         self.distThresh = 0.3
+    #     print('Goal is', goal_x, goal_y, goal_z)
 
+    #position generation function
+    def generate_random_positions(self,n, x_range, y_range,z_range):
+        positions = []
+        
+        for _ in range(n):
+            x = np.random.uniform(*x_range)
+            y = np.random.uniform(*y_range)
+            z = np.random.uniform(*z_range)
+            # Ensure z is greater than 0
+            while z <= 0:
+                z = np.random.uniform(*z_range)
+            positions.append([x, y, z])
+
+        return positions
     def get_pos(self, message):
         # Implementation of proportional position control
         self.pose = [message.pose.position.x, message.pose.position.y, message.pose.position.z]
@@ -64,12 +78,24 @@ class WaypoingFollower:
         rospy.Subscriber(self.sub_topic, PoseStamped, self.get_pos)
         print("namespace: ",ns)
         #src/pos_controller/scripts/path.txt
-        filename = '/home/jxie/rossim/src/pos_controller/scripts/path.txt'
-        with open(filename, 'r') as fd:
-            path=json.load(fd)
-        path = path['uav%d'%index]
+        # filename = '/home/jxie/rossim/src/pos_controller/scripts/path.txt'
+        # with open(filename, 'r') as fd:
+        #     path=json.load(fd)
+        # path = path['uav%d'%index]
         # Proportional Controller
-        for goal_x, goal_y, goal_z in zip(path['x'], path['y'], path['z']):
+        # rd = random_direction(20, dimensions=(100, 100,100), velocity=(0.1, 1.0), wt_max=1.0)
+        # array = next(rd).tolist()
+        #generate random position within ceratin aera in 3D space
+        allPositions = self.generate_random_positions(5,(-50, 50),(-50, 50),(10, 50))
+        px,py,pz = [],[],[]
+        for p in allPositions:
+            px.append(p[0])
+            py.append(p[1])
+            pz.append(p[2])
+
+
+        # for goal_x, goal_y, goal_z in zip(path['x'], path['y'], path['z']):
+        for goal_x, goal_y, goal_z in zip(px,py, pz):
             print('Goal is', goal_x, goal_y, goal_z)
             print('Current position: x=%4.1f, y=%4.1f, z=%4.1f'%(self.pose[0], self.pose[1], self.pose[2]))
             distance = sqrt((self.pose[0]-goal_x)**2 + (self.pose[1]-goal_y)**2 + (self.pose[2]-goal_z)**2)
