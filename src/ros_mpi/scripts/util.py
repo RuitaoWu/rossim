@@ -14,6 +14,62 @@ from std_msgs.msg import Float32MultiArray
 task_ast = defaultdict(list)
 task_aft = defaultdict(list)
 
+class Node:
+    def __init__(self,node_id,nodeVerify,allTasks) -> None:
+        self.node_id = node_id
+        self.taskQueue = []
+        self.nodeVerify = nodeVerify
+        self.pubTopic = 'pub/task'
+        self.recTopic = 'rec/task'
+        self.allTasks = allTasks
+        rospy.init_node(self.nodeVerify, anonymous=True)
+        self.pub = rospy.Publisher(self.pubTopic,Task,queue_size=10)
+        self.rate = rospy.Rate(1) # 10hz
+        print(f'all tasks {self.allTasks}')
+        print(f'Master construction completed node id {self.nodeVerify}')
+    def run(self):
+        print(f'publishing...')
+        for t in self.allTasks:
+            if t.processor_id == self.node_id:
+                self.taskQueue.append(t)
+            else: 
+                print(f'publish task {t.task_idx}')
+                self.pub.publish(t)
+                rospy.sleep(1) 
+        #task on master
+        with open('/home/jxie/rossim/src/ros_mpi/data_indep/master%d.txt'%self.node_id,'w') as file:
+            for ele in self.taskQueue :
+                file.write(f"{ele}\n\n")
+class WorkerNode:
+        def __init__(self,node_id,nodeVerify) -> None:
+            self.node_id = node_id
+            self.taskQueue = []
+            self.nodeVerify = nodeVerify
+            self.pubTopic = 'pub/task'
+            # self.recTopic = 'rec/task'
+            rospy.init_node(self.nodeVerify, anonymous=True)
+            # self.pub = rospy.Publisher(self.pubTopic,Task,queue_size=10)
+            # self.rate = rospy.Rate(1) # 10hz
+            print(f'Worker node construction completed node id {self.nodeVerify}')
+        def sub_callback(self,data):
+            if data.processor_id == self.node_id:
+                self.taskQueue.append(data)
+                with open('/home/jxie/rossim/src/ros_mpi/data_indep/uav%d.txt'%self.node_id,'w') as file:
+                    for ele in self.taskQueue :
+                        file.write(f"{ele}\n\n")
+            else:
+                print('nothing...')
+        def run(self):
+            print('call worker%d'%self.node_id )
+            rospy.Subscriber(self.pubTopic, Task, self.sub_callback)
+            rospy.spin()
+
+
+######################################################################################################
+####                                     dependent task                                           ####
+####                                                                                              ####
+####                                                                                              ####
+######################################################################################################
 class Master:
     def __init__(self,cpu,sleepTime) -> None:
         print('construcing master node')

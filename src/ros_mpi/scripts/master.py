@@ -2,10 +2,10 @@ from cgi import test
 from tracemalloc import take_snapshot
 
 import numpy as np
-from util import Master,Worker
+from util import Master, Node,Worker, WorkerNode
 from orchestrator import Orchestrator
 from taskgen import TaskGen
-import rospy,random
+import rospy,random,os
 from hector_uav_msgs.msg import Task
 import threading
 import configparser
@@ -35,6 +35,22 @@ comm = [[0, 1, 1, 1, 1, 1, 0, 0, 0, 0],
                  [0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
                  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
 
+
+def create_folder_if_not_exists(folder_path):
+    if not os.path.exists(folder_path):
+        os.makedirs(folder_path)
+        print(f"Folder '{folder_path}' created.")
+    else:
+        print(f"Folder '{folder_path}' already exists.")
+
+# Example usage:
+folder_path = '/home/jxie/rossim/src/ros_mpi/data_indep'
+
+create_folder_if_not_exists(folder_path)
+# if not os.path('/home/jxie/rossim/src/ros_mpi/data_indep'):
+#     os.mkdir('/home/jxie/rossim/src/ros_mpi/data_indep')
+# else:
+#     print(f"Folder '{'/home/jxie/rossim/src/ros_mpi/data_indep'}' already exists.")
 config = configparser.ConfigParser()
 config.read('/home/jxie/rossim/src/ros_mpi/scripts/property.properties')
 max_cpu = int(config.get('UAV','max_cpu'))
@@ -43,7 +59,8 @@ sleep_time = float(config.get('UAV','sleep_time'))
 numberOfTask = int(config.get('Task','numberOfTask'))
 numberOfComputingNode = int(config.get('Task','computing'))
 density = float(config.get('Task','density'))
-
+taskType = config.get('Task','task_type')
+master_node = int(config.get('Task','master_uav'))
 
 taskgenerator = TaskGen(numberOfTask,numberOfComputingNode)
 
@@ -62,17 +79,27 @@ comm = MPI.COMM_WORLD
 num_node = comm.Get_size()
 node_id = comm.Get_rank()
 node_name = MPI.Get_processor_name()
+if taskType == 'Independent':
+    if node_id  == master_node:
+        node_verify = "Master"
+        nodeMaster = Node(node_id,node_verify,testOchestrator.mes)
+        nodeMaster.run()
+    else:
+        node_verify = "Worker%d"%node_id
+        nodeWorker = WorkerNode(node_id,node_verify)
+        nodeWorker.run()
+elif taskType == 'Dependant':
 
-
-
-if node_id == 0:
-    master = Master(int(random.randrange(min_cpu,max_cpu)),sleep_time)
-    # print(f'all tasks {testOchestrator.mes}')
-    master.run(testOchestrator.mes)
+    if node_id == 0:
+        master = Master(int(random.randrange(min_cpu,max_cpu)),sleep_time)
+        # print(f'all tasks {testOchestrator.mes}')
+        master.run(testOchestrator.mes)
+    else:
+        worker = Worker(node_id,int(random.randrange(int(min_cpu),int(max_cpu))),sleep_time)
+        worker.run()
 else:
-    worker = Worker(node_id,int(random.randrange(int(min_cpu),int(max_cpu))),sleep_time)
-    worker.run()
+    print(f'The input task type {taskType} is invalid, either Dependant or Independent')
 
-print('All parallel tasks are done!')
+# print('All parallel tasks are done!')
 
 MPI.Finalize()
