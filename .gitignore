@@ -1,2 +1,3 @@
-/home/jxie/rossim/src/ros_mpi/scripts/__pycache__
-/home/jxie/rossim/src/ros_mpi/data_indep
+home/jxie/rossim/src/ros_mpi/data_indep/*
+home/jxie/rossim/src/ros_mpi/data/*
+/home/jxie/rossim/src/ros_mpi/scripts/__pycache__/*
