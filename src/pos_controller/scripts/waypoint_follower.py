@@ -3,8 +3,13 @@
 Author: BaoqianWang
 Date Created: 03/16/2022
 Description: Waypoint follower
+
+Modified by: Ruitao Wu
+Date modified: 02/21/2024
+Description: added random walk
 '''
-from mobility import random_direction
+import configparser
+# from mobility import random_direction
 from operator import index
 import rospy, tf
 import geometry_msgs.msg, nav_msgs.msg
@@ -23,6 +28,7 @@ ns = rospy.get_namespace()
 
 # index = int(ns[-2])
 '''
+Modified by: Ruitao Wu
 the ns will return: /uav1/
 detect if the third last to second last two char in a string is numerical data or not
 if it is numerical data then convert it to int
@@ -47,10 +53,21 @@ class WaypoingFollower:
         self.kdy = 0.15
         self.kdz = 0.15
 
+        #mobility configuration
+        self.config = configparser.ConfigParser()
+        self.config.read('/home/jxie/rossim/src/ros_mpi/scripts/property.properties')
+        self.xMax = float(self.config.get('Mobile','xMax'))
+        self.xMin = float(self.config.get('Mobile','xMin'))
+        self.yMax = float(self.config.get('Mobile','yMax'))
+        self.yMin = float(self.config.get('Mobile','yMin'))
+        self.zMax = float(self.config.get('Mobile','zMax'))
+        self.zMin = float(self.config.get('Mobile','zMin'))
+        self.numberOfPoints = int(self.config.get('Mobile','numberOfPoints'))
+
+
         self.sub_topic = '/uav%d/ground_truth_to_tf/pose' %index
         self.pub_topic = '/uav%d/cmd_vel' %index
         self.distThresh = 0.3
-    #     print('Goal is', goal_x, goal_y, goal_z)
 
     #position generation function
     def generate_random_positions(self,n, x_range, y_range,z_range):
@@ -82,18 +99,20 @@ class WaypoingFollower:
         # with open(filename, 'r') as fd:
         #     path=json.load(fd)
         # path = path['uav%d'%index]
-        # Proportional Controller
-        # rd = random_direction(20, dimensions=(100, 100,100), velocity=(0.1, 1.0), wt_max=1.0)
-        # array = next(rd).tolist()
+ 
         #generate random position within ceratin aera in 3D space
-        allPositions = self.generate_random_positions(5,(-50, 50),(-50, 50),(10, 50))
+        allPositions = self.generate_random_positions(self.numberOfPoints,(self.xMin,self.xMax),(self.yMin,self.yMax),(self.zMin,self.zMax))
         px,py,pz = [],[],[]
         for p in allPositions:
             px.append(p[0])
             py.append(p[1])
             pz.append(p[2])
 
-
+        print('***'*20)
+        print(px)
+        print(py)
+        print(pz)
+        print('***'*20)
         # for goal_x, goal_y, goal_z in zip(path['x'], path['y'], path['z']):
         for goal_x, goal_y, goal_z in zip(px,py, pz):
             print('Goal is', goal_x, goal_y, goal_z)
@@ -123,10 +142,6 @@ class WaypoingFollower:
             msg.linear.y = vy
             msg.linear.z = vz
             pub.publish(msg) # control frequency
-            print('control_callback: x = %4.1f, y = %4.1f, z = %4.1f, dist = %4.2f, vx = %4.2f, vy = %4.2f, vz = %4.2f' %(self.pose[0], self.pose[1], self.pose[2], distance, vx, vy, vz))
-        # print('Third', v,u)
-        # cmdmsg.data = [0, u]
-        # cmdpub.publish(cmdmsg)
 
 
 if __name__ == "__main__":

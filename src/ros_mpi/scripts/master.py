@@ -80,14 +80,25 @@ num_node = comm.Get_size()
 node_id = comm.Get_rank()
 node_name = MPI.Get_processor_name()
 if taskType == 'Independent':
-    if node_id  == master_node:
-        node_verify = "Master"
-        nodeMaster = Node(node_id,node_verify,testOchestrator.mes)
-        nodeMaster.run()
-    else:
-        node_verify = "Worker%d"%node_id
-        nodeWorker = WorkerNode(node_id,node_verify)
-        nodeWorker.run()
+    for x in range(0,10):
+        print(f'current iteration {x}')
+        if node_id  == master_node:
+            node_verify = "Master"
+            nodeMaster = Node(node_id,node_verify,testOchestrator.mes,int(random.randrange(int(min_cpu),int(max_cpu))))
+            nodeMaster.run()
+        else:
+            node_verify = "Worker%d"%node_id
+            nodeWorker = WorkerNode(node_id,node_verify,int(random.randrange(int(min_cpu),int(max_cpu))))
+            nodeWorker.run()
+        print(f'finished iteration {x}')
+    # if node_id  == master_node:
+    #     node_verify = "Master"
+    #     nodeMaster = Node(node_id,node_verify,testOchestrator.mes,int(random.randrange(int(min_cpu),int(max_cpu))))
+    #     nodeMaster.run()
+    # else:
+    #     node_verify = "Worker%d"%node_id
+    #     nodeWorker = WorkerNode(node_id,node_verify,int(random.randrange(int(min_cpu),int(max_cpu))))
+    #     nodeWorker.run()
 elif taskType == 'Dependant':
 
     if node_id == 0:
