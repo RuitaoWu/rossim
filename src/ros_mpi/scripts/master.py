@@ -107,7 +107,7 @@ elif taskType == 'Dependant':
         # print(f'all tasks {testOchestrator.mes}')
         master.run(testOchestrator.mes)
     else:
-        worker = Worker(node_id,int(random.randrange(int(min_cpu),int(max_cpu))),sleep_time)
+        worker = Worker(node_id+1,int(random.randrange(int(min_cpu),int(max_cpu))),sleep_time)
         worker.run()
 else:
     print(f'The input task type {taskType} is invalid, either Dependant or Independent')
