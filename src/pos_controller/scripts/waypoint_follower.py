@@ -63,7 +63,7 @@ class WaypoingFollower:
         self.zMax = float(self.config.get('Mobile','zMax'))
         self.zMin = float(self.config.get('Mobile','zMin'))
         self.numberOfPoints = int(self.config.get('Mobile','numberOfPoints'))
-
+        
 
         self.sub_topic = '/uav%d/ground_truth_to_tf/pose' %index
         self.pub_topic = '/uav%d/cmd_vel' %index

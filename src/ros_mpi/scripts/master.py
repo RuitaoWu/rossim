@@ -80,25 +80,26 @@ num_node = comm.Get_size()
 node_id = comm.Get_rank()
 node_name = MPI.Get_processor_name()
 if taskType == 'Independent':
-    for x in range(0,10):
-        print(f'current iteration {x}')
-        if node_id  == master_node:
-            node_verify = "Master"
-            nodeMaster = Node(node_id,node_verify,testOchestrator.mes,int(random.randrange(int(min_cpu),int(max_cpu))))
-            nodeMaster.run()
-        else:
-            node_verify = "Worker%d"%node_id
-            nodeWorker = WorkerNode(node_id,node_verify,int(random.randrange(int(min_cpu),int(max_cpu))))
-            nodeWorker.run()
-        print(f'finished iteration {x}')
-    # if node_id  == master_node:
-    #     node_verify = "Master"
-    #     nodeMaster = Node(node_id,node_verify,testOchestrator.mes,int(random.randrange(int(min_cpu),int(max_cpu))))
-    #     nodeMaster.run()
-    # else:
-    #     node_verify = "Worker%d"%node_id
-    #     nodeWorker = WorkerNode(node_id,node_verify,int(random.randrange(int(min_cpu),int(max_cpu))))
-    #     nodeWorker.run()
+    # for x in range(0,10):
+    #     print(f'current iteration {x}')
+    #     if node_id  == master_node:
+    #         node_verify = "Master"
+    #         nodeMaster = Node(node_id,node_verify,testOchestrator.mes,int(random.randrange(int(min_cpu),int(max_cpu))))
+    #         nodeMaster.run()
+    #     else:
+    #         node_verify = "Worker%d"%node_id
+    #         nodeWorker = WorkerNode(node_id,node_verify,int(random.randrange(int(min_cpu),int(max_cpu))))
+    #         nodeWorker.run()
+    #     print(f'finished iteration {x}')
+    
+    if node_id  == master_node:
+        node_verify = "Master"
+        nodeMaster = Node(node_id+1,node_verify,testOchestrator.mes,int(random.randrange(int(min_cpu),int(max_cpu))))
+        nodeMaster.run()
+    else:
+        node_verify = "Worker%d"%(node_id+1)
+        nodeWorker = WorkerNode(node_id+1,node_verify,int(random.randrange(int(min_cpu),int(max_cpu))))
+        nodeWorker.run()
 elif taskType == 'Dependant':
 
     if node_id == 0:
@@ -111,6 +112,6 @@ elif taskType == 'Dependant':
 else:
     print(f'The input task type {taskType} is invalid, either Dependant or Independent')
 
-# print('All parallel tasks are done!')
+print('All parallel tasks are done!')
 
 MPI.Finalize()

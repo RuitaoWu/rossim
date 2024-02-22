@@ -1,6 +1,7 @@
 
 from concurrent.futures import thread
 import pickle
+
 import time
 from turtle import pos
 from collections import defaultdict
@@ -27,12 +28,16 @@ class Node:
         rospy.init_node(self.nodeVerify, anonymous=True)
         self.pub = rospy.Publisher(self.pubTopic,Task,queue_size=10)
         self.rate = rospy.Rate(1) # 10hz
-        print(f'all tasks {self.allTasks}')
-        print(f'Master construction completed node id {self.nodeVerify}')
+        # rospy.Subscriber(self.pubTopic, Task, self.sub_callback)
+        self.pos = rospy.wait_for_message('/uav%d/ground_truth_to_tf/pose' %self.node_id, PoseStamped)
+        print(f'Master construction completed node id {self.node_id}')
+
     def run(self):
         print(f'publishing...')
+
         for t in self.allTasks:
-            if t.processor_id == self.node_id:
+            print(f'current master {self.node_id} position {(self.pos.pose.position.x,self.pos.pose.position.y,self.pos.pose.position.z)}')
+            if t.processor_id == self.node_id -1:
                 t.st = self.taskQueue [-1].et if self.taskQueue else 0
                 t.et = t.st + float(t.size / self.cpu) 
                 self.taskQueue.append(t)
@@ -41,6 +46,7 @@ class Node:
                 self.pub.publish(t)
                 rospy.sleep(1) 
         #task on master
+        print(f'all tasks on master node {len(self.taskQueue)}')
         with open('/home/jxie/rossim/src/ros_mpi/data_indep/master%d.txt'%self.node_id,'w') as file:
             for ele in self.taskQueue :
                 file.write(f"{ele}\n\n")
@@ -51,27 +57,41 @@ class WorkerNode:
             self.nodeVerify = nodeVerify
             self.pubTopic = 'pub/task'
             self.cpu = cpu
-            # self.recTopic = 'rec/task'
             rospy.init_node(self.nodeVerify, anonymous=True)
-            # self.pub = rospy.Publisher(self.pubTopic,Task,queue_size=10)
-            # self.rate = rospy.Rate(1) # 10hz
-            print(f'Worker node construction completed node id {self.nodeVerify}')
+            rospy.Subscriber(self.pubTopic, Task, self.sub_callback)
+            self.pos = rospy.wait_for_message('/uav%d/ground_truth_to_tf/pose' %self.node_id, PoseStamped)
+ 
         def sub_callback(self,data):
-            if data.processor_id == self.node_id:
+            print(f'current worker {self.node_id} position {(self.pos.pose.position.x,self.pos.pose.position.y,self.pos.pose.position.z)}')
+            if data.processor_id == self.node_id -1 :
                 data.st = self.taskQueue [-1].et if self.taskQueue else 0
                 data.et = data.st + float(data.size / self.cpu) 
                 self.taskQueue.append(data)
-                
-                with open('/home/jxie/rossim/src/ros_mpi/data_indep/uav%d%s.txt'%(self.node_id,time.strftime("%Y%m%d-%H%M%S")),'w') as file:
-                    for ele in self.taskQueue :
-                        file.write(f"{ele}\n\n")
+
+                print(f'worker {self.node_id} received task {self.taskQueue[-1].task_idx} ')
+                # with open('/home/jxie/rossim/src/ros_mpi/data_indep/uav%d.txt'%self.node_id,'w') as file:
+                #     for ele in self.taskQueue :
+                #         file.write(f"{ele}\n\n")
+                # with open('/home/jxie/rossim/src/ros_mpi/data_indep/uav%d%s.txt'%(self.node_id,time.strftime("%Y%m%d-%H%M%S")),'w') as file:
+                #     for ele in self.taskQueue :
+                #         file.write(f"{ele}\n\n")
             else:
                 print('nothing...')
+
+        
         def run(self):
             print('call worker%d'%self.node_id )
-            rospy.Subscriber(self.pubTopic, Task, self.sub_callback)
+            # omd = rospy.wait_for_message('/uav%d/ground_truth_to_tf/pose' %self.node_id, PoseStamped)
+            # print(f'omd current worker {self.node_id} at {omd.pose.position}')
+            # rospy.Subscriber(self.pubTopic, Task, self.sub_callback)
+            
             rospy.spin()
-
+            print(f'saveing task queue to file..')
+            with open('/home/jxie/rossim/src/ros_mpi/data_indep/uav%d.txt'%self.node_id,'w') as file:
+                for ele in self.taskQueue :
+                    file.write(f"{ele}\n\n")
+            
+            print('saved')
 
 ######################################################################################################
 ####                                     dependent task                                           ####
