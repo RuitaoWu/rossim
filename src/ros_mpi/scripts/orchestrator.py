@@ -8,10 +8,12 @@ class Orchestrator:
         self.rank_up_values=[]
         self.comm = comm
         self.comp = comp
+
         self.AST = [float('-inf')]*len(comp)
         self.AFT = [float('-inf')]*len(comp)
         self.task_schedule_list=  [[] for _ in range(len(comp[0]))]
         self.mes = []
+
     def calculate_rank_up_recursive(self,comp, comm, i):
         successors = [j for j in range(len(comp)) if comm[i][j] > 0]
         
@@ -110,6 +112,7 @@ class Orchestrator:
                 task.st = 0
                 task.et = 0
                 self.mes.append(task)
+        print(f'all constructed tasks {self.mes}')
         # print(f'self.mes is {self.mes}')
         # for row in self.task_schedule_list:
         #     for col in row:

@@ -17,14 +17,15 @@ task_ast = defaultdict(list)
 task_aft = defaultdict(list)
 
 class Node:
-    def __init__(self,node_id,nodeVerify,allTasks,cpu) -> None:
+    def __init__(self,node_id,nodeVerify,allTasks,cpu,iteration,taskqueue) -> None:
         self.node_id = node_id
-        self.taskQueue = []
+        self.taskQueue = taskqueue
         self.nodeVerify = nodeVerify
         self.pubTopic = 'pub/task'
         self.recTopic = 'rec/task'
         self.allTasks = allTasks
         self.cpu = cpu
+        self.iteration = iteration
         rospy.init_node(self.nodeVerify, anonymous=True)
         self.pub = rospy.Publisher(self.pubTopic,Task,queue_size=10)
         self.rate = rospy.Rate(1) # 10hz
@@ -43,29 +44,31 @@ class Node:
                 t.et = t.st + float(t.size / self.cpu) 
                 self.taskQueue.append(t)
             else: 
-                print(f'publish task {t.task_idx}')
+                print(f'publish task {t.task_idx} to worker {t.processor_id}')
                 self.pub.publish(t)
                 rospy.sleep(1) 
         #task on master
         print(f'all tasks on master node {len(self.taskQueue)}')
-        with open('/home/jxie/rossim/src/ros_mpi/data_indep/master%d.txt'%self.node_id,'w') as file:
+        with open('/home/jxie/rossim/src/ros_mpi/data_indep/iter_%d_master%d.txt'%(self.iteration,self.node_id),'w') as file:
             for ele in self.taskQueue :
                 file.write(f"{ele}\n\n")
 class WorkerNode:
-        def __init__(self,node_id,nodeVerify,cpu) -> None:
+        def __init__(self,node_id,nodeVerify,cpu,iteration,taskqueue) -> None:
             self.node_id = node_id
-            self.taskQueue = []
+            self.taskQueue = taskqueue
             self.nodeVerify = nodeVerify
             self.pubTopic = 'pub/task'
+            self.loc = '/uav%d/ground_truth_to_tf/pose'%self.node_id
             self.cpu = cpu
+            self.iteration = iteration
             rospy.init_node(self.nodeVerify, anonymous=True)
             rospy.Subscriber(self.pubTopic, Task, self.sub_callback)
-            self.pos = rospy.wait_for_message('/uav%d/ground_truth_to_tf/pose' %self.node_id, PoseStamped)
+            # self.pos = rospy.wait_for_message('/uav%d/ground_truth_to_tf/pose' %self.node_id, PoseStamped)
  
         def sub_callback(self,data):
-            print(f'current worker {self.node_id} location {self.pos}')
-            # pos = rospy.wait_for_message(self.loc,PoseStamped)
-            # print(f'current worker {self.node_id} position {(pos.pose.position.x,pos.pose.position.y,pos.pose.position.z)}')
+            # print(f'current worker {self.node_id} location {self.pos}')
+            pos = rospy.wait_for_message(self.loc,PoseStamped)
+            print(f'current worker {self.node_id} position {(pos.pose.position.x,pos.pose.position.y,pos.pose.position.z)}')
             if data.processor_id == self.node_id -1 :
                 data.st = self.taskQueue [-1].et if self.taskQueue else 0
                 data.et = data.st + float(data.size / self.cpu) 
@@ -90,7 +93,7 @@ class WorkerNode:
             
             rospy.spin()
             print(f'saveing task queue to file..')
-            with open('/home/jxie/rossim/src/ros_mpi/data_indep/uav%d.txt'%self.node_id,'w') as file:
+            with open('/home/jxie/rossim/src/ros_mpi/data_indep/iter_%d_uav%d.txt'%(self.iteration,self.node_id),'w') as file:
                 for ele in self.taskQueue :
                     file.write(f"{ele}\n\n")
             
