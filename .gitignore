@@ -1,4 +1,4 @@
 src/ros_mpi/data_indep/
 src/ros_mpi/data/
-src/ros_mpi/scripts/__pycache__/
+src/ros_mpi/scripts/__pycache__/*.pyc
 src/ros_mpi/scripts/__pycache__
