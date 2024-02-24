@@ -168,10 +168,10 @@ from sympy import li
 from collections import defaultdict
 task_time = []
 task_sch = []
-number_of_uav = 3
+number_of_uav = 4
 
 
-for i in range(0,number_of_uav):
+for i in range(1,number_of_uav):
     temp =[]
     sch = []
     with open('/home/jxie/rossim/src/ros_mpi/data/uav%d.pkl'%i, 'rb') as file:

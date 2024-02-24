@@ -93,12 +93,12 @@ class WaypoingFollower:
         msg = geometry_msgs.msg.Twist()
         pub = rospy.Publisher(self.pub_topic, geometry_msgs.msg.Twist, queue_size=10)
         rospy.Subscriber(self.sub_topic, PoseStamped, self.get_pos)
-        print("namespace: ",ns)
+        print("at line 96 waypoint followerpy namespace: ",ns)
         #src/pos_controller/scripts/path.txt
-        # filename = '/home/jxie/rossim/src/pos_controller/scripts/path.txt'
-        # with open(filename, 'r') as fd:
-        #     path=json.load(fd)
-        # path = path['uav%d'%index]
+        filename = '/home/jxie/rossim/src/pos_controller/scripts/path.txt'
+        with open(filename, 'r') as fd:
+            path=json.load(fd)
+        path = path['uav%d'%index]
  
         #generate random position within ceratin aera in 3D space
         allPositions = self.generate_random_positions(self.numberOfPoints,(self.xMin,self.xMax),(self.yMin,self.yMax),(self.zMin,self.zMax))
@@ -107,14 +107,8 @@ class WaypoingFollower:
             px.append(p[0])
             py.append(p[1])
             pz.append(p[2])
-
-        print('***'*20)
-        print(px)
-        print(py)
-        print(pz)
-        print('***'*20)
-        # for goal_x, goal_y, goal_z in zip(path['x'], path['y'], path['z']):
-        for goal_x, goal_y, goal_z in zip(px,py, pz):
+        for goal_x, goal_y, goal_z in zip(path['x'], path['y'], path['z']):
+        # for goal_x, goal_y, goal_z in zip(px,py, pz):
             print('Goal is', goal_x, goal_y, goal_z)
             print('Current position: x=%4.1f, y=%4.1f, z=%4.1f'%(self.pose[0], self.pose[1], self.pose[2]))
             distance = sqrt((self.pose[0]-goal_x)**2 + (self.pose[1]-goal_y)**2 + (self.pose[2]-goal_z)**2)

@@ -108,7 +108,7 @@ class Orchestrator:
                 task.task_idx = t
                 task.processor_id = self.locate_task(t)
                 task.dependency=self.predecessor_task(t)
-                task.size = 1000000
+                task.size = 100000001
                 task.st = 0
                 task.et = 0
                 self.mes.append(task)

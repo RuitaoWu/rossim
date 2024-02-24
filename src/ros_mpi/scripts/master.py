@@ -64,8 +64,8 @@ master_node = int(config.get('Task','master_uav'))
 max_iter = int(config.get('Task','maxiter'))
 taskgenerator = TaskGen(numberOfTask,numberOfComputingNode)
 
-comp = taskgenerator.gen_comp_matrix()
-comm = taskgenerator.generate_random_dag(density)
+# comp = taskgenerator.gen_comp_matrix()
+# comm = taskgenerator.generate_random_dag(density)
 
 
 testOchestrator = Orchestrator(comm,comp)

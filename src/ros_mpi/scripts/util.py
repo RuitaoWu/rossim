@@ -2,11 +2,12 @@
 from concurrent.futures import thread
 import pickle
 
-import time
+import time,math
 from turtle import pos
 from collections import defaultdict
 from hector_uav_msgs.msg import Task, FinishTime
 from orchestrator import Orchestrator
+from datarate import Datarate
 import rospy,threading
 from geometry_msgs.msg import PoseStamped
 from std_msgs.msg import Float32MultiArray
@@ -117,34 +118,20 @@ class Master:
         self.task_received = []
         self.cpu = cpu
         self.sleepTime = sleepTime
-        # self.pos = rospy.wait_for_message(self.loc, PoseStamped)
-
-    # def pred_aft(self,t):
-    #     temp =[0]
-    #     for pre in t.dependency:
-    #         if task_aft[pre]:
-    #             temp.append(task_aft[pre])
-    #     return max(temp)
     def pred_aft(self,t):
         temp =[0]
-        
         for pre in t.dependency:
-            for x in self.task_received:
-                if pre == x.task_idx:
+            for x in self.task_received :
+                if pre == x.task_idx and x.processor_id != t.processor_id:
                     temp.append(x.et)
         print(f'max finished time for task {t.task_idx} is {temp}')
         return max(temp)
-
-    def update_time(self):
-        for x in self.task_received:
-            x.st = max(self.pred_aft(x),x.st)
-            x.et = x.st + (x.size/self.cpu)
 
 
     def sub_callback(self,data):
         if data:
             self.task_received.append(data)
-            # self.update_time()
+            print(f'at line 139 received task {data.task_idx} start time {data.st} and end time {data.et}')
         else:
             print('nothing...')
 
@@ -160,26 +147,34 @@ class Master:
         pos = rospy.wait_for_message(self.loc, PoseStamped)
         # rospy.Subscriber(self.loc,PoseStamped,self.location_call_back)
         print(f'current master location {(pos.pose.position.x,pos.pose.position.y,pos.pose.position.z)}')
-
+    def comm_time(self,u1,u2):
+        # print(f'uav {u1} and uav {u2}')
+        pos_1= rospy.wait_for_message('/uav%d/ground_truth_to_tf/pose'%u1, PoseStamped)
+        pos_2 = rospy.wait_for_message('/uav%d/ground_truth_to_tf/pose'%u2, PoseStamped)
+        dr = Datarate()
+        return dr.data_rate(dr.channel_gain(math.sqrt((pos_1.pose.position.x - pos_2.pose.position.x)**2)))
     def run(self,dt):
         print(f'publishing...')
         thread = threading.Thread(target= self.received_call_back)
-        # thread_loc = threading.Thread(target=self.location)
-        # thread_loc.start()
+
         thread.start()
 
         # rospy.Subscriber(self.worker_to_uav,Task,self.sub_callback)
         for x in dt:
-            pos = rospy.wait_for_message(self.loc,PoseStamped)
-            print(f'current master {1} position {(pos.pose.position.x,pos.pose.position.y,pos.pose.position.z)}')
+            # pos = rospy.wait_for_message(self.loc,PoseStamped)
+            # print(f'current master {1} position {(pos.pose.position.x,pos.pose.position.y,pos.pose.position.z)}')
             if x.processor_id == 0:
-
-                x.st = max(self.master_task[-1].et, self.pred_aft(x)) if self.master_task else self.pred_aft(x)
+                print(f'comm time at line 169:  { (x.size / temp)}')
+                x.st = max(self.master_task[-1].et, self.pred_aft(x)+0.07) if self.master_task else self.pred_aft(x)+0.07
                 print(f'current task {x.task_idx} start {x.st}')
                 x.et = x.st + (x.size/self.cpu)
                 self.master_task.append(x)
             else:
-                x.st = self.pred_aft(x)
+                #plus communication time
+                temp = self.comm_time(1,x.processor_id+1) if x.processor_id+1 > 0 else 1
+                # print(f' communication time between {1} and {x.processor_id+1} is {x.size / temp}')
+                x.st = self.pred_aft(x) + (x.size / temp)
+            # print(f'at line 192 publishing task {x.task_idx} with start time {x.st} and end time {x.et}')
             self.pub.publish(x)
 
             rospy.sleep(self.sleepTime)  
@@ -188,10 +183,10 @@ class Master:
         # with open('/home/jxie/rossim/src/ros_mpi/data/task_ast_master.pkl','w') as file:
             # for ele in self.task_received :
             #     file.write(f"{ele}\n\n")
-        with open('/home/jxie/rossim/src/ros_mpi/data/uav0.pkl','wb') as file:
+        with open('/home/jxie/rossim/src/ros_mpi/data/uav1.pkl','wb') as file:
             pickle.dump(self.master_task,file)
-        #task on master
-        # with open('/home/jxie/rossim/src/ros_mpi/data/task_on_master.txt','w') as file:
+        # task on master
+        # with open('/home/jxie/rossim/src/ros_mpi/data/uav1.txt','w') as file:
         #     for ele in self.master_task :
         #         file.write(f"{ele}\n\n")
         
@@ -214,13 +209,13 @@ class Worker:
         self.cpu = cpu
         self.sleepTime = sleepTime
         rospy.Subscriber(self.topic, Task, self.callback_func)
-        # self.pos = rospy.wait_for_message(self.loc,PoseStamped)
     def pred_aft(self,t):
         temp =[0]
         for pre in t.dependency:
             for x in self.all_task:
-                if pre == x.task_idx:
+                if pre == x.task_idx and x.processor_id != t.processor_id:
                     temp.append(x.et)
+        # print(f'at line 232 the temp time list for task {t.task_idx} is {temp}')
         return max(temp)
 
         #sub location information
@@ -228,18 +223,15 @@ class Worker:
     #     pos = rospy.wait_for_message(self.loc, PoseStamped)
     #     print(f'current worker location : ({pos.pose.position.x},{pos.pose.position.y})')
     def callback_func(self,data):
-        pos = rospy.wait_for_message(self.loc,PoseStamped)
-        print(f'current worker {self.worker_id} position {(pos.pose.position.x,pos.pose.position.y,pos.pose.position.z)}')
         self.all_task.append(data)
-        # print(f'at line 124 received task  {data.task_idx} start {data.st}')
         if data.processor_id == self.worker_id -1 :
+            print(f'at line 243 on worker {self.worker_id} current task {data.task_idx} with start time {data.st} and end time {data.et}')
             data.st = max(self.worker_task[-1].et, self.pred_aft(data),data.st) if self.worker_task else max(self.pred_aft(data),data.st)
             data.et = data.st +(data.size / self.cpu)
+            # print(f'data waiting to publish ({data}) ......')
             self.pub.publish(data)
             rospy.sleep(self.sleepTime)
             self.worker_task.append(data)
-            # with open('/home/jxie/rossim/src/ros_mpi/data/uav%d.pkl'%self.worker_id,'wb') as file:
-            #     pickle.dump(self.worker_task,file)
         else:
             print('empty')
 
@@ -251,6 +243,8 @@ class Worker:
         
         print(f'worker {self.worker_id} done')
         rospy.spin()
-        with open('/home/jxie/rossim/src/ros_mpi/data/uav%d.txt'%self.worker_id,'w') as file:
-                for ele in self.worker_task :
-                    file.write(f"{ele}\n\n")
+        with open('/home/jxie/rossim/src/ros_mpi/data/uav%d.pkl'%self.worker_id,'wb') as file:
+                pickle.dump(self.worker_task,file)
+        # with open('/home/jxie/rossim/src/ros_mpi/data/uav%d.txt'%self.worker_id,'w') as file:
+        #         for ele in self.worker_task :
+        #             file.write(f"{ele}\n\n")
