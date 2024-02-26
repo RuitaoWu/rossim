@@ -112,7 +112,7 @@ class Orchestrator:
                 task.st = 0
                 task.et = 0
                 self.mes.append(task)
-        print(f'all constructed tasks {self.mes}')
+        # print(f'all constructed tasks {self.mes}')
         # print(f'self.mes is {self.mes}')
         # for row in self.task_schedule_list:
         #     for col in row:

@@ -5,6 +5,8 @@ import pickle
 import time,math
 from turtle import pos
 from collections import defaultdict
+
+from torch import _euclidean_dist
 from hector_uav_msgs.msg import Task, FinishTime
 from orchestrator import Orchestrator
 from datarate import Datarate
@@ -106,7 +108,7 @@ class WorkerNode:
 ####                                                                                              ####
 ######################################################################################################
 class Master:
-    def __init__(self,cpu,sleepTime) -> None:
+    def __init__(self,cpu,sleepTime,energy=50) -> None:
         print('construcing master node')
         self.topic = '/uav1/task'
         self.loc = '/uav1/ground_truth_to_tf/pose'
@@ -118,6 +120,8 @@ class Master:
         self.task_received = []
         self.cpu = cpu
         self.sleepTime = sleepTime
+        self.energy = energy
+        print(f'at time {rospy.get_time()} created master node with energy {self.energy} mW')
     def pred_aft(self,t):
         temp =[0]
         for pre in t.dependency:
@@ -154,6 +158,8 @@ class Master:
         dr = Datarate()
         return dr.data_rate(dr.channel_gain(math.sqrt((pos_1.pose.position.x - pos_2.pose.position.x)**2)))
     def run(self,dt):
+        self.energy -= 1
+        print(f'at line 160 self energy remain: {self.energy}')
         print(f'publishing...')
         thread = threading.Thread(target= self.received_call_back)
 
@@ -223,12 +229,22 @@ class Worker:
     #     pos = rospy.wait_for_message(self.loc, PoseStamped)
     #     print(f'current worker location : ({pos.pose.position.x},{pos.pose.position.y})')
     def callback_func(self,data):
+        # loc_worker = '/uav%d/ground_truth_to_tf/pose'%data.processor_id +1
+        # print('/uav%d/ground_truth_to_tf/pose'%(data.processor_id+1))
+        worker_1 = rospy.wait_for_message('/uav%d/ground_truth_to_tf/pose'%(data.processor_id+1),PoseStamped)
+        worker_2 = rospy.wait_for_message(self.loc,PoseStamped)
+        # print([[worker_1.pose.position.x,worker_1.pose.position.y,worker_1.pose.position.z],
+        #                      [worker_2.pose.position.x,worker_2.pose.position.y,worker_2.pose.position.z]])
+        distance = math.dist([worker_1.pose.position.x,worker_1.pose.position.y,worker_1.pose.position.z],
+                             [worker_2.pose.position.x,worker_2.pose.position.y,worker_2.pose.position.z])
+        test = Datarate()
+        current_datarate = test.data_rate(test.channel_gain(distance))
         self.all_task.append(data)
+        print(f'at line 243 datarate between {self.worker_id} and  {data.processor_id+1} is {current_datarate}')
         if data.processor_id == self.worker_id -1 :
-            print(f'at line 243 on worker {self.worker_id} current task {data.task_idx} with start time {data.st} and end time {data.et}')
+            print(f'updateing data on worker {self.worker_id}')
             data.st = max(self.worker_task[-1].et, self.pred_aft(data),data.st) if self.worker_task else max(self.pred_aft(data),data.st)
             data.et = data.st +(data.size / self.cpu)
-            # print(f'data waiting to publish ({data}) ......')
             self.pub.publish(data)
             rospy.sleep(self.sleepTime)
             self.worker_task.append(data)
