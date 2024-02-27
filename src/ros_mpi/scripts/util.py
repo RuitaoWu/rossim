@@ -5,6 +5,8 @@ import pickle
 import time,math
 from turtle import pos
 from collections import defaultdict
+from networkx import node_attribute_xy
+from numpy import save
 
 from torch import _euclidean_dist
 from hector_uav_msgs.msg import Task, FinishTime
@@ -13,7 +15,7 @@ from datarate import Datarate
 import rospy,threading
 from geometry_msgs.msg import PoseStamped
 from std_msgs.msg import Float32MultiArray
-
+from dataplot import PlotGraph
 
 
 task_ast = defaultdict(list)
@@ -99,6 +101,7 @@ class WorkerNode:
             with open('/home/jxie/rossim/src/ros_mpi/data_indep/iter_%d_uav%d.txt'%(self.iteration,self.node_id),'w') as file:
                 for ele in self.taskQueue :
                     file.write(f"{ele}\n\n")
+                
             
             print('saved')
 
@@ -108,7 +111,7 @@ class WorkerNode:
 ####                                                                                              ####
 ######################################################################################################
 class Master:
-    def __init__(self,cpu,sleepTime,energy=50) -> None:
+    def __init__(self,node_id,cpu,sleepTime,energy=50) -> None:
         print('construcing master node')
         self.topic = '/uav1/task'
         self.loc = '/uav1/ground_truth_to_tf/pose'
@@ -125,6 +128,7 @@ class Master:
         self.comp_energy = []
         self.fly_energy = []
         self.comp_time = []
+        self.nodeid = node_id
         print(f'at time {rospy.get_time()} created master node with energy {self.energy} mW')
     def pred_aft(self,t):
         temp =[0]
@@ -175,22 +179,22 @@ class Master:
             # pos = rospy.wait_for_message(self.loc,PoseStamped)
             # print(f'current master {1} position {(pos.pose.position.x,pos.pose.position.y,pos.pose.position.z)}')
             
-            self.fly_energy.append(self.energy * (x.size / self.cpu))
+            self.fly_energy.append([self.energy * (x.size / self.cpu),rospy.get_time()])
             if x.processor_id == 0:
                 print(f'comm time at line 169:  { (x.size / temp)}')
                 x.st = max(self.master_task[-1].et, self.pred_aft(x)+0.07) if self.master_task else self.pred_aft(x)+0.07
                 print(f'current task {x.task_idx} start {x.st}')
                 x.et = x.st + (x.size/self.cpu)
-                self.comp_energy.append((x.size/self.cpu) * self.energy)
-                self.comp_time.append((x.size/self.cpu))
+                self.comp_energy.append([x.delta *x.ci,x.task_idx])
+                self.comp_time.append([(x.size/self.cpu),x.task_idx])
                 self.master_task.append(x)
             else:
                 #plus communication time
                 temp = self.comm_time(1,x.processor_id+1) if x.processor_id+1 > 0 else 1
                 # print(f' communication time between {1} and {x.processor_id+1} is {x.size / temp}')
                 x.st = self.pred_aft(x) + (x.size / temp)
-                print(f' at line 192 (x.size / temp)*self.energy { (x.size / temp)*self.energy}')
-                self.comm_energy.append((x.size / temp)*self.energy)
+                # print(f' at line 192 (x.size / temp)*self.energy { (x.size / temp)*self.energy}')
+                self.comm_energy.append([(x.size / temp)*self.energy,x.task_idx]) #units: mj
             # print(f'at line 192 publishing task {x.task_idx} with start time {x.st} and end time {x.et}')
             self.pub.publish(x)
 
@@ -207,13 +211,15 @@ class Master:
         with open('/home/jxie/rossim/src/ros_mpi/data/uav1.pkl','wb') as file:
             pickle.dump(self.master_task,file)
         with open('/home/jxie/rossim/src/ros_mpi/data/uav1_comm_energy.pkl','wb') as file:
-                pickle.dump(self.comm_energy,file)
+            pickle.dump(self.comm_energy,file)
         with open('/home/jxie/rossim/src/ros_mpi/data/uav1_comp_energy.pkl','wb') as file:
-                pickle.dump(self.comp_energy,file)
+            pickle.dump(self.comp_energy,file)
         with open('/home/jxie/rossim/src/ros_mpi/data/uav1_fly_energy.pkl','wb') as file:
-                pickle.dump(self.fly_energy,file)
+            pickle.dump(self.fly_energy,file)
         with open('/home/jxie/rossim/src/ros_mpi/data/uav1_comp_time.pkl','wb') as file:
-                pickle.dump(self.comp_time,file)
+            pickle.dump(self.comp_time,file)
+        savegraph = PlotGraph(self.nodeid)
+        savegraph.run()
         # task on master
         # with open('/home/jxie/rossim/src/ros_mpi/data/uav1.txt','w') as file:
         #     for ele in self.master_task :
@@ -255,11 +261,11 @@ class Worker:
         #sub location information
     # def location_thread(self):
     #     pos = rospy.wait_for_message(self.loc, PoseStamped)
-    #     print(f'current worker location : ({pos.pose.position.x},{pos.pose.position.y})')
+    #     print(f'current worker location : ({pos.pose.position.x},{pos.pose.position.y}self.energy)')
     def callback_func(self,data):
         # loc_worker = '/uav%d/ground_truth_to_tf/pose'%data.processor_id +1
         # print('/uav%d/ground_truth_to_tf/pose'%(data.processor_id+1))
-        self.fly_energy.append(self.energy * (data.size / self.cpu))
+        self.fly_energy.append([self.energy * (data.size / self.cpu),rospy.get_time()])
         worker_1 = rospy.wait_for_message('/uav%d/ground_truth_to_tf/pose'%(data.processor_id+1),PoseStamped)
         worker_2 = rospy.wait_for_message(self.loc,PoseStamped)
         # print([[worker_1.pose.position.x,worker_1.pose.position.y,worker_1.pose.position.z],
@@ -269,7 +275,8 @@ class Worker:
         
         test = Datarate()
         current_datarate = test.data_rate(test.channel_gain(distance))
-        self.comm_energy.append((data.size / current_datarate) * self.energy)
+
+        self.comm_energy.append([(data.size / current_datarate) * self.energy,data.task_idx]) #units: mj
         self.all_task.append(data)
         print(f'at line 243 datarate between {self.worker_id} and  {data.processor_id+1} is {current_datarate} and the comm time is {(data.size / current_datarate) }')
         if data.processor_id == self.worker_id -1 :
@@ -277,8 +284,8 @@ class Worker:
             data.st = max(self.worker_task[-1].et, self.pred_aft(data),data.st) if self.worker_task else max(self.pred_aft(data),data.st)
             data.et = data.st +(data.size / self.cpu)
             print(f'computation time {(data.size / self.cpu)}')
-            self.comp_energy.append((data.size / self.cpu) * self.energy)
-            self.comp_time.append((data.size / self.cpu) )
+            self.comp_energy.append([data.delta *data.ci,data.task_idx]) #units: mj
+            self.comp_time.append([(data.size / self.cpu),data.task_idx] )
             self.pub.publish(data)
             rospy.sleep(self.sleepTime)
             self.worker_task.append(data)
@@ -293,22 +300,26 @@ class Worker:
         
         print(f'worker {self.worker_id} done')
         rospy.spin()
-        print("***"*20)
-        print(f'worker {self.worker_id} comm energy {self.comm_energy}')
-        print(f'worker {self.worker_id} comp energy {self.comp_energy}')
-        print(f'worker {self.worker_id} comp time {self.comp_time}')
-        print(f'worker {self.worker_id} fly energy {self.fly_energy}')
-        print("***"*20)
+        # print("***"*20)
+        # print(f'worker {self.worker_id} comm energy {self.comm_energy}')
+        # print(f'worker {self.worker_id} comp energy {self.comp_energy}')
+        # print(f'worker {self.worker_id} comp time {self.comp_time}')
+        # print(f'worker {self.worker_id} fly energy {self.fly_energy}')
+        # print("***"*20)
         with open('/home/jxie/rossim/src/ros_mpi/data/uav%d.pkl'%self.worker_id,'wb') as file:
-                pickle.dump(self.worker_task,file)
+            pickle.dump(self.worker_task,file)
         with open('/home/jxie/rossim/src/ros_mpi/data/uav%d_comm_energy.pkl'%self.worker_id,'wb') as file:
-                pickle.dump(self.comm_energy,file)
+            pickle.dump(self.comm_energy,file)
         with open('/home/jxie/rossim/src/ros_mpi/data/uav%d_comp_energy.pkl'%self.worker_id,'wb') as file:
-                pickle.dump(self.comp_energy,file)
+            pickle.dump(self.comp_energy,file)
         with open('/home/jxie/rossim/src/ros_mpi/data/uav%d_fly_energy.pkl'%self.worker_id,'wb') as file:
-                pickle.dump(self.fly_energy,file)
+            pickle.dump(self.fly_energy,file)
         with open('/home/jxie/rossim/src/ros_mpi/data/uav%d_comp_time.pkl'%self.worker_id,'wb') as file:
-                pickle.dump(self.comp_time,file)
+            pickle.dump(self.comp_time,file)
+        if rospy.is_shutdown():
+            print(f'node {self.worker_id} shutdown')
+            savegraph = PlotGraph(self.worker_id)
+            savegraph.run()
         # with open('/home/jxie/rossim/src/ros_mpi/data/uav%d.txt'%self.worker_id,'w') as file:
         #         for ele in self.worker_task :
         #             file.write(f"{ele}\n\n")

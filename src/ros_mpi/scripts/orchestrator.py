@@ -15,6 +15,22 @@ class Orchestrator:
         self.mes = []
 
     def calculate_rank_up_recursive(self,comp, comm, i):
+        """
+        The function calculates the rank of a node recursively based on its communication with other
+        nodes in a network.
+        
+        :param comp: It seems like you were about to provide some information about the `comp` parameter,
+        but the message got cut off. Could you please provide more details about the `comp` parameter so
+        that I can assist you further with the `calculate_rank_up_recursive` function?
+        :param comm: It seems like you were about to provide some information about the `comm` parameter,
+        but the message got cut off. Could you please provide more details about the `comm` parameter so
+        that I can assist you further with the `calculate_rank_up_recursive` function?
+        :param i: The parameter `i` in the `calculate_rank_up_recursive` function represents the index of
+        the current node for which we are calculating the rank. It is used to access the corresponding
+        row in the `comp` and `comm` matrices to determine the successors of the current node
+        :return: The function `calculate_rank_up_recursive` returns the calculated rank value for a given
+        index `i` based on the input arrays `comp` and `comm`.
+        """
         successors = [j for j in range(len(comp)) if comm[i][j] > 0]
         
         if not successors:
@@ -99,9 +115,11 @@ class Orchestrator:
         task.task_idx = -1
         task.processor_id = -1
         task.dependency=[]
-        task.size = -1
-        task.st = -1
-        task.et = -1
+        task.size = 0
+        task.st = 0.1
+        task.et = 0.1
+        task.ci = 0.01 #cpu cycle for executing the task
+        task.delta = 0.1 #mj per sec
         self.mes.append(task)
         for t in np.argsort(self.rank_up_values)[::-1]:
                 task = Task()
@@ -111,6 +129,8 @@ class Orchestrator:
                 task.size = 100000001
                 task.st = 0
                 task.et = 0
+                task.ci = 0.1 #cpu cycle for executing the task
+                task.delta = 0.1 #mj per sec
                 self.mes.append(task)
         # print(f'all constructed tasks {self.mes}')
         # print(f'self.mes is {self.mes}')

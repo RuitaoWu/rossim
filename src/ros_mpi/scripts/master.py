@@ -11,6 +11,7 @@ import threading
 import configparser
 from mpi4py import MPI
 
+from dataplot import PlotGraph
 
 comp = [[14, 16, 9],
         [13, 19, 18],
@@ -104,12 +105,16 @@ if taskType == 'Independent':
 elif taskType == 'Dependant':
 
     if node_id == 0:
-        master = Master(int(random.randrange(min_cpu,max_cpu)),sleep_time)
+        master = Master(node_id+1,int(random.randrange(min_cpu,max_cpu)),sleep_time)
         # print(f'all tasks {testOchestrator.mes}')
         master.run(testOchestrator.mes)
+        # savegraph = PlotGraph(node_id+1)
+        # savegraph.run()
     else:
         worker = Worker(node_id+1,int(random.randrange(int(min_cpu),int(max_cpu))),sleep_time)
         worker.run()
+        # savegraph = PlotGraph(node_id+1)
+        # savegraph.run()
 else:
     print(f'The input task type {taskType} is invalid, either Dependant or Independent')
 

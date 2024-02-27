@@ -8,7 +8,7 @@ import struct
 
 
 class Task(genpy.Message):
-  _md5sum = "ebe954c7abe191b746293c22f87ec843"
+  _md5sum = "805c38fcecb9bf4e6d60cd1d797806d4"
   _type = "hector_uav_msgs/Task"
   _has_header = False  # flag to mark the presence of a Header object
   _full_text = """int16 task_idx
@@ -16,9 +16,11 @@ int32 size
 int16 processor_id
 int16[] dependency
 float32 st
-float32 et"""
-  __slots__ = ['task_idx','size','processor_id','dependency','st','et']
-  _slot_types = ['int16','int32','int16','int16[]','float32','float32']
+float32 et
+float32 delta
+float32 ci"""
+  __slots__ = ['task_idx','size','processor_id','dependency','st','et','delta','ci']
+  _slot_types = ['int16','int32','int16','int16[]','float32','float32','float32','float32']
 
   def __init__(self, *args, **kwds):
     """
@@ -28,7 +30,7 @@ float32 et"""
     changes.  You cannot mix in-order arguments and keyword arguments.
 
     The available fields are:
-       task_idx,size,processor_id,dependency,st,et
+       task_idx,size,processor_id,dependency,st,et,delta,ci
 
     :param args: complete set of field values, in .msg order
     :param kwds: use keyword arguments corresponding to message field names
@@ -49,6 +51,10 @@ float32 et"""
         self.st = 0.
       if self.et is None:
         self.et = 0.
+      if self.delta is None:
+        self.delta = 0.
+      if self.ci is None:
+        self.ci = 0.
     else:
       self.task_idx = 0
       self.size = 0
@@ -56,6 +62,8 @@ float32 et"""
       self.dependency = []
       self.st = 0.
       self.et = 0.
+      self.delta = 0.
+      self.ci = 0.
 
   def _get_types(self):
     """
@@ -76,7 +84,7 @@ float32 et"""
       pattern = '<%sh'%length
       buff.write(struct.Struct(pattern).pack(*self.dependency))
       _x = self
-      buff.write(_get_struct_2f().pack(_x.st, _x.et))
+      buff.write(_get_struct_4f().pack(_x.st, _x.et, _x.delta, _x.ci))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -103,8 +111,8 @@ float32 et"""
       self.dependency = s.unpack(str[start:end])
       _x = self
       start = end
-      end += 8
-      (_x.st, _x.et,) = _get_struct_2f().unpack(str[start:end])
+      end += 16
+      (_x.st, _x.et, _x.delta, _x.ci,) = _get_struct_4f().unpack(str[start:end])
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e)  # most likely buffer underfill
@@ -124,7 +132,7 @@ float32 et"""
       pattern = '<%sh'%length
       buff.write(self.dependency.tostring())
       _x = self
-      buff.write(_get_struct_2f().pack(_x.st, _x.et))
+      buff.write(_get_struct_4f().pack(_x.st, _x.et, _x.delta, _x.ci))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -152,8 +160,8 @@ float32 et"""
       self.dependency = numpy.frombuffer(str[start:end], dtype=numpy.int16, count=length)
       _x = self
       start = end
-      end += 8
-      (_x.st, _x.et,) = _get_struct_2f().unpack(str[start:end])
+      end += 16
+      (_x.st, _x.et, _x.delta, _x.ci,) = _get_struct_4f().unpack(str[start:end])
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e)  # most likely buffer underfill
@@ -162,12 +170,12 @@ _struct_I = genpy.struct_I
 def _get_struct_I():
     global _struct_I
     return _struct_I
-_struct_2f = None
-def _get_struct_2f():
-    global _struct_2f
-    if _struct_2f is None:
-        _struct_2f = struct.Struct("<2f")
-    return _struct_2f
+_struct_4f = None
+def _get_struct_4f():
+    global _struct_4f
+    if _struct_4f is None:
+        _struct_4f = struct.Struct("<4f")
+    return _struct_4f
 _struct_hih = None
 def _get_struct_hih():
     global _struct_hih

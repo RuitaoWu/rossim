@@ -36,6 +36,16 @@
     :reader et
     :initarg :et
     :type cl:float
+    :initform 0.0)
+   (delta
+    :reader delta
+    :initarg :delta
+    :type cl:float
+    :initform 0.0)
+   (ci
+    :reader ci
+    :initarg :ci
+    :type cl:float
     :initform 0.0))
 )
 
@@ -76,6 +86,16 @@
 (cl:defmethod et-val ((m <Task>))
   (roslisp-msg-protocol:msg-deprecation-warning "Using old-style slot reader hector_uav_msgs-msg:et-val is deprecated.  Use hector_uav_msgs-msg:et instead.")
   (et m))
+
+(cl:ensure-generic-function 'delta-val :lambda-list '(m))
+(cl:defmethod delta-val ((m <Task>))
+  (roslisp-msg-protocol:msg-deprecation-warning "Using old-style slot reader hector_uav_msgs-msg:delta-val is deprecated.  Use hector_uav_msgs-msg:delta instead.")
+  (delta m))
+
+(cl:ensure-generic-function 'ci-val :lambda-list '(m))
+(cl:defmethod ci-val ((m <Task>))
+  (roslisp-msg-protocol:msg-deprecation-warning "Using old-style slot reader hector_uav_msgs-msg:ci-val is deprecated.  Use hector_uav_msgs-msg:ci instead.")
+  (ci m))
 (cl:defmethod roslisp-msg-protocol:serialize ((msg <Task>) ostream)
   "Serializes a message object of type '<Task>"
   (cl:let* ((signed (cl:slot-value msg 'task_idx)) (unsigned (cl:if (cl:< signed 0) (cl:+ signed 65536) signed)))
@@ -108,6 +128,16 @@
     (cl:write-byte (cl:ldb (cl:byte 8 16) bits) ostream)
     (cl:write-byte (cl:ldb (cl:byte 8 24) bits) ostream))
   (cl:let ((bits (roslisp-utils:encode-single-float-bits (cl:slot-value msg 'et))))
+    (cl:write-byte (cl:ldb (cl:byte 8 0) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 8) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 16) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 24) bits) ostream))
+  (cl:let ((bits (roslisp-utils:encode-single-float-bits (cl:slot-value msg 'delta))))
+    (cl:write-byte (cl:ldb (cl:byte 8 0) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 8) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 16) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 24) bits) ostream))
+  (cl:let ((bits (roslisp-utils:encode-single-float-bits (cl:slot-value msg 'ci))))
     (cl:write-byte (cl:ldb (cl:byte 8 0) bits) ostream)
     (cl:write-byte (cl:ldb (cl:byte 8 8) bits) ostream)
     (cl:write-byte (cl:ldb (cl:byte 8 16) bits) ostream)
@@ -153,6 +183,18 @@
       (cl:setf (cl:ldb (cl:byte 8 16) bits) (cl:read-byte istream))
       (cl:setf (cl:ldb (cl:byte 8 24) bits) (cl:read-byte istream))
     (cl:setf (cl:slot-value msg 'et) (roslisp-utils:decode-single-float-bits bits)))
+    (cl:let ((bits 0))
+      (cl:setf (cl:ldb (cl:byte 8 0) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 8) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 16) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 24) bits) (cl:read-byte istream))
+    (cl:setf (cl:slot-value msg 'delta) (roslisp-utils:decode-single-float-bits bits)))
+    (cl:let ((bits 0))
+      (cl:setf (cl:ldb (cl:byte 8 0) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 8) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 16) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 24) bits) (cl:read-byte istream))
+    (cl:setf (cl:slot-value msg 'ci) (roslisp-utils:decode-single-float-bits bits)))
   msg
 )
 (cl:defmethod roslisp-msg-protocol:ros-datatype ((msg (cl:eql '<Task>)))
@@ -163,22 +205,24 @@
   "hector_uav_msgs/Task")
 (cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql '<Task>)))
   "Returns md5sum for a message object of type '<Task>"
-  "ebe954c7abe191b746293c22f87ec843")
+  "805c38fcecb9bf4e6d60cd1d797806d4")
 (cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql 'Task)))
   "Returns md5sum for a message object of type 'Task"
-  "ebe954c7abe191b746293c22f87ec843")
+  "805c38fcecb9bf4e6d60cd1d797806d4")
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql '<Task>)))
   "Returns full string definition for message of type '<Task>"
-  (cl:format cl:nil "int16 task_idx~%int32 size~%int16 processor_id~%int16[] dependency~%float32 st~%float32 et~%~%"))
+  (cl:format cl:nil "int16 task_idx~%int32 size~%int16 processor_id~%int16[] dependency~%float32 st~%float32 et~%float32 delta~%float32 ci~%~%"))
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql 'Task)))
   "Returns full string definition for message of type 'Task"
-  (cl:format cl:nil "int16 task_idx~%int32 size~%int16 processor_id~%int16[] dependency~%float32 st~%float32 et~%~%"))
+  (cl:format cl:nil "int16 task_idx~%int32 size~%int16 processor_id~%int16[] dependency~%float32 st~%float32 et~%float32 delta~%float32 ci~%~%"))
 (cl:defmethod roslisp-msg-protocol:serialization-length ((msg <Task>))
   (cl:+ 0
      2
      4
      2
      4 (cl:reduce #'cl:+ (cl:slot-value msg 'dependency) :key #'(cl:lambda (ele) (cl:declare (cl:ignorable ele)) (cl:+ 2)))
+     4
+     4
      4
      4
 ))
@@ -191,4 +235,6 @@
     (cl:cons ':dependency (dependency msg))
     (cl:cons ':st (st msg))
     (cl:cons ':et (et msg))
+    (cl:cons ':delta (delta msg))
+    (cl:cons ':ci (ci msg))
 ))

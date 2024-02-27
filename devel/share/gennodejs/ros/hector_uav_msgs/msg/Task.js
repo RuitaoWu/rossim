@@ -24,6 +24,8 @@ class Task {
       this.dependency = null;
       this.st = null;
       this.et = null;
+      this.delta = null;
+      this.ci = null;
     }
     else {
       if (initObj.hasOwnProperty('task_idx')) {
@@ -62,6 +64,18 @@ class Task {
       else {
         this.et = 0.0;
       }
+      if (initObj.hasOwnProperty('delta')) {
+        this.delta = initObj.delta
+      }
+      else {
+        this.delta = 0.0;
+      }
+      if (initObj.hasOwnProperty('ci')) {
+        this.ci = initObj.ci
+      }
+      else {
+        this.ci = 0.0;
+      }
     }
   }
 
@@ -79,6 +93,10 @@ class Task {
     bufferOffset = _serializer.float32(obj.st, buffer, bufferOffset);
     // Serialize message field [et]
     bufferOffset = _serializer.float32(obj.et, buffer, bufferOffset);
+    // Serialize message field [delta]
+    bufferOffset = _serializer.float32(obj.delta, buffer, bufferOffset);
+    // Serialize message field [ci]
+    bufferOffset = _serializer.float32(obj.ci, buffer, bufferOffset);
     return bufferOffset;
   }
 
@@ -98,13 +116,17 @@ class Task {
     data.st = _deserializer.float32(buffer, bufferOffset);
     // Deserialize message field [et]
     data.et = _deserializer.float32(buffer, bufferOffset);
+    // Deserialize message field [delta]
+    data.delta = _deserializer.float32(buffer, bufferOffset);
+    // Deserialize message field [ci]
+    data.ci = _deserializer.float32(buffer, bufferOffset);
     return data;
   }
 
   static getMessageSize(object) {
     let length = 0;
     length += 2 * object.dependency.length;
-    return length + 20;
+    return length + 28;
   }
 
   static datatype() {
@@ -114,7 +136,7 @@ class Task {
 
   static md5sum() {
     //Returns md5sum for a message object
-    return 'ebe954c7abe191b746293c22f87ec843';
+    return '805c38fcecb9bf4e6d60cd1d797806d4';
   }
 
   static messageDefinition() {
@@ -126,6 +148,8 @@ class Task {
     int16[] dependency
     float32 st
     float32 et
+    float32 delta
+    float32 ci
     `;
   }
 
@@ -175,6 +199,20 @@ class Task {
     }
     else {
       resolved.et = 0.0
+    }
+
+    if (msg.delta !== undefined) {
+      resolved.delta = msg.delta;
+    }
+    else {
+      resolved.delta = 0.0
+    }
+
+    if (msg.ci !== undefined) {
+      resolved.ci = msg.ci;
+    }
+    else {
+      resolved.ci = 0.0
     }
 
     return resolved;

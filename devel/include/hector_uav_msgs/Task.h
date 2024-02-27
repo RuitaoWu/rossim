@@ -29,7 +29,9 @@ struct Task_
     , processor_id(0)
     , dependency()
     , st(0.0)
-    , et(0.0)  {
+    , et(0.0)
+    , delta(0.0)
+    , ci(0.0)  {
     }
   Task_(const ContainerAllocator& _alloc)
     : task_idx(0)
@@ -37,7 +39,9 @@ struct Task_
     , processor_id(0)
     , dependency(_alloc)
     , st(0.0)
-    , et(0.0)  {
+    , et(0.0)
+    , delta(0.0)
+    , ci(0.0)  {
   (void)_alloc;
     }
 
@@ -60,6 +64,12 @@ struct Task_
 
    typedef float _et_type;
   _et_type et;
+
+   typedef float _delta_type;
+  _delta_type delta;
+
+   typedef float _ci_type;
+  _ci_type ci;
 
 
 
@@ -95,7 +105,9 @@ bool operator==(const ::hector_uav_msgs::Task_<ContainerAllocator1> & lhs, const
     lhs.processor_id == rhs.processor_id &&
     lhs.dependency == rhs.dependency &&
     lhs.st == rhs.st &&
-    lhs.et == rhs.et;
+    lhs.et == rhs.et &&
+    lhs.delta == rhs.delta &&
+    lhs.ci == rhs.ci;
 }
 
 template<typename ContainerAllocator1, typename ContainerAllocator2>
@@ -152,12 +164,12 @@ struct MD5Sum< ::hector_uav_msgs::Task_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "ebe954c7abe191b746293c22f87ec843";
+    return "805c38fcecb9bf4e6d60cd1d797806d4";
   }
 
   static const char* value(const ::hector_uav_msgs::Task_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0xebe954c7abe191b7ULL;
-  static const uint64_t static_value2 = 0x46293c22f87ec843ULL;
+  static const uint64_t static_value1 = 0x805c38fcecb9bf4eULL;
+  static const uint64_t static_value2 = 0x6d60cd1d797806d4ULL;
 };
 
 template<class ContainerAllocator>
@@ -182,6 +194,8 @@ struct Definition< ::hector_uav_msgs::Task_<ContainerAllocator> >
 "int16[] dependency\n"
 "float32 st\n"
 "float32 et\n"
+"float32 delta\n"
+"float32 ci\n"
 ;
   }
 
@@ -206,6 +220,8 @@ namespace serialization
       stream.next(m.dependency);
       stream.next(m.st);
       stream.next(m.et);
+      stream.next(m.delta);
+      stream.next(m.ci);
     }
 
     ROS_DECLARE_ALLINONE_SERIALIZER
@@ -240,6 +256,10 @@ struct Printer< ::hector_uav_msgs::Task_<ContainerAllocator> >
     Printer<float>::stream(s, indent + "  ", v.st);
     s << indent << "et: ";
     Printer<float>::stream(s, indent + "  ", v.et);
+    s << indent << "delta: ";
+    Printer<float>::stream(s, indent + "  ", v.delta);
+    s << indent << "ci: ";
+    Printer<float>::stream(s, indent + "  ", v.ci);
   }
 };
 

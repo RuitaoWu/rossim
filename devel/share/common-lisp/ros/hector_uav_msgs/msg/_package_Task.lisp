@@ -11,4 +11,8 @@
           ST
           ET-VAL
           ET
+          DELTA-VAL
+          DELTA
+          CI-VAL
+          CI
 ))
