@@ -1,12 +1,14 @@
 
 <a name="readme-top"></a>
 
+<div align="center">
+
 [![Contributors][contributors-shield]](https://github.com/RuitaoWu/rossim/graphs/contributors)
-[![Forks][forks-shield]](https://github.com/RuitaoWu/rossim/forks-url)
+[![Forks][forks-shield]](https://github.com/RuitaoWu/rossim/forks)
 [![Stargazers][stars-shield]](https://github.com/RuitaoWu/rossim/stargazers)
+[![LinkedIn][linkedin-shield]](https://www.linkedin.com/in/ruitao-wu)
 <!-- [![Issues][issues-shield]][] -->
 <!-- [![MIT License][license-shield]][] -->
-[![LinkedIn][linkedin-shield]](https://www.linkedin.com/in/ruitao-wu)
 
 
 
@@ -154,7 +156,7 @@ TBD
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 [contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge
-[contributors-url]: https://github.com/othneildrew/Best-README-Template/graphs/contributors
+[contributors-url]: https://img.shields.io/badge/:badgeContent?style=flat&cacheSeconds=https%3A%2F%2Fgithub.com%2FRuitaoWu%2Frossim%2Fgraphs%2Fcontributors
 [forks-shield]: https://img.shields.io/github/forks/othneildrew/Best-README-Template.svg?style=for-the-badge
 [forks-url]: https://github.com/othneildrew/Best-README-Template/network/members
 [stars-shield]: https://img.shields.io/github/stars/othneildrew/Best-README-Template.svg?style=for-the-badge
