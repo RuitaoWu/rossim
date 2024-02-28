@@ -13,28 +13,28 @@ from mpi4py import MPI
 
 from dataplot import PlotGraph
 
-comp = [[14, 16, 9],
-        [13, 19, 18],
-        [11, 13, 19],
-        [13, 8, 17],
-        [12, 13, 10],
-        [13, 16, 9],
-        [7, 15, 11],
-        [5, 11, 4],
-        [18, 12, 20],
-        [21, 7, 16]]
+# comp = [[14, 16, 9],
+#         [13, 19, 18],
+#         [11, 13, 19],
+#         [13, 8, 17],
+#         [12, 13, 10],
+#         [13, 16, 9],
+#         [7, 15, 11],
+#         [5, 11, 4],
+#         [18, 12, 20],
+#         [21, 7, 16]]
 
-# UAV communication matrix
-comm = [[0, 1, 1, 1, 1, 1, 0, 0, 0, 0],
-                 [0, 0, 0, 0, 0, 0, 0, 1, 1, 0],
-                 [0, 0, 0, 0, 0, 0, 1, 0, 0, 0],
-                 [0, 0, 0, 0, 0, 0, 0, 1, 1, 0],
-                 [0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
-                 [0, 0, 0, 0, 0, 0, 0, 1, 0, 0],
-                 [0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-                 [0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-                 [0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-                 [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
+# # UAV communication matrix
+# comm = [[0, 1, 1, 1, 1, 1, 0, 0, 0, 0],
+#                  [0, 0, 0, 0, 0, 0, 0, 1, 1, 0],
+#                  [0, 0, 0, 0, 0, 0, 1, 0, 0, 0],
+#                  [0, 0, 0, 0, 0, 0, 0, 1, 1, 0],
+#                  [0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
+#                  [0, 0, 0, 0, 0, 0, 0, 1, 0, 0],
+#                  [0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+#                  [0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+#                  [0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+#                  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
 
 
 def create_folder_if_not_exists(folder_path):
@@ -64,12 +64,13 @@ taskType = config.get('Task','task_type')
 master_node = int(config.get('Task','master_uav'))
 max_iter = int(config.get('Task','maxiter'))
 taskgenerator = TaskGen(numberOfTask,numberOfComputingNode)
+task_size_min = int(config.get('Task','task_size_min'))
+task_size_max = int(config.get('Task','task_size_max'))
+comp = taskgenerator.gen_comp_matrix()
+comm = taskgenerator.generate_random_dag(density)
 
-# comp = taskgenerator.gen_comp_matrix()
-# comm = taskgenerator.generate_random_dag(density)
 
-
-testOchestrator = Orchestrator(comm,comp)
+testOchestrator = Orchestrator(comm,comp,task_size_min,task_size_max)
 # line 64: representing the task priorities 
 rank_up_values = [testOchestrator.calculate_rank_up_recursive(testOchestrator.comp,testOchestrator.comm,i) for i in range(len(testOchestrator.comp))]
 # print("at line 93: ", np.argsort(rank_up_values)[::-1])

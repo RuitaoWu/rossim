@@ -1,5 +1,7 @@
 #! /usr/bin/env python
 from cProfile import label
+import time
+from xml.sax.handler import feature_string_interning
 import matplotlib
 from matplotlib.lines import lineStyles
 import matplotlib.pyplot as plt
@@ -7,10 +9,12 @@ from mpl_toolkits.mplot3d import Axes3D
 import numpy as np
 import argparse
 from matplotlib.ticker import MaxNLocator
-import pickle
+import pickle,math
 from scipy.interpolate import interp1d
 from sympy import li
 from collections import defaultdict
+from datarate import Datarate
+# from pos_controller.scripts.vrssicpy import data_rate
 class PlotGraph:
     def __init__(self,uavid) -> None:
         self.uavid = uavid
@@ -33,7 +37,7 @@ class PlotGraph:
                 sch.append(j.task_idx)
             task_time.append(temp)
             task_sch.append(sch)
-
+        
         task_colors = ['b', 'g', 'r', 'c', 'm', 'y', 'k','black','white','gray']
 
         # Create a figure and axis
@@ -43,7 +47,8 @@ class PlotGraph:
             for y in x:
                 fast[y['task_id']] = y['start_time']
                 faft[y['task_id']] = y['end_time']
-
+        print(f'final start time { fast}')
+        print(f'final end time { faft}')
         # Iterate through task_schedule_list and plot the bars
         for i, task_indices in enumerate(task_sch):
             for task_index in task_indices:
@@ -96,7 +101,7 @@ class PlotGraph:
         for x,y in content:
             energy.append(x)
             taskid.append(y)
-        plt.plot(taskid,energy,marker='o',lineStyle='-')
+        plt.scatter(taskid,energy,marker='o',lineStyle='-')
         plt.xlabel('Task ID')
         plt.ylabel('Energy (mJ)')
         plt.title('UAV-%d Single Task Computation Energy Consumption'%self.uavid)
@@ -108,12 +113,14 @@ class PlotGraph:
             content = pickle.load(file)
         energy,taskid = [],[]
         for x,y in content:
-            energy.append(x)
+            energy.append(x * 1000) #convert to Millisecond MS
             taskid.append(y)
-        plt.scatter(taskid,taskid,marker='o',lineStyle='-')
+        # print(f'energy {energy}')
+        plt.scatter(taskid,energy,marker='o',lineStyle='-')
         plt.xlabel('Task ID')
-        plt.ylabel('Time (second)')
+        plt.ylabel('Time (Millisecond)')
         plt.title('UAV-%d Single Task Computation Time'%self.uavid)
+        # plt.show()
         print('uav-%d time graph saved'%self.uavid)
         plt.savefig('/home/jxie/rossim/src/ros_mpi/scripts/graph/uav-%d-comp-time.png'%self.uavid)
         plt.close()
@@ -123,23 +130,156 @@ class PlotGraph:
         energy,taskid = [],[]
         for x,y in content:
             energy.append(x)
-            taskid.append(y)
-        plt.plot(taskid,energy,marker='v',lineStyle='-')
-        plt.xlabel('Task ID')
+            taskid.append(str(y))
+        # print(content)
+        plt.scatter(taskid,energy,marker='v',lineStyle='-')
+        plt.xlabel('Time')
         plt.ylabel('Energy (mJ)')
         plt.title('UAV-%d Single Fly Energy Consumption'%self.uavid)
+        # plt.show()
         # print(energy)
         print('uav-%d fly graph saved'%self.uavid)
         plt.savefig('/home/jxie/rossim/src/ros_mpi/scripts/graph/uav-%d-fly-energy.png'%self.uavid)
         plt.close()
+    def trajectory(self):
+        num_uavs = 3
+        plt.figure()
+        font_size = 24
+        ax = plt.axes(projection='3d')
+        min_value = float('inf')
+        for i in range(1, num_uavs+1):
+            time_file = '/home/jxie/rossim/src/pos_controller/data/path_time%d.pkl' %i
+            with open(time_file, 'rb') as fp:
+                time = pickle.load(fp)
+                # print('min time', np.min(time))
+                value = np.max(time)
+                # print('time', value)
+
+            min_value = min(min_value, value)
+
+        new_t = np.arange(1, min_value, 0.1)
+        length = len(new_t)
+
+        # print('min value', min_value)
+        paths_x = []
+        paths_y = []
+        paths_z = []
+        linestyles = ['-', '-.', ':', '--', '--', '--', '--', '--', '--', '--', '--']
+        font_size = 18
+
+        for i in range(1, num_uavs+1):
+
+            path_x_file = '/home/jxie/rossim/src/pos_controller/data/path_x%d.pkl' %i
+            path_y_file = '/home/jxie/rossim/src/pos_controller/data/path_y%d.pkl' %i
+            path_z_file = '/home/jxie/rossim/src/pos_controller/data/path_z%d.pkl' %i
+            time_file = '/home/jxie/rossim/src/pos_controller/data/path_time%d.pkl' %i
+            with open(time_file, 'rb') as fp:
+                time = pickle.load(fp)
+
+            with open(path_x_file, 'rb') as fp:
+                path_x = pickle.load(fp)
+
+            interp_funcx = interp1d(time, path_x,bounds_error=False)
+            new_x = interp_funcx(new_t)
+
+            with open(path_y_file, 'rb') as fp:
+                path_y = pickle.load(fp)
+            # print(len(time),len(path_y),len(path_x))
+            interp_funcy = interp1d(time, path_y,bounds_error=False)
+
+            new_y = interp_funcy(new_t)
+
+            with open(path_z_file, 'rb') as fp:
+                path_z = pickle.load(fp)
+            interp_funcz = interp1d(time, path_z,bounds_error=False)
+            new_z = interp_funcz(new_t)
+            #print('path x', path_x[-1], 'path y', path_y[-1], 'path_z', path_z[-1])
+            paths_x.append(new_x)
+            paths_y.append(new_y)
+            paths_z.append(new_z)
+            if i == 1:
+                ax.plot3D(path_x, path_y, path_z, linestyle=linestyles[i-1], linewidth = 3.5, label = 'Master')
+            else:
+                ax.plot3D(path_x, path_y, path_z, linestyle=linestyles[i-1], linewidth = 3.5, label = 'Worker %d' %(i-1))
+        ax.set_xlabel('X (m)', fontsize=16)
+        ax.set_ylabel('Y (m)', fontsize=16)
+        ax.set_zlabel('Z (m)', fontsize=16)
+        plt.subplots_adjust(bottom=0.15, left=0.2, top=0.95, wspace=0, hspace=0)
+        ax.legend(fontsize=14,loc='upper left',framealpha=0.5)
+        # plt.savefig('ros_path')
+        ax.tick_params(labelsize=14)
+        plt.savefig('/home/jxie/rossim/src/ros_mpi/scripts/graph/uav-trajectory.png')
+        plt.close()
+    def dataRateGraph(self):
+        test = Datarate()
+        
+        m_x_file = '/home/jxie/rossim/src/pos_controller/data/path_x%d.pkl' %1
+        m_y_file = '/home/jxie/rossim/src/pos_controller/data/path_y%d.pkl' %1
+        m_z_file = '/home/jxie/rossim/src/pos_controller/data/path_z%d.pkl' %1
+        time_file = '/home/jxie/rossim/src/pos_controller/data/path_time%d.pkl' %1
+        with open(time_file, 'rb') as fp:
+            time_m = pickle.load(fp)
+        with open(m_x_file, 'rb') as fp:
+            m_x = pickle.load(fp)
+
+        with open(m_x_file, 'rb') as fp:
+            m_y = pickle.load(fp)
+
+        with open(m_x_file, 'rb') as fp:
+            m_z = pickle.load(fp)
+
+        _distance = []
+        for i in range(2, 4):
+            path_x_file = '/home/jxie/rossim/src/pos_controller/data/path_x%d.pkl' %i
+            path_y_file = '/home/jxie/rossim/src/pos_controller/data/path_y%d.pkl' %i
+            path_z_file = '/home/jxie/rossim/src/pos_controller/data/path_z%d.pkl' %i
+            with open(path_x_file, 'rb') as fp:
+                temp_x = pickle.load(fp)
+
+            with open(path_y_file, 'rb') as fp:
+                temp_y = pickle.load(fp)
+
+            with open(path_z_file, 'rb') as fp:
+                temp_z = pickle.load(fp)
+            temp_d = []
+            for x,y,z,x1,y1,z1 in zip(m_x,m_y,m_z,temp_x,temp_y,temp_z):
+                temp_d.append(math.sqrt((x - x1)**2 + (y - y1)**2 + (z - z1)**2))
+            _distance.append(temp_d)
+
+        # def channel_gain(distance, alpha=4.0):
+        #         return distance ** (-alpha)
+        # def data_rate(cg, noise=0.000000001,band_width=5000000, transmission_power=0.5):
+        #     return band_width * math.log2(1 + (transmission_power* cg))/noise
+        bandwidth = []
+        for i in _distance:
+            temp = []
+            for j in i:
+                
+                temp.append(test.data_rate(test.channel_gain(j))/1000000)
+            bandwidth.append(temp)
+        for x in bandwidth:
+            plt.plot(time_m[:len(x)],x,lineStyle='--',label='Master to %d'%(bandwidth.index(x)+1))
+        plt.ylabel("Data Rate")
+        plt.xlabel("Time")
+        plt.legend()
+        print('datarate saved')
+        plt.savefig('/home/jxie/rossim/src/ros_mpi/scripts/graph/uav-datarate.png')
+        plt.close()
+
     def run(self):
-         self.comm_graph()
-         self.comp_energy_graph()
-         self.comp_time()
-         self.fly_energy()
-# if __name__ == '__main__':
-#     # for x in range(1,4):
-#     #     plgraph = PlotGraph(x)
-#     #     plgraph.run()
-#     # plgraph = PlotGraph(3)
-#     # plgraph.run()
+        self.comm_graph()
+        self.comp_energy_graph()
+        self.comp_time()
+        self.fly_energy()
+        self.trajectory()
+        self.dataRateGraph()
+    
+
+if __name__ == '__main__':
+    
+    for x in range(1,4):
+        plgraph = PlotGraph(x)
+        plgraph.run()
+    #     plgraph.gantt_chart()   
+    # plgraph = PlotGraph(3)
+    # plgraph.dataRateGraph()

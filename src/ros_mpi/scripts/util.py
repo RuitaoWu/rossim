@@ -130,20 +130,34 @@ class Master:
         self.comp_time = []
         self.nodeid = node_id
         print(f'at time {rospy.get_time()} created master node with energy {self.energy} mW')
+    #locate sucessor location
+    def locate_pred(self,t):
+        temp =[0]
+        processor = [0]
+        for pre in t.dependency:
+            for x in self.task_received :
+                if pre == x.task_idx and x.processor_id != t.processor_id:
+                    temp.append(x.et)
+                    processor.append(x.processor_id )
+        print(f'at line 142 max finished time process location for task {t.task_idx} is {processor[temp.index(max(temp))]}')
+        return processor[temp.index(max(temp))]
+
+    #
     def pred_aft(self,t):
         temp =[0]
         for pre in t.dependency:
             for x in self.task_received :
                 if pre == x.task_idx and x.processor_id != t.processor_id:
                     temp.append(x.et)
-        print(f'max finished time for task {t.task_idx} is {temp}')
+        print(f'at line 152 max finished time for task {t.task_idx} is {temp}')
         return max(temp)
-
-
+    
     def sub_callback(self,data):
         if data:
             self.task_received.append(data)
-            print(f'at line 139 received task {data.task_idx} start time {data.st} and end time {data.et}')
+            temp = self.comm_time(1,data.processor_id+1) if data.processor_id+1 > 0 else 1
+            self.comm_energy.append([(data.size / temp)*self.energy,data.task_idx]) 
+            print(f'at line 139 received task {self.comm_energy[-1]}')
         else:
             print('nothing...')
 
@@ -157,7 +171,6 @@ class Master:
     def location(self):
         print('threading location...')
         pos = rospy.wait_for_message(self.loc, PoseStamped)
-        # rospy.Subscriber(self.loc,PoseStamped,self.location_call_back)
         print(f'current master location {(pos.pose.position.x,pos.pose.position.y,pos.pose.position.z)}')
     def comm_time(self,u1,u2):
         print(f'uav {u1} and uav {u2}')
@@ -175,25 +188,22 @@ class Master:
         thread.start()
 
         # rospy.Subscriber(self.worker_to_uav,Task,self.sub_callback)
-        for x in dt:
-            # pos = rospy.wait_for_message(self.loc,PoseStamped)
-            # print(f'current master {1} position {(pos.pose.position.x,pos.pose.position.y,pos.pose.position.z)}')
-            
-            self.fly_energy.append([self.energy * (x.size / self.cpu),rospy.get_time()])
+        for x in dt:           
+            self.fly_energy.append([self.energy * (x.size / self.cpu),x.task_idx])
             if x.processor_id == 0:
-                print(f'comm time at line 169:  { (x.size / temp)}')
-                x.st = max(self.master_task[-1].et, self.pred_aft(x)+0.07) if self.master_task else self.pred_aft(x)+0.07
+                location_predecessor = self.locate_pred(x)
+                trans_time = x.size / self.comm_time(self.nodeid,location_predecessor+1) if location_predecessor != 0 else 0
+                print(f'at line 194 current trans_time {trans_time} for task {x.task_idx}')
+                x.st = max(self.master_task[-1].et, self.pred_aft(x)+trans_time) if self.master_task else self.pred_aft(x)+trans_time
                 print(f'current task {x.task_idx} start {x.st}')
-                x.et = x.st + (x.size/self.cpu)
-                self.comp_energy.append([x.delta *x.ci,x.task_idx])
-                self.comp_time.append([(x.size/self.cpu),x.task_idx])
+                x.et = x.st + (x.size/x.ci)
+                self.comp_energy.append([x.delta * (x.size/x.ci),x.task_idx])
+                self.comp_time.append([(x.size/x.ci),x.task_idx])
                 self.master_task.append(x)
             else:
                 #plus communication time
                 temp = self.comm_time(1,x.processor_id+1) if x.processor_id+1 > 0 else 1
-                # print(f' communication time between {1} and {x.processor_id+1} is {x.size / temp}')
                 x.st = self.pred_aft(x) + (x.size / temp)
-                # print(f' at line 192 (x.size / temp)*self.energy { (x.size / temp)*self.energy}')
                 self.comm_energy.append([(x.size / temp)*self.energy,x.task_idx]) #units: mj
             # print(f'at line 192 publishing task {x.task_idx} with start time {x.st} and end time {x.et}')
             self.pub.publish(x)
@@ -218,8 +228,8 @@ class Master:
             pickle.dump(self.fly_energy,file)
         with open('/home/jxie/rossim/src/ros_mpi/data/uav1_comp_time.pkl','wb') as file:
             pickle.dump(self.comp_time,file)
-        savegraph = PlotGraph(self.nodeid)
-        savegraph.run()
+        # savegraph = PlotGraph(self.nodeid)
+        # savegraph.run()
         # task on master
         # with open('/home/jxie/rossim/src/ros_mpi/data/uav1.txt','w') as file:
         #     for ele in self.master_task :
@@ -265,7 +275,8 @@ class Worker:
     def callback_func(self,data):
         # loc_worker = '/uav%d/ground_truth_to_tf/pose'%data.processor_id +1
         # print('/uav%d/ground_truth_to_tf/pose'%(data.processor_id+1))
-        self.fly_energy.append([self.energy * (data.size / self.cpu),rospy.get_time()])
+        print(f'at line 276 {data.task_idx}')
+        self.fly_energy.append([self.energy * (data.size / self.cpu),data.task_idx])
         worker_1 = rospy.wait_for_message('/uav%d/ground_truth_to_tf/pose'%(data.processor_id+1),PoseStamped)
         worker_2 = rospy.wait_for_message(self.loc,PoseStamped)
         # print([[worker_1.pose.position.x,worker_1.pose.position.y,worker_1.pose.position.z],
@@ -278,14 +289,12 @@ class Worker:
 
         self.comm_energy.append([(data.size / current_datarate) * self.energy,data.task_idx]) #units: mj
         self.all_task.append(data)
-        print(f'at line 243 datarate between {self.worker_id} and  {data.processor_id+1} is {current_datarate} and the comm time is {(data.size / current_datarate) }')
-        if data.processor_id == self.worker_id -1 :
-            print(f'updateing data on worker {self.worker_id}')
+        print(f'at line 288 datarate between {self.worker_id} and  {data.processor_id+1} is {current_datarate} and the comm time is {(data.size / current_datarate) }')
+        if data.processor_id == self.worker_id - 1 :
             data.st = max(self.worker_task[-1].et, self.pred_aft(data),data.st) if self.worker_task else max(self.pred_aft(data),data.st)
-            data.et = data.st +(data.size / self.cpu)
-            print(f'computation time {(data.size / self.cpu)}')
-            self.comp_energy.append([data.delta *data.ci,data.task_idx]) #units: mj
-            self.comp_time.append([(data.size / self.cpu),data.task_idx] )
+            data.et = data.st +(data.size / data.ci)
+            self.comp_energy.append([data.delta *(data.size/data.ci),data.task_idx]) #units: mj
+            self.comp_time.append([(data.size / data.ci),data.task_idx] )
             self.pub.publish(data)
             rospy.sleep(self.sleepTime)
             self.worker_task.append(data)
@@ -300,12 +309,6 @@ class Worker:
         
         print(f'worker {self.worker_id} done')
         rospy.spin()
-        # print("***"*20)
-        # print(f'worker {self.worker_id} comm energy {self.comm_energy}')
-        # print(f'worker {self.worker_id} comp energy {self.comp_energy}')
-        # print(f'worker {self.worker_id} comp time {self.comp_time}')
-        # print(f'worker {self.worker_id} fly energy {self.fly_energy}')
-        # print("***"*20)
         with open('/home/jxie/rossim/src/ros_mpi/data/uav%d.pkl'%self.worker_id,'wb') as file:
             pickle.dump(self.worker_task,file)
         with open('/home/jxie/rossim/src/ros_mpi/data/uav%d_comm_energy.pkl'%self.worker_id,'wb') as file:

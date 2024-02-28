@@ -1,14 +1,17 @@
 from cgi import test
+from math import ceil
 from re import T
 import numpy as np
 from hector_uav_msgs.msg import Task
 from taskgen import TaskGen
+import random
 class Orchestrator:
-    def __init__(self,comm,comp):
+    def __init__(self,comm,comp,taskMin,taskMax):
         self.rank_up_values=[]
         self.comm = comm
         self.comp = comp
-
+        self.taskMin = taskMin
+        self.taskMax = taskMax
         self.AST = [float('-inf')]*len(comp)
         self.AFT = [float('-inf')]*len(comp)
         self.task_schedule_list=  [[] for _ in range(len(comp[0]))]
@@ -126,11 +129,11 @@ class Orchestrator:
                 task.task_idx = t
                 task.processor_id = self.locate_task(t)
                 task.dependency=self.predecessor_task(t)
-                task.size = 100000001
+                task.size = random.randint(self.taskMin,self.taskMax) #number of instructions
                 task.st = 0
                 task.et = 0
-                task.ci = 0.1 #cpu cycle for executing the task
-                task.delta = 0.1 #mj per sec
+                task.ci = random.randint(4000000, 8000000) #instruction per second
+                task.delta = 50 #mW
                 self.mes.append(task)
         # print(f'all constructed tasks {self.mes}')
         # print(f'self.mes is {self.mes}')
