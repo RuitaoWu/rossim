@@ -10,7 +10,7 @@ from hector_uav_msgs.msg import Task
 import threading
 import configparser
 from mpi4py import MPI
-
+from read_dag import read_dag
 from dataplot import PlotGraph
 
 # comp = [[14, 16, 9],
@@ -67,16 +67,18 @@ taskgenerator = TaskGen(numberOfTask,numberOfComputingNode)
 task_size_min = int(config.get('Task','task_size_min'))
 task_size_max = int(config.get('Task','task_size_max'))
 comp = taskgenerator.gen_comp_matrix()
-comm = taskgenerator.generate_random_dag(density)
+# comm = taskgenerator.generate_random_dag(density)
+comm = np.where(read_dag('test.dot')[-1] >= 0, 1, 0).tolist()
 
-
+# print(f'communication matrix {comm}')
 testOchestrator = Orchestrator(comm,comp,task_size_min,task_size_max)
 # line 64: representing the task priorities 
 rank_up_values = [testOchestrator.calculate_rank_up_recursive(testOchestrator.comp,testOchestrator.comm,i) for i in range(len(testOchestrator.comp))]
 # print("at line 93: ", np.argsort(rank_up_values)[::-1])
-testOchestrator.heft()
+# testOchestrator.heft()
+testOchestrator.orch_ipef()
 # heft_list = testOchestrator.task_schedule_list
-
+# print(f'task list {testOchestrator.mes}')
 comm = MPI.COMM_WORLD
 num_node = comm.Get_size()
 node_id = comm.Get_rank()

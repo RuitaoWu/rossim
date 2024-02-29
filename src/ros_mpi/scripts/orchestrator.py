@@ -5,6 +5,8 @@ import numpy as np
 from hector_uav_msgs.msg import Task
 from taskgen import TaskGen
 import random
+from read_dag import read_dag
+from ipef import IPEFT
 class Orchestrator:
     def __init__(self,comm,comp,taskMin,taskMax):
         self.rank_up_values=[]
@@ -135,22 +137,7 @@ class Orchestrator:
                 task.ci = random.randint(4000000, 8000000) #instruction per second
                 task.delta = 50 #mW
                 self.mes.append(task)
-        # print(f'all constructed tasks {self.mes}')
-        # print(f'self.mes is {self.mes}')
-        # for row in self.task_schedule_list:
-        #     for col in row:
-        #         task = Task()
-        #         task.task_idx = col
-        #         task.processor_id = self.task_schedule_list.index(row)
-        #         task.dependency=self.predecessor_task(col)
-        #         task.size = 1000000
-        #         task.st = -1.1
-        #         task.et = -1.1
-        #         self.mes.append(task)
-        
-
-
-    
+         
     def heft2(self,task,server):
         est=[]
         eft=[]
@@ -163,7 +150,31 @@ class Orchestrator:
         print(f'ast {self.AST}')
         print(f'aft {self.AFT}')
         return np.argmin(eft)
-
+    def orch_ipef(self):
+        # self.comm = np.where(read_dag('test.dot')[-1] >= 0, 1, 0).tolist()
+        self.task_schedule_list = IPEFT(file='test.dot', verbose=True, p=3, b=0.1, ccr=0.1).outcome()
+        task = Task()
+        task.task_idx = -1
+        task.processor_id = -1
+        task.dependency=[]
+        task.size = 0
+        task.st = 0.1
+        task.et = 0.1
+        task.ci = 0.01 #cpu cycle for executing the task
+        task.delta = 0.1 #mj per sec
+        self.mes.append(task)
+        for row in IPEFT(file='test.dot', verbose=True, p=3, b=0.1, ccr=0.1).outcome():
+            for t in row:
+                task = Task()
+                task.task_idx = t
+                task.processor_id = self.locate_task(t)
+                task.dependency=self.predecessor_task(t)
+                task.size = random.randint(self.taskMin,self.taskMax) #number of instructions
+                task.st = 0
+                task.et = 0
+                task.ci = random.randint(4000000, 8000000) #instruction per second
+                task.delta = 50 #mW
+                self.mes.append(task)
 # if __name__ == '__main__':
 
 #     comp = [[14, 16, 9],
@@ -186,25 +197,25 @@ class Orchestrator:
 #     #              [0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
 #     #              [0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
 #     #              [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
-#     comm = [[0, 18, 12, 9, 11, 14, 0, 0, 0, 0],
-#                     [0, 0, 0, 0, 0, 0, 0, 19, 16, 0],
-#                     [0, 0, 0, 0, 0, 0, 23, 0, 0, 0],
-#                     [0, 0, 0, 0, 0, 0, 0, 27, 23, 0],
-#                     [0, 0, 0, 0, 0, 0, 0, 0, 13, 0],
-#                     [0, 0, 0, 0, 0, 0, 0, 15, 0, 0],
-#                     [0, 0, 0, 0, 0, 0, 0, 0, 0, 17],
-#                     [0, 0, 0, 0, 0, 0, 0, 0, 0, 11],
-#                     [0, 0, 0, 0, 0, 0, 0, 0, 0, 13],
-#                     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
+#     # comm = [[0, 18, 12, 9, 11, 14, 0, 0, 0, 0],
+#     #                 [0, 0, 0, 0, 0, 0, 0, 19, 16, 0],
+#     #                 [0, 0, 0, 0, 0, 0, 23, 0, 0, 0],
+#     #                 [0, 0, 0, 0, 0, 0, 0, 27, 23, 0],
+#     #                 [0, 0, 0, 0, 0, 0, 0, 0, 13, 0],
+#     #                 [0, 0, 0, 0, 0, 0, 0, 15, 0, 0],
+#     #                 [0, 0, 0, 0, 0, 0, 0, 0, 0, 17],
+#     #                 [0, 0, 0, 0, 0, 0, 0, 0, 0, 11],
+#     #                 [0, 0, 0, 0, 0, 0, 0, 0, 0, 13],
+#     #                 [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
+#     comm = np.where(read_dag('test.dot')[-1] >= 0, 1, 0).tolist()
 #     # taskgen = TaskGen(5,3)
 #     # comm = taskgen.generate_random_dag()
 #     # comp = taskgen.gen_comp_matrix()
 #     # print(comm)
 #     # print(comp)
 
-#     testobj = Orchestrator(comm,comp)
-#     testobj.heft()
-#     # print(comm)
-#     # print(comp)
-#     print(testobj.task_schedule_list)
+#     testobj = Orchestrator(comm,comp,100,200)
+#     testobj.orch_ipef()
+#     print(testobj.comm)
 #     print(testobj.mes)
+#     print(testobj.locate_task(2))
