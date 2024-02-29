@@ -22,7 +22,7 @@ task_ast = defaultdict(list)
 task_aft = defaultdict(list)
 
 class Node:
-    def __init__(self,node_id,nodeVerify,allTasks,cpu,iteration,taskqueue) -> None:
+    def __init__(self,node_id,nodeVerify,allTasks,cpu,iteration,taskqueue,energy=50) -> None:
         self.node_id = node_id
         self.taskQueue = taskqueue
         self.nodeVerify = nodeVerify
@@ -31,34 +31,62 @@ class Node:
         self.allTasks = allTasks
         self.cpu = cpu
         self.iteration = iteration
+        self.energy = energy
+        self.comm_energy = []
+        self.comp_energy = []
+        self.fly_energy = []
+        self.comp_time = []
         rospy.init_node(self.nodeVerify, anonymous=True)
         self.pub = rospy.Publisher(self.pubTopic,Task,queue_size=10)
         self.rate = rospy.Rate(1) # 10hz
         # rospy.Subscriber(self.pubTopic, Task, self.sub_callback)
         # self.pos = rospy.wait_for_message('/uav%d/ground_truth_to_tf/pose' %self.node_id, PoseStamped)
         print(f'Master construction completed node id {self.node_id}')
-
+    def comm_time(self,u1,u2):
+            print(f'uav {u1} and uav {u2}')
+            pos_1= rospy.wait_for_message('/uav%d/ground_truth_to_tf/pose'%u1, PoseStamped)
+            pos_2 = rospy.wait_for_message('/uav%d/ground_truth_to_tf/pose'%u2, PoseStamped)
+            distance = math.dist([pos_1.pose.position.x,pos_1.pose.position.y,pos_1.pose.position.z],
+                                [pos_2.pose.position.x,pos_2.pose.position.y,pos_2.pose.position.z])
+            dr = Datarate()
+            return dr.data_rate(dr.channel_gain(distance))
     def run(self):
         print(f'publishing...')
-
+        
         for t in self.allTasks:
-            pos = rospy.wait_for_message('/uav%d/ground_truth_to_tf/pose' %self.node_id, PoseStamped)
-            print(f'current master {self.node_id} position {(pos.pose.position.x,pos.pose.position.y,pos.pose.position.z)}')
+            self.fly_energy.append([self.energy * (t.size / self.cpu),t.task_idx])
+            # pos = rospy.wait_for_message('/uav%d/ground_truth_to_tf/pose' %self.node_id, PoseStamped)
+            # print(f'current master {self.node_id} position {(pos.pose.position.x,pos.pose.position.y,pos.pose.position.z)}')
             if t.processor_id == self.node_id -1:
                 t.st = self.taskQueue [-1].et if self.taskQueue else 0
                 t.et = t.st + float(t.size / self.cpu) 
                 self.taskQueue.append(t)
+                self.comp_energy.append([t.delta * (t.size/t.ci),t.task_idx])
+                self.comp_time.append([(t.size/t.ci),t.task_idx])
             else: 
                 print(f'publish task {t.task_idx} to worker {t.processor_id}')
+                temp = self.comm_time(self.node_id,t.processor_id+1) if t.processor_id+1 > 0 else 1
+                self.comm_energy.append([(t.size / temp)*self.energy,t.task_idx])
+                print(f'energy cost at line 70 {self.comm_energy}')
                 self.pub.publish(t)
                 rospy.sleep(1) 
         #task on master
         print(f'all tasks on master node {len(self.taskQueue)}')
-        with open('/home/jxie/rossim/src/ros_mpi/data_indep/iter_%d_master%d.txt'%(self.iteration,self.node_id),'w') as file:
-            for ele in self.taskQueue :
-                file.write(f"{ele}\n\n")
+        # with open('/home/jxie/rossim/src/ros_mpi/data_indep/iter_%d_master%d.txt'%(self.iteration,self.node_id),'w') as file:
+        #     for ele in self.taskQueue :
+        #         file.write(f"{ele}\n\n")
+        with open('/home/jxie/rossim/src/ros_mpi/data/uav1.pkl','wb') as file:
+            pickle.dump(self.taskQueue,file)
+        with open('/home/jxie/rossim/src/ros_mpi/data/uav1_comm_energy.pkl','wb') as file:
+            pickle.dump(self.comm_energy,file)
+        with open('/home/jxie/rossim/src/ros_mpi/data/uav1_comp_energy.pkl','wb') as file:
+            pickle.dump(self.comp_energy,file)
+        with open('/home/jxie/rossim/src/ros_mpi/data/uav1_fly_energy.pkl','wb') as file:
+            pickle.dump(self.fly_energy,file)
+        with open('/home/jxie/rossim/src/ros_mpi/data/uav1_comp_time.pkl','wb') as file:
+            pickle.dump(self.comp_time,file)
 class WorkerNode:
-        def __init__(self,node_id,nodeVerify,cpu,iteration,taskqueue) -> None:
+        def __init__(self,node_id,nodeVerify,cpu,iteration,taskqueue,energy=50) -> None:
             self.node_id = node_id
             self.taskQueue = taskqueue
             self.nodeVerify = nodeVerify
@@ -66,41 +94,58 @@ class WorkerNode:
             self.loc = '/uav%d/ground_truth_to_tf/pose'%self.node_id
             self.cpu = cpu
             self.iteration = iteration
+            self.energy = energy
+            self.comm_energy = []
+            self.comp_energy = []
+            self.fly_energy = []
+            self.comp_time = []
             rospy.init_node(self.nodeVerify, anonymous=True)
             rospy.Subscriber(self.pubTopic, Task, self.sub_callback)
             # self.pos = rospy.wait_for_message('/uav%d/ground_truth_to_tf/pose' %self.node_id, PoseStamped)
- 
+        def comm_time(self,u1,u2):
+            print(f'uav {u1} and uav {u2}')
+            pos_1= rospy.wait_for_message('/uav%d/ground_truth_to_tf/pose'%u1, PoseStamped)
+            pos_2 = rospy.wait_for_message('/uav%d/ground_truth_to_tf/pose'%u2, PoseStamped)
+            distance = math.dist([pos_1.pose.position.x,pos_1.pose.position.y,pos_1.pose.position.z],
+                                [pos_2.pose.position.x,pos_2.pose.position.y,pos_2.pose.position.z])
+            dr = Datarate()
+            return dr.data_rate(dr.channel_gain(distance))
         def sub_callback(self,data):
+            self.fly_energy.append([self.energy * (data.size / self.cpu),data.task_idx])
             # print(f'current worker {self.node_id} location {self.pos}')
             pos = rospy.wait_for_message(self.loc,PoseStamped)
+            self.comm_energy.append([(data.size / self.comm_time(2,self.node_id))*self.energy,data.task_idx])
+
             print(f'current worker {self.node_id} position {(pos.pose.position.x,pos.pose.position.y,pos.pose.position.z)}')
             if data.processor_id == self.node_id -1 :
                 data.st = self.taskQueue [-1].et if self.taskQueue else 0
                 data.et = data.st + float(data.size / self.cpu) 
                 self.taskQueue.append(data)
-
-                print(f'worker {self.node_id} received task {self.taskQueue[-1].task_idx} ')
-                # with open('/home/jxie/rossim/src/ros_mpi/data_indep/uav%d.txt'%self.node_id,'w') as file:
-                #     for ele in self.taskQueue :
-                #         file.write(f"{ele}\n\n")
-                # with open('/home/jxie/rossim/src/ros_mpi/data_indep/uav%d%s.txt'%(self.node_id,time.strftime("%Y%m%d-%H%M%S")),'w') as file:
-                #     for ele in self.taskQueue :
-                #         file.write(f"{ele}\n\n")
+                self.comp_energy.append([data.delta * (data.size/data.ci),data.task_idx])
+                self.comp_time.append([(data.size/data.ci),data.task_idx])
             else:
                 print('nothing...')
 
         
         def run(self):
             print('call worker%d'%self.node_id )
-            # omd = rospy.wait_for_message('/uav%d/ground_truth_to_tf/pose' %self.node_id, PoseStamped)
-            # print(f'omd current worker {self.node_id} at {omd.pose.position}')
-            # rospy.Subscriber(self.pubTopic, Task, self.sub_callback)
+
             
             rospy.spin()
             print(f'saveing task queue to file..')
-            with open('/home/jxie/rossim/src/ros_mpi/data_indep/iter_%d_uav%d.txt'%(self.iteration,self.node_id),'w') as file:
-                for ele in self.taskQueue :
-                    file.write(f"{ele}\n\n")
+            with open('/home/jxie/rossim/src/ros_mpi/data/uav%d.pkl'%self.node_id,'wb') as file:
+                pickle.dump(self.taskQueue,file)
+            with open('/home/jxie/rossim/src/ros_mpi/data/uav%d_comm_energy.pkl'%self.node_id,'wb') as file:
+                pickle.dump(self.comm_energy,file)
+            with open('/home/jxie/rossim/src/ros_mpi/data/uav%d_comp_energy.pkl'%self.node_id,'wb') as file:
+                pickle.dump(self.comp_energy,file)
+            with open('/home/jxie/rossim/src/ros_mpi/data/uav%d_fly_energy.pkl'%self.node_id,'wb') as file:
+                pickle.dump(self.fly_energy,file)
+            with open('/home/jxie/rossim/src/ros_mpi/data/uav%d_comp_time.pkl'%self.node_id,'wb') as file:
+                pickle.dump(self.comp_time,file)
+            # with open('/home/jxie/rossim/src/ros_mpi/data_indep/iter_%d_uav%d.txt'%(self.iteration,self.node_id),'w') as file:
+            #     for ele in self.taskQueue :
+            #         file.write(f"{ele}\n\n")
                 
             
             print('saved')
