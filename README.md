@@ -3,10 +3,10 @@
 
 <div align="center">
 
-<!-- [![Contributors][contributors-shield]](https://github.com/RuitaoWu/rossim/graphs/contributors)
-[![Forks][forks-shield]](https://github.com/RuitaoWu/rossim/forks)
+[![Contributors][contributors-shield]](https://github.com/RuitaoWu/rossim/graphs/contributors)
+[![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]](https://github.com/RuitaoWu/rossim/stargazers)
-[![LinkedIn][linkedin-shield]](https://www.linkedin.com/in/ruitao-wu) -->
+[![LinkedIn][linkedin-shield]](https://www.linkedin.com/in/ruitao-wu)
 
 
 
@@ -53,23 +53,9 @@
 
 [![Product Name Screen Shot][product-screenshot]](<img src="images/smile_logo_title.png" alt="smile-logo" width="80" height="80">)
 
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-### Built With
-
-This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
 <!-- 
-* [![Next][Next.js]][Next-url]
-* [![React][React.js]][React-url]
-* [![Vue][Vue.js]][Vue-url]
-* [![Angular][Angular.io]][Angular-url]
-* [![Svelte][Svelte.dev]][Svelte-url]
-* [![Laravel][Laravel.com]][Laravel-url]
-* [![Bootstrap][Bootstrap.com]][Bootstrap-url]
-* [![JQuery][JQuery.com]][JQuery-url] -->
+<p align="right">(<a href="#readme-top">back to top</a>)</p> -->
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -77,32 +63,28 @@ This section should list any major frameworks/libraries used to bootstrap your p
 
 <!-- GETTING STARTED -->
 ## Getting Started
-<!-- 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps. -->
+
+Instructions on setting up your project locally.
+
 
 ### Prerequisites
 
 This is an example of how to list things you need to use the software and how to install them.
-* Linux Ubuntu 20.04.5 LTS
-* ROS
-
+* [Linux Ubuntu 20.04.5 LTS](https://old-releases.ubuntu.com/releases/20.04.5/)
+* [ROS-1](https://wiki.ros.org/noetic/Installation/Ubuntu)
+* [hector_quadrotor](https://github.com/tu-darmstadt-ros-pkg/hector_quadrotor)
+  * This is for the hector_quadrotor model
+* [mpi4py](https://mpi4py.readthedocs.io/en/stable/install.html)
 ### Installation
+1. Clone this repo to your ROS workstation 
+    1. >`source /your/path/to/setup.sh #other list setup.bash also works`
+    2. >`mkdir -p ~/your_work_space/src` <br> `cd ~/your_work_space/` <br> `catkin_make`
+2. After sucessfully build then run the following to launc gazebo world
+     1. >`roslaunch hector_quadrotor_gazebo task.launch`
+     2. >`#open new terminal` <br> `cd ~/your/path/to/ros_mpi/scripts` <br> `mpirun -n number_uav python3 master.py`
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-## Roadmap
-
-- [x] Add Changelog
-- [x] Add back to top links
-- [ ] Add Additional Templates w/ Examples
-- [ ] Add "components" document to easily copy & paste sections of the readme
-- [ ] Multi-language Support
-    - [ ] Chinese
-    - [ ] Spanish -->
-
-See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a full list of proposed features (and known issues).
-
+     
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
@@ -110,7 +92,7 @@ See the [open issues](https://github.com/othneildrew/Best-README-Template/issues
 <!-- CONTRIBUTING -->
 ## Contributing
 
-TBD
+Ruitao Wu
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -118,7 +100,7 @@ TBD
 
 <!-- LICENSE -->
 ## License
-TBD
+TBA
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -137,7 +119,16 @@ Project Link: [ROSSIM](https://github.com/RuitaoWu/rossim)
 
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
-TBD
+TBA
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+[contributors-shield]: https://img.shields.io/badge/contributors-green?style=for-the-badge
+[forks-shield]: https://img.shields.io/badge/fork-blue?style=for-the-badge
+[forks-url]: https://github.com/RuitaoWu/rossim/forks
+[stars-shield]: https://img.shields.io/badge/start-green?style=for-the-badge
+[linkedin-shield]:https://img.shields.io/badge/LinkedIn-blue?style=for-the-badge
+
+
