@@ -12,9 +12,25 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](<img src="images/smile_logo_title.png" alt="smile-logo" width="80" height="80">)
+ROS and Gazebo base simulator for UAV-asssted mobile edge computing
 
+## Table of Contents
 
+- [Installation](#installation)
+- [Usage](#usage)
+- [Features](#features)
+    - [1. Support Complex 3D World Simulation](#1-support-complex-3d-world-simulation)
+    - [2. Random UAV Mobility](#2-random-uav-mobility)
+    - [3. Energy Analysis](#3-energy-analysis)
+    - [4. Computation and Communication Analysis](#4-computation-and-communication-analysis)
+    - [5. Task Scheduling for Heterogeneous Computing](#5-task-scheduling-for-heterogeneous-computing)
+    - [6. Gazebo Launch File](#6-gazebo-launch-file) 
+- [File Descriptions](#file-descriptions)
+- [Configuration](#configuration)
+- [Contributing](#contributing)
+- [License](#license)
+- [Contact](#contact)
+- [Acknowledgments](#acknowledgments)
 
 <!-- GETTING STARTED -->
 ## Getting Started  
@@ -58,16 +74,54 @@ This is an example of how to list things you need to use the software and how to
         mpirun -n number_uav python3 master.py
         ```
 
+## Features
 
+This secion is introduce what features are included
+
+### 1. Support Complex 3D World Simulation
+
+
+- This simulator supports Gazebo for constructing complex environments.
+- Users can take advantage of Gazebo's capabilities to create intricate 3D worlds.
+- The provided launch file is convenient for users to alter and build multi-UAV scenarios.
+
+
+### 2. Random UAV Mobility
+
+- Provided random waypoint generator
+  - user is able to define an aear which an UAV is random moving within this area
+
+
+### 3. Energy Analysis
+
+- Include the energy analysis model for communication and computation
+
+
+### 4. Computation and Communication Analysis
+
+- Computation and communication time analysis
+
+### 5. Task Scheduling for Heterogeneous Computing
+- [Heterogeneous Earliest-Finish-Time](https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=993206)
+- [Improved Predict Earliest Finish Time](https://onlinelibrary.wiley.com/doi/full/10.1002/cpe.3944)
+   - [GitHub Implementation](https://github.com/sharma-n/DAG_Scheduling/tree/master) 
+
+### 6. Gazebo Launch File
+- User is able to add/remove UAVs by edit the launch file
+
+
+## File Descriptions
+
+## Configuration
 <!-- CONTRIBUTING -->
 ## Contributing  
 
-Ruitao Wu  
+TBD 
 
 
 <!-- LICENSE -->
 ## License  
-TBA  
+This project is licensed under the [MIT License](https://github.com/RuitaoWu/rossim/blob/main/LICENSE) - see the [LICENSE](https://github.com/RuitaoWu/rossim/blob/main/LICENSE) file for details.
 
 
 
