@@ -26,9 +26,6 @@
   <ol>
     <li>
       <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
     </li>
     <li>
       <a href="#getting-started">Getting Started</a>
@@ -37,8 +34,6 @@
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -62,45 +57,66 @@
 
 
 <!-- GETTING STARTED -->
-## Getting Started
+## Getting Started  
 
-Instructions on setting up your project locally.
+Instructions on setting up your project locally.    
 
 
-### Prerequisites
-
-This is an example of how to list things you need to use the software and how to install them.
+### Prerequisites    
+  
+This is an example of how to list things you need to use the software and how to install them.  
 * [Linux Ubuntu 20.04.5 LTS](https://old-releases.ubuntu.com/releases/20.04.5/)
 * [ROS-1](https://wiki.ros.org/noetic/Installation/Ubuntu)
 * [hector_quadrotor](https://github.com/tu-darmstadt-ros-pkg/hector_quadrotor)
   * This is for the hector_quadrotor model
 * [mpi4py](https://mpi4py.readthedocs.io/en/stable/install.html)
+  
 ### Installation
-1. Clone this repo to your ROS workstation 
-    1. >`source /your/path/to/setup.sh #other list setup.bash also works`
-    2. >`mkdir -p ~/your_work_space/src` <br> `cd ~/your_work_space/` <br> `catkin_make`
-2. After sucessfully build then run the following to launc gazebo world
-     1. >`roslaunch hector_quadrotor_gazebo task.launch`
-     2. >`#open new terminal` <br> `cd ~/your/path/to/ros_mpi/scripts` <br> `mpirun -n number_uav python3 master.py`
+
+1. **Clone this repo to your ROS workstation:**
+    1. Source your ROS setup file:
+        ```bash
+        source /your/path/to/setup.sh #other setup files like setup.bash also work
+        ```
+
+    2. Set up your workspace:
+        ```bash
+        mkdir -p ~/your_work_space/src
+        cd ~/your_work_space/
+        catkin_make
+        ```
+
+2. **After successfully building, run the following to launch Gazebo world:**
+    1. Launch Gazebo:
+        ```bash
+        roslaunch hector_quadrotor_gazebo task.launch
+        ```
+
+    2. Open a new terminal and run the following commands to start the simulation:
+        ```bash
+        cd ~/your/path/to/ros_mpi/scripts
+        mpirun -n number_uav python3 master.py
+        ```
 
 
-     
+
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 
 <!-- CONTRIBUTING -->
-## Contributing
+## Contributing  
 
-Ruitao Wu
+Ruitao Wu  
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 
 <!-- LICENSE -->
-## License
-TBA
+## License  
+TBA  
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
