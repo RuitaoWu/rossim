@@ -1,7 +1,7 @@
 
 <a name="readme-top"></a>
 
-<div align="center">
+
 
 [![Contributors][contributors-shield]](https://github.com/RuitaoWu/rossim/graphs/contributors)
 [![Forks][forks-shield]][forks-url]
@@ -9,50 +9,10 @@
 [![LinkedIn][linkedin-shield]](https://www.linkedin.com/in/ruitao-wu)
 
 
-
-
-<!-- PROJECT LOGO -->
-<br />
-<div align="center">
-  <!-- <a href="https://github.com/RuitaoWu/rossim">
-    <img src="images/smile_logo_title.png" alt="smile-logo" width="80" height="80">
-  </a> -->
-
-  <h3 align="center">ROSSIM PROJECT DOCUMENTATION</h3>
-
-<!-- TABLE OF CONTENTS -->
-<details>
-  <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-    </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-    </li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
-  </ol>
-</details>
-
-
-
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
 [![Product Name Screen Shot][product-screenshot]](<img src="images/smile_logo_title.png" alt="smile-logo" width="80" height="80">)
-
-<!-- 
-<p align="right">(<a href="#readme-top">back to top</a>)</p> -->
-
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 
@@ -73,7 +33,7 @@ This is an example of how to list things you need to use the software and how to
   
 ### Installation
 
-1. **Clone this repo to your ROS workstation:**
+1. Clone this repo to your ROS workstation:
     1. Source your ROS setup file:
         ```bash
         source /your/path/to/setup.sh #other setup files like setup.bash also work
@@ -86,7 +46,7 @@ This is an example of how to list things you need to use the software and how to
         catkin_make
         ```
 
-2. **After successfully building, run the following to launch Gazebo world:**
+2. After successfully building, run the following to launch Gazebo world:
     1. Launch Gazebo:
         ```bash
         roslaunch hector_quadrotor_gazebo task.launch
@@ -99,26 +59,16 @@ This is an example of how to list things you need to use the software and how to
         ```
 
 
-
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
 <!-- CONTRIBUTING -->
 ## Contributing  
 
 Ruitao Wu  
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 
 
 <!-- LICENSE -->
 ## License  
 TBA  
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 
@@ -129,16 +79,13 @@ Your Name - [@RuitaoWu](https://github.com/RuitaoWu) - rwu9937@sdsu.edu
 
 Project Link: [ROSSIM](https://github.com/RuitaoWu/rossim)
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 
 
 
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 TBA
-
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 [contributors-shield]: https://img.shields.io/badge/contributors-green?style=for-the-badge
