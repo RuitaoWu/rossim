@@ -12,13 +12,13 @@ import pickle
 
 
 rssi_data = []
-rssi_file_name = '/home/jxie/Workspace/hzhang3986/nac_sim/src/pos_controller/data/rssi_data.pkl'
-
+# rssi_file_name = '/home/jxie/Workspace/hzhang3986/nac_sim/src/pos_controller/data/rssi_data.pkl'
+rssi_file_name = '/home/jxie/rossim/src/ros_mpi/data/rssi_data.pkl'
 def rssi_cb(data):
     rssi_data.append(data.data)
-    #with open(rssi_file_name, 'wb') as fp:
-        #print('saving file...........')
-        #pickle.dump(rssi_data, fp)
+    with open(rssi_file_name, 'wb') as fp:
+        print('saving file...........')
+        pickle.dump(rssi_data, fp)
     #print('data*****************************')
 
 rospy.init_node('rssi_data_recording')

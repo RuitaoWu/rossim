@@ -107,8 +107,8 @@ class WaypoingFollower:
             px.append(p[0])
             py.append(p[1])
             pz.append(p[2])
-        # for goal_x, goal_y, goal_z in zip(path['x'], path['y'], path['z']):
-        for goal_x, goal_y, goal_z in zip(px,py, pz):
+        for goal_x, goal_y, goal_z in zip(path['x'], path['y'], path['z']):
+        # for goal_x, goal_y, goal_z in zip(px,py, pz):
             print('Goal is', goal_x, goal_y, goal_z)
             print('Current position: x=%4.1f, y=%4.1f, z=%4.1f'%(self.pose[0], self.pose[1], self.pose[2]))
             distance = sqrt((self.pose[0]-goal_x)**2 + (self.pose[1]-goal_y)**2 + (self.pose[2]-goal_z)**2)

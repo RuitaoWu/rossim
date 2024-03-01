@@ -1,17 +1,14 @@
-from cgi import test
-from tracemalloc import take_snapshot
 
 import numpy as np
 from util import Master, Node,Worker, WorkerNode
 from orchestrator import Orchestrator
 from taskgen import TaskGen
 import rospy,random,os
-from hector_uav_msgs.msg import Task
-import threading
+# from hector_uav_msgs.msg import Task
+# import threading
 import configparser
 from mpi4py import MPI
 from read_dag import read_dag
-from dataplot import PlotGraph
 
 # comp = [[14, 16, 9],
 #         [13, 19, 18],
@@ -45,7 +42,7 @@ def create_folder_if_not_exists(folder_path):
         print(f"Folder '{folder_path}' already exists.")
 
 # Example usage:
-folder_path = '/home/jxie/rossim/src/ros_mpi/data_indep'
+folder_path = '/home/jxie/rossim/src/ros_mpi/data'
 
 create_folder_if_not_exists(folder_path)
 # if not os.path('/home/jxie/rossim/src/ros_mpi/data_indep'):
@@ -67,16 +64,16 @@ taskgenerator = TaskGen(numberOfTask,numberOfComputingNode)
 task_size_min = int(config.get('Task','task_size_min'))
 task_size_max = int(config.get('Task','task_size_max'))
 comp = taskgenerator.gen_comp_matrix()
-# comm = taskgenerator.generate_random_dag(density)
-comm = np.where(read_dag('test.dot')[-1] >= 0, 1, 0).tolist()
+comm = taskgenerator.generate_random_dag(density)
+# comm = np.where(read_dag('test.dot')[-1] >= 0, 1, 0).tolist()
 
 # print(f'communication matrix {comm}')
 testOchestrator = Orchestrator(comm,comp,task_size_min,task_size_max)
 # line 64: representing the task priorities 
 rank_up_values = [testOchestrator.calculate_rank_up_recursive(testOchestrator.comp,testOchestrator.comm,i) for i in range(len(testOchestrator.comp))]
 # print("at line 93: ", np.argsort(rank_up_values)[::-1])
-# testOchestrator.heft()
-testOchestrator.orch_ipef()
+testOchestrator.heft()
+# testOchestrator.orch_ipef()
 # heft_list = testOchestrator.task_schedule_list
 # print(f'task list {testOchestrator.mes}')
 comm = MPI.COMM_WORLD
@@ -96,28 +93,16 @@ if taskType == 'Independent':
             nodeWorker = WorkerNode(node_id+1,node_verify,int(random.randrange(int(min_cpu),int(max_cpu))),x,[])
             nodeWorker.run()
         print(f'finished iteration {x}')
-    
-    # if node_id  == master_node:
-    #     node_verify = "Master"
-    #     nodeMaster = Node(node_id+1,node_verify,testOchestrator.mes,int(random.randrange(int(min_cpu),int(max_cpu))))
-    #     nodeMaster.run()
-    # else:
-    #     node_verify = "Worker%d"%(node_id+1)
-    #     nodeWorker = WorkerNode(node_id+1,node_verify,int(random.randrange(int(min_cpu),int(max_cpu))))
-    #     nodeWorker.run()
+
 elif taskType == 'Dependant':
 
     if node_id == 0:
         master = Master(node_id+1,int(random.randrange(min_cpu,max_cpu)),sleep_time)
-        # print(f'all tasks {testOchestrator.mes}')
         master.run(testOchestrator.mes)
-        # savegraph = PlotGraph(node_id+1)
-        # savegraph.run()
+
     else:
         worker = Worker(node_id+1,int(random.randrange(int(min_cpu),int(max_cpu))),sleep_time)
         worker.run()
-        # savegraph = PlotGraph(node_id+1)
-        # savegraph.run()
 else:
     print(f'The input task type {taskType} is invalid, either Dependant or Independent')
 

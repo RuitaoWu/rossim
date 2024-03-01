@@ -1,3 +1,5 @@
+# Author: Ruitao Wu
+# Date: 2024-03-01 12:32:53
 from cgi import test
 from math import ceil
 from re import T
@@ -135,21 +137,21 @@ class Orchestrator:
                 task.st = 0
                 task.et = 0
                 task.ci = random.randint(4000000, 8000000) #instruction per second
-                task.delta = 50 #mW
+                task.delta = 0.05 #Watt
                 self.mes.append(task)
          
-    def heft2(self,task,server):
-        est=[]
-        eft=[]
-        #update communication information
-        for s in server:
-            est.append(self.earliest_start_time(task,s))
-            eft.append(self.earliest_finish_time(task,s,est[s]))
-            self.update_aft(eft,est,task)
-        self.task_schedule_list[np.argmin(eft)].append(task) 
-        print(f'ast {self.AST}')
-        print(f'aft {self.AFT}')
-        return np.argmin(eft)
+    # def heft2(self,task,server):
+    #     est=[]
+    #     eft=[]
+    #     #update communication information
+    #     for s in server:
+    #         est.append(self.earliest_start_time(task,s))
+    #         eft.append(self.earliest_finish_time(task,s,est[s]))
+    #         self.update_aft(eft,est,task)
+    #     self.task_schedule_list[np.argmin(eft)].append(task) 
+    #     print(f'ast {self.AST}')
+    #     print(f'aft {self.AFT}')
+    #     return np.argmin(eft)
     def orch_ipef(self):
         # self.comm = np.where(read_dag('test.dot')[-1] >= 0, 1, 0).tolist()
         self.task_schedule_list = IPEFT(file='test.dot', verbose=True, p=3, b=0.1, ccr=0.1).outcome()

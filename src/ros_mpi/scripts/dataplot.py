@@ -1,5 +1,6 @@
 #! /usr/bin/env python
 from cProfile import label
+import configparser
 import time
 from xml.sax.handler import feature_string_interning
 import matplotlib
@@ -92,6 +93,7 @@ class PlotGraph:
         plt.title('UAV-%d Single Task Communication Energy Consumption'%self.uavid)
         # plt.show()
         print('uav-%d communication graph saved'%self.uavid)
+        plt.tight_layout()
         plt.savefig('/home/jxie/rossim/src/ros_mpi/scripts/graph/uav-%d-comm-energy.png'%self.uavid)
         plt.close()
     def comp_energy_graph(self):
@@ -106,6 +108,7 @@ class PlotGraph:
         plt.ylabel('Energy (mJ)')
         plt.title('UAV-%d Single Task Computation Energy Consumption'%self.uavid)
         print('uav-%d computation graph saved'%self.uavid)
+        plt.tight_layout()
         plt.savefig('/home/jxie/rossim/src/ros_mpi/scripts/graph/uav-%d-comp-energy.png'%self.uavid)
         plt.close()
     def comp_time(self):
@@ -139,6 +142,7 @@ class PlotGraph:
         # plt.show()
         # print(energy)
         print('uav-%d fly graph saved'%self.uavid)
+        plt.tight_layout()
         plt.savefig('/home/jxie/rossim/src/ros_mpi/scripts/graph/uav-%d-fly-energy.png'%self.uavid)
         plt.close()
     def trajectory(self):
@@ -208,10 +212,18 @@ class PlotGraph:
         ax.legend(fontsize=14,loc='upper left',framealpha=0.5)
         # plt.savefig('ros_path')
         ax.tick_params(labelsize=14)
+        plt.tight_layout()
         plt.savefig('/home/jxie/rossim/src/ros_mpi/scripts/graph/uav-trajectory.png')
         plt.close()
     def dataRateGraph(self):
-        test = Datarate()
+        config = configparser.ConfigParser()
+        config.read('/home/jxie/rossim/src/ros_mpi/scripts/property.properties')
+        # noise=0.0000000000001,band_width=5000000 , transmission_power=0.5,alpha=4.0
+        # density = float(config.get('Task','density'))
+        test= Datarate(noise=float(config.get('DatarateConfig','noise')),
+                                 band_width=float(config.get('DatarateConfig','band_width')),
+                                 transmission_power=float(config.get('DatarateConfig','transmission_power')),
+                                 alpha=float(config.get('DatarateConfig','alpha')))
         
         m_x_file = '/home/jxie/rossim/src/pos_controller/data/path_x%d.pkl' %1
         m_y_file = '/home/jxie/rossim/src/pos_controller/data/path_y%d.pkl' %1
@@ -245,17 +257,11 @@ class PlotGraph:
             for x,y,z,x1,y1,z1 in zip(m_x,m_y,m_z,temp_x,temp_y,temp_z):
                 temp_d.append(math.sqrt((x - x1)**2 + (y - y1)**2 + (z - z1)**2))
             _distance.append(temp_d)
-
-        # def channel_gain(distance, alpha=4.0):
-        #         return distance ** (-alpha)
-        # def data_rate(cg, noise=0.000000001,band_width=5000000, transmission_power=0.5):
-        #     return band_width * math.log2(1 + (transmission_power* cg))/noise
         bandwidth = []
         for i in _distance:
             temp = []
             for j in i:
-                
-                temp.append(test.data_rate(test.channel_gain(j))/1000000)
+                temp.append(test.data_rate(j)/1000000)
             bandwidth.append(temp)
         for x in bandwidth:
             plt.plot(time_m[:len(x)],x,lineStyle='--',label='Master to %d'%(bandwidth.index(x)+1))
@@ -263,9 +269,13 @@ class PlotGraph:
         plt.xlabel("Time")
         plt.legend()
         print('datarate saved')
+        plt.tight_layout()
         plt.savefig('/home/jxie/rossim/src/ros_mpi/scripts/graph/uav-datarate.png')
         plt.close()
-
+    def comm_time(self):
+        with open('/home/jxie/rossim/src/ros_mpi/data/uav%d_comm_time.pkl'%self.uavid, 'rb') as file:
+            content = pickle.load(file)
+        print(f'content {len(content)}')
     def run(self):
         self.comm_graph()
         self.comp_energy_graph()
@@ -279,6 +289,9 @@ if __name__ == '__main__':
     
     for x in range(1,4):
         plgraph = PlotGraph(x)
+        print('current uav%d'%x)
+        plgraph.comm_time()
+    
         plgraph.run()
     #     plgraph.gantt_chart()   
     # plgraph = PlotGraph(3)
