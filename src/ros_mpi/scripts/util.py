@@ -1,6 +1,7 @@
 
 from concurrent.futures import thread
 import pickle
+import random
 
 import time,math
 from turtle import pos
@@ -17,18 +18,31 @@ from geometry_msgs.msg import PoseStamped
 from std_msgs.msg import Float32MultiArray
 from dataplot import PlotGraph
 import configparser
+from orchestrator import Orchestrator
+from taskgen import TaskGen
 
-task_ast = defaultdict(list)
-task_aft = defaultdict(list)
 
 class Node:
     def __init__(self,node_id,nodeVerify,allTasks,cpu,iteration,taskqueue,energy=50) -> None:
+        config = configparser.ConfigParser()
+        config.read('/home/jxie/rossim/src/ros_mpi/scripts/property.properties')
+
+        numberOfTask = int(config.get('Task','numberOfTask'))
+        numberOfComputingNode = int(config.get('Task','computing'))
+        density = float(config.get('Task','density'))
+        taskgenerator = TaskGen(numberOfTask,numberOfComputingNode)
+        testorchest = Orchestrator([],taskgenerator.gen_comp_matrix(),100,200)
+        testorchest.indep_sch(taskgenerator.gen_indep())
+
+        self.allTasks = testorchest.indep_sch(taskgenerator.gen_indep())
+        # for i in self.allTasks:
+        #     print(f'task {i.task_idx} on processor {i.processor_id}')
         self.node_id = node_id
         self.taskQueue = taskqueue
         self.nodeVerify = nodeVerify
         self.pubTopic = 'pub/task'
         self.recTopic = 'rec/task'
-        self.allTasks = allTasks
+        
         self.cpu = cpu
         self.iteration = iteration
         self.energy = energy
@@ -73,9 +87,6 @@ class Node:
                 rospy.sleep(1) 
         #task on master
         print(f'all tasks on master node {len(self.taskQueue)}')
-        # with open('/home/jxie/rossim/src/ros_mpi/data_indep/iter_%d_master%d.txt'%(self.iteration,self.node_id),'w') as file:
-        #     for ele in self.taskQueue :
-        #         file.write(f"{ele}\n\n")
         with open('/home/jxie/rossim/src/ros_mpi/data/uav1.pkl','wb') as file:
             pickle.dump(self.taskQueue,file)
         with open('/home/jxie/rossim/src/ros_mpi/data/uav1_comm_energy.pkl','wb') as file:
@@ -86,6 +97,7 @@ class Node:
             pickle.dump(self.fly_energy,file)
         with open('/home/jxie/rossim/src/ros_mpi/data/uav1_comp_time.pkl','wb') as file:
             pickle.dump(self.comp_time,file)
+
 class WorkerNode:
         def __init__(self,node_id,nodeVerify,cpu,iteration,taskqueue,energy=50) -> None:
             self.node_id = node_id
@@ -144,11 +156,6 @@ class WorkerNode:
                 pickle.dump(self.fly_energy,file)
             with open('/home/jxie/rossim/src/ros_mpi/data/uav%d_comp_time.pkl'%self.node_id,'wb') as file:
                 pickle.dump(self.comp_time,file)
-            # with open('/home/jxie/rossim/src/ros_mpi/data_indep/iter_%d_uav%d.txt'%(self.iteration,self.node_id),'w') as file:
-            #     for ele in self.taskQueue :
-            #         file.write(f"{ele}\n\n")
-                
-            
             print('saved')
 
 ######################################################################################################

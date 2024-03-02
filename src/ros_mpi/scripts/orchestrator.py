@@ -5,7 +5,7 @@ from math import ceil
 from re import T
 import numpy as np
 from hector_uav_msgs.msg import Task
-from taskgen import TaskGen
+# from taskgen import TaskGen
 import random
 from read_dag import read_dag
 from ipef import IPEFT
@@ -140,18 +140,26 @@ class Orchestrator:
                 task.delta = 0.05 #Watt
                 self.mes.append(task)
          
-    # def heft2(self,task,server):
-    #     est=[]
-    #     eft=[]
-    #     #update communication information
-    #     for s in server:
-    #         est.append(self.earliest_start_time(task,s))
-    #         eft.append(self.earliest_finish_time(task,s,est[s]))
-    #         self.update_aft(eft,est,task)
-    #     self.task_schedule_list[np.argmin(eft)].append(task) 
-    #     print(f'ast {self.AST}')
-    #     print(f'aft {self.AFT}')
-    #     return np.argmin(eft)
+    def indep_sch(self,tasklist):
+        computing_nodes = [[] for _ in range(len(self.comp[0]))]
+
+        for task in tasklist:
+            node_idx = 0
+            min_eft = float('inf')
+            # Find the computing node with the earliest finish time
+            for i, node_tasks in enumerate(computing_nodes):
+                last_task = node_tasks[-1] if node_tasks else None
+                eft = last_task.et if last_task else 0
+                if eft < min_eft:
+                    min_eft = eft
+                    node_idx = i
+            # print(f'current processor id {node_idx}')
+            task.processor_id = node_idx
+            task.st = min_eft
+            task.et = min_eft + task.size / task.ci  # EFT calculation
+            computing_nodes[node_idx].append(task)
+        return tasklist
+        
     def orch_ipef(self):
         # self.comm = np.where(read_dag('test.dot')[-1] >= 0, 1, 0).tolist()
         self.task_schedule_list = IPEFT(file='test.dot', verbose=True, p=3, b=0.1, ccr=0.1).outcome()
