@@ -65,7 +65,7 @@ class TaskGen():
             task.processor_id = -1
             task.dependency=[]
             # task.size = random.randint(self.taskMin,self.taskMax) #number of instructions
-            task.size = random.randint(self.taskMin,self.taskMax) 
+            # task.size = random.randint(self.taskMin,self.taskMax) 
             task.st = 0
             task.et = 0
             task.ci = random.randint(self.ciMin, self.ciMax) #instruction per second
@@ -73,19 +73,19 @@ class TaskGen():
             temp_task.append(task)
         temp_task.sort(key=lambda x: x.size)
         return temp_task
-# if __name__ == '__main__':
-# # Example usage:
-#     num_nodes = 5 #number of tasks
-#     density = 0.8
-#     random_dag = TaskGen(num_nodes,3)
-#     test = random_dag.gen_indep()
-#     comp = random_dag.gen_comp_matrix()
-#     testorchest = Orchestrator([],comp,100,200,40000,50000,60000,80000)
-#     for i in testorchest.indep_sch(random_dag.gen_indep()):
-#         print(i.processor_id)
-    # print(random_dag.gen_comp_matrix())
-    # test_dag = random_dag.generate_random_dag(density)
+if __name__ == '__main__':
+# Example usage:
+    num_nodes = 20 #number of tasks
+    density = 0.8
+    random_dag = TaskGen(num_nodes,3,40000,50000,60000,80000)
+    test = random_dag.gen_indep()
+    comp = random_dag.gen_comp_matrix()
+    # testorchest = Orchestrator([],comp,100,200,40000,50000,60000,80000)
+    # for i in testorchest.indep_sch(random_dag.gen_indep()):
+    #     print(i.processor_id)
+    print(random_dag.gen_comp_matrix())
+    test_dag = random_dag.generate_random_dag(density)
 
-    # print(test_dag)
+    print(test_dag)
 
 

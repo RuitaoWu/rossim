@@ -49,9 +49,12 @@ class WaypoingFollower:
         self.pose = [pos0[0], pos0[1], pos0[2]]
         # self.ini_pos = initial_pos
         #default gain val
-        self.kdx = 0.15
-        self.kdy = 0.15
-        self.kdz = 0.15
+        # self.kdx = 0.15
+        # self.kdy = 0.15
+        # self.kdz = 0.15
+        self.kdx = 6
+        self.kdy = 6
+        self.kdz = 6
 
         #mobility configuration
         self.config = configparser.ConfigParser()

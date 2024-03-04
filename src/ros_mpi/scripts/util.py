@@ -288,6 +288,7 @@ class Master:
                     print(f'current task {x.task_idx} not on master')
                     temp = self.comm_time(1,x.processor_id+1) if x.processor_id+1 > 0 else 1
                     x.st = self.pred_aft(x) + (x.size / temp)
+                    print(f'current task {x.task_idx} not on master start at {x.st}')
                     self.communication_time_offload.append([x.size / temp,x.task_idx])
                     print(f'at line 261 current task {x.task_idx} not on master with communication time {self.communication_time_offload[-1]}')
                     self.comm_energy.append([(x.size / temp)*self.energy,x.task_idx]) #units: mj

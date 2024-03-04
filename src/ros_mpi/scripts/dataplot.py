@@ -43,7 +43,7 @@ class PlotGraph:
 
         # Create a figure and axis
         fig, ax = plt.subplots()
-        fast,faft = [-1]*10,[-1]*10
+        fast,faft = [-1]*20,[-1]*20
         for x in task_time:
             for y in x:
                 fast[y['task_id']] = y['start_time']
@@ -70,12 +70,13 @@ class PlotGraph:
         ax.set_yticklabels([f'Schedule {i+1}' for i in range(3)])
 
         # Set the x-axis range
-        ax.set_xlim(0, max(faft))
-
+        # ax.set_xlim(0, max(faft))
+        plt.tight_layout()
         # Show the plot
         # plt.grid(axis='x',color='r', linestyle='-', linewidth=2)
         plt.grid(axis='x')
-        plt.show()
+        plt.savefig('/home/jxie/rossim/src/ros_mpi/scripts/graph/gantt_chart.png')
+        plt.close()
     def comm_graph(self):
         with open('/home/jxie/rossim/src/ros_mpi/data/uav%d_comm_energy.pkl'%self.uavid, 'rb') as file:
             content = pickle.load(file)
@@ -299,9 +300,10 @@ if __name__ == '__main__':
     for x in range(1,4):
         plgraph = PlotGraph(x)
         print('current uav%d'%x)
-        plgraph.comm_time()
+        # plgraph.comm_time()
     
         plgraph.run()
-    #     plgraph.gantt_chart()   
+    plgraph = PlotGraph(1)
+    plgraph.gantt_chart()   
     # plgraph = PlotGraph(3)
     # plgraph.dataRateGraph()
