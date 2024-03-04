@@ -20,17 +20,24 @@ from dataplot import PlotGraph
 import configparser
 from orchestrator import Orchestrator
 from taskgen import TaskGen
-
+config = configparser.ConfigParser()
+config.read('/home/jxie/rossim/src/ros_mpi/scripts/property.properties')
 
 class Node:
     def __init__(self,node_id,nodeVerify,allTasks,cpu,iteration,taskqueue,energy=50) -> None:
-        config = configparser.ConfigParser()
-        config.read('/home/jxie/rossim/src/ros_mpi/scripts/property.properties')
-
+        print(f'constructing master node UAV on {node_id}')
+        self.datarate = Datarate(noise=float(config.get('DatarateConfig','noise')),
+                                 band_width=float(config.get('DatarateConfig','band_width')),
+                                 transmission_power=float(config.get('DatarateConfig','transmission_power')),
+                                 alpha=float(config.get('DatarateConfig','alpha')))
+        print(self.datarate)
         numberOfTask = int(config.get('Task','numberOfTask'))
         numberOfComputingNode = int(config.get('Task','computing'))
-        density = float(config.get('Task','density'))
-        taskgenerator = TaskGen(numberOfTask,numberOfComputingNode)
+        task_size_min = int(config.get('Task','task_size_min'))
+        task_size_max = int(config.get('Task','task_size_max'))
+        ipsMax = int(config.get('Task','ips_max'))
+        ipsMin = int(config.get('Task','ips_min'))
+        taskgenerator = TaskGen(numberOfTask,numberOfComputingNode,task_size_min,task_size_max,ipsMin,ipsMax)
         testorchest = Orchestrator([],taskgenerator.gen_comp_matrix(),100,200)
         testorchest.indep_sch(taskgenerator.gen_indep())
 
@@ -47,6 +54,7 @@ class Node:
         self.iteration = iteration
         self.energy = energy
         self.comm_energy = []
+        self.communication_time = []
         self.comp_energy = []
         self.fly_energy = []
         self.comp_time = []
@@ -62,11 +70,13 @@ class Node:
             pos_2 = rospy.wait_for_message('/uav%d/ground_truth_to_tf/pose'%u2, PoseStamped)
             distance = math.dist([pos_1.pose.position.x,pos_1.pose.position.y,pos_1.pose.position.z],
                                 [pos_2.pose.position.x,pos_2.pose.position.y,pos_2.pose.position.z])
-            dr = Datarate()
-            return dr.data_rate(dr.channel_gain(distance))
+            # dr = Datarate()
+            return self.datarate .data_rate(distance)
     def run(self):
         print(f'publishing...')
-        
+        print('***'*20)
+        print(f'at line 77 there exist {len(self.allTasks)} tasks..')
+        print('***'*20)
         for t in self.allTasks:
             self.fly_energy.append([self.energy * (t.size / self.cpu),t.task_idx])
             # pos = rospy.wait_for_message('/uav%d/ground_truth_to_tf/pose' %self.node_id, PoseStamped)
@@ -80,22 +90,24 @@ class Node:
             else: 
                 print(f'publish task {t.task_idx} to worker {t.processor_id}')
                 temp = self.comm_time(self.node_id,t.processor_id+1) if t.processor_id+1 > 0 else 1
-                
                 self.comm_energy.append([(t.size / temp)*self.energy,t.task_idx])
+                self.communication_time.append(t.size / temp)
                 print(f'energy cost at line 70 {self.comm_energy}')
                 self.pub.publish(t)
                 rospy.sleep(1) 
         #task on master
         print(f'all tasks on master node {len(self.taskQueue)}')
-        with open('/home/jxie/rossim/src/ros_mpi/data/uav1.pkl','wb') as file:
+        with open('/home/jxie/rossim/src/ros_mpi/data/uav%d.pkl'%self.node_id,'wb') as file:
             pickle.dump(self.taskQueue,file)
-        with open('/home/jxie/rossim/src/ros_mpi/data/uav1_comm_energy.pkl','wb') as file:
+        with open('/home/jxie/rossim/src/ros_mpi/data/uav%d_comm_time.pkl'%self.node_id,'wb') as file:
+            pickle.dump(self.communication_time,file)
+        with open('/home/jxie/rossim/src/ros_mpi/data/uav%d_comm_energy.pkl'%self.node_id,'wb') as file:
             pickle.dump(self.comm_energy,file)
-        with open('/home/jxie/rossim/src/ros_mpi/data/uav1_comp_energy.pkl','wb') as file:
+        with open('/home/jxie/rossim/src/ros_mpi/data/uav%d_comp_energy.pkl'%self.node_id,'wb') as file:
             pickle.dump(self.comp_energy,file)
-        with open('/home/jxie/rossim/src/ros_mpi/data/uav1_fly_energy.pkl','wb') as file:
+        with open('/home/jxie/rossim/src/ros_mpi/data/uav%d_fly_energy.pkl'%self.node_id,'wb') as file:
             pickle.dump(self.fly_energy,file)
-        with open('/home/jxie/rossim/src/ros_mpi/data/uav1_comp_time.pkl','wb') as file:
+        with open('/home/jxie/rossim/src/ros_mpi/data/uav%d_comp_time.pkl'%self.node_id,'wb') as file:
             pickle.dump(self.comp_time,file)
 
 class WorkerNode:
@@ -109,9 +121,15 @@ class WorkerNode:
             self.iteration = iteration
             self.energy = energy
             self.comm_energy = []
+            self.communication_time=[]
             self.comp_energy = []
             self.fly_energy = []
             self.comp_time = []
+            self.datarate = Datarate(noise=float(config.get('DatarateConfig','noise')),
+                                 band_width=float(config.get('DatarateConfig','band_width')),
+                                 transmission_power=float(config.get('DatarateConfig','transmission_power')),
+                                 alpha=float(config.get('DatarateConfig','alpha')))
+            print(f'constructing worker node on {self.node_id}')
             rospy.init_node(self.nodeVerify, anonymous=True)
             rospy.Subscriber(self.pubTopic, Task, self.sub_callback)
             # self.pos = rospy.wait_for_message('/uav%d/ground_truth_to_tf/pose' %self.node_id, PoseStamped)
@@ -121,14 +139,14 @@ class WorkerNode:
             pos_2 = rospy.wait_for_message('/uav%d/ground_truth_to_tf/pose'%u2, PoseStamped)
             distance = math.dist([pos_1.pose.position.x,pos_1.pose.position.y,pos_1.pose.position.z],
                                 [pos_2.pose.position.x,pos_2.pose.position.y,pos_2.pose.position.z])
-            dr = Datarate()
-            return dr.data_rate(dr.channel_gain(distance))
+            # dr = Datarate()
+            return self.datarate.data_rate(distance)
         def sub_callback(self,data):
             self.fly_energy.append([self.energy * (data.size / self.cpu),data.task_idx])
             # print(f'current worker {self.node_id} location {self.pos}')
             pos = rospy.wait_for_message(self.loc,PoseStamped)
             self.comm_energy.append([(data.size / self.comm_time(2,self.node_id))*self.energy,data.task_idx])
-
+            self.communication_time.append(data.size / self.comm_time(2,self.node_id))
             print(f'current worker {self.node_id} position {(pos.pose.position.x,pos.pose.position.y,pos.pose.position.z)}')
             if data.processor_id == self.node_id -1 :
                 data.st = self.taskQueue [-1].et if self.taskQueue else 0
@@ -156,6 +174,8 @@ class WorkerNode:
                 pickle.dump(self.fly_energy,file)
             with open('/home/jxie/rossim/src/ros_mpi/data/uav%d_comp_time.pkl'%self.node_id,'wb') as file:
                 pickle.dump(self.comp_time,file)
+            with open('/home/jxie/rossim/src/ros_mpi/data/uav%d_comm_time.pkl'%self.node_id,'wb') as file:
+                pickle.dump(self.communication_time,file)
             print('saved')
 
 ######################################################################################################

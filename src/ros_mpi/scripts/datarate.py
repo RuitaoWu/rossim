@@ -4,7 +4,7 @@ from rospy_tutorials.msg import Floats
 from rospy.numpy_msg import numpy_msg
 from geometry_msgs.msg import PoseStamped
 class Datarate:
-    def __init__(self,noise=0.0000000000001,band_width=5000000 , transmission_power=0.5,alpha=4.0) -> None:
+    def __init__(self,noise=0.0000000001,band_width=5000000 , transmission_power=0.05,alpha=4.0) -> None:
         self.noise=noise
         self.band_width=band_width
         self.transmission_power=transmission_power

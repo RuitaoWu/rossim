@@ -12,7 +12,7 @@ import argparse
 from matplotlib.ticker import MaxNLocator
 import pickle,math
 from scipy.interpolate import interp1d
-from sympy import li
+from sympy import content, li
 from collections import defaultdict
 from datarate import Datarate
 # from pos_controller.scripts.vrssicpy import data_rate
@@ -85,7 +85,8 @@ class PlotGraph:
                 energy.append(x)
                 taskId.append(str(y))
         # print(energy)
-        plt.scatter(taskId,energy,marker='o',lineStyle='-')
+        plt.plot(taskId,energy,marker='o',lineStyle='None')
+        plt.autoscale(axis='y')
         plt.xlabel('Task ID')
         plt.ylabel('Energy (mJ)')
         # plt.legend()
@@ -103,7 +104,8 @@ class PlotGraph:
         for x,y in content:
             energy.append(x)
             taskid.append(y)
-        plt.scatter(taskid,energy,marker='o',lineStyle='-')
+        plt.plot(taskid,energy,marker='o',lineStyle='None')
+        plt.autoscale(axis='y')
         plt.xlabel('Task ID')
         plt.ylabel('Energy (mJ)')
         plt.title('UAV-%d Single Task Computation Energy Consumption'%self.uavid)
@@ -119,11 +121,11 @@ class PlotGraph:
             energy.append(x * 1000) #convert to Millisecond MS
             taskid.append(y)
         # print(f'energy {energy}')
-        plt.scatter(taskid,energy,marker='o',lineStyle='-')
+        plt.plot(taskid,energy,marker='o',lineStyle='None')
         plt.xlabel('Task ID')
         plt.ylabel('Time (Millisecond)')
         plt.title('UAV-%d Single Task Computation Time'%self.uavid)
-        # plt.show()
+        # plt.autoscale(axis='y')
         print('uav-%d time graph saved'%self.uavid)
         plt.savefig('/home/jxie/rossim/src/ros_mpi/scripts/graph/uav-%d-comp-time.png'%self.uavid)
         plt.close()
@@ -135,11 +137,11 @@ class PlotGraph:
             energy.append(x)
             taskid.append(str(y))
         # print(content)
-        plt.scatter(taskid,energy,marker='v',lineStyle='-')
+        plt.plot(taskid,energy,marker='v',lineStyle='None')
         plt.xlabel('Time')
         plt.ylabel('Energy (mJ)')
         plt.title('UAV-%d Single Fly Energy Consumption'%self.uavid)
-        # plt.show()
+        # plt.autoscale(axis='y')
         # print(energy)
         print('uav-%d fly graph saved'%self.uavid)
         plt.tight_layout()
@@ -263,8 +265,10 @@ class PlotGraph:
             for j in i:
                 temp.append(test.data_rate(j)/1000000)
             bandwidth.append(temp)
+        # plt.ylim((min(bandwidth),max(bandwidth)))
         for x in bandwidth:
             plt.plot(time_m[:len(x)],x,lineStyle='--',label='Master to %d'%(bandwidth.index(x)+1))
+        
         plt.ylabel("Data Rate")
         plt.xlabel("Time")
         plt.legend()
@@ -275,7 +279,11 @@ class PlotGraph:
     def comm_time(self):
         with open('/home/jxie/rossim/src/ros_mpi/data/uav%d_comm_time.pkl'%self.uavid, 'rb') as file:
             content = pickle.load(file)
-        print(f'content {len(content)}')
+        plt.plot([content.index(x) for x in content],content,marker='v',lineStyle='--')
+        # plt.autoscale(axis='y')
+        plt.tight_layout()
+        plt.savefig('/home/jxie/rossim/src/ros_mpi/scripts/graph/uav-%d-comm-time.png'%self.uavid)
+        plt.close()
     def run(self):
         self.comm_graph()
         self.comp_energy_graph()
