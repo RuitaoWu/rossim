@@ -39,9 +39,10 @@ class Node:
         ipsMin = int(config.get('Task','ips_min'))
         taskgenerator = TaskGen(numberOfTask,numberOfComputingNode,task_size_min,task_size_max,ipsMin,ipsMax)
         testorchest = Orchestrator([],taskgenerator.gen_comp_matrix(),100,200)
-        testorchest.indep_sch(taskgenerator.gen_indep())
-
-        self.allTasks = testorchest.indep_sch(taskgenerator.gen_indep())
+        # testorchest.indep_sch(taskgenerator.gen_indep())
+        tempTask = taskgenerator.gen_indep()
+        print('generating tasks')
+        self.allTasks = testorchest.indep_sch(tempTask)
         # for i in self.allTasks:
         #     print(f'task {i.task_idx} on processor {i.processor_id}')
         self.node_id = node_id
@@ -78,12 +79,12 @@ class Node:
         print(f'at line 77 there exist {len(self.allTasks)} tasks..')
         print('***'*20)
         for t in self.allTasks:
-            self.fly_energy.append([self.energy * (t.size / self.cpu),t.task_idx])
+            self.fly_energy.append([self.energy * (t.size / t.ci),t.task_idx])
             # pos = rospy.wait_for_message('/uav%d/ground_truth_to_tf/pose' %self.node_id, PoseStamped)
             # print(f'current master {self.node_id} position {(pos.pose.position.x,pos.pose.position.y,pos.pose.position.z)}')
             if t.processor_id == self.node_id -1:
                 t.st = self.taskQueue [-1].et if self.taskQueue else 0
-                t.et = t.st + float(t.size / self.cpu) 
+                t.et = t.st + float(t.size / t.ci) 
                 self.taskQueue.append(t)
                 self.comp_energy.append([t.delta * (t.size/t.ci),t.task_idx])
                 self.comp_time.append([(t.size/t.ci),t.task_idx])
@@ -94,7 +95,7 @@ class Node:
                 self.communication_time.append(t.size / temp)
                 print(f'energy cost at line 70 {self.comm_energy}')
                 self.pub.publish(t)
-                rospy.sleep(1) 
+                rospy.sleep(0.5) 
         #task on master
         print(f'all tasks on master node {len(self.taskQueue)}')
         with open('/home/jxie/rossim/src/ros_mpi/data/uav%d.pkl'%self.node_id,'wb') as file:
@@ -142,7 +143,7 @@ class WorkerNode:
             # dr = Datarate()
             return self.datarate.data_rate(distance)
         def sub_callback(self,data):
-            self.fly_energy.append([self.energy * (data.size / self.cpu),data.task_idx])
+            self.fly_energy.append([self.energy * (data.size / data.ci),data.task_idx])
             # print(f'current worker {self.node_id} location {self.pos}')
             pos = rospy.wait_for_message(self.loc,PoseStamped)
             self.comm_energy.append([(data.size / self.comm_time(2,self.node_id))*self.energy,data.task_idx])
@@ -150,7 +151,7 @@ class WorkerNode:
             print(f'current worker {self.node_id} position {(pos.pose.position.x,pos.pose.position.y,pos.pose.position.z)}')
             if data.processor_id == self.node_id -1 :
                 data.st = self.taskQueue [-1].et if self.taskQueue else 0
-                data.et = data.st + float(data.size / self.cpu) 
+                data.et = data.st + float(data.size / data.ci) 
                 self.taskQueue.append(data)
                 self.comp_energy.append([data.delta * (data.size/data.ci),data.task_idx])
                 self.comp_time.append([(data.size/data.ci),data.task_idx])

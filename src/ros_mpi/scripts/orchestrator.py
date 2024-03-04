@@ -12,6 +12,8 @@ from ipef import IPEFT
 class Orchestrator:
     def __init__(self,comm,comp,taskMin,taskMax):
         self.rank_up_values=[]
+        # Memoization cache
+        self.memo = {}
         self.comm = comm
         self.comp = comp
         self.taskMin = taskMin
@@ -38,13 +40,36 @@ class Orchestrator:
         :return: The function `calculate_rank_up_recursive` returns the calculated rank value for a given
         index `i` based on the input arrays `comp` and `comm`.
         """
+        # print(f'calculating rank up value for {i}')
+        # successors = [j for j in range(len(comp)) if comm[i][j] > 0]
+        # print('successors: ', successors)
+        # if not successors:
+        #     print('returned at line 45')
+        #     return np.mean(comp[i])
+        
+        # max_rank_j = max([comm[i][j] + self.calculate_rank_up_recursive(comp, comm, j) for j in successors])
+        # print('max rank j: ', max_rank_j, 'returned')
+        # return np.mean(comp[i]) + max_rank_j
+    
+
+        if i in self.memo:
+            # Return cached result if available
+            return self.memo[i]
+
         successors = [j for j in range(len(comp)) if comm[i][j] > 0]
-        
+
         if not successors:
-            return np.mean(comp[i])
-        
-        max_rank_j = max([comm[i][j] + self.calculate_rank_up_recursive(comp, comm, j) for j in successors])
-        return np.mean(comp[i]) + max_rank_j
+            # Base case: If no successors, return the mean computational cost
+            result = np.mean(comp[i])
+        else:
+            # Recursive case: Calculate the rank for each successor and find the maximum
+            max_rank_j = max([comm[i][j] + self.calculate_rank_up_recursive(comp, comm, j) for j in successors])
+            # Store the result in the memoization cache
+            result = np.mean(comp[i]) + max_rank_j
+
+        # Cache the result before returning
+        self.memo[i] = result
+        return result
 
 
     #find the predecessor of current task
@@ -106,9 +131,13 @@ class Orchestrator:
                 if t in row: return self.task_schedule_list.index(row)
 
     def heft(self):
+        print('scheduling DAG based tasks......')
+        # print(self.comm)
+        # print(self.comp)
         TASK_FLAG=[False]*len(self.comp)
         self.rank_up_values = [self.calculate_rank_up_recursive(self.comp,self.comm,i) for i in range(len(self.comp))]
         for task in np.argsort(self.rank_up_values)[::-1]:
+            # print(f'scheduling {task}')
             est =[]
             eft = []
             for s in range(0,len(self.comp[0])):
@@ -118,6 +147,8 @@ class Orchestrator:
             if TASK_FLAG[task] == False:
                 self.task_schedule_list[np.argmin(eft)].append(task) # append task to the processor with earliest finish time
                 TASK_FLAG[task] = True
+                print(f'scheduled {task} on {np.argmin(eft)}')
+        # print('formatting tasks......')
         task = Task()
         task.task_idx = -1
         task.processor_id = -1
@@ -142,8 +173,9 @@ class Orchestrator:
          
     def indep_sch(self,tasklist):
         computing_nodes = [[] for _ in range(len(self.comp[0]))]
-
+        print(f'scheduling tasks...')
         for task in tasklist:
+            # print(f'current task {task}')
             node_idx = 0
             min_eft = float('inf')
             # Find the computing node with the earliest finish time
@@ -158,6 +190,7 @@ class Orchestrator:
             task.st = min_eft
             task.et = min_eft + task.size / task.ci  # EFT calculation
             computing_nodes[node_idx].append(task)
+            # print(f'current task {task} is done')
         return tasklist
         
     def orch_ipef(self):

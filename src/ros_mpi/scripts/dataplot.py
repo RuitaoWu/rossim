@@ -134,8 +134,9 @@ class PlotGraph:
             content = pickle.load(file)
         energy,taskid = [],[]
         for x,y in content:
-            energy.append(x)
-            taskid.append(str(y))
+            if y >= 0:
+                energy.append(x)
+                taskid.append(str(y))
         # print(content)
         plt.plot(taskid,energy,marker='v',lineStyle='None')
         plt.xlabel('Time')
@@ -269,8 +270,8 @@ class PlotGraph:
         for x in bandwidth:
             plt.plot(time_m[:len(x)],x,lineStyle='--',label='Master to %d'%(bandwidth.index(x)+1))
         
-        plt.ylabel("Data Rate")
-        plt.xlabel("Time")
+        plt.ylabel("Data Rate (Mbps)")
+        plt.xlabel("Time (seconds)")
         plt.legend()
         print('datarate saved')
         plt.tight_layout()

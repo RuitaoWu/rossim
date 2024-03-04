@@ -15,7 +15,7 @@ class TaskGen():
     def generate_random_dag(self,density):
         # Initialize an empty adjacency matrix
         adjacency_matrix = [[0] * self.num_nodes for _ in range(self.num_nodes)]
-
+        print(f'genereating random DAG.......')
         # Ensure the graph is acyclic
         for i in range(self.num_nodes - 1):
             for j in range(i + 1, self.num_nodes):
@@ -73,16 +73,16 @@ class TaskGen():
             temp_task.append(task)
         temp_task.sort(key=lambda x: x.size)
         return temp_task
-if __name__ == '__main__':
-# Example usage:
-    num_nodes = 5 #number of tasks
-    density = 0.8
-    random_dag = TaskGen(num_nodes,3)
-    test = random_dag.gen_indep()
-    comp = random_dag.gen_comp_matrix()
-    testorchest = Orchestrator([],comp,100,200,40000,50000,60000,80000)
-    for i in testorchest.indep_sch(random_dag.gen_indep()):
-        print(i.processor_id)
+# if __name__ == '__main__':
+# # Example usage:
+#     num_nodes = 5 #number of tasks
+#     density = 0.8
+#     random_dag = TaskGen(num_nodes,3)
+#     test = random_dag.gen_indep()
+#     comp = random_dag.gen_comp_matrix()
+#     testorchest = Orchestrator([],comp,100,200,40000,50000,60000,80000)
+#     for i in testorchest.indep_sch(random_dag.gen_indep()):
+#         print(i.processor_id)
     # print(random_dag.gen_comp_matrix())
     # test_dag = random_dag.generate_random_dag(density)
 

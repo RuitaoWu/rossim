@@ -65,19 +65,8 @@ task_size_min = int(config.get('Task','task_size_min'))
 task_size_max = int(config.get('Task','task_size_max'))
 ipsMax = int(config.get('Task','ips_max'))
 ipsMin = int(config.get('Task','ips_min'))
-taskgenerator = TaskGen(numberOfTask,numberOfComputingNode,task_size_min,task_size_max,ipsMin,ipsMax)
-comp = taskgenerator.gen_comp_matrix()
-comm = taskgenerator.generate_random_dag(density)
-# comm = np.where(read_dag('test.dot')[-1] >= 0, 1, 0).tolist()
-
-# print(f'communication matrix {comm}')
-testOchestrator = Orchestrator(comm,comp,task_size_min,task_size_max)
-# line 64: representing the task priorities 
-rank_up_values = [testOchestrator.calculate_rank_up_recursive(testOchestrator.comp,testOchestrator.comm,i) for i in range(len(testOchestrator.comp))]
-# print("at line 93: ", np.argsort(rank_up_values)[::-1])
-testOchestrator.heft()
-# testOchestrator.orch_ipef()
-# heft_list = testOchestrator.task_schedule_list
+# taskgenerator = TaskGen(numberOfTask,numberOfComputingNode,task_size_min,task_size_max,ipsMin,ipsMax)
+# comm = taskgenerator.generate_random_dag(density)
 # print(f'task list {testOchestrator.mes}')
 comm = MPI.COMM_WORLD
 num_node = comm.Get_size()
@@ -89,7 +78,7 @@ if taskType == 'Independent':
         print(f'current iteration {x}')
         if node_id  == master_node:
             node_verify = "Master"
-            nodeMaster = Node(node_id+1,node_verify,testOchestrator.mes,int(random.randrange(int(min_cpu),int(max_cpu))),x,[])
+            nodeMaster = Node(node_id+1,node_verify,[],int(random.randrange(int(min_cpu),int(max_cpu))),x,[])
             nodeMaster.run()
         else:
             node_verify = "Worker%d"%(node_id+1)
@@ -97,9 +86,24 @@ if taskType == 'Independent':
             nodeWorker.run()
         print(f'finished iteration {x}')
 
-elif taskType == 'Dependant':
+elif taskType == 'Dependent':
 
     if node_id == 0:
+        taskgenerator = TaskGen(numberOfTask,numberOfComputingNode,task_size_min,task_size_max,ipsMin,ipsMax)
+        comp = taskgenerator.gen_comp_matrix()
+        comm = taskgenerator.generate_random_dag(density)
+        # comm = np.where(read_dag('test.dot')[-1] >= 0, 1, 0).tolist()
+        # print(comm)
+        # print(comp)
+        # print(f'communication matrix {comm}')
+        testOchestrator = Orchestrator(comm,comp,task_size_min,task_size_max)
+        # line 64: representing the task priorities 
+        # rank_up_values = [testOchestrator.calculate_rank_up_recursive(testOchestrator.comp,testOchestrator.comm,i) for i in range(len(testOchestrator.comp))]
+        # print("at line 93: ", np.argsort(rank_up_values)[::-1])
+        testOchestrator.heft()
+        # testOchestrator.orch_ipef()
+        # heft_list = testOchestrator.task_schedule_list
+
         master = Master(node_id+1,int(random.randrange(min_cpu,max_cpu)),sleep_time)
         master.run(testOchestrator.mes)
 
