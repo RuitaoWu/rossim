@@ -137,7 +137,6 @@ class Orchestrator:
         TASK_FLAG=[False]*len(self.comp)
         self.rank_up_values = [self.calculate_rank_up_recursive(self.comp,self.comm,i) for i in range(len(self.comp))]
         for task in np.argsort(self.rank_up_values)[::-1]:
-            # print(f'scheduling {task}')
             est =[]
             eft = []
             for s in range(0,len(self.comp[0])):
@@ -147,18 +146,17 @@ class Orchestrator:
             if TASK_FLAG[task] == False:
                 self.task_schedule_list[np.argmin(eft)].append(task) # append task to the processor with earliest finish time
                 TASK_FLAG[task] = True
-                print(f'scheduled {task} on {np.argmin(eft)}')
-        # print('formatting tasks......')
-        task = Task()
-        task.task_idx = -1
-        task.processor_id = -1
-        task.dependency=[]
-        task.size = 0
-        task.st = 0.1
-        task.et = 0.1
-        task.ci = 0.01 #cpu cycle for executing the task
-        task.delta = 0.1 #mj per sec
-        self.mes.append(task)
+                # print(f'scheduled {task} on {np.argmin(eft)}')
+        # task = Task()
+        # task.task_idx = -1
+        # task.processor_id = -1
+        # task.dependency=[]
+        # task.size = 0
+        # task.st = 0.1
+        # task.et = 0.1
+        # task.ci = 0.01 #cpu cycle for executing the task
+        # task.delta = 0.1 #mj per sec
+        # self.mes.append(task)
         for t in np.argsort(self.rank_up_values)[::-1]:
                 task = Task()
                 task.task_idx = t

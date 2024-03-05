@@ -43,13 +43,14 @@ class PlotGraph:
 
         # Create a figure and axis
         fig, ax = plt.subplots()
-        fast,faft = [-1]*20,[-1]*20
+        fast,faft = [0]*20,[0]*20
         for x in task_time:
             for y in x:
                 fast[y['task_id']] = y['start_time']
                 faft[y['task_id']] = y['end_time']
         print(f'final start time { fast}')
         print(f'final end time { faft}')
+        print(f'length of time {len(faft)} with makespan {max(faft)}')
         # Iterate through task_schedule_list and plot the bars
         for i, task_indices in enumerate(task_sch):
             for task_index in task_indices:

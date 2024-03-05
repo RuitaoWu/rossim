@@ -52,9 +52,9 @@ class WaypoingFollower:
         # self.kdx = 0.15
         # self.kdy = 0.15
         # self.kdz = 0.15
-        self.kdx = 6
-        self.kdy = 6
-        self.kdz = 6
+        self.kdx = 20
+        self.kdy = 20
+        self.kdz = 20
 
         #mobility configuration
         self.config = configparser.ConfigParser()

@@ -11,7 +11,8 @@ class TaskGen():
         self.ciMin = ciMin
         self.ciMax = ciMax
     def gen_comp_matrix(self):
-        return [[random.randint(20,40) for _ in range(self.computing_node)] for _ in range(self.num_nodes)]
+        #time units: seconds
+        return [[random.uniform(10,20) for _ in range(self.computing_node)] for _ in range(self.num_nodes)]
     def generate_random_dag(self,density):
         # Initialize an empty adjacency matrix
         adjacency_matrix = [[0] * self.num_nodes for _ in range(self.num_nodes)]
