@@ -9,6 +9,10 @@ from hector_uav_msgs.msg import Task
 import random
 from read_dag import read_dag
 from ipef import IPEFT
+#TODO:
+# MinMin: min min algorithm in grid computing
+# MaxMax
+# Mytopic
 class Orchestrator:
     def __init__(self,comm,comp,taskMin,taskMax):
         self.rank_up_values=[]

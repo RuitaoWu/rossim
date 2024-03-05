@@ -214,7 +214,7 @@ class Master:
                                  transmission_power=float(config.get('DatarateConfig','transmission_power')),
                                  alpha=float(config.get('DatarateConfig','alpha')))
         while True:
-            if rospy.wait_for_message('/uav%d/ground_truth_to_tf/pose'%self.nodeid, PoseStamped).pose.position.z + 0.1 > 10:
+            if rospy.wait_for_message('/uav%d/ground_truth_to_tf/pose'%self.nodeid, PoseStamped).pose.position.z + 0.1 > 0:
                 break
         print('master node is on position...')
     #locate sucessor location
@@ -340,7 +340,7 @@ class Worker:
                                  transmission_power=float(config.get('DatarateConfig','transmission_power')),
                                  alpha=float(config.get('DatarateConfig','alpha')))
         while True: 
-            if rospy.wait_for_message('/uav%d/ground_truth_to_tf/pose'%self.worker_id, PoseStamped).pose.position.z + 0.1 > 10:
+            if rospy.wait_for_message('/uav%d/ground_truth_to_tf/pose'%self.worker_id, PoseStamped).pose.position.z + 0.1 > 0:
                 break
         rospy.Subscriber(self.topic, Task, self.callback_func)
 

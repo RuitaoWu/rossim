@@ -52,9 +52,9 @@ class WaypoingFollower:
         # self.kdx = 0.15
         # self.kdy = 0.15
         # self.kdz = 0.15
-        self.kdx = 20
-        self.kdy = 20
-        self.kdz = 20
+        self.kdx = 2
+        self.kdy = 2
+        self.kdz = 2
 
         #mobility configuration
         self.config = configparser.ConfigParser()
@@ -73,17 +73,50 @@ class WaypoingFollower:
         self.distThresh = 0.3
 
     #position generation function
-    def generate_random_positions(self,n, x_range, y_range,z_range):
-        positions = []
-        
-        for _ in range(n):
-            x = np.random.uniform(*x_range)
-            y = np.random.uniform(*y_range)
-            z = np.random.uniform(*z_range)
-            # Ensure z is greater than 0
-            while z <= 0:
-                z = np.random.uniform(*z_range)
-            positions.append([x, y, z])
+    def random_waypoint(self,num_nodes, area_size, max_speed, max_time):
+        """
+        Simulate the Random Waypoint model with random direction in (x, y, z) space.
+
+        Parameters:
+        - num_nodes: Number of nodes in the simulation.
+        - area_size: Size of the simulation area (x_max, y_max, z_max).
+        - max_speed: Maximum speed of nodes.
+        - max_time: Maximum simulation time.
+
+        Returns:
+        - positions: Final positions of nodes after simulation.
+        """
+
+        # Initialize positions and velocities
+        positions = np.random.rand(num_nodes, 3) * area_size
+        velocities = np.zeros((num_nodes, 3))
+
+        # Simulate movement
+        current_time = 0
+        while current_time < max_time:
+            # Choose a random node
+            node_index = np.random.randint(num_nodes)
+
+            # Generate a random destination within the area
+            destination = np.random.rand(3) * area_size
+
+            # Calculate direction and normalize
+            direction = destination - positions[node_index]
+            direction /= np.linalg.norm(direction)
+
+            # Calculate a random speed within the specified range
+            speed = np.random.uniform(0, max_speed)
+
+            # Update velocity towards the destination
+            velocities[node_index] = direction * speed
+
+            # Update position based on velocity
+            positions += velocities
+
+            # Increment time
+            current_time += 1
+
+        return positions.tolist()
 
         return positions
     def get_pos(self, message):
@@ -104,14 +137,14 @@ class WaypoingFollower:
         path = path['uav%d'%index]
  
         #generate random position within ceratin aera in 3D space
-        allPositions = self.generate_random_positions(self.numberOfPoints,(self.xMin,self.xMax),(self.yMin,self.yMax),(self.zMin,self.zMax))
+        # allPositions = self.random_waypoint(10,100,2,100)
         px,py,pz = [],[],[]
-        for p in allPositions:
+        for p in self.random_waypoint(10,100,2,100):
             px.append(p[0])
             py.append(p[1])
-            pz.append(p[2])
-        for goal_x, goal_y, goal_z in zip(path['x'], path['y'], path['z']):
-        # for goal_x, goal_y, goal_z in zip(px,py, pz):
+            pz.append(abs(p[2]))
+        # for goal_x, goal_y, goal_z in zip(path['x'], path['y'], path['z']):
+        for goal_x, goal_y, goal_z in zip(px,py, pz):
             print('Goal is', goal_x, goal_y, goal_z)
             print('Current position: x=%4.1f, y=%4.1f, z=%4.1f'%(self.pose[0], self.pose[1], self.pose[2]))
             distance = sqrt((self.pose[0]-goal_x)**2 + (self.pose[1]-goal_y)**2 + (self.pose[2]-goal_z)**2)
