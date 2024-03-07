@@ -179,7 +179,6 @@ class Orchestrator:
         computing_nodes = [[] for _ in range(len(self.comp[0]))]
         print(f'scheduling tasks...')
         for task in tasklist:
-            # print(f'current task {task}')
             node_idx = 0
             min_eft = float('inf')
             # Find the computing node with the earliest finish time
@@ -189,12 +188,10 @@ class Orchestrator:
                 if eft < min_eft:
                     min_eft = eft
                     node_idx = i
-            # print(f'current processor id {node_idx}')
             task.processor_id = node_idx
             task.st = min_eft
             task.et = min_eft + task.size / task.ci  # EFT calculation
             computing_nodes[node_idx].append(task)
-            # print(f'current task {task} is done')
         return tasklist
         
     def orch_ipef(self):

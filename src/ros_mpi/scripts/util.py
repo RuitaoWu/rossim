@@ -51,7 +51,7 @@ class Node:
         self.nodeVerify = nodeVerify
         self.pubTopic = 'pub/task'
         self.recTopic = 'rec/task'
-        
+        self.incompleted,self.completed =[],[]
         self.cpu = cpu
         self.iteration = iteration
         self.energy = energy
@@ -63,42 +63,57 @@ class Node:
         rospy.init_node(self.nodeVerify, anonymous=True)
         self.pub = rospy.Publisher(self.pubTopic,Task,queue_size=10)
         self.rate = rospy.Rate(1) # 10hz
-        # rospy.Subscriber(self.pubTopic, Task, self.sub_callback)
-        # self.pos = rospy.wait_for_message('/uav%d/ground_truth_to_tf/pose' %self.node_id, PoseStamped)
+        while True:
+            if rospy.wait_for_message('/uav%d/ground_truth_to_tf/pose'%self.node_id, PoseStamped).pose.position.z + 0.1 > 0:
+                break
+            # else:
+            #     print(f'master {self.node_id} not on position')
         print(f'Master construction completed node id {self.node_id}')
     def comm_time(self,u1,u2):
-            print(f'uav {u1} and uav {u2}')
+            # print(f'uav {u1} and uav {u2}')
             pos_1= rospy.wait_for_message('/uav%d/ground_truth_to_tf/pose'%u1, PoseStamped)
             pos_2 = rospy.wait_for_message('/uav%d/ground_truth_to_tf/pose'%u2, PoseStamped)
             distance = math.dist([pos_1.pose.position.x,pos_1.pose.position.y,pos_1.pose.position.z],
                                 [pos_2.pose.position.x,pos_2.pose.position.y,pos_2.pose.position.z])
-            # dr = Datarate()
+
             return self.datarate .data_rate(distance)
+    def range(self,u1,u2):
+
+            pos_1= rospy.wait_for_message('/uav%d/ground_truth_to_tf/pose'%u1, PoseStamped)
+            pos_2 = rospy.wait_for_message('/uav%d/ground_truth_to_tf/pose'%u2, PoseStamped)
+            return math.dist([pos_1.pose.position.x,pos_1.pose.position.y,pos_1.pose.position.z],
+                                [pos_2.pose.position.x,pos_2.pose.position.y,pos_2.pose.position.z])
+
+            
     def run(self):
-        print(f'publishing...')
-        print('***'*20)
-        print(f'at line 77 there exist {len(self.allTasks)} tasks..')
-        print('***'*20)
+
         for t in self.allTasks:
             self.fly_energy.append([self.energy * (t.size / t.ci),t.task_idx])
-            # pos = rospy.wait_for_message('/uav%d/ground_truth_to_tf/pose' %self.node_id, PoseStamped)
-            # print(f'current master {self.node_id} position {(pos.pose.position.x,pos.pose.position.y,pos.pose.position.z)}')
             if t.processor_id == self.node_id -1:
                 t.st = self.taskQueue [-1].et if self.taskQueue else 0
                 t.et = t.st + float(t.size / t.ci) 
                 self.taskQueue.append(t)
                 self.comp_energy.append([t.delta * (t.size/t.ci),t.task_idx])
                 self.comp_time.append([(t.size/t.ci),t.task_idx])
+                self.completed.append([t.task_idx,rospy.get_time()])
+                rospy.sleep(t.size/t.ci)
             else: 
-                print(f'publish task {t.task_idx} to worker {t.processor_id}')
-                temp = self.comm_time(self.node_id,t.processor_id+1) if t.processor_id+1 > 0 else 1
-                self.comm_energy.append([(t.size / temp)*self.energy,t.task_idx])
-                self.communication_time.append(t.size / temp)
-                print(f'energy cost at line 70 {self.comm_energy}')
-                self.pub.publish(t)
-                rospy.sleep(0.5) 
+                if self.range(self.node_id,t.processor_id+1) > 200:
+                    self.incompleted.append([t.task_idx,rospy.get_time()])
+                    print('Disconnected......')
+                    continue
+                else:
+                    print(f'publish task {t.task_idx} to worker {t.processor_id}')
+                    temp = self.comm_time(self.node_id,t.processor_id+1) if t.processor_id+1 > 0 else 1
+                    self.comm_energy.append([(t.size / temp)*self.energy,t.task_idx])
+                    self.communication_time.append(t.size / temp)
+                    print(f'energy cost at line 70 {self.comm_energy}')
+                    self.completed.append([t.task_idx,rospy.get_time()])
+                    self.pub.publish(t)
+                    rospy.sleep(0.25) 
         #task on master
         print(f'all tasks on master node {len(self.taskQueue)}')
+        print(f'completed task {self.completed} and incompleted task {self.incompleted}')
         with open('/home/jxie/rossim/src/ros_mpi/data/uav%d.pkl'%self.node_id,'wb') as file:
             pickle.dump(self.taskQueue,file)
         with open('/home/jxie/rossim/src/ros_mpi/data/uav%d_comm_time.pkl'%self.node_id,'wb') as file:
@@ -111,6 +126,10 @@ class Node:
             pickle.dump(self.fly_energy,file)
         with open('/home/jxie/rossim/src/ros_mpi/data/uav%d_comp_time.pkl'%self.node_id,'wb') as file:
             pickle.dump(self.comp_time,file)
+        with open('/home/jxie/rossim/src/ros_mpi/task_succ/completed_%d.pkl'%self.iteration,'wb') as file:
+            pickle.dump(self.completed,file)
+        with open('/home/jxie/rossim/src/ros_mpi/task_succ/incompleted_%d.pkl'%self.iteration,'wb') as file:
+            pickle.dump(self.incompleted,file)
 
 class WorkerNode:
         def __init__(self,node_id,nodeVerify,cpu,iteration,taskqueue,energy=50) -> None:
@@ -133,24 +152,27 @@ class WorkerNode:
                                  alpha=float(config.get('DatarateConfig','alpha')))
             print(f'constructing worker node on {self.node_id}')
             rospy.init_node(self.nodeVerify, anonymous=True)
+            while True:
+                if rospy.wait_for_message('/uav%d/ground_truth_to_tf/pose'%self.node_id, PoseStamped).pose.position.z + 0.1 > 0:
+                    break
+                # else:
+                #     print(f'worker {self.node_id} not on position')
             rospy.Subscriber(self.pubTopic, Task, self.sub_callback)
-            # self.pos = rospy.wait_for_message('/uav%d/ground_truth_to_tf/pose' %self.node_id, PoseStamped)
         def comm_time(self,u1,u2):
-            print(f'uav {u1} and uav {u2}')
+            # print(f'uav {u1} and uav {u2}')
             pos_1= rospy.wait_for_message('/uav%d/ground_truth_to_tf/pose'%u1, PoseStamped)
             pos_2 = rospy.wait_for_message('/uav%d/ground_truth_to_tf/pose'%u2, PoseStamped)
             distance = math.dist([pos_1.pose.position.x,pos_1.pose.position.y,pos_1.pose.position.z],
                                 [pos_2.pose.position.x,pos_2.pose.position.y,pos_2.pose.position.z])
-            # dr = Datarate()
             return self.datarate.data_rate(distance)
         def sub_callback(self,data):
             self.fly_energy.append([self.energy * (data.size / data.ci),data.task_idx])
-            # print(f'current worker {self.node_id} location {self.pos}')
-            pos = rospy.wait_for_message(self.loc,PoseStamped)
+
             self.comm_energy.append([(data.size / self.comm_time(2,self.node_id))*self.energy,data.task_idx])
             self.communication_time.append(data.size / self.comm_time(2,self.node_id))
-            print(f'current worker {self.node_id} position {(pos.pose.position.x,pos.pose.position.y,pos.pose.position.z)}')
+            
             if data.processor_id == self.node_id -1 :
+                print(f'task {data.task_idx} on worker { self.node_id}')
                 data.st = self.taskQueue [-1].et if self.taskQueue else 0
                 data.et = data.st + float(data.size / data.ci) 
                 self.taskQueue.append(data)

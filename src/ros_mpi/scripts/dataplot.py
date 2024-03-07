@@ -4,6 +4,7 @@ import configparser
 import time
 from xml.sax.handler import feature_string_interning
 import matplotlib
+from matplotlib import markers
 from matplotlib.lines import lineStyles
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
@@ -15,7 +16,8 @@ from scipy.interpolate import interp1d
 from sympy import content, li
 from collections import defaultdict
 from datarate import Datarate
-# from pos_controller.scripts.vrssicpy import data_rate
+config = configparser.ConfigParser()
+config.read('/home/jxie/rossim/src/ros_mpi/scripts/property.properties')
 class PlotGraph:
     def __init__(self,uavid) -> None:
         self.uavid = uavid
@@ -151,7 +153,7 @@ class PlotGraph:
         plt.savefig('/home/jxie/rossim/src/ros_mpi/scripts/graph/uav-%d-fly-energy.png'%self.uavid)
         plt.close()
     def trajectory(self):
-        num_uavs = 3
+        num_uavs = int(config.get('Task','computing'))
         plt.figure()
         font_size = 24
         ax = plt.axes(projection='3d')
@@ -287,6 +289,31 @@ class PlotGraph:
         plt.tight_layout()
         plt.savefig('/home/jxie/rossim/src/ros_mpi/scripts/graph/uav-%d-comm-time.png'%self.uavid)
         plt.close()
+    def task_analysis(self):
+        succ_rate,iter_num = [],[]
+        for i in range(0,5):
+            with open('/home/jxie/rossim/src/ros_mpi/task_succ/completed_%d.pkl'%i,'rb') as file:
+                completed_tasks = pickle.load(file)
+            with open('/home/jxie/rossim/src/ros_mpi/task_succ/incompleted_%d.pkl'%i,'rb') as file:
+                incomplete_tasks = pickle.load(file)
+            completed_x, _ = zip(*completed_tasks)
+            incomplete_x, _= zip(*incomplete_tasks)
+            # succ_rate.append(float((len(completed_x)/(len(completed_x)+len(incomplete_x)))) *100)
+
+            print(len(completed_x)/(len(completed_x)+len(incomplete_x)))
+            succ_rate.append(float((len(completed_x)/87))*100)
+            iter_num.append(str(i))
+        # plt.scatter(iter_num,succ_rate, color='b')
+        plt.plot(iter_num,succ_rate, color='b',marker='^',linestyle='--')
+
+        plt.xlabel('Number of Iteration')
+        plt.ylabel('Success Rate (%)')
+        plt.title('Task Success Rate')
+        # plt.legend()
+        
+        plt.savefig('/home/jxie/rossim/src/ros_mpi/scripts/graph/task_succ_rate.png')
+        plt.close()
+
     def run(self):
         self.comm_graph()
         self.comp_energy_graph()
@@ -295,16 +322,26 @@ class PlotGraph:
         self.trajectory()
         self.dataRateGraph()
     
-
+    
 if __name__ == '__main__':
+    # with open('/home/jxie/rossim/src/ros_mpi/data/uav%d.pkl'%1, 'rb') as file:
+    #     content = pickle.load(file)
+    # print(f'content { len(content)}')
+    # with open('/home/jxie/rossim/src/ros_mpi/data/uav%d.pkl'%2, 'rb') as file:
+    #     content = pickle.load(file)
+    # print(f'content { len(content)}')
+    # with open('/home/jxie/rossim/src/ros_mpi/data/uav%d.pkl'%3, 'rb') as file:
+    #     content = pickle.load(file)
+    # print(f'content { len(content)}')
+
+    # for x in range(1,4):
+    #     plgraph = PlotGraph(x)
+    #     print('current uav%d'%x)
+    #     # plgraph.comm_time()
     
-    for x in range(1,4):
-        plgraph = PlotGraph(x)
-        print('current uav%d'%x)
-        # plgraph.comm_time()
-    
-        plgraph.run()
-    plgraph = PlotGraph(1)
-    plgraph.gantt_chart()   
-    # plgraph = PlotGraph(3)
-    # plgraph.dataRateGraph()
+    #     plgraph.run()
+    # plgraph = PlotGraph(1)
+    # plgraph.gantt_chart()   
+    plgraph = PlotGraph(3)
+    plgraph.task_analysis()
+    plgraph.trajectory()

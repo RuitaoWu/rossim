@@ -44,8 +44,9 @@ def create_folder_if_not_exists(folder_path):
 
 # Example usage:
 folder_path = '/home/jxie/rossim/src/ros_mpi/data'
-
+task_succ_path = '/home/jxie/rossim/src/ros_mpi/task_succ'
 create_folder_if_not_exists(folder_path)
+create_folder_if_not_exists(task_succ_path)
 # if not os.path('/home/jxie/rossim/src/ros_mpi/data_indep'):
 #     os.mkdir('/home/jxie/rossim/src/ros_mpi/data_indep')
 # else:
@@ -75,7 +76,7 @@ node_id = comm.Get_rank()
 node_name = MPI.Get_processor_name()
 if taskType == 'Independent':
     #at begnining of each iteration it will define new empty task queue
-    for x in range(0,1):
+    for x in range(0,5):
         print(f'current iteration {x}')
         if node_id  == master_node:
             node_verify = "Master"
