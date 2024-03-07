@@ -1,5 +1,6 @@
 
 import numpy as np
+from torch import _test_autograd_multiple_dispatch
 from util import Master, Node,Worker, WorkerNode
 from orchestrator import Orchestrator
 from taskgen import TaskGen
@@ -127,6 +128,7 @@ elif taskType == 'Dependent':
         # rank_up_values = [testOchestrator.calculate_rank_up_recursive(testOchestrator.comp,testOchestrator.comm,i) for i in range(len(testOchestrator.comp))]
         # print("at line 93: ", np.argsort(rank_up_values)[::-1])
         testOchestrator.heft()
+        print('list: ', testOchestrator.task_schedule_list)
         # testOchestrator.orch_ipef()
         # heft_list = testOchestrator.task_schedule_list
         # print('scheduleing list:   ',testOchestrator.task_schedule_list)

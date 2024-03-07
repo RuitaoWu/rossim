@@ -4,6 +4,7 @@ import pickle
 import random
 
 import time,math
+from traceback import print_tb
 from turtle import pos
 from collections import defaultdict
 from networkx import node_attribute_xy
@@ -207,6 +208,7 @@ class Master:
         self.nodeid = node_id
         config = configparser.ConfigParser()
         config.read('/home/jxie/rossim/src/ros_mpi/scripts/property.properties')
+        self.comm_range = float(config.get('UAV','comm_range'))
         # noise=0.0000000000001,band_width=5000000 , transmission_power=0.5,alpha=4.0
         # density = float(config.get('Task','density'))
         self.datarate = Datarate(noise=float(config.get('DatarateConfig','noise')),
@@ -231,12 +233,13 @@ class Master:
 
     #
     def pred_aft(self,t):
-        temp =[0]
+        temp =[-1]
+        print(f'predecessor list of task {t.task_idx} is {t.dependency} at line 237')
         for pre in t.dependency:
             for x in self.task_received :
                 if pre == x.task_idx and x.processor_id != t.processor_id:
                     temp.append(x.et)
-        # print(f'at line 152 max finished time for task {t.task_idx} is {temp}')
+        # print(f'at line 241 max finished time for task {t.task_idx} is {temp}')
         return max(temp)
     
     def sub_callback(self,data):
@@ -263,32 +266,52 @@ class Master:
                              [pos_2.pose.position.x,pos_2.pose.position.y,pos_2.pose.position.z])
         # dr = Datarate()
         return self.datarate.data_rate(d)
+    def distance_between_nodes(self,u1,u2):
+        pos_1= rospy.wait_for_message('/uav%d/ground_truth_to_tf/pose'%u1, PoseStamped)
+        pos_2 = rospy.wait_for_message('/uav%d/ground_truth_to_tf/pose'%u2, PoseStamped)
+        return math.dist([pos_1.pose.position.x,pos_1.pose.position.y,pos_1.pose.position.z],
+                             [pos_2.pose.position.x,pos_2.pose.position.y,pos_2.pose.position.z])
     def run(self,dt):
         print(f'publishing...')
         thread = threading.Thread(target= self.received_call_back)
         thread.start()
         for x in dt:
             self.fly_energy.append([self.energy * (x.size / self.cpu),x.task_idx])
-            print(f'before pub task {x.task_idx} st is {x.st}')
-            if x.processor_id == 0:
-                location_predecessor = self.locate_pred(x)
-                trans_time = x.size / self.comm_time(self.nodeid,location_predecessor+1) if location_predecessor != 0 else 0
-                x.st = max(self.master_task[-1].et, self.pred_aft(x)+trans_time) if self.master_task else self.pred_aft(x)+trans_time
-                x.et = x.st + ((x.size/x.ci)*10)
-                self.comp_energy.append([x.delta * (x.size/x.ci),x.task_idx])
-                self.comp_time.append([(x.size/x.ci),x.task_idx])
-                self.master_task.append(x)
+            if self.distance_between_nodes(self.nodeid,x.processor_id+1) > self.comm_range:
+                print('**'*20)
+                print('Communication Failed......')
+                print('**'*20)
             else:
-                #plus communication time
-                # temp = self.comm_time(self.nodeid,x.processor_id+1) if x.processor_id+1 > 0 else 1
-                temp = self.comm_time(self.nodeid,x.processor_id+1)
-                x.st = self.pred_aft(x) + (x.size / temp)
-                self.communication_time_offload.append([x.size / temp,x.task_idx])
-                # print(f'at line 261 current task {x.task_idx} not on master with communication time {self.communication_time_offload[-1]}')
-                self.comm_energy.append([(x.size / temp)*self.energy,x.task_idx]) #units: mj
-            self.pub.publish(x)
-            print(f'after pub task {x.task_idx} st is {x.st}')
-            rospy.sleep(self.sleepTime)  
+                if x.processor_id == 0:
+                    if self.distance_between_nodes(self.nodeid,self.locate_pred(x)+1) > self.comm_range:
+                        print('**'*20)
+                        print('at line 291 Communication Failed......')
+                        print('**'*20)
+                        continue
+                    else:
+                        location_predecessor = self.locate_pred(x)
+                        trans_time = x.size / self.comm_time(self.nodeid,location_predecessor+1) if location_predecessor != 0 else 0
+                        x.st = max(self.master_task[-1].et, self.pred_aft(x)+trans_time) if self.master_task else self.pred_aft(x)+trans_time
+                        x.et = x.st + ((x.size/x.ci)*10)
+                        self.comp_energy.append([x.delta * (x.size/x.ci),x.task_idx])
+                        self.comp_time.append([(x.size/x.ci),x.task_idx])
+                        self.master_task.append(x)
+                        if self.master_task[-1].st < 0:
+                            continue
+                        rospy.sleep(x.size/x.ci) #simulate computation time
+                        self.pub.publish(x)
+                        rospy.sleep(self.sleepTime) #communication delay
+                else:
+                    #plus communication time
+                    temp = self.comm_time(self.nodeid,x.processor_id+1)
+                    x.st = self.pred_aft(x) + (x.size / temp)
+                    self.communication_time_offload.append([x.size / temp,x.task_idx])
+                    # print(f'at line 261 current task {x.task_idx} not on master with communication time {self.communication_time_offload[-1]}')
+                    self.comm_energy.append([(x.size / temp)*self.energy,x.task_idx]) #units: mj
+                    # rospy.sleep(x.size/x.ci) #simulate computation time
+                    self.pub.publish(x)
+                    print(f'after pub task {x.task_idx} st is {x.st}')
+                    rospy.sleep(self.sleepTime) #communication delay
         print(f'at line 268 total task{len(dt)}, and {len(self.communication_time_offload)}')
         print(f'receied {[x.task_idx for x in self.task_received]}')
         #all tasks
@@ -353,19 +376,17 @@ class Worker:
         return max(temp)
     def callback_func(self,data):
 
-        print(f'at line 276 {data.task_idx}')
+        print(f'at line 379 {data.task_idx}')
         self.fly_energy.append([self.energy * (data.size / self.cpu),data.task_idx])
-        print('/uav%d/ground_truth_to_tf/pose'%(data.processor_id+1))
-        worker_1 = rospy.wait_for_message('/uav%d/ground_truth_to_tf/pose'%(data.processor_id+1),PoseStamped)
-        worker_2 = rospy.wait_for_message(self.loc,PoseStamped)
-
-        distance = math.dist([worker_1.pose.position.x,worker_1.pose.position.y,worker_1.pose.position.z],
-                             [worker_2.pose.position.x,worker_2.pose.position.y,worker_2.pose.position.z])
-        current_datarate = self.datarate.data_rate(distance)
-
-        
         self.all_task.append(data)
         if data.processor_id == self.worker_id - 1 :
+            # print('/uav%d/ground_truth_to_tf/pose'%(data.processor_id+1))
+            worker_1 = rospy.wait_for_message('/uav%d/ground_truth_to_tf/pose'%(data.processor_id+1),PoseStamped)
+            worker_2 = rospy.wait_for_message(self.loc,PoseStamped)
+
+            distance = math.dist([worker_1.pose.position.x,worker_1.pose.position.y,worker_1.pose.position.z],
+                                [worker_2.pose.position.x,worker_2.pose.position.y,worker_2.pose.position.z])
+            current_datarate = self.datarate.data_rate(distance)
             print(f'task {data.task_idx} on {data.processor_id}')
             data.st = max(self.worker_task[-1].et, self.pred_aft(data),data.st) if self.worker_task else max(self.pred_aft(data),data.st)
             data.et = data.st +((data.size / data.ci)*10) #add more computation time
@@ -373,8 +394,9 @@ class Worker:
             self.comp_time.append([(data.size / data.ci),data.task_idx] )
             self.comm_energy.append([(data.size / current_datarate) * self.energy,data.task_idx]) #units: j
             self.communication_time.append(data.size / current_datarate)
+            rospy.sleep((data.size / data.ci)) #simulate computation time
             self.pub.publish(data)
-            rospy.sleep(self.sleepTime)
+            rospy.sleep(self.sleepTime) #communication delay
             self.worker_task.append(data)
         else:
             print('empty')
