@@ -111,8 +111,103 @@ This secion is introduce what features are included
 
 
 ## File Descriptions
+This section provides a brief description of the main files and directories in the project.
+
+- `src/ros_mpi/scripts`: This directory contains all the source code for the project.
+- `src/ros_mpi/task_succ`: This directory contains the result of task scheduling.
+- `src/pos_controller/data`: This directory contains all the trajectory data for the UAVs.
+- `src/pos_controller/scripts`: This directory contains the source code for the UAV controller.
+- `src/ros_mpi/scripts/graph`: This is the result graphs of the simulation.
+- `src/hector_quadrotor`: This directory contains the model of the UAV which is submoduled from the hector_quadrotor package.
+- `hector_quadrotor_gazebo/launch`: This folder contains the launch file for the Gazebo world.
+- `hector_uav_msgs/msg`: This folder contains the message file for the UAV.
+- **Note:** back slash or forward slash is interchangeable depending on the operating system.
 
 ## Configuration
+This section provides a brief description of the configuration files in the project.
+- `.launch` files: These files are where you can add or remove UAVs. They are located in the `hector_quadrotor_gazebo/launch` directory.
+```xml
+<?xml version="1.0"?>
+
+<launch>
+   <arg name="model" default="$(find hector_quadrotor_description)/urdf/quadrotor.gazebo.xacro" />
+    <!-- add two UAVs -->
+    <!-- add more UAV to create more group, and give initiaal position  -->
+   <group ns="uav1">
+     <include file="$(find hector_quadrotor_gazebo)/launch/spawn_quadrotor.launch">
+       <arg name="name" value="uav1" />
+       <arg name="tf_prefix" value="uav1" />
+       <arg name="model" value="$(arg model)" />
+       <arg name="x" value="10.0" />
+       <arg name="y" value="-1.0" />
+     </include>
+   </group>
+
+   <group ns="uav2">
+     <include file="$(find hector_quadrotor_gazebo)/launch/spawn_quadrotor.launch">
+       <arg name="name" value="uav2" />
+       <arg name="tf_prefix" value="uav2" />
+       <arg name="model" value="$(arg model)" />
+       <arg name="x" value="10.0" />
+       <arg name="y" value="-1.0" />
+     </include>
+   </group>
+
+</launch>
+```
+- `.properties` files: These files are where you can set up parameters and variables for the simulation.
+```ini
+#.properties file description
+[UAV]
+#max cpu
+max_cpu = 200000001 
+#min cpu
+min_cpu = 100000001
+#ros sleep time
+sleep_time = 1 
+comm_range = 10
+
+[Task]
+#number of total tasks
+numberOfTask = 87 
+#computing node
+computing = 3 
+#density
+density = 0.8 
+#task size range(max, min)
+task_size_max = 50000
+task_size_min = 40000
+#ips: instruction per second
+ips_max = 50000
+ips_min = 40000
+#only two optioin either: Dependent or Independent
+task_type = Independent
+#define the master uav index start from 1, e.g. if there are 3-uavs the index for each of them are: 1,2,3
+master_uav = 2
+#maxiteration
+maxiter = 5
+
+[Mobile]
+numberOfPoints = 5
+xMax = 50
+xMin = -50
+yMax = 50
+yMin = -50
+# zMin must be greated than 0 since 0 representing the ground
+zMin = 1
+zMax = 20
+
+[DatarateConfig]
+#default datarate configuration setup
+#transmission power is 0.5 watt
+#noise power is 0.0000000000001
+#band width is 5MHz 5000000
+#alpha=4.0 which is loss index
+noise=0.0000000001
+band_width=5000000
+transmission_power=0.05
+alpha=4.0
+```
 <!-- CONTRIBUTING -->
 ## Contributing  
 
