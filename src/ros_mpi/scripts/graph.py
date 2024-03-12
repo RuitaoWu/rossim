@@ -67,6 +67,10 @@
 import networkx as nx
 import matplotlib.pyplot as plt
 import random
+
+
+
+
 # Generate a random DAG with n nodes
 def generate_random_dag(n):
     G = nx.DiGraph()
@@ -78,7 +82,7 @@ def generate_random_dag(n):
         parents = random.sample(nodes[:i-1], random.randint(0, i-1))
         # Add edges from parents to node i
         for parent in parents:
-            G.add_edge(parent, i)
+            G.add_edge(parent, i,weight=round(random.uniform(5,10), 2))
     
     return G
 
@@ -89,7 +93,14 @@ print(nx.is_directed_acyclic_graph(random_dag))
 bc=nx.edge_betweenness_centrality(random_dag)
 # print(bc)
 # Draw the DAG (optional)
-nx.draw(random_dag, with_labels=True, arrows=True)
+
+pos = nx.spring_layout(random_dag)  # Positions for all nodes
+nx.draw(random_dag, pos,with_labels=True, arrows=True)
+edge_labels = nx.get_edge_attributes(random_dag, 'weight')
+nx.draw_networkx_edge_labels(random_dag, pos, edge_labels=edge_labels, font_color='red',alpha=0.5,verticalalignment
+='top')
+
+
 plt.draw()
 plt.show()
 
