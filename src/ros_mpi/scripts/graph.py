@@ -69,7 +69,7 @@ import matplotlib.pyplot as plt
 import random
 
 
-
+#convert to maximum spanning tree
 
 # Generate a random DAG with n nodes
 def generate_random_dag(n):
