@@ -115,32 +115,33 @@ G = generate_dag(6)
 # Create a directed acyclic graph (DAG)
 
 
-# Perform topological sort
-topological_order = list(nx.topological_sort(G))
+# Function to partition nodes into k communities
+def partition_into_k_communities(dag, k):
+    partition = {}
+    topological_order = list(nx.topological_sort(dag))
+    partition_size = len(topological_order) // k
+    community_count = 0
+    for i, node in enumerate(topological_order):
+        partition[node] = community_count
+        if (i + 1) % partition_size == 0 and community_count < k - 1:
+            community_count += 1
+    return partition
 
-# Group nodes based on topological ordering
-def group_nodes(topological_order, k):
-    groups = []
-    for i in range(0, len(topological_order), k):
-        groups.append(topological_order[i:i+k])
-    return groups
 
-k = 2  # Number of nodes per group
-node_groups = group_nodes(topological_order, k)
+# Partition the DAG into k communities
+k = 2  # Number of communities
+partition = partition_into_k_communities(G, k)
 
-# Assign colors to each group
-colors = ['red', 'blue', 'green', 'orange', 'purple', 'cyan', 'yellow']
-
-# Create a dictionary to store the color of each node
-node_colors = {}
-for i, group in enumerate(node_groups):
-    for node in group:
-        node_colors[node] = colors[i]
-
-# Plot the DAG with different colors for different communities
-plt.figure(figsize=(8, 6))
+# Plot the DAG with different colors for each community
 pos = nx.spring_layout(G)
-nx.draw(G, pos, with_labels=True, node_color=[node_colors[node] for node in G.nodes()], node_size=1000)
+colors = ['red', 'blue']
+node_colors = [colors[partition[node]] for node in G.nodes()]
+nx.draw(G, pos, with_labels=True, node_color=node_colors, node_size=1000)
+
+# Add edge labels
+edge_labels = {(u, v): G[u][v]['weight'] for u, v in G.edges()}
+nx.draw_networkx_edge_labels(G, pos, edge_labels=edge_labels)
+
 plt.show()
 
 
@@ -172,7 +173,13 @@ plt.show()
 # plt.draw()
 # plt.show()
 
+##########################################################################################################
+##########################################################################################################
+##########################################################################################################
 
+# Girvan-Newman
+
+##########################################################################################################
 # import pandas as pd
 
 # # Load karate graph and find communities using Girvan-Newman
@@ -228,7 +235,7 @@ plt.show()
 
 
 
-
+##########################################################################################################
 
 # # Compute betweenness centrality for edges
 # edge_betweenness = nx.edge_betweenness_centrality(G)
