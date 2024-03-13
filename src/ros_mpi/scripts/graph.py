@@ -72,7 +72,7 @@ import random
 #convert to maximum spanning tree
 
 # Generate a random DAG with n nodes
-def generate_random_dag(n):
+def generate_dag(n):
     G = nx.DiGraph()
     nodes = list(range(1, n + 1))
     G.add_nodes_from(nodes)
@@ -87,40 +87,165 @@ def generate_random_dag(n):
     return G
 
 # Generate a random DAG with 10 nodes
-random_dag = generate_random_dag(6)
-print(nx.is_directed_acyclic_graph(random_dag))
-# bc = nx.betweenness_centrality(random_dag)
-bc=nx.edge_betweenness_centrality(random_dag)
+G = generate_dag(6)
+
+# def group_nodes_topological(dag, k):
+#     # Perform topological sort
+#     topological_order = list(nx.topological_sort(dag))
+    
+#     # Calculate the size of each group
+#     group_size = len(topological_order) // k
+    
+#     # Group nodes based on topological ordering
+#     communities = []
+#     for i in range(k):
+#         start = i * group_size
+#         end = (i + 1) * group_size if i < k - 1 else len(topological_order)
+#         communities.append(topological_order[start:end])
+
+#     return communities
+
+# communities = group_nodes_topological(G, 6)
+
+# # Print communities
+# for i, community in enumerate(communities):
+#     print(f"Community {i + 1}: {community}")
+
+
+# Create a directed acyclic graph (DAG)
+
+
+# Perform topological sort
+topological_order = list(nx.topological_sort(G))
+
+# Group nodes based on topological ordering
+def group_nodes(topological_order, k):
+    groups = []
+    for i in range(0, len(topological_order), k):
+        groups.append(topological_order[i:i+k])
+    return groups
+
+k = 2  # Number of nodes per group
+node_groups = group_nodes(topological_order, k)
+
+# Assign colors to each group
+colors = ['red', 'blue', 'green', 'orange', 'purple', 'cyan', 'yellow']
+
+# Create a dictionary to store the color of each node
+node_colors = {}
+for i, group in enumerate(node_groups):
+    for node in group:
+        node_colors[node] = colors[i]
+
+# Plot the DAG with different colors for different communities
+plt.figure(figsize=(8, 6))
+pos = nx.spring_layout(G)
+nx.draw(G, pos, with_labels=True, node_color=[node_colors[node] for node in G.nodes()], node_size=1000)
+plt.show()
+
+
+
+
+
+
+
+
+
+# print(nx.is_directed_acyclic_graph(G))
+
+# bc = nx.betweenness_centrality(G)
+# bc = nx.edge_betweenness_centrality(G)
 # print(bc)
 # Draw the DAG (optional)
 
-pos = nx.spring_layout(random_dag)  # Positions for all nodes
-nx.draw(random_dag, pos,with_labels=True, arrows=True)
-edge_labels = nx.get_edge_attributes(random_dag, 'weight')
-nx.draw_networkx_edge_labels(random_dag, pos, edge_labels=edge_labels, font_color='red',alpha=0.5,verticalalignment
-='top')
+# pos = nx.spring_layout(G)  # Positions for all nodes
+# nx.draw(G, pos,with_labels=True, arrows=True)
+# edge_labels = nx.get_edge_attributes(G, 'weight')
+# nx.draw_networkx_edge_labels(G, pos, edge_labels=edge_labels, font_color='red',alpha=0.5,verticalalignment
+# ='top')
+# comm = nx.community.girvan_newman(G)
+# for c in comm:
+#     print(c)
+# pos = nx.spring_layout(G)  # Positions for all nodes
+# nx.draw(G, pos,with_labels=True, arrows=True)
+
+# plt.draw()
+# plt.show()
 
 
-plt.draw()
-plt.show()
+# import pandas as pd
+
+# # Load karate graph and find communities using Girvan-Newman
+# # G = nx.karate_club_graph()
+# communities = list(nx.community.girvan_newman(G))
+# # print(f'communities at line 120: {communities}')
+
+# # function to create node colour list
+# def create_community_node_colors(graph, communities):
+#     number_of_colors = len(communities)
+#     print(f'num: {number_of_colors}')
+#     colors = ["#D4FCB1", "#CDC5FC", "#FFC2C4", "#F2D140", "#BCC6C8","#D5FCB7", "#CDC3FC", "#FFC1C6", "#FAD140", "#BDC7C8"][:number_of_colors]
+#     node_colors = []
+#     for node in graph:
+#         current_community_index = 0
+#         for community in communities:
+#             if node in community:
+#                 node_colors.append(colors[current_community_index])
+#                 break
+#             print(f'current community index {current_community_index}')
+#             current_community_index += 1
+#     return node_colors
 
 
-# Compute betweenness centrality for edges
-edge_betweenness = nx.edge_betweenness_centrality(random_dag)
+# # function to plot graph with node colouring based on communities
+# def visualize_communities(graph, communities, i):
+#     node_colors = create_community_node_colors(graph, communities)
+#     modularity = round(nx.community.modularity(graph, communities), 6)
+#     title = f"Community Visualization of {len(communities)} communities with modularity of {modularity}"
+#     pos = nx.spring_layout(graph, k=0.3, iterations=50, seed=2)
+#     plt.subplot(2, 1, i)
+#     plt.title(title)
+#     nx.draw(
+#         graph,
+#         pos=pos,
+#         node_size=1000,
+#         node_color=node_colors,
+#         with_labels=True,
+#         font_size=20,
+#         font_color="black",
+#     )
 
-# Find the edge(s) with the greatest betweenness centrality
-max_betweenness = max(edge_betweenness.values())
-edges_with_max_betweenness = [edge for edge, centrality in edge_betweenness.items() if centrality == max_betweenness]
 
-# Remove the first edge with the greatest betweenness centrality
-if edges_with_max_betweenness:
-    edge_to_remove = edges_with_max_betweenness[0]
-    random_dag.remove_edge(*edge_to_remove)
-    print(f"Removed edge with the greatest betweenness centrality: {edge_to_remove}")
-else:
-    print("No edges found with non-zero betweenness centrality")
+# fig, ax = plt.subplots(3, figsize=(15, 20))
+
+# # Plot graph with colouring based on communities
+# visualize_communities(G, communities[0], 1)
+# visualize_communities(G, communities[2], 2)
+
+# plt.show()
 
 
-nx.draw(random_dag, with_labels=True, arrows=True)
-plt.draw()
-plt.show()
+
+
+
+
+
+# # Compute betweenness centrality for edges
+# edge_betweenness = nx.edge_betweenness_centrality(G)
+
+# # Find the edge(s) with the greatest betweenness centrality
+# max_betweenness = max(edge_betweenness.values())
+# edges_with_max_betweenness = [edge for edge, centrality in edge_betweenness.items() if centrality == max_betweenness]
+
+# # Remove the first edge with the greatest betweenness centrality
+# if edges_with_max_betweenness:
+#     edge_to_remove = edges_with_max_betweenness[0]
+#     G.remove_edge(*edge_to_remove)
+#     print(f"Removed edge with the greatest betweenness centrality: {edge_to_remove}")
+# else:
+#     print("No edges found with non-zero betweenness centrality")
+
+
+# nx.draw(G, with_labels=True, arrows=True)
+# plt.draw()
+# plt.show()
