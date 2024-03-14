@@ -354,7 +354,7 @@ class PlotGraph:
         plt.legend()
 
         plt.tight_layout()
-        plt.show()
+        # plt.show()
         plt.savefig('/home/jxie/rossim/src/ros_mpi/scripts/graph/task_succ_rate.png')
         plt.close()
 
