@@ -38,7 +38,7 @@ class Node:
         task_size_max = int(config.get('Task','task_size_max'))
         ipsMax = int(config.get('Task','ips_max'))
         ipsMin = int(config.get('Task','ips_min'))
-        taskgenerator = TaskGen(random.randint(numberOfTask // 10, numberOfTask),numberOfComputingNode,task_size_min,task_size_max,ipsMin,ipsMax)
+        taskgenerator = TaskGen(random.randint(numberOfTask // 2, numberOfTask),numberOfComputingNode,task_size_min,task_size_max,ipsMin,ipsMax)
         testorchest = Orchestrator([],taskgenerator.gen_comp_matrix(),100,200)
         # testorchest.indep_sch(taskgenerator.gen_indep())
         tempTask = taskgenerator.gen_indep()

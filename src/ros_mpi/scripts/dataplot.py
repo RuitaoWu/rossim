@@ -324,9 +324,16 @@ class PlotGraph:
                 completed_total.append(len(completed_x))
 
             with open('/home/jxie/rossim/src/ros_mpi/task_succ/incompleted_%d_iter_%d.pkl' % (self.uavid, i), 'rb') as file:
+                # incomplete_tasks = pickle.load(file)
+                # incomplete_x, _ = zip(*incomplete_tasks)
+                # incomplete_total.append(len(incomplete_x))
                 incomplete_tasks = pickle.load(file)
-                incomplete_x, _ = zip(*incomplete_tasks)
-                incomplete_total.append(len(incomplete_x))
+                if incomplete_tasks:  # Check if incomplete_tasks is not empty
+                    incomplete_x, _ = zip(*incomplete_tasks)
+                    incomplete_total.append(len(incomplete_x))
+                else:
+                    incomplete_x = []
+                    incomplete_total.append(0)
 
             total_tasks = len(completed_x) + len(incomplete_x)
             complete_rate.append((len(completed_x) / total_tasks) * 100)
@@ -336,9 +343,9 @@ class PlotGraph:
         plt.figure(figsize=(12, 6))
 
         plt.subplot(2, 1, 1)
-        plt.plot(iter_num, completed_total, label='Completed', marker='o')
-        plt.plot(iter_num, incomplete_total, label='Incomplete', marker='x')
-        plt.plot(iter_num, [completed_total[i] + incomplete_total[i] for i in range(len(iter_num))], label='Total', marker='s')
+        plt.plot(iter_num, completed_total, label='Completed', marker='o',linestyle='-.')
+        plt.plot(iter_num, incomplete_total, label='Incomplete', marker='x',linestyle='--')
+        plt.plot(iter_num, [completed_total[i] + incomplete_total[i] for i in range(len(iter_num))], label='Total', marker='s',linestyle=':')
         plt.xlabel('Number of Iteration')
         plt.ylabel('Number of Tasks')
         plt.title('Task Completion Analysis')
@@ -346,8 +353,8 @@ class PlotGraph:
 
         # Second subplot: Complete Rate and Incomplete Rate
         plt.subplot(2, 1, 2)
-        plt.plot(iter_num, complete_rate, label='Complete Rate', marker='o')
-        plt.plot(iter_num, incomplete_rate, label='Incomplete Rate', marker='x')
+        plt.plot(iter_num, complete_rate, label='Complete Rate', marker='o',linestyle='-.')
+        plt.plot(iter_num, incomplete_rate, label='Incomplete Rate', marker='x',linestyle='--')
         plt.xlabel('Number of Iteration')
         plt.ylabel('Rate (%)')
         plt.title('Task Completion Rate Analysis')
