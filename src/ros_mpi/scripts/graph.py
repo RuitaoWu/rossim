@@ -59,100 +59,6 @@
 
 
 
-####################################################################
-####################################################################
-####################################################################
-
-###graph partition algorithm
-import networkx as nx
-import matplotlib.pyplot as plt
-import random
-
-
-#convert to maximum spanning tree
-
-# Generate a random DAG with n nodes
-def generate_dag(n):
-    G = nx.DiGraph()
-    nodes = list(range(1, n + 1))
-    G.add_nodes_from(nodes)
-
-    for i in range(2, n + 1):
-        # Randomly select parent nodes for node i
-        parents = random.sample(nodes[:i-1], random.randint(0, i-1))
-        # Add edges from parents to node i
-        for parent in parents:
-            G.add_edge(parent, i,weight=round(random.uniform(5,10), 2))
-    
-    return G
-
-# Generate a random DAG with 10 nodes
-G = generate_dag(6)
-
-# def group_nodes_topological(dag, k):
-#     # Perform topological sort
-#     topological_order = list(nx.topological_sort(dag))
-    
-#     # Calculate the size of each group
-#     group_size = len(topological_order) // k
-    
-#     # Group nodes based on topological ordering
-#     communities = []
-#     for i in range(k):
-#         start = i * group_size
-#         end = (i + 1) * group_size if i < k - 1 else len(topological_order)
-#         communities.append(topological_order[start:end])
-
-#     return communities
-
-# communities = group_nodes_topological(G, 6)
-
-# # Print communities
-# for i, community in enumerate(communities):
-#     print(f"Community {i + 1}: {community}")
-
-
-# Create a directed acyclic graph (DAG)
-
-
-# Function to partition nodes into k communities
-def partition_into_k_communities(dag, k):
-    partition = {}
-    topological_order = list(nx.topological_sort(dag))
-    partition_size = len(topological_order) // k
-    community_count = 0
-
-    for i, node in enumerate(topological_order):
-        if i < k * partition_size:
-            partition[node] = community_count
-        else:
-            partition[node] = k - 1  
-        # partition[node] = community_count
-        if (i + 1) % partition_size == 0 and community_count < k - 1:
-            community_count += 1
-
-    return partition
-
-
-# Partition the DAG into k communities
-k = 2  # Number of communities
-partition = partition_into_k_communities(G, k)
-
-# Plot the DAG with different colors for each community
-pos = nx.spring_layout(G)
-colors = ['red', 'blue','y']
-node_colors = [colors[partition[node]] for node in G.nodes()]
-nx.draw(G, pos, with_labels=True, node_color=node_colors, node_size=1000)
-
-# Add edge labels
-edge_labels = {(u, v): G[u][v]['weight'] for u, v in G.edges()}
-nx.draw_networkx_edge_labels(G, pos, edge_labels=edge_labels)
-
-plt.show()
-
-
-
-
 
 
 
@@ -262,3 +168,101 @@ plt.show()
 # nx.draw(G, with_labels=True, arrows=True)
 # plt.draw()
 # plt.show()
+
+
+
+# def group_nodes_topological(dag, k):
+#     # Perform topological sort
+#     topological_order = list(nx.topological_sort(dag))
+    
+#     # Calculate the size of each group
+#     group_size = len(topological_order) // k
+    
+#     # Group nodes based on topological ordering
+#     communities = []
+#     for i in range(k):
+#         start = i * group_size
+#         end = (i + 1) * group_size if i < k - 1 else len(topological_order)
+#         communities.append(topological_order[start:end])
+
+#     return communities
+
+# communities = group_nodes_topological(G, 6)
+
+# # Print communities
+# for i, community in enumerate(communities):
+#     print(f"Community {i + 1}: {community}")
+
+
+# Create a directed acyclic graph (DAG)
+
+####################################################################
+####################################################################
+####################################################################
+
+###graph partition algorithm
+import networkx as nx
+import matplotlib.pyplot as plt
+import random
+
+
+#convert to maximum spanning tree
+class Graph():
+    def __init__(self) -> None:
+        pass
+    # Generate a random DAG with n nodes
+    def generate_dag(self,n):
+        G = nx.DiGraph()
+        nodes = list(range(1, n + 1))
+        G.add_nodes_from(nodes)
+
+        for i in range(2, n + 1):
+            # Randomly select parent nodes for node i
+            parents = random.sample(nodes[:i-1], random.randint(0, i-1))
+            # Add edges from parents to node i
+            for parent in parents:
+                G.add_edge(parent, i,weight=round(random.uniform(5,10), 2))
+        
+        return G
+
+    # Function to partition nodes into k communities
+    def partition_into_k_communities(self,dag, k):
+        partition = {}
+        topological_order = list(nx.topological_sort(dag))
+        partition_size = len(topological_order) // k
+        community_count = 0
+
+        for i, node in enumerate(topological_order):
+            if i < k * partition_size:
+                partition[node] = community_count
+            else:
+                partition[node] = k - 1  
+            # partition[node] = community_count
+            if (i + 1) % partition_size == 0 and community_count < k - 1:
+                community_count += 1
+
+        return partition
+
+    def plot_graph(self,partition,G):
+
+        # Partition the DAG into k communities
+        k = 2  # Number of communities
+        # partition = partition_into_k_communities(G, k)
+
+        # Plot the DAG with different colors for each community
+        pos = nx.spring_layout(G)
+        colors = ['red', 'blue','y']
+        node_colors = [colors[partition[node]] for node in G.nodes()]
+        nx.draw(G, pos, with_labels=True, node_color=node_colors, node_size=1000)
+
+        # Add edge labels
+        edge_labels = {(u, v): G[u][v]['weight'] for u, v in G.edges()}
+        nx.draw_networkx_edge_labels(G, pos, edge_labels=edge_labels)
+
+        plt.show()
+if __name__ == '__main__':
+    graph = Graph()
+    G = graph.generate_dag(6)
+    graph.plot_graph(graph.partition_into_k_communities(G,2),G)
+
+
