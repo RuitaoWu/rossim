@@ -121,10 +121,16 @@ def partition_into_k_communities(dag, k):
     topological_order = list(nx.topological_sort(dag))
     partition_size = len(topological_order) // k
     community_count = 0
+
     for i, node in enumerate(topological_order):
-        partition[node] = community_count
+        if i < k * partition_size:
+            partition[node] = community_count
+        else:
+            partition[node] = k - 1  
+        # partition[node] = community_count
         if (i + 1) % partition_size == 0 and community_count < k - 1:
             community_count += 1
+
     return partition
 
 
@@ -134,7 +140,7 @@ partition = partition_into_k_communities(G, k)
 
 # Plot the DAG with different colors for each community
 pos = nx.spring_layout(G)
-colors = ['red', 'blue']
+colors = ['red', 'blue','y']
 node_colors = [colors[partition[node]] for node in G.nodes()]
 nx.draw(G, pos, with_labels=True, node_color=node_colors, node_size=1000)
 

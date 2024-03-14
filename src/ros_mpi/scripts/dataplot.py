@@ -290,27 +290,71 @@ class PlotGraph:
         plt.savefig('/home/jxie/rossim/src/ros_mpi/scripts/graph/uav-%d-comm-time.png'%self.uavid)
         plt.close()
     def task_analysis(self):
-        succ_rate,iter_num = [],[]
-        for i in range(0,5):
-            with open('/home/jxie/rossim/src/ros_mpi/task_succ/completed_%d.pkl'%i,'rb') as file:
-                completed_tasks = pickle.load(file)
-            with open('/home/jxie/rossim/src/ros_mpi/task_succ/incompleted_%d.pkl'%i,'rb') as file:
-                incomplete_tasks = pickle.load(file)
-            completed_x, _ = zip(*completed_tasks)
-            incomplete_x, _= zip(*incomplete_tasks)
-            # succ_rate.append(float((len(completed_x)/(len(completed_x)+len(incomplete_x)))) *100)
+        # succ_rate,iter_num = [],[]
+        # for i in range(0,5):
+        #     with open('/home/jxie/rossim/src/ros_mpi/task_succ/completed_%d_iter_%d.pkl'%(self.uavid,i),'rb') as file:
+        #         completed_tasks = pickle.load(file)
+        #     with open('/home/jxie/rossim/src/ros_mpi/task_succ/incompleted_%d_iter_%d.pkl'%(self.uavid,i),'rb') as file:
+        #         incomplete_tasks = pickle.load(file)
+        #     completed_x, _ = zip(*completed_tasks)
+        #     incomplete_x, _= zip(*incomplete_tasks)
+        #     succ_rate.append(float((len(completed_x)/(len(completed_x)+len(incomplete_x)))) *100)
 
-            print(len(completed_x)/(len(completed_x)+len(incomplete_x)))
-            succ_rate.append(float((len(completed_x)/87))*100)
-            iter_num.append(str(i))
-        # plt.scatter(iter_num,succ_rate, color='b')
-        plt.plot(iter_num,succ_rate, color='b',marker='^',linestyle='--')
+        #     print(len(completed_x)/(len(completed_x)+len(incomplete_x)))
+        #     iter_num.append(str(i))
+        # plt.plot(iter_num,succ_rate, color='b',marker='^',linestyle='--')
 
-        plt.xlabel('Number of Iteration')
-        plt.ylabel('Success Rate (%)')
-        plt.title('Task Success Rate')
-        # plt.legend()
+        # plt.xlabel('Number of Iteration')
+        # plt.ylabel('Success Rate (%)')
+        # plt.title('Task Success Rate')
+        # # plt.legend()
         
+        # plt.savefig('/home/jxie/rossim/src/ros_mpi/scripts/graph/task_succ_rate.png')
+        # plt.close()
+        completed_total = []
+        incomplete_total = []
+        complete_rate = []
+        incomplete_rate = []
+        iter_num = []
+
+        for i in range(0, 5):
+            with open('/home/jxie/rossim/src/ros_mpi/task_succ/completed_%d_iter_%d.pkl' % (self.uavid, i), 'rb') as file:
+                completed_tasks = pickle.load(file)
+                completed_x, _ = zip(*completed_tasks)
+                completed_total.append(len(completed_x))
+
+            with open('/home/jxie/rossim/src/ros_mpi/task_succ/incompleted_%d_iter_%d.pkl' % (self.uavid, i), 'rb') as file:
+                incomplete_tasks = pickle.load(file)
+                incomplete_x, _ = zip(*incomplete_tasks)
+                incomplete_total.append(len(incomplete_x))
+
+            total_tasks = len(completed_x) + len(incomplete_x)
+            complete_rate.append((len(completed_x) / total_tasks) * 100)
+            incomplete_rate.append((len(incomplete_x) / total_tasks) * 100)
+            iter_num.append(str(i))
+        # First subplot: Completed, Incomplete, and Total Tasks
+        plt.figure(figsize=(12, 6))
+
+        plt.subplot(2, 1, 1)
+        plt.plot(iter_num, completed_total, label='Completed', marker='o')
+        plt.plot(iter_num, incomplete_total, label='Incomplete', marker='x')
+        plt.plot(iter_num, [completed_total[i] + incomplete_total[i] for i in range(len(iter_num))], label='Total', marker='s')
+        plt.xlabel('Number of Iteration')
+        plt.ylabel('Number of Tasks')
+        plt.title('Task Completion Analysis')
+        plt.legend()
+
+        # Second subplot: Complete Rate and Incomplete Rate
+        plt.subplot(2, 1, 2)
+        plt.plot(iter_num, complete_rate, label='Complete Rate', marker='o')
+        plt.plot(iter_num, incomplete_rate, label='Incomplete Rate', marker='x')
+        plt.xlabel('Number of Iteration')
+        plt.ylabel('Rate (%)')
+        plt.title('Task Completion Rate Analysis')
+        plt.legend()
+
+        plt.tight_layout()
+        plt.show()
         plt.savefig('/home/jxie/rossim/src/ros_mpi/scripts/graph/task_succ_rate.png')
         plt.close()
 
@@ -343,5 +387,6 @@ if __name__ == '__main__':
     # plgraph = PlotGraph(1)
     # plgraph.gantt_chart()   
     plgraph = PlotGraph(3)
+
     plgraph.task_analysis()
     plgraph.trajectory()

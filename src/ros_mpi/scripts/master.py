@@ -79,6 +79,7 @@ if taskType == 'Independent':
     for x in range(0,5):
         print(f'current iteration {x}')
         if node_id  == master_node:
+        # if node_id  == random.randint(0,numberOfComputingNode):
             node_verify = "Master"
             nodeMaster = Node(node_id+1,node_verify,[],int(random.randrange(int(min_cpu),int(max_cpu))),x,[])
             nodeMaster.run()
