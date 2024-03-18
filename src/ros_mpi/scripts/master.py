@@ -78,15 +78,18 @@ if taskType == 'Independent':
     #at begnining of each iteration it will define new empty task queue
     for x in range(0,5):
         print(f'current iteration {x}')
-        if node_id  == master_node:
-        # if node_id  == random.randint(0,numberOfComputingNode):
-            node_verify = "Master"
-            nodeMaster = Node(node_id+1,node_verify,[],int(random.randrange(int(min_cpu),int(max_cpu))),x,[])
-            nodeMaster.run()
-        else:
-            node_verify = "Worker%d"%(node_id+1)
-            nodeWorker = WorkerNode(node_id+1,node_verify,int(random.randrange(int(min_cpu),int(max_cpu))),x,[])
-            nodeWorker.run()
+        try:
+            if node_id  == master_node:
+            # if node_id  == random.randint(0,numberOfComputingNode):
+                node_verify = "Master"
+                nodeMaster = Node(node_id+1,node_verify,[],int(random.randrange(int(min_cpu),int(max_cpu))),x,[])
+                nodeMaster.run()
+            else:
+                node_verify = "Worker%d"%(node_id+1)
+                nodeWorker = WorkerNode(node_id+1,node_verify,int(random.randrange(int(min_cpu),int(max_cpu))),x,[])
+                nodeWorker.run()
+        except:
+            print('done')
         print(f'finished iteration {x}')
 
 elif taskType == 'Dependent':

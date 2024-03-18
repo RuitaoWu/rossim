@@ -46,8 +46,10 @@ class Node:
         self.allTasks = testorchest.indep_sch(tempTask)
         # for i in self.allTasks:
         #     print(f'task {i.task_idx} on processor {i.processor_id}')
+        self.uav_capa = 1000000
         self.node_id = node_id
         self.taskQueue = taskqueue
+        self.capacity,self.temp_capa = [],[]
         self.nodeVerify = nodeVerify
         self.pubTopic = 'pub/task'
         self.recTopic = 'rec/task'
@@ -78,13 +80,20 @@ class Node:
 
             return self.datarate .data_rate(distance)
     def range(self,u1,u2):
-
+        try:
             pos_1= rospy.wait_for_message('/uav%d/ground_truth_to_tf/pose'%u1, PoseStamped)
             pos_2 = rospy.wait_for_message('/uav%d/ground_truth_to_tf/pose'%u2, PoseStamped)
             return math.dist([pos_1.pose.position.x,pos_1.pose.position.y,pos_1.pose.position.z],
                                 [pos_2.pose.position.x,pos_2.pose.position.y,pos_2.pose.position.z])
+        except:
+            return float('inf')
 
-            
+    def capc_usage(self,t):
+        self.temp_capa.append(t.size)
+        while sum(self.temp_capa) > self.uav_capa:
+            self.temp_capa.pop(0)
+        self.capacity.append(sum(self.temp_capa))
+        
     def run(self):
 
         for t in self.allTasks:
@@ -93,6 +102,7 @@ class Node:
                 t.st = self.taskQueue [-1].et if self.taskQueue else 0
                 t.et = t.st + float(t.size / t.ci) 
                 self.taskQueue.append(t)
+                self.capc_usage(t)
                 self.comp_energy.append([t.delta * (t.size/t.ci),t.task_idx])
                 self.comp_time.append([(t.size/t.ci),t.task_idx])
                 self.completed.append([t.task_idx,rospy.get_time()])
@@ -114,6 +124,7 @@ class Node:
         #task on master
         # print(f'all tasks on master node {len(self.taskQueue)}')
         print(f'total task {len(self.completed) + len(self.incompleted)}')
+        print(f'uav capacity usage {self.capacity}')
         with open('/home/jxie/rossim/src/ros_mpi/data/uav%d_iter_%d.pkl'%(self.node_id,self.iteration),'wb') as file:
             pickle.dump(self.taskQueue,file)
         with open('/home/jxie/rossim/src/ros_mpi/data/uav%d_comm_time_iter_%d.pkl'%(self.node_id,self.iteration),'wb') as file:

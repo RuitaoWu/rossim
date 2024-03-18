@@ -209,10 +209,7 @@ transmission_power=0.05
 alpha=4.0
 ```
 <!-- CONTRIBUTING -->
-## Contributing  
-
-TBD 
-
+<!-- ## Contributing   -->
 
 <!-- LICENSE -->
 ## License  
@@ -244,6 +241,4 @@ TBA
 [linkedin-shield]:https://img.shields.io/badge/LinkedIn-blue?style=for-the-badge
 
 ## TODO
-- existing issue
-  - the graph partition strategy may only working for level-by-level (tree) structure which may ignore dependencies if convert to a spanning tree or MST
-- Possible solution: convert to maximum spnning tree
+- graph partition strategy based on the topological sort
