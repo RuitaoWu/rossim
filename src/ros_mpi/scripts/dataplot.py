@@ -375,9 +375,21 @@ class PlotGraph:
     
     
 if __name__ == '__main__':
-    # with open('/home/jxie/rossim/src/ros_mpi/data/uav%d.pkl'%1, 'rb') as file:
-    #     content = pickle.load(file)
-    # print(f'content { len(content)}')
+
+    data=[]
+    for i in range(5):
+        with open('/home/jxie/rossim/src/ros_mpi/task_succ/capacity3_iter_%d.pkl'%i, 'rb') as file:
+            content = pickle.load(file)
+            print([x / 1000 for x in content])
+        plt.plot([x / 10000 for x in content],label='Iteration%d'%i, marker=i)
+    
+
+    plt.xlabel('Iteration Number')
+    plt.ylabel('Capacity Cost (Unit Bits)')
+    plt.title('Capacity Cost vs. Iteration Number')
+    plt.legend()
+    plt.grid(True)
+    plt.show()
     # with open('/home/jxie/rossim/src/ros_mpi/data/uav%d.pkl'%2, 'rb') as file:
     #     content = pickle.load(file)
     # print(f'content { len(content)}')
@@ -393,7 +405,7 @@ if __name__ == '__main__':
     #     plgraph.run()
     # plgraph = PlotGraph(1)
     # plgraph.gantt_chart()   
-    plgraph = PlotGraph(3)
+    # plgraph = PlotGraph(3)
 
-    plgraph.task_analysis()
-    plgraph.trajectory()
+    # plgraph.task_analysis()
+    # plgraph.trajectory()

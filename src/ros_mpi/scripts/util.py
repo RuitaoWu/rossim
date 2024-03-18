@@ -124,7 +124,7 @@ class Node:
         #task on master
         # print(f'all tasks on master node {len(self.taskQueue)}')
         print(f'total task {len(self.completed) + len(self.incompleted)}')
-        print(f'uav capacity usage {self.capacity}')
+        print(f'uav capacity usage {len(self.capacity)}')
         with open('/home/jxie/rossim/src/ros_mpi/data/uav%d_iter_%d.pkl'%(self.node_id,self.iteration),'wb') as file:
             pickle.dump(self.taskQueue,file)
         with open('/home/jxie/rossim/src/ros_mpi/data/uav%d_comm_time_iter_%d.pkl'%(self.node_id,self.iteration),'wb') as file:
@@ -141,6 +141,8 @@ class Node:
             pickle.dump(self.completed,file)
         with open('/home/jxie/rossim/src/ros_mpi/task_succ/incompleted_%d_iter_%d.pkl'%(self.node_id,self.iteration),'wb') as file:
             pickle.dump(self.incompleted,file)
+        with open('/home/jxie/rossim/src/ros_mpi/task_succ/capacity%d_iter_%d.pkl'%(self.node_id,self.iteration),'wb') as file:
+            pickle.dump(self.capacity,file)
 
 class WorkerNode:
         def __init__(self,node_id,nodeVerify,cpu,iteration,taskqueue,energy=50) -> None:
