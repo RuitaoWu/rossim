@@ -107,6 +107,7 @@ class Node:
                 self.comp_time.append([(t.size/t.ci),t.task_idx])
                 self.completed.append([t.task_idx,rospy.get_time()])
                 rospy.sleep(t.size/t.ci)
+                
             else: 
                 if self.range(self.node_id,t.processor_id+1) > 200:
                     self.incompleted.append([t.task_idx,rospy.get_time()])

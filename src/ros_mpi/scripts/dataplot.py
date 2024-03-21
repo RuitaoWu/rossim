@@ -318,12 +318,14 @@ class PlotGraph:
         iter_num = []
 
         for i in range(0, 5):
-            with open('/home/jxie/rossim/src/ros_mpi/task_succ/completed_%d_iter_%d.pkl' % (self.uavid, i), 'rb') as file:
+            # with open('/home/jxie/rossim/src/ros_mpi/task_succ/completed_%d_iter_%d.pkl' % (self.uavid, i), 'rb') as file:
+            with open('/home/jxie/rossim/src/ros_mpi/task_succ/completed_%d_iter_%d.pkl' % (3, i), 'rb') as file:
                 completed_tasks = pickle.load(file)
                 completed_x, _ = zip(*completed_tasks)
                 completed_total.append(len(completed_x))
 
-            with open('/home/jxie/rossim/src/ros_mpi/task_succ/incompleted_%d_iter_%d.pkl' % (self.uavid, i), 'rb') as file:
+            # with open('/home/jxie/rossim/src/ros_mpi/task_succ/incompleted_%d_iter_%d.pkl' % (self.uavid, i), 'rb') as file:
+            with open('/home/jxie/rossim/src/ros_mpi/task_succ/incompleted_%d_iter_%d.pkl' % (3, i), 'rb') as file:
                 # incomplete_tasks = pickle.load(file)
                 # incomplete_x, _ = zip(*incomplete_tasks)
                 # incomplete_total.append(len(incomplete_x))
@@ -380,10 +382,10 @@ if __name__ == '__main__':
     for i in range(5):
         with open('/home/jxie/rossim/src/ros_mpi/task_succ/capacity3_iter_%d.pkl'%i, 'rb') as file:
             content = pickle.load(file)
-            print([x / 1000 for x in content])
-        plt.plot([x / 10000 for x in content],label='Iteration%d'%i, marker=i)
-    
-
+        data.append(content)
+        # plt.plot([x for x in content],[y for y in range(len(content))],label='Iteration%d'%i, marker=i)
+    dt = [ele for sub in data for ele in sub]
+    plt.plot([y for y in range(len(dt))],[x for x in dt],label='Iteration%d'%i, marker=i)
     plt.xlabel('Iteration Number')
     plt.ylabel('Capacity Cost (Unit Bits)')
     plt.title('Capacity Cost vs. Iteration Number')
@@ -397,15 +399,15 @@ if __name__ == '__main__':
     #     content = pickle.load(file)
     # print(f'content { len(content)}')
 
-    # for x in range(1,4):
-    #     plgraph = PlotGraph(x)
-    #     print('current uav%d'%x)
-    #     # plgraph.comm_time()
+    for x in range(1,3):
+        plgraph = PlotGraph(x)
+        print('current uav%d'%x)
+        # plgraph.comm_time()
     
-    #     plgraph.run()
+        plgraph.run()
     # plgraph = PlotGraph(1)
     # plgraph.gantt_chart()   
     # plgraph = PlotGraph(3)
 
-    # plgraph.task_analysis()
+    plgraph.task_analysis()
     # plgraph.trajectory()
