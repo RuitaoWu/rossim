@@ -7,7 +7,8 @@
 # new environment variables
 
 # modified environment variables
-export CMAKE_PREFIX_PATH="/home/jxie/Workspace/hzhang3986/nac_sim/src/ros_mpi/scripts/devel:$CMAKE_PREFIX_PATH"
-export PWD='/home/jxie/Workspace/hzhang3986/nac_sim/src/ros_mpi/scripts/build'
-export ROSLISP_PACKAGE_DIRECTORIES="/home/jxie/Workspace/hzhang3986/nac_sim/src/ros_mpi/scripts/devel/share/common-lisp:$ROSLISP_PACKAGE_DIRECTORIES"
-export ROS_PACKAGE_PATH="/home/jxie/Workspace/hzhang3986/nac_sim/src/ros_mpi/scripts/src:$ROS_PACKAGE_PATH"
+export CMAKE_PREFIX_PATH="/home/jxie/rossim/src/ros_mpi/scripts/devel:$CMAKE_PREFIX_PATH"
+export LD_LIBRARY_PATH="/home/jxie/rossim/src/ros_mpi/scripts/devel/lib:$LD_LIBRARY_PATH"
+export PWD='/home/jxie/rossim/src/ros_mpi/scripts/build'
+export ROSLISP_PACKAGE_DIRECTORIES="/home/jxie/rossim/src/ros_mpi/scripts/devel/share/common-lisp:$ROSLISP_PACKAGE_DIRECTORIES"
+export ROS_PACKAGE_PATH="/home/jxie/Workspace/hzhang3986/nac_sim/src/ros_mpi/scripts/src:/home/jxie/rossim/src/ros_mpi/scripts/src:$ROS_PACKAGE_PATH"

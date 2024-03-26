@@ -1,2 +1,2 @@
 
--DCATKIN_DEVEL_PREFIX=/home/jxie/Workspace/hzhang3986/nac_sim/src/ros_mpi/scripts/devel -DCMAKE_INSTALL_PREFIX=/home/jxie/Workspace/hzhang3986/nac_sim/src/ros_mpi/scripts/install -G Unix Makefiles
+-DCATKIN_DEVEL_PREFIX=/home/jxie/rossim/src/ros_mpi/scripts/devel -DCMAKE_INSTALL_PREFIX=/home/jxie/rossim/src/ros_mpi/scripts/install -G Unix Makefiles

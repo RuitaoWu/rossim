@@ -282,7 +282,7 @@ class PlotGraph:
         plt.savefig('/home/jxie/rossim/src/ros_mpi/scripts/graph/uav-datarate.png')
         plt.close()
     def comm_time(self):
-        with open('/home/jxie/rossim/src/ros_mpi/data/uav%d_comm_time.pkl'%self.uavid, 'rb') as file:
+        with open('/home/jxie/rossim/src/ros_mpi/data/uav%d_comm_time.pkl'%self.uavid, 'rb') as file:  
             content = pickle.load(file)
         plt.plot([content.index(x) for x in content],content,marker='v',lineStyle='--')
         # plt.autoscale(axis='y')
@@ -378,20 +378,20 @@ class PlotGraph:
     
 if __name__ == '__main__':
 
-    data=[]
-    for i in range(5):
-        with open('/home/jxie/rossim/src/ros_mpi/task_succ/capacity3_iter_%d.pkl'%i, 'rb') as file:
-            content = pickle.load(file)
-        data.append(content)
-        # plt.plot([x for x in content],[y for y in range(len(content))],label='Iteration%d'%i, marker=i)
-    dt = [ele for sub in data for ele in sub]
-    plt.plot([y for y in range(len(dt))],[x for x in dt],label='Iteration%d'%i, marker=i)
-    plt.xlabel('Iteration Number')
-    plt.ylabel('Capacity Cost (Unit Bits)')
-    plt.title('Capacity Cost vs. Iteration Number')
-    plt.legend()
-    plt.grid(True)
-    plt.show()
+    # data=[]
+    # for i in range(5):
+    #     with open('/home/jxie/rossim/src/ros_mpi/task_succ/capacity3_iter_%d.pkl'%i, 'rb') as file:
+    #         content = pickle.load(file)
+    #     data.append(content)
+    #     # plt.plot([x for x in content],[y for y in range(len(content))],label='Iteration%d'%i, marker=i)
+    # dt = [ele for sub in data for ele in sub]
+    # plt.plot([y for y in range(len(dt))],[x for x in dt],label='Iteration%d'%i, marker=i)
+    # plt.xlabel('Iteration Number')
+    # plt.ylabel('Capacity Cost (Unit Bits)')
+    # plt.title('Capacity Cost vs. Iteration Number')
+    # plt.legend()
+    # plt.grid(True)
+    # plt.show()
     # with open('/home/jxie/rossim/src/ros_mpi/data/uav%d.pkl'%2, 'rb') as file:
     #     content = pickle.load(file)
     # print(f'content { len(content)}')
@@ -399,15 +399,22 @@ if __name__ == '__main__':
     #     content = pickle.load(file)
     # print(f'content { len(content)}')
 
-    for x in range(1,3):
-        plgraph = PlotGraph(x)
-        print('current uav%d'%x)
-        # plgraph.comm_time()
+    # for x in range(1,3):
+    #     plgraph = PlotGraph(x)
+    #     print('current uav%d'%x)
+    #     # plgraph.comm_time()
     
-        plgraph.run()
+    #     plgraph.run()
     # plgraph = PlotGraph(1)
     # plgraph.gantt_chart()   
     # plgraph = PlotGraph(3)
 
-    plgraph.task_analysis()
-    # plgraph.trajectory()
+
+    ####
+    for i in range(3):
+        for j in range(5):
+            with open('/home/jxie/rossim/src/ros_mpi/task_succ/tasks%d_iter_%d.pkl'%(i+1,j), 'rb') as file:
+                content = pickle.load(file)
+            print('*'*20)
+            print(f'content {i+1}-{j}: {[x.task_idx for x in content]}')
+            print('*'*20)

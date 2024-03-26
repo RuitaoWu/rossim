@@ -24,6 +24,60 @@ from taskgen import TaskGen
 config = configparser.ConfigParser()
 config.read('/home/jxie/rossim/src/ros_mpi/scripts/property.properties')
 
+
+
+#################################################################################
+class UAV:
+    def __init__(self,uav_id,master_id,iter,alltasks=[]) -> None:
+        self.pub_suc_topic = 'tasks'
+        self.uavId = uav_id
+        self.masterId = master_id
+        self.alltasks = alltasks
+        self.taskqueue=[]
+        self.iteration=iter
+        rospy.init_node('uav%d'%self.uavId, anonymous=True)
+        self.pub = rospy.Publisher(self.pub_suc_topic,Task,queue_size=10)
+        print(f'constructed uav {self.uavId}')
+        print(f'current master is {self.masterId}')
+        # self.rate = rospy.Rate(1) # 10hz
+    def sub_callback(self,data):
+        if data and data not in self.taskqueue:
+            self.taskqueue.append(data)
+            # print(f'current uav {self.uavId} received {data.task_idx}')
+        else:
+            print('nothing')
+
+    def thread_callback(self):
+        rospy.Subscriber(self.pub_suc_topic,Task,self.sub_callback)
+        rospy.spin()
+        with open('/home/jxie/rossim/src/ros_mpi/task_succ/tasks%d_iter_%d.pkl'%(self.uavId,self.iteration),'wb') as file:
+            pickle.dump(self.taskqueue,file)
+        print(f'current uav-{self.uavId} finished......')
+
+    def run(self):
+        print(f'call the run method......')
+        thread = threading.Thread(target=self.thread_callback)
+        thread.start()
+        if self.masterId == self.uavId:
+            for i in self.alltasks:
+                self.pub.publish(i)
+                rospy.sleep(0.25)
+        else:
+            print(f'current uav {self.uavId} is not genearte any tasks')
+        # rospy.spin()
+
+
+
+
+
+
+
+
+#################################################################################
+
+
+
+
 class Node:
     def __init__(self,node_id,nodeVerify,allTasks,cpu,iteration,taskqueue,energy=50) -> None:
         print(f'constructing master node UAV on {node_id}')
@@ -124,8 +178,8 @@ class Node:
                     rospy.sleep(0.25) 
         #task on master
         # print(f'all tasks on master node {len(self.taskQueue)}')
-        print(f'total task {len(self.completed) + len(self.incompleted)}')
-        print(f'uav capacity usage {len(self.capacity)}')
+        # print(f'total task {len(self.completed) + len(self.incompleted)}')
+        # print(f'uav capacity usage {len(self.capacity)}')
         with open('/home/jxie/rossim/src/ros_mpi/data/uav%d_iter_%d.pkl'%(self.node_id,self.iteration),'wb') as file:
             pickle.dump(self.taskQueue,file)
         with open('/home/jxie/rossim/src/ros_mpi/data/uav%d_comm_time_iter_%d.pkl'%(self.node_id,self.iteration),'wb') as file:
