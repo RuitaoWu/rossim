@@ -97,13 +97,16 @@ if taskType == 'Independent':
     tempTask = taskgenerator.gen_indep()
     print('generating tasks')
     
-    for i in range(5):
+    for i in range(3):
         masterID = random.randint(1,3)
         if masterID == (node_id+1):
             uav = UAV((node_id+1),masterID,i,alltasks=testorchest.indep_sch(tempTask))
+            uav.run()
         else:
             uav = UAV((node_id+1),masterID,i)
-        uav.run()
+            uav.run()
+        
+
         print(f'finished iteration {i} on master {node_id +1}')
 
 

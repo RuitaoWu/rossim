@@ -412,7 +412,7 @@ if __name__ == '__main__':
 
     ####
     for i in range(3):
-        for j in range(5):
+        for j in range(3):
             with open('/home/jxie/rossim/src/ros_mpi/task_succ/tasks%d_iter_%d.pkl'%(i+1,j), 'rb') as file:
                 content = pickle.load(file)
             print('*'*20)

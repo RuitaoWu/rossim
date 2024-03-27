@@ -37,34 +37,49 @@ class UAV:
         self.iteration=iter
         rospy.init_node('uav%d'%self.uavId, anonymous=True)
         self.pub = rospy.Publisher(self.pub_suc_topic,Task,queue_size=10)
+        # print(f'constructed uav {self.uavId} received task {self.alltasks}')
         print(f'constructed uav {self.uavId}')
-        print(f'current master is {self.masterId}')
+        # print(f'current master is {self.masterId}')
         # self.rate = rospy.Rate(1) # 10hz
     def sub_callback(self,data):
-        if data and data not in self.taskqueue:
+        if data:
             self.taskqueue.append(data)
-            # print(f'current uav {self.uavId} received {data.task_idx}')
-        else:
-            print('nothing')
-
-    def thread_callback(self):
-        rospy.Subscriber(self.pub_suc_topic,Task,self.sub_callback)
-        rospy.spin()
         with open('/home/jxie/rossim/src/ros_mpi/task_succ/tasks%d_iter_%d.pkl'%(self.uavId,self.iteration),'wb') as file:
             pickle.dump(self.taskqueue,file)
-        print(f'current uav-{self.uavId} finished......')
+    def thread_callback(self):
+        print('\nthread call back subscriber')
+        rospy.Subscriber(self.pub_suc_topic,Task,self.sub_callback)
+        # with open('/home/jxie/rossim/src/ros_mpi/task_succ/tasks%d_iter_%d.pkl'%(self.uavId,self.iteration),'wb') as file:
+        #     pickle.dump(self.taskqueue,file)
+        # rospy.spin()
+        # print(f'current uav-{self.uavId} finished......')
+    # def thread_pub(self):
+    #     if self.alltasks:
+    #         for i in self.alltasks:
+    #             self.pub.publish(i)
+    #             if (i.processor_id+1) == self.uavId:
+    #                 self.taskqueue.append(i)
+    #             rospy.sleep(0.25)
+    #     else:
+    #         print(f'current uav {len(self.alltasks)} is empty')
 
     def run(self):
         print(f'call the run method......')
         thread = threading.Thread(target=self.thread_callback)
+        # thread_pub = threading.Thread(target=self.thread_pub)
         thread.start()
-        if self.masterId == self.uavId:
+        # thread_pub.start()
+        if self.alltasks:
             for i in self.alltasks:
                 self.pub.publish(i)
+                print(f'task {i.task_idx} is on {i.processor_id}')
+                if (i.processor_id +1)== self.uavId:
+                    self.taskqueue.append(i)
                 rospy.sleep(0.25)
         else:
-            print(f'current uav {self.uavId} is not genearte any tasks')
-        # rospy.spin()
+            print(f'current uav {len(self.alltasks)} is empty')
+        with open('/home/jxie/rossim/src/ros_mpi/task_succ/tasks%d_iter_%d.pkl'%(self.uavId,self.iteration),'wb') as file:
+            pickle.dump(self.taskqueue,file)
 
 
 
