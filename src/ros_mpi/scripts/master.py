@@ -91,14 +91,18 @@ if taskType == 'Independent':
     #     except:
     #         print('done')
     #     print(f'finished iteration {x}')
-    taskgenerator = TaskGen(random.randint(numberOfTask // 2, numberOfTask),numberOfComputingNode,task_size_min,task_size_max,ipsMin,ipsMax)
-    testorchest = Orchestrator([],taskgenerator.gen_comp_matrix(),100,200)
-    # testorchest.indep_sch(taskgenerator.gen_indep())
-    tempTask = taskgenerator.gen_indep()
-    print('generating tasks')
+    # taskgenerator = TaskGen(random.randint(numberOfTask // 2, numberOfTask),numberOfComputingNode,task_size_min,task_size_max,ipsMin,ipsMax)
+    # testorchest = Orchestrator([],taskgenerator.gen_comp_matrix(),100,200)
+    # # testorchest.indep_sch(taskgenerator.gen_indep())
+    # tempTask = taskgenerator.gen_indep()
+    
     
     for i in range(3):
         masterID = random.randint(1,3)
+        print('generating tasks')
+        taskgenerator = TaskGen(random.randint(numberOfTask // 2, numberOfTask),numberOfComputingNode,task_size_min,task_size_max,ipsMin,ipsMax)
+        testorchest = Orchestrator([],taskgenerator.gen_comp_matrix(),100,200)
+        tempTask = taskgenerator.gen_indep()
         if masterID == (node_id+1):
             uav = UAV((node_id+1),masterID,i,alltasks=testorchest.indep_sch(tempTask))
             uav.run()
@@ -107,7 +111,7 @@ if taskType == 'Independent':
             uav.run()
         
 
-        print(f'finished iteration {i} on master {node_id +1}')
+    #     print(f'finished iteration {i} on master {node_id +1}')
 
 
 elif taskType == 'Dependent':

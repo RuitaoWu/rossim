@@ -7,6 +7,7 @@ import time,math
 from traceback import print_tb
 from turtle import pos
 from collections import defaultdict
+from cupshelpers import Printer
 from networkx import node_attribute_xy
 from numpy import save
 
@@ -29,7 +30,7 @@ config.read('/home/jxie/rossim/src/ros_mpi/scripts/property.properties')
 #################################################################################
 class UAV:
     def __init__(self,uav_id,master_id,iter,alltasks=[]) -> None:
-        self.pub_suc_topic = 'tasks'
+        self.pub_suc_topic = '/uav1/tasks'
         self.uavId = uav_id
         self.masterId = master_id
         self.alltasks = alltasks
@@ -42,26 +43,19 @@ class UAV:
         # print(f'current master is {self.masterId}')
         # self.rate = rospy.Rate(1) # 10hz
     def sub_callback(self,data):
-        if data:
+        print(f'currrent task id {data.task_idx} on {data.processor_id+1} current uav {self.uavId}')
+        # if data not in self.taskqueue:
+        if data.processor_id +1 == self.uavId and data not in self.taskqueue:
             self.taskqueue.append(data)
-        with open('/home/jxie/rossim/src/ros_mpi/task_succ/tasks%d_iter_%d.pkl'%(self.uavId,self.iteration),'wb') as file:
+        with open('/home/jxie/rossim/src/ros_mpi/task_succ/tasks_REC%d_iter_%d.pkl'%(self.uavId,self.iteration),'wb') as file:
             pickle.dump(self.taskqueue,file)
     def thread_callback(self):
         print('\nthread call back subscriber')
         rospy.Subscriber(self.pub_suc_topic,Task,self.sub_callback)
         # with open('/home/jxie/rossim/src/ros_mpi/task_succ/tasks%d_iter_%d.pkl'%(self.uavId,self.iteration),'wb') as file:
         #     pickle.dump(self.taskqueue,file)
-        # rospy.spin()
+        rospy.spin()
         # print(f'current uav-{self.uavId} finished......')
-    # def thread_pub(self):
-    #     if self.alltasks:
-    #         for i in self.alltasks:
-    #             self.pub.publish(i)
-    #             if (i.processor_id+1) == self.uavId:
-    #                 self.taskqueue.append(i)
-    #             rospy.sleep(0.25)
-    #     else:
-    #         print(f'current uav {len(self.alltasks)} is empty')
 
     def run(self):
         print(f'call the run method......')
@@ -76,10 +70,11 @@ class UAV:
                 if (i.processor_id +1)== self.uavId:
                     self.taskqueue.append(i)
                 rospy.sleep(0.25)
+            print(f'finished publish all tasks..')
         else:
             print(f'current uav {len(self.alltasks)} is empty')
-        with open('/home/jxie/rossim/src/ros_mpi/task_succ/tasks%d_iter_%d.pkl'%(self.uavId,self.iteration),'wb') as file:
-            pickle.dump(self.taskqueue,file)
+        # with open('/home/jxie/rossim/src/ros_mpi/task_succ/tasks_SUB%d_iter_%d.pkl'%(self.uavId,self.iteration),'wb') as file:
+        #     pickle.dump(self.taskqueue,file)
 
 
 
@@ -296,7 +291,7 @@ class Master:
         self.topic = '/uav%d/task'%node_id
         self.loc = '/uav%d/ground_truth_to_tf/pose'%node_id
         self.worker_to_uav = '/worker/task'
-        rospy.init_node('Master', anonymous=True)
+        rospy.init_node('uav%d'%(node_id), anonymous=True)
         self.pub = rospy.Publisher(self.topic,Task,queue_size=10)
         self.rate = rospy.Rate(1) # 10hz
         self.master_task = []
@@ -447,7 +442,7 @@ class Worker:
         self.topic = '/uav1/task'
         self.worker_to_uav = '/worker/task'
         self.loc = '/uav%d/ground_truth_to_tf/pose'%self.worker_id
-        rospy.init_node('Worker%d'%self.worker_id , anonymous=True)
+        rospy.init_node('uav%d'%self.worker_id , anonymous=True)
         self.pub = rospy.Publisher(self.worker_to_uav,Task,queue_size=20)
         self.worker_task = []
         self.all_task = []

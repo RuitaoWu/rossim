@@ -411,10 +411,44 @@ if __name__ == '__main__':
 
 
     ####
-    for i in range(3):
-        for j in range(3):
-            with open('/home/jxie/rossim/src/ros_mpi/task_succ/tasks%d_iter_%d.pkl'%(i+1,j), 'rb') as file:
-                content = pickle.load(file)
-            print('*'*20)
-            print(f'content {i+1}-{j}: {[x.task_idx for x in content]}')
-            print('*'*20)
+    with open('/home/jxie/rossim/src/ros_mpi/task_succ/tasks_REC1_iter_0.pkl', 'rb') as file:
+        content = pickle.load(file)
+    print('*'*20)
+    print(f'content: {[(x.task_idx,x.size) for x in content]}')
+    print('*'*20)
+
+
+    with open('/home/jxie/rossim/src/ros_mpi/task_succ/tasks_REC1_iter_1.pkl', 'rb') as file:
+        content = pickle.load(file)
+    print('*'*20)
+    print(f'content: {[(x.task_idx,x.size) for x in content]}')
+    print('*'*20)
+
+    with open('/home/jxie/rossim/src/ros_mpi/task_succ/tasks_REC1_iter_2.pkl', 'rb') as file:
+        content = pickle.load(file)
+    print('*'*20)
+    print(f'content: {[(x.task_idx,x.size) for x in content]}')
+    print('*'*20)
+
+
+    with open('/home/jxie/rossim/src/ros_mpi/task_succ/tasks_REC3_iter_0.pkl', 'rb') as file:
+        content = pickle.load(file)
+    print('*'*20)
+    print(f'content: {[(x.task_idx,x.size) for x in content]}')
+    print('*'*20)
+
+    with open('/home/jxie/rossim/src/ros_mpi/task_succ/tasks_REC3_iter_1.pkl', 'rb') as file:
+        content = pickle.load(file)
+    print('*'*20)
+    print(f'content: {[(x.task_idx,x.size) for x in content]}')
+    print('*'*20)
+
+
+    with open('/home/jxie/rossim/src/ros_mpi/task_succ/tasks_REC3_iter_2.pkl', 'rb') as file:
+            content = pickle.load(file)
+    print('*'*20)
+    print(f'content: {[(x.task_idx,x.size) for x in content]}')
+    print('*'*20)
+
+
+
