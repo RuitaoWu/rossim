@@ -35,6 +35,7 @@ class UAV:
         self.masterId = master_id
         self.alltasks = alltasks
         self.taskqueue=[]
+        self.taskqueueLocal=[]
         self.iteration=iter
         rospy.init_node('uav%d'%self.uavId, anonymous=True)
         self.pub = rospy.Publisher(self.pub_suc_topic,Task,queue_size=10)
@@ -68,13 +69,13 @@ class UAV:
                 self.pub.publish(i)
                 print(f'task {i.task_idx} is on {i.processor_id}')
                 if (i.processor_id +1)== self.uavId:
-                    self.taskqueue.append(i)
+                    self.taskqueueLocal.append(i)
                 rospy.sleep(0.25)
             print(f'finished publish all tasks..')
         else:
             print(f'current uav {len(self.alltasks)} is empty')
-        # with open('/home/jxie/rossim/src/ros_mpi/task_succ/tasks_SUB%d_iter_%d.pkl'%(self.uavId,self.iteration),'wb') as file:
-        #     pickle.dump(self.taskqueue,file)
+        with open('/home/jxie/rossim/src/ros_mpi/task_succ/tasks_local_REC%d_iter_%d.pkl'%(self.uavId,self.iteration),'wb') as file:
+            pickle.dump(self.taskqueueLocal,file)
 
 
 

@@ -31,7 +31,8 @@ struct Task_
     , st(0.0)
     , et(0.0)
     , delta(0.0)
-    , ci(0.0)  {
+    , ci(0.0)
+    , app_name()  {
     }
   Task_(const ContainerAllocator& _alloc)
     : task_idx(0)
@@ -41,7 +42,8 @@ struct Task_
     , st(0.0)
     , et(0.0)
     , delta(0.0)
-    , ci(0.0)  {
+    , ci(0.0)
+    , app_name(_alloc)  {
   (void)_alloc;
     }
 
@@ -70,6 +72,9 @@ struct Task_
 
    typedef float _ci_type;
   _ci_type ci;
+
+   typedef std::basic_string<char, std::char_traits<char>, typename std::allocator_traits<ContainerAllocator>::template rebind_alloc<char>> _app_name_type;
+  _app_name_type app_name;
 
 
 
@@ -107,7 +112,8 @@ bool operator==(const ::hector_uav_msgs::Task_<ContainerAllocator1> & lhs, const
     lhs.st == rhs.st &&
     lhs.et == rhs.et &&
     lhs.delta == rhs.delta &&
-    lhs.ci == rhs.ci;
+    lhs.ci == rhs.ci &&
+    lhs.app_name == rhs.app_name;
 }
 
 template<typename ContainerAllocator1, typename ContainerAllocator2>
@@ -164,12 +170,12 @@ struct MD5Sum< ::hector_uav_msgs::Task_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "805c38fcecb9bf4e6d60cd1d797806d4";
+    return "668dfc76f12c9bfd244f077958b63291";
   }
 
   static const char* value(const ::hector_uav_msgs::Task_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0x805c38fcecb9bf4eULL;
-  static const uint64_t static_value2 = 0x6d60cd1d797806d4ULL;
+  static const uint64_t static_value1 = 0x668dfc76f12c9bfdULL;
+  static const uint64_t static_value2 = 0x244f077958b63291ULL;
 };
 
 template<class ContainerAllocator>
@@ -196,6 +202,7 @@ struct Definition< ::hector_uav_msgs::Task_<ContainerAllocator> >
 "float32 et\n"
 "float32 delta\n"
 "float32 ci\n"
+"string app_name\n"
 ;
   }
 
@@ -222,6 +229,7 @@ namespace serialization
       stream.next(m.et);
       stream.next(m.delta);
       stream.next(m.ci);
+      stream.next(m.app_name);
     }
 
     ROS_DECLARE_ALLINONE_SERIALIZER
@@ -260,6 +268,8 @@ struct Printer< ::hector_uav_msgs::Task_<ContainerAllocator> >
     Printer<float>::stream(s, indent + "  ", v.delta);
     s << indent << "ci: ";
     Printer<float>::stream(s, indent + "  ", v.ci);
+    s << indent << "app_name: ";
+    Printer<std::basic_string<char, std::char_traits<char>, typename std::allocator_traits<ContainerAllocator>::template rebind_alloc<char>>>::stream(s, indent + "  ", v.app_name);
   }
 };
 

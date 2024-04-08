@@ -8,7 +8,7 @@ import struct
 
 
 class Task(genpy.Message):
-  _md5sum = "805c38fcecb9bf4e6d60cd1d797806d4"
+  _md5sum = "668dfc76f12c9bfd244f077958b63291"
   _type = "hector_uav_msgs/Task"
   _has_header = False  # flag to mark the presence of a Header object
   _full_text = """int16 task_idx
@@ -18,9 +18,10 @@ int16[] dependency
 float32 st
 float32 et
 float32 delta
-float32 ci"""
-  __slots__ = ['task_idx','size','processor_id','dependency','st','et','delta','ci']
-  _slot_types = ['int16','int32','int16','int16[]','float32','float32','float32','float32']
+float32 ci
+string app_name"""
+  __slots__ = ['task_idx','size','processor_id','dependency','st','et','delta','ci','app_name']
+  _slot_types = ['int16','int32','int16','int16[]','float32','float32','float32','float32','string']
 
   def __init__(self, *args, **kwds):
     """
@@ -30,7 +31,7 @@ float32 ci"""
     changes.  You cannot mix in-order arguments and keyword arguments.
 
     The available fields are:
-       task_idx,size,processor_id,dependency,st,et,delta,ci
+       task_idx,size,processor_id,dependency,st,et,delta,ci,app_name
 
     :param args: complete set of field values, in .msg order
     :param kwds: use keyword arguments corresponding to message field names
@@ -55,6 +56,8 @@ float32 ci"""
         self.delta = 0.
       if self.ci is None:
         self.ci = 0.
+      if self.app_name is None:
+        self.app_name = ''
     else:
       self.task_idx = 0
       self.size = 0
@@ -64,6 +67,7 @@ float32 ci"""
       self.et = 0.
       self.delta = 0.
       self.ci = 0.
+      self.app_name = ''
 
   def _get_types(self):
     """
@@ -85,6 +89,12 @@ float32 ci"""
       buff.write(struct.Struct(pattern).pack(*self.dependency))
       _x = self
       buff.write(_get_struct_4f().pack(_x.st, _x.et, _x.delta, _x.ci))
+      _x = self.app_name
+      length = len(_x)
+      if python3 or type(_x) == unicode:
+        _x = _x.encode('utf-8')
+        length = len(_x)
+      buff.write(struct.Struct('<I%ss'%length).pack(length, _x))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -113,6 +123,15 @@ float32 ci"""
       start = end
       end += 16
       (_x.st, _x.et, _x.delta, _x.ci,) = _get_struct_4f().unpack(str[start:end])
+      start = end
+      end += 4
+      (length,) = _struct_I.unpack(str[start:end])
+      start = end
+      end += length
+      if python3:
+        self.app_name = str[start:end].decode('utf-8', 'rosmsg')
+      else:
+        self.app_name = str[start:end]
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e)  # most likely buffer underfill
@@ -133,6 +152,12 @@ float32 ci"""
       buff.write(self.dependency.tostring())
       _x = self
       buff.write(_get_struct_4f().pack(_x.st, _x.et, _x.delta, _x.ci))
+      _x = self.app_name
+      length = len(_x)
+      if python3 or type(_x) == unicode:
+        _x = _x.encode('utf-8')
+        length = len(_x)
+      buff.write(struct.Struct('<I%ss'%length).pack(length, _x))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -162,6 +187,15 @@ float32 ci"""
       start = end
       end += 16
       (_x.st, _x.et, _x.delta, _x.ci,) = _get_struct_4f().unpack(str[start:end])
+      start = end
+      end += 4
+      (length,) = _struct_I.unpack(str[start:end])
+      start = end
+      end += length
+      if python3:
+        self.app_name = str[start:end].decode('utf-8', 'rosmsg')
+      else:
+        self.app_name = str[start:end]
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e)  # most likely buffer underfill

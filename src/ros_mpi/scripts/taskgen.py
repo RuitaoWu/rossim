@@ -1,6 +1,7 @@
 import random
 from hector_uav_msgs.msg import Task
 from orchestrator import Orchestrator
+import string
 class TaskGen():
 
     def __init__(self,num_nodes,computing_node,taskMin,taskMax,ciMin,ciMax):
@@ -60,6 +61,7 @@ class TaskGen():
     
     def gen_indep(self):
         temp_task=[]
+        app_name = "".join(random.choices(string.ascii_lowercase,k=5))
         for i in range(0,self.num_nodes):
             task = Task()
             task.task_idx = i
@@ -69,6 +71,7 @@ class TaskGen():
             # task.size = random.randint(self.taskMin,self.taskMax) 
             task.st = 0
             task.et = 0
+            task.app_name = app_name
             task.ci = random.randint(self.ciMin, self.ciMax) #instruction per second
             task.delta = 0.05 #Watt
             temp_task.append(task)
@@ -80,13 +83,15 @@ if __name__ == '__main__':
     density = 0.8
     random_dag = TaskGen(num_nodes,3,40000,50000,60000,80000)
     test = random_dag.gen_indep()
-    comp = random_dag.gen_comp_matrix()
+    for i in range(5):
+        print([x.app_name for x in test])
+    # comp = random_dag.gen_comp_matrix()
     # testorchest = Orchestrator([],comp,100,200,40000,50000,60000,80000)
     # for i in testorchest.indep_sch(random_dag.gen_indep()):
     #     print(i.processor_id)
-    print(random_dag.gen_comp_matrix())
-    test_dag = random_dag.generate_random_dag(density)
+    # print(random_dag.gen_comp_matrix())
+    # test_dag = random_dag.generate_random_dag(density)
 
-    print(test_dag)
+    # print(test_dag)
 
 

@@ -15,4 +15,6 @@
           DELTA
           CI-VAL
           CI
+          APP_NAME-VAL
+          APP_NAME
 ))

@@ -26,6 +26,7 @@ class Task {
       this.et = null;
       this.delta = null;
       this.ci = null;
+      this.app_name = null;
     }
     else {
       if (initObj.hasOwnProperty('task_idx')) {
@@ -76,6 +77,12 @@ class Task {
       else {
         this.ci = 0.0;
       }
+      if (initObj.hasOwnProperty('app_name')) {
+        this.app_name = initObj.app_name
+      }
+      else {
+        this.app_name = '';
+      }
     }
   }
 
@@ -97,6 +104,8 @@ class Task {
     bufferOffset = _serializer.float32(obj.delta, buffer, bufferOffset);
     // Serialize message field [ci]
     bufferOffset = _serializer.float32(obj.ci, buffer, bufferOffset);
+    // Serialize message field [app_name]
+    bufferOffset = _serializer.string(obj.app_name, buffer, bufferOffset);
     return bufferOffset;
   }
 
@@ -120,13 +129,16 @@ class Task {
     data.delta = _deserializer.float32(buffer, bufferOffset);
     // Deserialize message field [ci]
     data.ci = _deserializer.float32(buffer, bufferOffset);
+    // Deserialize message field [app_name]
+    data.app_name = _deserializer.string(buffer, bufferOffset);
     return data;
   }
 
   static getMessageSize(object) {
     let length = 0;
     length += 2 * object.dependency.length;
-    return length + 28;
+    length += _getByteLength(object.app_name);
+    return length + 32;
   }
 
   static datatype() {
@@ -136,7 +148,7 @@ class Task {
 
   static md5sum() {
     //Returns md5sum for a message object
-    return '805c38fcecb9bf4e6d60cd1d797806d4';
+    return '668dfc76f12c9bfd244f077958b63291';
   }
 
   static messageDefinition() {
@@ -150,6 +162,7 @@ class Task {
     float32 et
     float32 delta
     float32 ci
+    string app_name
     `;
   }
 
@@ -213,6 +226,13 @@ class Task {
     }
     else {
       resolved.ci = 0.0
+    }
+
+    if (msg.app_name !== undefined) {
+      resolved.app_name = msg.app_name;
+    }
+    else {
+      resolved.app_name = ''
     }
 
     return resolved;

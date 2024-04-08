@@ -46,7 +46,12 @@
     :reader ci
     :initarg :ci
     :type cl:float
-    :initform 0.0))
+    :initform 0.0)
+   (app_name
+    :reader app_name
+    :initarg :app_name
+    :type cl:string
+    :initform ""))
 )
 
 (cl:defclass Task (<Task>)
@@ -96,6 +101,11 @@
 (cl:defmethod ci-val ((m <Task>))
   (roslisp-msg-protocol:msg-deprecation-warning "Using old-style slot reader hector_uav_msgs-msg:ci-val is deprecated.  Use hector_uav_msgs-msg:ci instead.")
   (ci m))
+
+(cl:ensure-generic-function 'app_name-val :lambda-list '(m))
+(cl:defmethod app_name-val ((m <Task>))
+  (roslisp-msg-protocol:msg-deprecation-warning "Using old-style slot reader hector_uav_msgs-msg:app_name-val is deprecated.  Use hector_uav_msgs-msg:app_name instead.")
+  (app_name m))
 (cl:defmethod roslisp-msg-protocol:serialize ((msg <Task>) ostream)
   "Serializes a message object of type '<Task>"
   (cl:let* ((signed (cl:slot-value msg 'task_idx)) (unsigned (cl:if (cl:< signed 0) (cl:+ signed 65536) signed)))
@@ -142,6 +152,12 @@
     (cl:write-byte (cl:ldb (cl:byte 8 8) bits) ostream)
     (cl:write-byte (cl:ldb (cl:byte 8 16) bits) ostream)
     (cl:write-byte (cl:ldb (cl:byte 8 24) bits) ostream))
+  (cl:let ((__ros_str_len (cl:length (cl:slot-value msg 'app_name))))
+    (cl:write-byte (cl:ldb (cl:byte 8 0) __ros_str_len) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 8) __ros_str_len) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 16) __ros_str_len) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 24) __ros_str_len) ostream))
+  (cl:map cl:nil #'(cl:lambda (c) (cl:write-byte (cl:char-code c) ostream)) (cl:slot-value msg 'app_name))
 )
 (cl:defmethod roslisp-msg-protocol:deserialize ((msg <Task>) istream)
   "Deserializes a message object of type '<Task>"
@@ -195,6 +211,14 @@
       (cl:setf (cl:ldb (cl:byte 8 16) bits) (cl:read-byte istream))
       (cl:setf (cl:ldb (cl:byte 8 24) bits) (cl:read-byte istream))
     (cl:setf (cl:slot-value msg 'ci) (roslisp-utils:decode-single-float-bits bits)))
+    (cl:let ((__ros_str_len 0))
+      (cl:setf (cl:ldb (cl:byte 8 0) __ros_str_len) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 8) __ros_str_len) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 16) __ros_str_len) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 24) __ros_str_len) (cl:read-byte istream))
+      (cl:setf (cl:slot-value msg 'app_name) (cl:make-string __ros_str_len))
+      (cl:dotimes (__ros_str_idx __ros_str_len msg)
+        (cl:setf (cl:char (cl:slot-value msg 'app_name) __ros_str_idx) (cl:code-char (cl:read-byte istream)))))
   msg
 )
 (cl:defmethod roslisp-msg-protocol:ros-datatype ((msg (cl:eql '<Task>)))
@@ -205,16 +229,16 @@
   "hector_uav_msgs/Task")
 (cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql '<Task>)))
   "Returns md5sum for a message object of type '<Task>"
-  "805c38fcecb9bf4e6d60cd1d797806d4")
+  "668dfc76f12c9bfd244f077958b63291")
 (cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql 'Task)))
   "Returns md5sum for a message object of type 'Task"
-  "805c38fcecb9bf4e6d60cd1d797806d4")
+  "668dfc76f12c9bfd244f077958b63291")
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql '<Task>)))
   "Returns full string definition for message of type '<Task>"
-  (cl:format cl:nil "int16 task_idx~%int32 size~%int16 processor_id~%int16[] dependency~%float32 st~%float32 et~%float32 delta~%float32 ci~%~%"))
+  (cl:format cl:nil "int16 task_idx~%int32 size~%int16 processor_id~%int16[] dependency~%float32 st~%float32 et~%float32 delta~%float32 ci~%string app_name~%~%"))
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql 'Task)))
   "Returns full string definition for message of type 'Task"
-  (cl:format cl:nil "int16 task_idx~%int32 size~%int16 processor_id~%int16[] dependency~%float32 st~%float32 et~%float32 delta~%float32 ci~%~%"))
+  (cl:format cl:nil "int16 task_idx~%int32 size~%int16 processor_id~%int16[] dependency~%float32 st~%float32 et~%float32 delta~%float32 ci~%string app_name~%~%"))
 (cl:defmethod roslisp-msg-protocol:serialization-length ((msg <Task>))
   (cl:+ 0
      2
@@ -225,6 +249,7 @@
      4
      4
      4
+     4 (cl:length (cl:slot-value msg 'app_name))
 ))
 (cl:defmethod roslisp-msg-protocol:ros-message-to-list ((msg <Task>))
   "Converts a ROS message object to a list"
@@ -237,4 +262,5 @@
     (cl:cons ':et (et msg))
     (cl:cons ':delta (delta msg))
     (cl:cons ':ci (ci msg))
+    (cl:cons ':app_name (app_name msg))
 ))

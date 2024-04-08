@@ -6,3 +6,4 @@ float32 st
 float32 et
 float32 delta
 float32 ci
+string app_name

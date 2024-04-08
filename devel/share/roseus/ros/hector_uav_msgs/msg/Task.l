@@ -14,7 +14,7 @@
 
 (defclass hector_uav_msgs::Task
   :super ros::object
-  :slots (_task_idx _size _processor_id _dependency _st _et _delta _ci ))
+  :slots (_task_idx _size _processor_id _dependency _st _et _delta _ci _app_name ))
 
 (defmethod hector_uav_msgs::Task
   (:init
@@ -27,6 +27,7 @@
     ((:et __et) 0.0)
     ((:delta __delta) 0.0)
     ((:ci __ci) 0.0)
+    ((:app_name __app_name) "")
     )
    (send-super :init)
    (setq _task_idx (round __task_idx))
@@ -37,6 +38,7 @@
    (setq _et (float __et))
    (setq _delta (float __delta))
    (setq _ci (float __ci))
+   (setq _app_name (string __app_name))
    self)
   (:task_idx
    (&optional __task_idx)
@@ -62,6 +64,9 @@
   (:ci
    (&optional __ci)
    (if __ci (setq _ci __ci)) _ci)
+  (:app_name
+   (&optional __app_name)
+   (if __app_name (setq _app_name __app_name)) _app_name)
   (:serialization-length
    ()
    (+
@@ -81,6 +86,8 @@
     4
     ;; float32 _ci
     4
+    ;; string _app_name
+    4 (length _app_name)
     ))
   (:serialize
    (&optional strm)
@@ -105,6 +112,8 @@
        (sys::poke _delta (send s :buffer) (send s :count) :float) (incf (stream-count s) 4)
      ;; float32 _ci
        (sys::poke _ci (send s :buffer) (send s :count) :float) (incf (stream-count s) 4)
+     ;; string _app_name
+       (write-long (length _app_name) s) (princ _app_name s)
      ;;
      (if (null strm) (get-output-stream-string s))))
   (:deserialize
@@ -130,11 +139,13 @@
      (setq _delta (sys::peek buf ptr- :float)) (incf ptr- 4)
    ;; float32 _ci
      (setq _ci (sys::peek buf ptr- :float)) (incf ptr- 4)
+   ;; string _app_name
+     (let (n) (setq n (sys::peek buf ptr- :integer)) (incf ptr- 4) (setq _app_name (subseq buf ptr- (+ ptr- n))) (incf ptr- n))
    ;;
    self)
   )
 
-(setf (get hector_uav_msgs::Task :md5sum-) "805c38fcecb9bf4e6d60cd1d797806d4")
+(setf (get hector_uav_msgs::Task :md5sum-) "668dfc76f12c9bfd244f077958b63291")
 (setf (get hector_uav_msgs::Task :datatype-) "hector_uav_msgs/Task")
 (setf (get hector_uav_msgs::Task :definition-)
       "int16 task_idx
@@ -145,10 +156,11 @@ float32 st
 float32 et
 float32 delta
 float32 ci
+string app_name
 ")
 
 
 
-(provide :hector_uav_msgs/Task "805c38fcecb9bf4e6d60cd1d797806d4")
+(provide :hector_uav_msgs/Task "668dfc76f12c9bfd244f077958b63291")
 
 

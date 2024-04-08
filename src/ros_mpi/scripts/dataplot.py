@@ -411,44 +411,45 @@ if __name__ == '__main__':
 
 
     ####
-    with open('/home/jxie/rossim/src/ros_mpi/task_succ/tasks_REC1_iter_0.pkl', 'rb') as file:
+    with open('/home/jxie/rossim/src/ros_mpi/task_succ/tasks_REC2_iter_0.pkl', 'rb') as file:
         content = pickle.load(file)
     print('*'*20)
-    print(f'content: {[(x.task_idx,x.size) for x in content]}')
+    print(f'content: {[(x.app_name,x.size,x.task_idx) for x in content]}')
+    # print(f'content: {[x.app_name for x in content]}')
     print('*'*20)
 
 
-    with open('/home/jxie/rossim/src/ros_mpi/task_succ/tasks_REC1_iter_1.pkl', 'rb') as file:
-        content = pickle.load(file)
-    print('*'*20)
-    print(f'content: {[(x.task_idx,x.size) for x in content]}')
-    print('*'*20)
+    # with open('/home/jxie/rossim/src/ros_mpi/task_succ/tasks_REC1_iter_1.pkl', 'rb') as file:
+    #     content = pickle.load(file)
+    # print('*'*20)
+    # print(f'content: {[(x.app_name,x.size) for x in content]}')
+    # print('*'*20)
 
-    with open('/home/jxie/rossim/src/ros_mpi/task_succ/tasks_REC1_iter_2.pkl', 'rb') as file:
-        content = pickle.load(file)
-    print('*'*20)
-    print(f'content: {[(x.task_idx,x.size) for x in content]}')
-    print('*'*20)
-
-
-    with open('/home/jxie/rossim/src/ros_mpi/task_succ/tasks_REC3_iter_0.pkl', 'rb') as file:
-        content = pickle.load(file)
-    print('*'*20)
-    print(f'content: {[(x.task_idx,x.size) for x in content]}')
-    print('*'*20)
-
-    with open('/home/jxie/rossim/src/ros_mpi/task_succ/tasks_REC3_iter_1.pkl', 'rb') as file:
-        content = pickle.load(file)
-    print('*'*20)
-    print(f'content: {[(x.task_idx,x.size) for x in content]}')
-    print('*'*20)
+    # with open('/home/jxie/rossim/src/ros_mpi/task_succ/tasks_REC1_iter_2.pkl', 'rb') as file:
+    #     content = pickle.load(file)
+    # print('*'*20)
+    # print(f'content: {[(x.app_name,x.size) for x in content]}')
+    # print('*'*20)
 
 
-    with open('/home/jxie/rossim/src/ros_mpi/task_succ/tasks_REC3_iter_2.pkl', 'rb') as file:
-            content = pickle.load(file)
-    print('*'*20)
-    print(f'content: {[(x.task_idx,x.size) for x in content]}')
-    print('*'*20)
+    # with open('/home/jxie/rossim/src/ros_mpi/task_succ/tasks_REC3_iter_0.pkl', 'rb') as file:
+    #     content = pickle.load(file)
+    # print('*'*20)
+    # print(f'content: {[(x.app_name,x.size) for x in content]}')
+    # print('*'*20)
+
+    # with open('/home/jxie/rossim/src/ros_mpi/task_succ/tasks_REC3_iter_1.pkl', 'rb') as file:
+    #     content = pickle.load(file)
+    # print('*'*20)
+    # print(f'content: {[(x.app_name,x.size) for x in content]}')
+    # print('*'*20)
+
+
+    # with open('/home/jxie/rossim/src/ros_mpi/task_succ/tasks_REC3_iter_2.pkl', 'rb') as file:
+    #         content = pickle.load(file)
+    # print('*'*20)
+    # print(f'content: {[(x.app_name,x.size) for x in content]}')
+    # print('*'*20)
 
 
 
