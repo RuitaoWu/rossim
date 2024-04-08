@@ -24,7 +24,7 @@ add_custom_target(_hector_gazebo_plugins_generate_messages_check_deps_${_filenam
 
 get_filename_component(_filename "/home/jxie/rossim/src/hector_gazebo/hector_gazebo_plugins/srv/SetReferenceGeoPose.srv" NAME_WE)
 add_custom_target(_hector_gazebo_plugins_generate_messages_check_deps_${_filename}
-  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "hector_gazebo_plugins" "/home/jxie/rossim/src/hector_gazebo/hector_gazebo_plugins/srv/SetReferenceGeoPose.srv" "geographic_msgs/GeoPoint:geographic_msgs/GeoPose:geometry_msgs/Quaternion"
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "hector_gazebo_plugins" "/home/jxie/rossim/src/hector_gazebo/hector_gazebo_plugins/srv/SetReferenceGeoPose.srv" "geometry_msgs/Quaternion:geographic_msgs/GeoPose:geographic_msgs/GeoPoint"
 )
 
 #
@@ -44,7 +44,7 @@ _generate_srv_cpp(hector_gazebo_plugins
 _generate_srv_cpp(hector_gazebo_plugins
   "/home/jxie/rossim/src/hector_gazebo/hector_gazebo_plugins/srv/SetReferenceGeoPose.srv"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/geographic_msgs/cmake/../msg/GeoPoint.msg;/opt/ros/noetic/share/geographic_msgs/cmake/../msg/GeoPose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geographic_msgs/cmake/../msg/GeoPose.msg;/opt/ros/noetic/share/geographic_msgs/cmake/../msg/GeoPoint.msg"
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/hector_gazebo_plugins
 )
 
@@ -85,7 +85,7 @@ _generate_srv_eus(hector_gazebo_plugins
 _generate_srv_eus(hector_gazebo_plugins
   "/home/jxie/rossim/src/hector_gazebo/hector_gazebo_plugins/srv/SetReferenceGeoPose.srv"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/geographic_msgs/cmake/../msg/GeoPoint.msg;/opt/ros/noetic/share/geographic_msgs/cmake/../msg/GeoPose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geographic_msgs/cmake/../msg/GeoPose.msg;/opt/ros/noetic/share/geographic_msgs/cmake/../msg/GeoPoint.msg"
   ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/hector_gazebo_plugins
 )
 
@@ -126,7 +126,7 @@ _generate_srv_lisp(hector_gazebo_plugins
 _generate_srv_lisp(hector_gazebo_plugins
   "/home/jxie/rossim/src/hector_gazebo/hector_gazebo_plugins/srv/SetReferenceGeoPose.srv"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/geographic_msgs/cmake/../msg/GeoPoint.msg;/opt/ros/noetic/share/geographic_msgs/cmake/../msg/GeoPose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geographic_msgs/cmake/../msg/GeoPose.msg;/opt/ros/noetic/share/geographic_msgs/cmake/../msg/GeoPoint.msg"
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/hector_gazebo_plugins
 )
 
@@ -167,7 +167,7 @@ _generate_srv_nodejs(hector_gazebo_plugins
 _generate_srv_nodejs(hector_gazebo_plugins
   "/home/jxie/rossim/src/hector_gazebo/hector_gazebo_plugins/srv/SetReferenceGeoPose.srv"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/geographic_msgs/cmake/../msg/GeoPoint.msg;/opt/ros/noetic/share/geographic_msgs/cmake/../msg/GeoPose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geographic_msgs/cmake/../msg/GeoPose.msg;/opt/ros/noetic/share/geographic_msgs/cmake/../msg/GeoPoint.msg"
   ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/hector_gazebo_plugins
 )
 
@@ -208,7 +208,7 @@ _generate_srv_py(hector_gazebo_plugins
 _generate_srv_py(hector_gazebo_plugins
   "/home/jxie/rossim/src/hector_gazebo/hector_gazebo_plugins/srv/SetReferenceGeoPose.srv"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/geographic_msgs/cmake/../msg/GeoPoint.msg;/opt/ros/noetic/share/geographic_msgs/cmake/../msg/GeoPose.msg;/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg"
+  "/opt/ros/noetic/share/geometry_msgs/cmake/../msg/Quaternion.msg;/opt/ros/noetic/share/geographic_msgs/cmake/../msg/GeoPose.msg;/opt/ros/noetic/share/geographic_msgs/cmake/../msg/GeoPoint.msg"
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/hector_gazebo_plugins
 )
 

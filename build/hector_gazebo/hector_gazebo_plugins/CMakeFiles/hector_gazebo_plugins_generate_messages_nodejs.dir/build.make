@@ -77,9 +77,9 @@ hector_gazebo/hector_gazebo_plugins/CMakeFiles/hector_gazebo_plugins_generate_me
 
 /home/jxie/rossim/devel/share/gennodejs/ros/hector_gazebo_plugins/srv/SetReferenceGeoPose.js: /opt/ros/noetic/lib/gennodejs/gen_nodejs.py
 /home/jxie/rossim/devel/share/gennodejs/ros/hector_gazebo_plugins/srv/SetReferenceGeoPose.js: /home/jxie/rossim/src/hector_gazebo/hector_gazebo_plugins/srv/SetReferenceGeoPose.srv
-/home/jxie/rossim/devel/share/gennodejs/ros/hector_gazebo_plugins/srv/SetReferenceGeoPose.js: /opt/ros/noetic/share/geographic_msgs/msg/GeoPoint.msg
-/home/jxie/rossim/devel/share/gennodejs/ros/hector_gazebo_plugins/srv/SetReferenceGeoPose.js: /opt/ros/noetic/share/geographic_msgs/msg/GeoPose.msg
 /home/jxie/rossim/devel/share/gennodejs/ros/hector_gazebo_plugins/srv/SetReferenceGeoPose.js: /opt/ros/noetic/share/geometry_msgs/msg/Quaternion.msg
+/home/jxie/rossim/devel/share/gennodejs/ros/hector_gazebo_plugins/srv/SetReferenceGeoPose.js: /opt/ros/noetic/share/geographic_msgs/msg/GeoPose.msg
+/home/jxie/rossim/devel/share/gennodejs/ros/hector_gazebo_plugins/srv/SetReferenceGeoPose.js: /opt/ros/noetic/share/geographic_msgs/msg/GeoPoint.msg
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating Javascript code from hector_gazebo_plugins/SetReferenceGeoPose.srv"
 	cd /home/jxie/rossim/build/hector_gazebo/hector_gazebo_plugins && ../../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/gennodejs/cmake/../../../lib/gennodejs/gen_nodejs.py /home/jxie/rossim/src/hector_gazebo/hector_gazebo_plugins/srv/SetReferenceGeoPose.srv -Igeographic_msgs:/opt/ros/noetic/share/geographic_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Iuuid_msgs:/opt/ros/noetic/share/uuid_msgs/cmake/../msg -p hector_gazebo_plugins -o /home/jxie/rossim/devel/share/gennodejs/ros/hector_gazebo_plugins/srv
 

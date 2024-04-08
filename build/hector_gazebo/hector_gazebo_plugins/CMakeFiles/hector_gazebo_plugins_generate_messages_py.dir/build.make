@@ -78,9 +78,9 @@ hector_gazebo/hector_gazebo_plugins/CMakeFiles/hector_gazebo_plugins_generate_me
 
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_gazebo_plugins/srv/_SetReferenceGeoPose.py: /opt/ros/noetic/lib/genpy/gensrv_py.py
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_gazebo_plugins/srv/_SetReferenceGeoPose.py: /home/jxie/rossim/src/hector_gazebo/hector_gazebo_plugins/srv/SetReferenceGeoPose.srv
-/home/jxie/rossim/devel/lib/python3/dist-packages/hector_gazebo_plugins/srv/_SetReferenceGeoPose.py: /opt/ros/noetic/share/geographic_msgs/msg/GeoPoint.msg
-/home/jxie/rossim/devel/lib/python3/dist-packages/hector_gazebo_plugins/srv/_SetReferenceGeoPose.py: /opt/ros/noetic/share/geographic_msgs/msg/GeoPose.msg
 /home/jxie/rossim/devel/lib/python3/dist-packages/hector_gazebo_plugins/srv/_SetReferenceGeoPose.py: /opt/ros/noetic/share/geometry_msgs/msg/Quaternion.msg
+/home/jxie/rossim/devel/lib/python3/dist-packages/hector_gazebo_plugins/srv/_SetReferenceGeoPose.py: /opt/ros/noetic/share/geographic_msgs/msg/GeoPose.msg
+/home/jxie/rossim/devel/lib/python3/dist-packages/hector_gazebo_plugins/srv/_SetReferenceGeoPose.py: /opt/ros/noetic/share/geographic_msgs/msg/GeoPoint.msg
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating Python code from SRV hector_gazebo_plugins/SetReferenceGeoPose"
 	cd /home/jxie/rossim/build/hector_gazebo/hector_gazebo_plugins && ../../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/gensrv_py.py /home/jxie/rossim/src/hector_gazebo/hector_gazebo_plugins/srv/SetReferenceGeoPose.srv -Igeographic_msgs:/opt/ros/noetic/share/geographic_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Iuuid_msgs:/opt/ros/noetic/share/uuid_msgs/cmake/../msg -p hector_gazebo_plugins -o /home/jxie/rossim/devel/lib/python3/dist-packages/hector_gazebo_plugins/srv
 

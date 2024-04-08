@@ -67,7 +67,7 @@ include mav_comm/mav_system_msgs/CMakeFiles/_mav_system_msgs_generate_messages_c
 include mav_comm/mav_system_msgs/CMakeFiles/_mav_system_msgs_generate_messages_check_deps_CpuInfo.dir/progress.make
 
 mav_comm/mav_system_msgs/CMakeFiles/_mav_system_msgs_generate_messages_check_deps_CpuInfo:
-	cd /home/jxie/rossim/build/mav_comm/mav_system_msgs && ../../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py mav_system_msgs /home/jxie/rossim/src/mav_comm/mav_system_msgs/msg/CpuInfo.msg mav_system_msgs/ProcessInfo:std_msgs/Header
+	cd /home/jxie/rossim/build/mav_comm/mav_system_msgs && ../../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py mav_system_msgs /home/jxie/rossim/src/mav_comm/mav_system_msgs/msg/CpuInfo.msg std_msgs/Header:mav_system_msgs/ProcessInfo
 
 _mav_system_msgs_generate_messages_check_deps_CpuInfo: mav_comm/mav_system_msgs/CMakeFiles/_mav_system_msgs_generate_messages_check_deps_CpuInfo
 _mav_system_msgs_generate_messages_check_deps_CpuInfo: mav_comm/mav_system_msgs/CMakeFiles/_mav_system_msgs_generate_messages_check_deps_CpuInfo.dir/build.make

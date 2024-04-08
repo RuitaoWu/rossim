@@ -289,19 +289,6 @@ gtest_main/fast:
 .PHONY : gtest_main/fast
 
 #=============================================================================
-# Target rules for targets named _catkin_empty_exported_target
-
-# Build rule for target.
-_catkin_empty_exported_target: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _catkin_empty_exported_target
-.PHONY : _catkin_empty_exported_target
-
-# fast build rule for target.
-_catkin_empty_exported_target/fast:
-	$(MAKE) $(MAKESILENT) -f cpr_accessories_gazebo/CMakeFiles/_catkin_empty_exported_target.dir/build.make cpr_accessories_gazebo/CMakeFiles/_catkin_empty_exported_target.dir/build
-.PHONY : _catkin_empty_exported_target/fast
-
-#=============================================================================
 # Target rules for targets named roscpp_generate_messages_cpp
 
 # Build rule for target.
@@ -521,6 +508,19 @@ wifireceiver: cmake_check_build_system
 wifireceiver/fast:
 	$(MAKE) $(MAKESILENT) -f gazebo_wifi_plugin/CMakeFiles/wifireceiver.dir/build.make gazebo_wifi_plugin/CMakeFiles/wifireceiver.dir/build
 .PHONY : wifireceiver/fast
+
+#=============================================================================
+# Target rules for targets named _catkin_empty_exported_target
+
+# Build rule for target.
+_catkin_empty_exported_target: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _catkin_empty_exported_target
+.PHONY : _catkin_empty_exported_target
+
+# fast build rule for target.
+_catkin_empty_exported_target/fast:
+	$(MAKE) $(MAKESILENT) -f hector_gazebo/hector_gazebo/CMakeFiles/_catkin_empty_exported_target.dir/build.make hector_gazebo/hector_gazebo/CMakeFiles/_catkin_empty_exported_target.dir/build
+.PHONY : _catkin_empty_exported_target/fast
 
 #=============================================================================
 # Target rules for targets named geometry_msgs_generate_messages_cpp
@@ -1706,253 +1706,6 @@ mav_system_msgs_genpy/fast:
 .PHONY : mav_system_msgs_genpy/fast
 
 #=============================================================================
-# Target rules for targets named octomap_msgs_generate_messages_cpp
-
-# Build rule for target.
-octomap_msgs_generate_messages_cpp: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 octomap_msgs_generate_messages_cpp
-.PHONY : octomap_msgs_generate_messages_cpp
-
-# fast build rule for target.
-octomap_msgs_generate_messages_cpp/fast:
-	$(MAKE) $(MAKESILENT) -f rotors_simulator/rotors_comm/CMakeFiles/octomap_msgs_generate_messages_cpp.dir/build.make rotors_simulator/rotors_comm/CMakeFiles/octomap_msgs_generate_messages_cpp.dir/build
-.PHONY : octomap_msgs_generate_messages_cpp/fast
-
-#=============================================================================
-# Target rules for targets named octomap_msgs_generate_messages_eus
-
-# Build rule for target.
-octomap_msgs_generate_messages_eus: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 octomap_msgs_generate_messages_eus
-.PHONY : octomap_msgs_generate_messages_eus
-
-# fast build rule for target.
-octomap_msgs_generate_messages_eus/fast:
-	$(MAKE) $(MAKESILENT) -f rotors_simulator/rotors_comm/CMakeFiles/octomap_msgs_generate_messages_eus.dir/build.make rotors_simulator/rotors_comm/CMakeFiles/octomap_msgs_generate_messages_eus.dir/build
-.PHONY : octomap_msgs_generate_messages_eus/fast
-
-#=============================================================================
-# Target rules for targets named octomap_msgs_generate_messages_lisp
-
-# Build rule for target.
-octomap_msgs_generate_messages_lisp: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 octomap_msgs_generate_messages_lisp
-.PHONY : octomap_msgs_generate_messages_lisp
-
-# fast build rule for target.
-octomap_msgs_generate_messages_lisp/fast:
-	$(MAKE) $(MAKESILENT) -f rotors_simulator/rotors_comm/CMakeFiles/octomap_msgs_generate_messages_lisp.dir/build.make rotors_simulator/rotors_comm/CMakeFiles/octomap_msgs_generate_messages_lisp.dir/build
-.PHONY : octomap_msgs_generate_messages_lisp/fast
-
-#=============================================================================
-# Target rules for targets named octomap_msgs_generate_messages_nodejs
-
-# Build rule for target.
-octomap_msgs_generate_messages_nodejs: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 octomap_msgs_generate_messages_nodejs
-.PHONY : octomap_msgs_generate_messages_nodejs
-
-# fast build rule for target.
-octomap_msgs_generate_messages_nodejs/fast:
-	$(MAKE) $(MAKESILENT) -f rotors_simulator/rotors_comm/CMakeFiles/octomap_msgs_generate_messages_nodejs.dir/build.make rotors_simulator/rotors_comm/CMakeFiles/octomap_msgs_generate_messages_nodejs.dir/build
-.PHONY : octomap_msgs_generate_messages_nodejs/fast
-
-#=============================================================================
-# Target rules for targets named octomap_msgs_generate_messages_py
-
-# Build rule for target.
-octomap_msgs_generate_messages_py: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 octomap_msgs_generate_messages_py
-.PHONY : octomap_msgs_generate_messages_py
-
-# fast build rule for target.
-octomap_msgs_generate_messages_py/fast:
-	$(MAKE) $(MAKESILENT) -f rotors_simulator/rotors_comm/CMakeFiles/octomap_msgs_generate_messages_py.dir/build.make rotors_simulator/rotors_comm/CMakeFiles/octomap_msgs_generate_messages_py.dir/build
-.PHONY : octomap_msgs_generate_messages_py/fast
-
-#=============================================================================
-# Target rules for targets named rotors_comm_generate_messages
-
-# Build rule for target.
-rotors_comm_generate_messages: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 rotors_comm_generate_messages
-.PHONY : rotors_comm_generate_messages
-
-# fast build rule for target.
-rotors_comm_generate_messages/fast:
-	$(MAKE) $(MAKESILENT) -f rotors_simulator/rotors_comm/CMakeFiles/rotors_comm_generate_messages.dir/build.make rotors_simulator/rotors_comm/CMakeFiles/rotors_comm_generate_messages.dir/build
-.PHONY : rotors_comm_generate_messages/fast
-
-#=============================================================================
-# Target rules for targets named _rotors_comm_generate_messages_check_deps_WindSpeed
-
-# Build rule for target.
-_rotors_comm_generate_messages_check_deps_WindSpeed: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _rotors_comm_generate_messages_check_deps_WindSpeed
-.PHONY : _rotors_comm_generate_messages_check_deps_WindSpeed
-
-# fast build rule for target.
-_rotors_comm_generate_messages_check_deps_WindSpeed/fast:
-	$(MAKE) $(MAKESILENT) -f rotors_simulator/rotors_comm/CMakeFiles/_rotors_comm_generate_messages_check_deps_WindSpeed.dir/build.make rotors_simulator/rotors_comm/CMakeFiles/_rotors_comm_generate_messages_check_deps_WindSpeed.dir/build
-.PHONY : _rotors_comm_generate_messages_check_deps_WindSpeed/fast
-
-#=============================================================================
-# Target rules for targets named _rotors_comm_generate_messages_check_deps_Octomap
-
-# Build rule for target.
-_rotors_comm_generate_messages_check_deps_Octomap: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _rotors_comm_generate_messages_check_deps_Octomap
-.PHONY : _rotors_comm_generate_messages_check_deps_Octomap
-
-# fast build rule for target.
-_rotors_comm_generate_messages_check_deps_Octomap/fast:
-	$(MAKE) $(MAKESILENT) -f rotors_simulator/rotors_comm/CMakeFiles/_rotors_comm_generate_messages_check_deps_Octomap.dir/build.make rotors_simulator/rotors_comm/CMakeFiles/_rotors_comm_generate_messages_check_deps_Octomap.dir/build
-.PHONY : _rotors_comm_generate_messages_check_deps_Octomap/fast
-
-#=============================================================================
-# Target rules for targets named _rotors_comm_generate_messages_check_deps_RecordRosbag
-
-# Build rule for target.
-_rotors_comm_generate_messages_check_deps_RecordRosbag: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _rotors_comm_generate_messages_check_deps_RecordRosbag
-.PHONY : _rotors_comm_generate_messages_check_deps_RecordRosbag
-
-# fast build rule for target.
-_rotors_comm_generate_messages_check_deps_RecordRosbag/fast:
-	$(MAKE) $(MAKESILENT) -f rotors_simulator/rotors_comm/CMakeFiles/_rotors_comm_generate_messages_check_deps_RecordRosbag.dir/build.make rotors_simulator/rotors_comm/CMakeFiles/_rotors_comm_generate_messages_check_deps_RecordRosbag.dir/build
-.PHONY : _rotors_comm_generate_messages_check_deps_RecordRosbag/fast
-
-#=============================================================================
-# Target rules for targets named rotors_comm_generate_messages_cpp
-
-# Build rule for target.
-rotors_comm_generate_messages_cpp: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 rotors_comm_generate_messages_cpp
-.PHONY : rotors_comm_generate_messages_cpp
-
-# fast build rule for target.
-rotors_comm_generate_messages_cpp/fast:
-	$(MAKE) $(MAKESILENT) -f rotors_simulator/rotors_comm/CMakeFiles/rotors_comm_generate_messages_cpp.dir/build.make rotors_simulator/rotors_comm/CMakeFiles/rotors_comm_generate_messages_cpp.dir/build
-.PHONY : rotors_comm_generate_messages_cpp/fast
-
-#=============================================================================
-# Target rules for targets named rotors_comm_gencpp
-
-# Build rule for target.
-rotors_comm_gencpp: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 rotors_comm_gencpp
-.PHONY : rotors_comm_gencpp
-
-# fast build rule for target.
-rotors_comm_gencpp/fast:
-	$(MAKE) $(MAKESILENT) -f rotors_simulator/rotors_comm/CMakeFiles/rotors_comm_gencpp.dir/build.make rotors_simulator/rotors_comm/CMakeFiles/rotors_comm_gencpp.dir/build
-.PHONY : rotors_comm_gencpp/fast
-
-#=============================================================================
-# Target rules for targets named rotors_comm_generate_messages_eus
-
-# Build rule for target.
-rotors_comm_generate_messages_eus: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 rotors_comm_generate_messages_eus
-.PHONY : rotors_comm_generate_messages_eus
-
-# fast build rule for target.
-rotors_comm_generate_messages_eus/fast:
-	$(MAKE) $(MAKESILENT) -f rotors_simulator/rotors_comm/CMakeFiles/rotors_comm_generate_messages_eus.dir/build.make rotors_simulator/rotors_comm/CMakeFiles/rotors_comm_generate_messages_eus.dir/build
-.PHONY : rotors_comm_generate_messages_eus/fast
-
-#=============================================================================
-# Target rules for targets named rotors_comm_geneus
-
-# Build rule for target.
-rotors_comm_geneus: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 rotors_comm_geneus
-.PHONY : rotors_comm_geneus
-
-# fast build rule for target.
-rotors_comm_geneus/fast:
-	$(MAKE) $(MAKESILENT) -f rotors_simulator/rotors_comm/CMakeFiles/rotors_comm_geneus.dir/build.make rotors_simulator/rotors_comm/CMakeFiles/rotors_comm_geneus.dir/build
-.PHONY : rotors_comm_geneus/fast
-
-#=============================================================================
-# Target rules for targets named rotors_comm_generate_messages_lisp
-
-# Build rule for target.
-rotors_comm_generate_messages_lisp: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 rotors_comm_generate_messages_lisp
-.PHONY : rotors_comm_generate_messages_lisp
-
-# fast build rule for target.
-rotors_comm_generate_messages_lisp/fast:
-	$(MAKE) $(MAKESILENT) -f rotors_simulator/rotors_comm/CMakeFiles/rotors_comm_generate_messages_lisp.dir/build.make rotors_simulator/rotors_comm/CMakeFiles/rotors_comm_generate_messages_lisp.dir/build
-.PHONY : rotors_comm_generate_messages_lisp/fast
-
-#=============================================================================
-# Target rules for targets named rotors_comm_genlisp
-
-# Build rule for target.
-rotors_comm_genlisp: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 rotors_comm_genlisp
-.PHONY : rotors_comm_genlisp
-
-# fast build rule for target.
-rotors_comm_genlisp/fast:
-	$(MAKE) $(MAKESILENT) -f rotors_simulator/rotors_comm/CMakeFiles/rotors_comm_genlisp.dir/build.make rotors_simulator/rotors_comm/CMakeFiles/rotors_comm_genlisp.dir/build
-.PHONY : rotors_comm_genlisp/fast
-
-#=============================================================================
-# Target rules for targets named rotors_comm_generate_messages_nodejs
-
-# Build rule for target.
-rotors_comm_generate_messages_nodejs: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 rotors_comm_generate_messages_nodejs
-.PHONY : rotors_comm_generate_messages_nodejs
-
-# fast build rule for target.
-rotors_comm_generate_messages_nodejs/fast:
-	$(MAKE) $(MAKESILENT) -f rotors_simulator/rotors_comm/CMakeFiles/rotors_comm_generate_messages_nodejs.dir/build.make rotors_simulator/rotors_comm/CMakeFiles/rotors_comm_generate_messages_nodejs.dir/build
-.PHONY : rotors_comm_generate_messages_nodejs/fast
-
-#=============================================================================
-# Target rules for targets named rotors_comm_gennodejs
-
-# Build rule for target.
-rotors_comm_gennodejs: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 rotors_comm_gennodejs
-.PHONY : rotors_comm_gennodejs
-
-# fast build rule for target.
-rotors_comm_gennodejs/fast:
-	$(MAKE) $(MAKESILENT) -f rotors_simulator/rotors_comm/CMakeFiles/rotors_comm_gennodejs.dir/build.make rotors_simulator/rotors_comm/CMakeFiles/rotors_comm_gennodejs.dir/build
-.PHONY : rotors_comm_gennodejs/fast
-
-#=============================================================================
-# Target rules for targets named rotors_comm_generate_messages_py
-
-# Build rule for target.
-rotors_comm_generate_messages_py: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 rotors_comm_generate_messages_py
-.PHONY : rotors_comm_generate_messages_py
-
-# fast build rule for target.
-rotors_comm_generate_messages_py/fast:
-	$(MAKE) $(MAKESILENT) -f rotors_simulator/rotors_comm/CMakeFiles/rotors_comm_generate_messages_py.dir/build.make rotors_simulator/rotors_comm/CMakeFiles/rotors_comm_generate_messages_py.dir/build
-.PHONY : rotors_comm_generate_messages_py/fast
-
-#=============================================================================
-# Target rules for targets named rotors_comm_genpy
-
-# Build rule for target.
-rotors_comm_genpy: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 rotors_comm_genpy
-.PHONY : rotors_comm_genpy
-
-# fast build rule for target.
-rotors_comm_genpy/fast:
-	$(MAKE) $(MAKESILENT) -f rotors_simulator/rotors_comm/CMakeFiles/rotors_comm_genpy.dir/build.make rotors_simulator/rotors_comm/CMakeFiles/rotors_comm_genpy.dir/build
-.PHONY : rotors_comm_genpy/fast
-
-#=============================================================================
 # Target rules for targets named trajectory_msgs_generate_messages_cpp
 
 # Build rule for target.
@@ -2718,71 +2471,6 @@ mav_planning_msgs_genpy: cmake_check_build_system
 mav_planning_msgs_genpy/fast:
 	$(MAKE) $(MAKESILENT) -f mav_comm/mav_planning_msgs/CMakeFiles/mav_planning_msgs_genpy.dir/build.make mav_comm/mav_planning_msgs/CMakeFiles/mav_planning_msgs_genpy.dir/build
 .PHONY : mav_planning_msgs_genpy/fast
-
-#=============================================================================
-# Target rules for targets named lee_position_controller
-
-# Build rule for target.
-lee_position_controller: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 lee_position_controller
-.PHONY : lee_position_controller
-
-# fast build rule for target.
-lee_position_controller/fast:
-	$(MAKE) $(MAKESILENT) -f rotors_simulator/rotors_control/CMakeFiles/lee_position_controller.dir/build.make rotors_simulator/rotors_control/CMakeFiles/lee_position_controller.dir/build
-.PHONY : lee_position_controller/fast
-
-#=============================================================================
-# Target rules for targets named roll_pitch_yawrate_thrust_controller
-
-# Build rule for target.
-roll_pitch_yawrate_thrust_controller: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 roll_pitch_yawrate_thrust_controller
-.PHONY : roll_pitch_yawrate_thrust_controller
-
-# fast build rule for target.
-roll_pitch_yawrate_thrust_controller/fast:
-	$(MAKE) $(MAKESILENT) -f rotors_simulator/rotors_control/CMakeFiles/roll_pitch_yawrate_thrust_controller.dir/build.make rotors_simulator/rotors_control/CMakeFiles/roll_pitch_yawrate_thrust_controller.dir/build
-.PHONY : roll_pitch_yawrate_thrust_controller/fast
-
-#=============================================================================
-# Target rules for targets named lee_position_controller_node
-
-# Build rule for target.
-lee_position_controller_node: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 lee_position_controller_node
-.PHONY : lee_position_controller_node
-
-# fast build rule for target.
-lee_position_controller_node/fast:
-	$(MAKE) $(MAKESILENT) -f rotors_simulator/rotors_control/CMakeFiles/lee_position_controller_node.dir/build.make rotors_simulator/rotors_control/CMakeFiles/lee_position_controller_node.dir/build
-.PHONY : lee_position_controller_node/fast
-
-#=============================================================================
-# Target rules for targets named roll_pitch_yawrate_thrust_controller_node
-
-# Build rule for target.
-roll_pitch_yawrate_thrust_controller_node: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 roll_pitch_yawrate_thrust_controller_node
-.PHONY : roll_pitch_yawrate_thrust_controller_node
-
-# fast build rule for target.
-roll_pitch_yawrate_thrust_controller_node/fast:
-	$(MAKE) $(MAKESILENT) -f rotors_simulator/rotors_control/CMakeFiles/roll_pitch_yawrate_thrust_controller_node.dir/build.make rotors_simulator/rotors_control/CMakeFiles/roll_pitch_yawrate_thrust_controller_node.dir/build
-.PHONY : roll_pitch_yawrate_thrust_controller_node/fast
-
-#=============================================================================
-# Target rules for targets named rotors_joy_interface
-
-# Build rule for target.
-rotors_joy_interface: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 rotors_joy_interface
-.PHONY : rotors_joy_interface
-
-# fast build rule for target.
-rotors_joy_interface/fast:
-	$(MAKE) $(MAKESILENT) -f rotors_simulator/rotors_joy_interface/CMakeFiles/rotors_joy_interface.dir/build.make rotors_simulator/rotors_joy_interface/CMakeFiles/rotors_joy_interface.dir/build
-.PHONY : rotors_joy_interface/fast
 
 #=============================================================================
 # Target rules for targets named std_srvs_generate_messages_cpp
@@ -4370,279 +4058,6 @@ hector_quadrotor_controller_gazebo/fast:
 	$(MAKE) $(MAKESILENT) -f hector_quadrotor/hector_quadrotor_controller_gazebo/CMakeFiles/hector_quadrotor_controller_gazebo.dir/build.make hector_quadrotor/hector_quadrotor_controller_gazebo/CMakeFiles/hector_quadrotor_controller_gazebo.dir/build
 .PHONY : hector_quadrotor_controller_gazebo/fast
 
-#=============================================================================
-# Target rules for targets named mav_msgs
-
-# Build rule for target.
-mav_msgs: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 mav_msgs
-.PHONY : mav_msgs
-
-# fast build rule for target.
-mav_msgs/fast:
-	$(MAKE) $(MAKESILENT) -f rotors_simulator/rotors_gazebo_plugins/CMakeFiles/mav_msgs.dir/build.make rotors_simulator/rotors_gazebo_plugins/CMakeFiles/mav_msgs.dir/build
-.PHONY : mav_msgs/fast
-
-#=============================================================================
-# Target rules for targets named rotors_gazebo_bag_plugin
-
-# Build rule for target.
-rotors_gazebo_bag_plugin: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 rotors_gazebo_bag_plugin
-.PHONY : rotors_gazebo_bag_plugin
-
-# fast build rule for target.
-rotors_gazebo_bag_plugin/fast:
-	$(MAKE) $(MAKESILENT) -f rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_bag_plugin.dir/build.make rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_bag_plugin.dir/build
-.PHONY : rotors_gazebo_bag_plugin/fast
-
-#=============================================================================
-# Target rules for targets named rotors_gazebo_controller_interface
-
-# Build rule for target.
-rotors_gazebo_controller_interface: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 rotors_gazebo_controller_interface
-.PHONY : rotors_gazebo_controller_interface
-
-# fast build rule for target.
-rotors_gazebo_controller_interface/fast:
-	$(MAKE) $(MAKESILENT) -f rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_controller_interface.dir/build.make rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_controller_interface.dir/build
-.PHONY : rotors_gazebo_controller_interface/fast
-
-#=============================================================================
-# Target rules for targets named gazebo_geotagged_images_plugin
-
-# Build rule for target.
-gazebo_geotagged_images_plugin: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 gazebo_geotagged_images_plugin
-.PHONY : gazebo_geotagged_images_plugin
-
-# fast build rule for target.
-gazebo_geotagged_images_plugin/fast:
-	$(MAKE) $(MAKESILENT) -f rotors_simulator/rotors_gazebo_plugins/CMakeFiles/gazebo_geotagged_images_plugin.dir/build.make rotors_simulator/rotors_gazebo_plugins/CMakeFiles/gazebo_geotagged_images_plugin.dir/build
-.PHONY : gazebo_geotagged_images_plugin/fast
-
-#=============================================================================
-# Target rules for targets named rotors_gazebo_fw_dynamics_plugin
-
-# Build rule for target.
-rotors_gazebo_fw_dynamics_plugin: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 rotors_gazebo_fw_dynamics_plugin
-.PHONY : rotors_gazebo_fw_dynamics_plugin
-
-# fast build rule for target.
-rotors_gazebo_fw_dynamics_plugin/fast:
-	$(MAKE) $(MAKESILENT) -f rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_fw_dynamics_plugin.dir/build.make rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_fw_dynamics_plugin.dir/build
-.PHONY : rotors_gazebo_fw_dynamics_plugin/fast
-
-#=============================================================================
-# Target rules for targets named rotors_gazebo_gps_plugin
-
-# Build rule for target.
-rotors_gazebo_gps_plugin: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 rotors_gazebo_gps_plugin
-.PHONY : rotors_gazebo_gps_plugin
-
-# fast build rule for target.
-rotors_gazebo_gps_plugin/fast:
-	$(MAKE) $(MAKESILENT) -f rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_gps_plugin.dir/build.make rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_gps_plugin.dir/build
-.PHONY : rotors_gazebo_gps_plugin/fast
-
-#=============================================================================
-# Target rules for targets named rotors_gazebo_imu_plugin
-
-# Build rule for target.
-rotors_gazebo_imu_plugin: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 rotors_gazebo_imu_plugin
-.PHONY : rotors_gazebo_imu_plugin
-
-# fast build rule for target.
-rotors_gazebo_imu_plugin/fast:
-	$(MAKE) $(MAKESILENT) -f rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_imu_plugin.dir/build.make rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_imu_plugin.dir/build
-.PHONY : rotors_gazebo_imu_plugin/fast
-
-#=============================================================================
-# Target rules for targets named rotors_gazebo_noisydepth_plugin
-
-# Build rule for target.
-rotors_gazebo_noisydepth_plugin: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 rotors_gazebo_noisydepth_plugin
-.PHONY : rotors_gazebo_noisydepth_plugin
-
-# fast build rule for target.
-rotors_gazebo_noisydepth_plugin/fast:
-	$(MAKE) $(MAKESILENT) -f rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_noisydepth_plugin.dir/build.make rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_noisydepth_plugin.dir/build
-.PHONY : rotors_gazebo_noisydepth_plugin/fast
-
-#=============================================================================
-# Target rules for targets named rotors_gazebo_lidar_plugin
-
-# Build rule for target.
-rotors_gazebo_lidar_plugin: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 rotors_gazebo_lidar_plugin
-.PHONY : rotors_gazebo_lidar_plugin
-
-# fast build rule for target.
-rotors_gazebo_lidar_plugin/fast:
-	$(MAKE) $(MAKESILENT) -f rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_lidar_plugin.dir/build.make rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_lidar_plugin.dir/build
-.PHONY : rotors_gazebo_lidar_plugin/fast
-
-#=============================================================================
-# Target rules for targets named rotors_gazebo_magnetometer_plugin
-
-# Build rule for target.
-rotors_gazebo_magnetometer_plugin: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 rotors_gazebo_magnetometer_plugin
-.PHONY : rotors_gazebo_magnetometer_plugin
-
-# fast build rule for target.
-rotors_gazebo_magnetometer_plugin/fast:
-	$(MAKE) $(MAKESILENT) -f rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_magnetometer_plugin.dir/build.make rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_magnetometer_plugin.dir/build
-.PHONY : rotors_gazebo_magnetometer_plugin/fast
-
-#=============================================================================
-# Target rules for targets named rotors_gazebo_motor_model
-
-# Build rule for target.
-rotors_gazebo_motor_model: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 rotors_gazebo_motor_model
-.PHONY : rotors_gazebo_motor_model
-
-# fast build rule for target.
-rotors_gazebo_motor_model/fast:
-	$(MAKE) $(MAKESILENT) -f rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_motor_model.dir/build.make rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_motor_model.dir/build
-.PHONY : rotors_gazebo_motor_model/fast
-
-#=============================================================================
-# Target rules for targets named rotors_gazebo_multirotor_base_plugin
-
-# Build rule for target.
-rotors_gazebo_multirotor_base_plugin: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 rotors_gazebo_multirotor_base_plugin
-.PHONY : rotors_gazebo_multirotor_base_plugin
-
-# fast build rule for target.
-rotors_gazebo_multirotor_base_plugin/fast:
-	$(MAKE) $(MAKESILENT) -f rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_multirotor_base_plugin.dir/build.make rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_multirotor_base_plugin.dir/build
-.PHONY : rotors_gazebo_multirotor_base_plugin/fast
-
-#=============================================================================
-# Target rules for targets named rotors_gazebo_odometry_plugin
-
-# Build rule for target.
-rotors_gazebo_odometry_plugin: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 rotors_gazebo_odometry_plugin
-.PHONY : rotors_gazebo_odometry_plugin
-
-# fast build rule for target.
-rotors_gazebo_odometry_plugin/fast:
-	$(MAKE) $(MAKESILENT) -f rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_odometry_plugin.dir/build.make rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_odometry_plugin.dir/build
-.PHONY : rotors_gazebo_odometry_plugin/fast
-
-#=============================================================================
-# Target rules for targets named rotors_gazebo_pressure_plugin
-
-# Build rule for target.
-rotors_gazebo_pressure_plugin: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 rotors_gazebo_pressure_plugin
-.PHONY : rotors_gazebo_pressure_plugin
-
-# fast build rule for target.
-rotors_gazebo_pressure_plugin/fast:
-	$(MAKE) $(MAKESILENT) -f rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_pressure_plugin.dir/build.make rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_pressure_plugin.dir/build
-.PHONY : rotors_gazebo_pressure_plugin/fast
-
-#=============================================================================
-# Target rules for targets named rotors_gazebo_ros_interface_plugin
-
-# Build rule for target.
-rotors_gazebo_ros_interface_plugin: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 rotors_gazebo_ros_interface_plugin
-.PHONY : rotors_gazebo_ros_interface_plugin
-
-# fast build rule for target.
-rotors_gazebo_ros_interface_plugin/fast:
-	$(MAKE) $(MAKESILENT) -f rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_ros_interface_plugin.dir/build.make rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_ros_interface_plugin.dir/build
-.PHONY : rotors_gazebo_ros_interface_plugin/fast
-
-#=============================================================================
-# Target rules for targets named rotors_gazebo_wind_plugin
-
-# Build rule for target.
-rotors_gazebo_wind_plugin: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 rotors_gazebo_wind_plugin
-.PHONY : rotors_gazebo_wind_plugin
-
-# fast build rule for target.
-rotors_gazebo_wind_plugin/fast:
-	$(MAKE) $(MAKESILENT) -f rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_wind_plugin.dir/build.make rotors_simulator/rotors_gazebo_plugins/CMakeFiles/rotors_gazebo_wind_plugin.dir/build
-.PHONY : rotors_gazebo_wind_plugin/fast
-
-#=============================================================================
-# Target rules for targets named LiftDragPlugin
-
-# Build rule for target.
-LiftDragPlugin: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 LiftDragPlugin
-.PHONY : LiftDragPlugin
-
-# fast build rule for target.
-LiftDragPlugin/fast:
-	$(MAKE) $(MAKESILENT) -f rotors_simulator/rotors_gazebo_plugins/CMakeFiles/LiftDragPlugin.dir/build.make rotors_simulator/rotors_gazebo_plugins/CMakeFiles/LiftDragPlugin.dir/build
-.PHONY : LiftDragPlugin/fast
-
-#=============================================================================
-# Target rules for targets named sdf
-
-# Build rule for target.
-sdf: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 sdf
-.PHONY : sdf
-
-# fast build rule for target.
-sdf/fast:
-	$(MAKE) $(MAKESILENT) -f rotors_simulator/rotors_gazebo/CMakeFiles/sdf.dir/build.make rotors_simulator/rotors_gazebo/CMakeFiles/sdf.dir/build
-.PHONY : sdf/fast
-
-#=============================================================================
-# Target rules for targets named waypoint_publisher
-
-# Build rule for target.
-waypoint_publisher: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 waypoint_publisher
-.PHONY : waypoint_publisher
-
-# fast build rule for target.
-waypoint_publisher/fast:
-	$(MAKE) $(MAKESILENT) -f rotors_simulator/rotors_gazebo/CMakeFiles/waypoint_publisher.dir/build.make rotors_simulator/rotors_gazebo/CMakeFiles/waypoint_publisher.dir/build
-.PHONY : waypoint_publisher/fast
-
-#=============================================================================
-# Target rules for targets named waypoint_publisher_file
-
-# Build rule for target.
-waypoint_publisher_file: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 waypoint_publisher_file
-.PHONY : waypoint_publisher_file
-
-# fast build rule for target.
-waypoint_publisher_file/fast:
-	$(MAKE) $(MAKESILENT) -f rotors_simulator/rotors_gazebo/CMakeFiles/waypoint_publisher_file.dir/build.make rotors_simulator/rotors_gazebo/CMakeFiles/waypoint_publisher_file.dir/build
-.PHONY : waypoint_publisher_file/fast
-
-#=============================================================================
-# Target rules for targets named hovering_example
-
-# Build rule for target.
-hovering_example: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 hovering_example
-.PHONY : hovering_example
-
-# fast build rule for target.
-hovering_example/fast:
-	$(MAKE) $(MAKESILENT) -f rotors_simulator/rotors_gazebo/CMakeFiles/hovering_example.dir/build.make rotors_simulator/rotors_gazebo/CMakeFiles/hovering_example.dir/build
-.PHONY : hovering_example/fast
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -4727,9 +4142,6 @@ help:
 	@echo "... _mav_state_machine_msgs_generate_messages_check_deps_StartStopTask"
 	@echo "... _mav_system_msgs_generate_messages_check_deps_CpuInfo"
 	@echo "... _mav_system_msgs_generate_messages_check_deps_ProcessInfo"
-	@echo "... _rotors_comm_generate_messages_check_deps_Octomap"
-	@echo "... _rotors_comm_generate_messages_check_deps_RecordRosbag"
-	@echo "... _rotors_comm_generate_messages_check_deps_WindSpeed"
 	@echo "... actionlib_generate_messages_cpp"
 	@echo "... actionlib_generate_messages_eus"
 	@echo "... actionlib_generate_messages_lisp"
@@ -4863,11 +4275,6 @@ help:
 	@echo "... nodelet_generate_messages_lisp"
 	@echo "... nodelet_generate_messages_nodejs"
 	@echo "... nodelet_generate_messages_py"
-	@echo "... octomap_msgs_generate_messages_cpp"
-	@echo "... octomap_msgs_generate_messages_eus"
-	@echo "... octomap_msgs_generate_messages_lisp"
-	@echo "... octomap_msgs_generate_messages_nodejs"
-	@echo "... octomap_msgs_generate_messages_py"
 	@echo "... roscpp_generate_messages_cpp"
 	@echo "... roscpp_generate_messages_eus"
 	@echo "... roscpp_generate_messages_lisp"
@@ -4878,19 +4285,7 @@ help:
 	@echo "... rosgraph_msgs_generate_messages_lisp"
 	@echo "... rosgraph_msgs_generate_messages_nodejs"
 	@echo "... rosgraph_msgs_generate_messages_py"
-	@echo "... rotors_comm_gencpp"
-	@echo "... rotors_comm_generate_messages"
-	@echo "... rotors_comm_generate_messages_cpp"
-	@echo "... rotors_comm_generate_messages_eus"
-	@echo "... rotors_comm_generate_messages_lisp"
-	@echo "... rotors_comm_generate_messages_nodejs"
-	@echo "... rotors_comm_generate_messages_py"
-	@echo "... rotors_comm_geneus"
-	@echo "... rotors_comm_genlisp"
-	@echo "... rotors_comm_gennodejs"
-	@echo "... rotors_comm_genpy"
 	@echo "... run_tests"
-	@echo "... sdf"
 	@echo "... sensor_msgs_generate_messages_cpp"
 	@echo "... sensor_msgs_generate_messages_eus"
 	@echo "... sensor_msgs_generate_messages_lisp"
@@ -4937,10 +4332,8 @@ help:
 	@echo "... visualization_msgs_generate_messages_lisp"
 	@echo "... visualization_msgs_generate_messages_nodejs"
 	@echo "... visualization_msgs_generate_messages_py"
-	@echo "... LiftDragPlugin"
 	@echo "... diffdrive_plugin_6w"
 	@echo "... diffdrive_plugin_multi_wheel"
-	@echo "... gazebo_geotagged_images_plugin"
 	@echo "... gazebo_ros_force_based_move"
 	@echo "... gazebo_ros_thermal_camera"
 	@echo "... gazebo_ros_thermal_depth_camera"
@@ -4969,35 +4362,12 @@ help:
 	@echo "... hector_quadrotor_pose_estimation_nodelet"
 	@echo "... hector_quadrotor_propulsion"
 	@echo "... hector_servo_plugin"
-	@echo "... hovering_example"
 	@echo "... landing_action"
-	@echo "... lee_position_controller"
-	@echo "... lee_position_controller_node"
-	@echo "... mav_msgs"
 	@echo "... message_to_tf"
 	@echo "... pose_action"
 	@echo "... pose_estimation"
 	@echo "... quadrotor_teleop"
-	@echo "... roll_pitch_yawrate_thrust_controller"
-	@echo "... roll_pitch_yawrate_thrust_controller_node"
-	@echo "... rotors_gazebo_bag_plugin"
-	@echo "... rotors_gazebo_controller_interface"
-	@echo "... rotors_gazebo_fw_dynamics_plugin"
-	@echo "... rotors_gazebo_gps_plugin"
-	@echo "... rotors_gazebo_imu_plugin"
-	@echo "... rotors_gazebo_lidar_plugin"
-	@echo "... rotors_gazebo_magnetometer_plugin"
-	@echo "... rotors_gazebo_motor_model"
-	@echo "... rotors_gazebo_multirotor_base_plugin"
-	@echo "... rotors_gazebo_noisydepth_plugin"
-	@echo "... rotors_gazebo_odometry_plugin"
-	@echo "... rotors_gazebo_pressure_plugin"
-	@echo "... rotors_gazebo_ros_interface_plugin"
-	@echo "... rotors_gazebo_wind_plugin"
-	@echo "... rotors_joy_interface"
 	@echo "... takeoff_action"
-	@echo "... waypoint_publisher"
-	@echo "... waypoint_publisher_file"
 	@echo "... wifireceiver"
 	@echo "... wifirouter"
 .PHONY : help

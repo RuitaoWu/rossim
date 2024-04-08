@@ -67,7 +67,7 @@ include hector_gazebo/hector_gazebo_plugins/CMakeFiles/_hector_gazebo_plugins_ge
 include hector_gazebo/hector_gazebo_plugins/CMakeFiles/_hector_gazebo_plugins_generate_messages_check_deps_SetReferenceGeoPose.dir/progress.make
 
 hector_gazebo/hector_gazebo_plugins/CMakeFiles/_hector_gazebo_plugins_generate_messages_check_deps_SetReferenceGeoPose:
-	cd /home/jxie/rossim/build/hector_gazebo/hector_gazebo_plugins && ../../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py hector_gazebo_plugins /home/jxie/rossim/src/hector_gazebo/hector_gazebo_plugins/srv/SetReferenceGeoPose.srv geographic_msgs/GeoPoint:geographic_msgs/GeoPose:geometry_msgs/Quaternion
+	cd /home/jxie/rossim/build/hector_gazebo/hector_gazebo_plugins && ../../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py hector_gazebo_plugins /home/jxie/rossim/src/hector_gazebo/hector_gazebo_plugins/srv/SetReferenceGeoPose.srv geometry_msgs/Quaternion:geographic_msgs/GeoPose:geographic_msgs/GeoPoint
 
 _hector_gazebo_plugins_generate_messages_check_deps_SetReferenceGeoPose: hector_gazebo/hector_gazebo_plugins/CMakeFiles/_hector_gazebo_plugins_generate_messages_check_deps_SetReferenceGeoPose
 _hector_gazebo_plugins_generate_messages_check_deps_SetReferenceGeoPose: hector_gazebo/hector_gazebo_plugins/CMakeFiles/_hector_gazebo_plugins_generate_messages_check_deps_SetReferenceGeoPose.dir/build.make

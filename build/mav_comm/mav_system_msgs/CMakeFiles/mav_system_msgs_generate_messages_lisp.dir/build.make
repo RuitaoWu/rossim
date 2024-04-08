@@ -71,8 +71,8 @@ mav_comm/mav_system_msgs/CMakeFiles/mav_system_msgs_generate_messages_lisp: /hom
 
 /home/jxie/rossim/devel/share/common-lisp/ros/mav_system_msgs/msg/CpuInfo.lisp: /opt/ros/noetic/lib/genlisp/gen_lisp.py
 /home/jxie/rossim/devel/share/common-lisp/ros/mav_system_msgs/msg/CpuInfo.lisp: /home/jxie/rossim/src/mav_comm/mav_system_msgs/msg/CpuInfo.msg
-/home/jxie/rossim/devel/share/common-lisp/ros/mav_system_msgs/msg/CpuInfo.lisp: /home/jxie/rossim/src/mav_comm/mav_system_msgs/msg/ProcessInfo.msg
 /home/jxie/rossim/devel/share/common-lisp/ros/mav_system_msgs/msg/CpuInfo.lisp: /opt/ros/noetic/share/std_msgs/msg/Header.msg
+/home/jxie/rossim/devel/share/common-lisp/ros/mav_system_msgs/msg/CpuInfo.lisp: /home/jxie/rossim/src/mav_comm/mav_system_msgs/msg/ProcessInfo.msg
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating Lisp code from mav_system_msgs/CpuInfo.msg"
 	cd /home/jxie/rossim/build/mav_comm/mav_system_msgs && ../../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genlisp/cmake/../../../lib/genlisp/gen_lisp.py /home/jxie/rossim/src/mav_comm/mav_system_msgs/msg/CpuInfo.msg -Imav_system_msgs:/home/jxie/rossim/src/mav_comm/mav_system_msgs/msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p mav_system_msgs -o /home/jxie/rossim/devel/share/common-lisp/ros/mav_system_msgs/msg
 

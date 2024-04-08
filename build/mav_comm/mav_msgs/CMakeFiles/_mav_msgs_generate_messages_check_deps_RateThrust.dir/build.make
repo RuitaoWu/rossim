@@ -67,7 +67,7 @@ include mav_comm/mav_msgs/CMakeFiles/_mav_msgs_generate_messages_check_deps_Rate
 include mav_comm/mav_msgs/CMakeFiles/_mav_msgs_generate_messages_check_deps_RateThrust.dir/progress.make
 
 mav_comm/mav_msgs/CMakeFiles/_mav_msgs_generate_messages_check_deps_RateThrust:
-	cd /home/jxie/rossim/build/mav_comm/mav_msgs && ../../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py mav_msgs /home/jxie/rossim/src/mav_comm/mav_msgs/msg/RateThrust.msg geometry_msgs/Vector3:std_msgs/Header
+	cd /home/jxie/rossim/build/mav_comm/mav_msgs && ../../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py mav_msgs /home/jxie/rossim/src/mav_comm/mav_msgs/msg/RateThrust.msg std_msgs/Header:geometry_msgs/Vector3
 
 _mav_msgs_generate_messages_check_deps_RateThrust: mav_comm/mav_msgs/CMakeFiles/_mav_msgs_generate_messages_check_deps_RateThrust
 _mav_msgs_generate_messages_check_deps_RateThrust: mav_comm/mav_msgs/CMakeFiles/_mav_msgs_generate_messages_check_deps_RateThrust.dir/build.make

@@ -88,13 +88,13 @@ mav_comm/mav_planning_msgs/CMakeFiles/mav_planning_msgs_generate_messages_py: /h
 
 /home/jxie/rossim/devel/lib/python3/dist-packages/mav_planning_msgs/msg/_PointCloudWithPose.py: /opt/ros/noetic/lib/genpy/genmsg_py.py
 /home/jxie/rossim/devel/lib/python3/dist-packages/mav_planning_msgs/msg/_PointCloudWithPose.py: /home/jxie/rossim/src/mav_comm/mav_planning_msgs/msg/PointCloudWithPose.msg
-/home/jxie/rossim/devel/lib/python3/dist-packages/mav_planning_msgs/msg/_PointCloudWithPose.py: /opt/ros/noetic/share/geometry_msgs/msg/Transform.msg
-/home/jxie/rossim/devel/lib/python3/dist-packages/mav_planning_msgs/msg/_PointCloudWithPose.py: /opt/ros/noetic/share/geometry_msgs/msg/Quaternion.msg
 /home/jxie/rossim/devel/lib/python3/dist-packages/mav_planning_msgs/msg/_PointCloudWithPose.py: /opt/ros/noetic/share/sensor_msgs/msg/PointField.msg
-/home/jxie/rossim/devel/lib/python3/dist-packages/mav_planning_msgs/msg/_PointCloudWithPose.py: /opt/ros/noetic/share/std_msgs/msg/Header.msg
-/home/jxie/rossim/devel/lib/python3/dist-packages/mav_planning_msgs/msg/_PointCloudWithPose.py: /opt/ros/noetic/share/geometry_msgs/msg/Vector3.msg
-/home/jxie/rossim/devel/lib/python3/dist-packages/mav_planning_msgs/msg/_PointCloudWithPose.py: /opt/ros/noetic/share/sensor_msgs/msg/PointCloud2.msg
 /home/jxie/rossim/devel/lib/python3/dist-packages/mav_planning_msgs/msg/_PointCloudWithPose.py: /opt/ros/noetic/share/geometry_msgs/msg/TransformStamped.msg
+/home/jxie/rossim/devel/lib/python3/dist-packages/mav_planning_msgs/msg/_PointCloudWithPose.py: /opt/ros/noetic/share/geometry_msgs/msg/Quaternion.msg
+/home/jxie/rossim/devel/lib/python3/dist-packages/mav_planning_msgs/msg/_PointCloudWithPose.py: /opt/ros/noetic/share/sensor_msgs/msg/PointCloud2.msg
+/home/jxie/rossim/devel/lib/python3/dist-packages/mav_planning_msgs/msg/_PointCloudWithPose.py: /opt/ros/noetic/share/geometry_msgs/msg/Vector3.msg
+/home/jxie/rossim/devel/lib/python3/dist-packages/mav_planning_msgs/msg/_PointCloudWithPose.py: /opt/ros/noetic/share/std_msgs/msg/Header.msg
+/home/jxie/rossim/devel/lib/python3/dist-packages/mav_planning_msgs/msg/_PointCloudWithPose.py: /opt/ros/noetic/share/geometry_msgs/msg/Transform.msg
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating Python from MSG mav_planning_msgs/PointCloudWithPose"
 	cd /home/jxie/rossim/build/mav_comm/mav_planning_msgs && ../../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py /home/jxie/rossim/src/mav_comm/mav_planning_msgs/msg/PointCloudWithPose.msg -Imav_planning_msgs:/home/jxie/rossim/src/mav_comm/mav_planning_msgs/msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Isensor_msgs:/opt/ros/noetic/share/sensor_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Imav_msgs:/home/jxie/rossim/src/mav_comm/mav_msgs/msg -Itrajectory_msgs:/opt/ros/noetic/share/trajectory_msgs/cmake/../msg -Inav_msgs:/opt/ros/noetic/share/nav_msgs/cmake/../msg -Iactionlib_msgs:/opt/ros/noetic/share/actionlib_msgs/cmake/../msg -p mav_planning_msgs -o /home/jxie/rossim/devel/lib/python3/dist-packages/mav_planning_msgs/msg
 
@@ -106,17 +106,17 @@ mav_comm/mav_planning_msgs/CMakeFiles/mav_planning_msgs_generate_messages_py: /h
 
 /home/jxie/rossim/devel/lib/python3/dist-packages/mav_planning_msgs/msg/_PolygonWithHoles.py: /opt/ros/noetic/lib/genpy/genmsg_py.py
 /home/jxie/rossim/devel/lib/python3/dist-packages/mav_planning_msgs/msg/_PolygonWithHoles.py: /home/jxie/rossim/src/mav_comm/mav_planning_msgs/msg/PolygonWithHoles.msg
-/home/jxie/rossim/devel/lib/python3/dist-packages/mav_planning_msgs/msg/_PolygonWithHoles.py: /home/jxie/rossim/src/mav_comm/mav_planning_msgs/msg/Point2D.msg
 /home/jxie/rossim/devel/lib/python3/dist-packages/mav_planning_msgs/msg/_PolygonWithHoles.py: /home/jxie/rossim/src/mav_comm/mav_planning_msgs/msg/Polygon2D.msg
+/home/jxie/rossim/devel/lib/python3/dist-packages/mav_planning_msgs/msg/_PolygonWithHoles.py: /home/jxie/rossim/src/mav_comm/mav_planning_msgs/msg/Point2D.msg
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Generating Python from MSG mav_planning_msgs/PolygonWithHoles"
 	cd /home/jxie/rossim/build/mav_comm/mav_planning_msgs && ../../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py /home/jxie/rossim/src/mav_comm/mav_planning_msgs/msg/PolygonWithHoles.msg -Imav_planning_msgs:/home/jxie/rossim/src/mav_comm/mav_planning_msgs/msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Isensor_msgs:/opt/ros/noetic/share/sensor_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Imav_msgs:/home/jxie/rossim/src/mav_comm/mav_msgs/msg -Itrajectory_msgs:/opt/ros/noetic/share/trajectory_msgs/cmake/../msg -Inav_msgs:/opt/ros/noetic/share/nav_msgs/cmake/../msg -Iactionlib_msgs:/opt/ros/noetic/share/actionlib_msgs/cmake/../msg -p mav_planning_msgs -o /home/jxie/rossim/devel/lib/python3/dist-packages/mav_planning_msgs/msg
 
 /home/jxie/rossim/devel/lib/python3/dist-packages/mav_planning_msgs/msg/_PolygonWithHolesStamped.py: /opt/ros/noetic/lib/genpy/genmsg_py.py
 /home/jxie/rossim/devel/lib/python3/dist-packages/mav_planning_msgs/msg/_PolygonWithHolesStamped.py: /home/jxie/rossim/src/mav_comm/mav_planning_msgs/msg/PolygonWithHolesStamped.msg
-/home/jxie/rossim/devel/lib/python3/dist-packages/mav_planning_msgs/msg/_PolygonWithHolesStamped.py: /opt/ros/noetic/share/std_msgs/msg/Header.msg
-/home/jxie/rossim/devel/lib/python3/dist-packages/mav_planning_msgs/msg/_PolygonWithHolesStamped.py: /home/jxie/rossim/src/mav_comm/mav_planning_msgs/msg/PolygonWithHoles.msg
-/home/jxie/rossim/devel/lib/python3/dist-packages/mav_planning_msgs/msg/_PolygonWithHolesStamped.py: /home/jxie/rossim/src/mav_comm/mav_planning_msgs/msg/Point2D.msg
 /home/jxie/rossim/devel/lib/python3/dist-packages/mav_planning_msgs/msg/_PolygonWithHolesStamped.py: /home/jxie/rossim/src/mav_comm/mav_planning_msgs/msg/Polygon2D.msg
+/home/jxie/rossim/devel/lib/python3/dist-packages/mav_planning_msgs/msg/_PolygonWithHolesStamped.py: /home/jxie/rossim/src/mav_comm/mav_planning_msgs/msg/PolygonWithHoles.msg
+/home/jxie/rossim/devel/lib/python3/dist-packages/mav_planning_msgs/msg/_PolygonWithHolesStamped.py: /opt/ros/noetic/share/std_msgs/msg/Header.msg
+/home/jxie/rossim/devel/lib/python3/dist-packages/mav_planning_msgs/msg/_PolygonWithHolesStamped.py: /home/jxie/rossim/src/mav_comm/mav_planning_msgs/msg/Point2D.msg
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Generating Python from MSG mav_planning_msgs/PolygonWithHolesStamped"
 	cd /home/jxie/rossim/build/mav_comm/mav_planning_msgs && ../../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py /home/jxie/rossim/src/mav_comm/mav_planning_msgs/msg/PolygonWithHolesStamped.msg -Imav_planning_msgs:/home/jxie/rossim/src/mav_comm/mav_planning_msgs/msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Isensor_msgs:/opt/ros/noetic/share/sensor_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Imav_msgs:/home/jxie/rossim/src/mav_comm/mav_msgs/msg -Itrajectory_msgs:/opt/ros/noetic/share/trajectory_msgs/cmake/../msg -Inav_msgs:/opt/ros/noetic/share/nav_msgs/cmake/../msg -Iactionlib_msgs:/opt/ros/noetic/share/actionlib_msgs/cmake/../msg -p mav_planning_msgs -o /home/jxie/rossim/devel/lib/python3/dist-packages/mav_planning_msgs/msg
 
@@ -134,8 +134,8 @@ mav_comm/mav_planning_msgs/CMakeFiles/mav_planning_msgs_generate_messages_py: /h
 
 /home/jxie/rossim/devel/lib/python3/dist-packages/mav_planning_msgs/msg/_PolynomialTrajectory.py: /opt/ros/noetic/lib/genpy/genmsg_py.py
 /home/jxie/rossim/devel/lib/python3/dist-packages/mav_planning_msgs/msg/_PolynomialTrajectory.py: /home/jxie/rossim/src/mav_comm/mav_planning_msgs/msg/PolynomialTrajectory.msg
-/home/jxie/rossim/devel/lib/python3/dist-packages/mav_planning_msgs/msg/_PolynomialTrajectory.py: /opt/ros/noetic/share/std_msgs/msg/Header.msg
 /home/jxie/rossim/devel/lib/python3/dist-packages/mav_planning_msgs/msg/_PolynomialTrajectory.py: /home/jxie/rossim/src/mav_comm/mav_planning_msgs/msg/PolynomialSegment.msg
+/home/jxie/rossim/devel/lib/python3/dist-packages/mav_planning_msgs/msg/_PolynomialTrajectory.py: /opt/ros/noetic/share/std_msgs/msg/Header.msg
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Generating Python from MSG mav_planning_msgs/PolynomialTrajectory"
 	cd /home/jxie/rossim/build/mav_comm/mav_planning_msgs && ../../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py /home/jxie/rossim/src/mav_comm/mav_planning_msgs/msg/PolynomialTrajectory.msg -Imav_planning_msgs:/home/jxie/rossim/src/mav_comm/mav_planning_msgs/msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Isensor_msgs:/opt/ros/noetic/share/sensor_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Imav_msgs:/home/jxie/rossim/src/mav_comm/mav_msgs/msg -Itrajectory_msgs:/opt/ros/noetic/share/trajectory_msgs/cmake/../msg -Inav_msgs:/opt/ros/noetic/share/nav_msgs/cmake/../msg -Iactionlib_msgs:/opt/ros/noetic/share/actionlib_msgs/cmake/../msg -p mav_planning_msgs -o /home/jxie/rossim/devel/lib/python3/dist-packages/mav_planning_msgs/msg
 
@@ -169,29 +169,29 @@ mav_comm/mav_planning_msgs/CMakeFiles/mav_planning_msgs_generate_messages_py: /h
 
 /home/jxie/rossim/devel/lib/python3/dist-packages/mav_planning_msgs/srv/_PlannerService.py: /opt/ros/noetic/lib/genpy/gensrv_py.py
 /home/jxie/rossim/devel/lib/python3/dist-packages/mav_planning_msgs/srv/_PlannerService.py: /home/jxie/rossim/src/mav_comm/mav_planning_msgs/srv/PlannerService.srv
-/home/jxie/rossim/devel/lib/python3/dist-packages/mav_planning_msgs/srv/_PlannerService.py: /opt/ros/noetic/share/geometry_msgs/msg/Transform.msg
-/home/jxie/rossim/devel/lib/python3/dist-packages/mav_planning_msgs/srv/_PlannerService.py: /opt/ros/noetic/share/geometry_msgs/msg/Quaternion.msg
-/home/jxie/rossim/devel/lib/python3/dist-packages/mav_planning_msgs/srv/_PlannerService.py: /opt/ros/noetic/share/trajectory_msgs/msg/MultiDOFJointTrajectoryPoint.msg
-/home/jxie/rossim/devel/lib/python3/dist-packages/mav_planning_msgs/srv/_PlannerService.py: /opt/ros/noetic/share/geometry_msgs/msg/PoseStamped.msg
-/home/jxie/rossim/devel/lib/python3/dist-packages/mav_planning_msgs/srv/_PlannerService.py: /opt/ros/noetic/share/std_msgs/msg/Header.msg
-/home/jxie/rossim/devel/lib/python3/dist-packages/mav_planning_msgs/srv/_PlannerService.py: /home/jxie/rossim/src/mav_comm/mav_planning_msgs/msg/PolynomialSegment.msg
-/home/jxie/rossim/devel/lib/python3/dist-packages/mav_planning_msgs/srv/_PlannerService.py: /opt/ros/noetic/share/geometry_msgs/msg/Twist.msg
 /home/jxie/rossim/devel/lib/python3/dist-packages/mav_planning_msgs/srv/_PlannerService.py: /opt/ros/noetic/share/geometry_msgs/msg/Pose.msg
-/home/jxie/rossim/devel/lib/python3/dist-packages/mav_planning_msgs/srv/_PlannerService.py: /opt/ros/noetic/share/geometry_msgs/msg/Vector3.msg
 /home/jxie/rossim/devel/lib/python3/dist-packages/mav_planning_msgs/srv/_PlannerService.py: /opt/ros/noetic/share/trajectory_msgs/msg/MultiDOFJointTrajectory.msg
-/home/jxie/rossim/devel/lib/python3/dist-packages/mav_planning_msgs/srv/_PlannerService.py: /home/jxie/rossim/src/mav_comm/mav_planning_msgs/msg/PolynomialSegment4D.msg
+/home/jxie/rossim/devel/lib/python3/dist-packages/mav_planning_msgs/srv/_PlannerService.py: /opt/ros/noetic/share/geometry_msgs/msg/Twist.msg
+/home/jxie/rossim/devel/lib/python3/dist-packages/mav_planning_msgs/srv/_PlannerService.py: /home/jxie/rossim/src/mav_comm/mav_planning_msgs/msg/PolynomialTrajectory4D.msg
+/home/jxie/rossim/devel/lib/python3/dist-packages/mav_planning_msgs/srv/_PlannerService.py: /opt/ros/noetic/share/geometry_msgs/msg/Quaternion.msg
+/home/jxie/rossim/devel/lib/python3/dist-packages/mav_planning_msgs/srv/_PlannerService.py: /home/jxie/rossim/src/mav_comm/mav_planning_msgs/msg/PolynomialSegment.msg
+/home/jxie/rossim/devel/lib/python3/dist-packages/mav_planning_msgs/srv/_PlannerService.py: /opt/ros/noetic/share/std_msgs/msg/Header.msg
+/home/jxie/rossim/devel/lib/python3/dist-packages/mav_planning_msgs/srv/_PlannerService.py: /opt/ros/noetic/share/geometry_msgs/msg/Vector3.msg
 /home/jxie/rossim/devel/lib/python3/dist-packages/mav_planning_msgs/srv/_PlannerService.py: /opt/ros/noetic/share/geometry_msgs/msg/Point.msg
 /home/jxie/rossim/devel/lib/python3/dist-packages/mav_planning_msgs/srv/_PlannerService.py: /home/jxie/rossim/src/mav_comm/mav_planning_msgs/msg/PolynomialTrajectory.msg
-/home/jxie/rossim/devel/lib/python3/dist-packages/mav_planning_msgs/srv/_PlannerService.py: /home/jxie/rossim/src/mav_comm/mav_planning_msgs/msg/PolynomialTrajectory4D.msg
+/home/jxie/rossim/devel/lib/python3/dist-packages/mav_planning_msgs/srv/_PlannerService.py: /opt/ros/noetic/share/geometry_msgs/msg/Transform.msg
+/home/jxie/rossim/devel/lib/python3/dist-packages/mav_planning_msgs/srv/_PlannerService.py: /opt/ros/noetic/share/trajectory_msgs/msg/MultiDOFJointTrajectoryPoint.msg
+/home/jxie/rossim/devel/lib/python3/dist-packages/mav_planning_msgs/srv/_PlannerService.py: /home/jxie/rossim/src/mav_comm/mav_planning_msgs/msg/PolynomialSegment4D.msg
+/home/jxie/rossim/devel/lib/python3/dist-packages/mav_planning_msgs/srv/_PlannerService.py: /opt/ros/noetic/share/geometry_msgs/msg/PoseStamped.msg
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Generating Python code from SRV mav_planning_msgs/PlannerService"
 	cd /home/jxie/rossim/build/mav_comm/mav_planning_msgs && ../../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/gensrv_py.py /home/jxie/rossim/src/mav_comm/mav_planning_msgs/srv/PlannerService.srv -Imav_planning_msgs:/home/jxie/rossim/src/mav_comm/mav_planning_msgs/msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Isensor_msgs:/opt/ros/noetic/share/sensor_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Imav_msgs:/home/jxie/rossim/src/mav_comm/mav_msgs/msg -Itrajectory_msgs:/opt/ros/noetic/share/trajectory_msgs/cmake/../msg -Inav_msgs:/opt/ros/noetic/share/nav_msgs/cmake/../msg -Iactionlib_msgs:/opt/ros/noetic/share/actionlib_msgs/cmake/../msg -p mav_planning_msgs -o /home/jxie/rossim/devel/lib/python3/dist-packages/mav_planning_msgs/srv
 
 /home/jxie/rossim/devel/lib/python3/dist-packages/mav_planning_msgs/srv/_PolygonService.py: /opt/ros/noetic/lib/genpy/gensrv_py.py
 /home/jxie/rossim/devel/lib/python3/dist-packages/mav_planning_msgs/srv/_PolygonService.py: /home/jxie/rossim/src/mav_comm/mav_planning_msgs/srv/PolygonService.srv
 /home/jxie/rossim/devel/lib/python3/dist-packages/mav_planning_msgs/srv/_PolygonService.py: /home/jxie/rossim/src/mav_comm/mav_planning_msgs/msg/PolygonWithHoles.msg
-/home/jxie/rossim/devel/lib/python3/dist-packages/mav_planning_msgs/srv/_PolygonService.py: /home/jxie/rossim/src/mav_comm/mav_planning_msgs/msg/Polygon2D.msg
 /home/jxie/rossim/devel/lib/python3/dist-packages/mav_planning_msgs/srv/_PolygonService.py: /opt/ros/noetic/share/std_msgs/msg/Header.msg
 /home/jxie/rossim/devel/lib/python3/dist-packages/mav_planning_msgs/srv/_PolygonService.py: /home/jxie/rossim/src/mav_comm/mav_planning_msgs/msg/Point2D.msg
+/home/jxie/rossim/devel/lib/python3/dist-packages/mav_planning_msgs/srv/_PolygonService.py: /home/jxie/rossim/src/mav_comm/mav_planning_msgs/msg/Polygon2D.msg
 /home/jxie/rossim/devel/lib/python3/dist-packages/mav_planning_msgs/srv/_PolygonService.py: /home/jxie/rossim/src/mav_comm/mav_planning_msgs/msg/PolygonWithHolesStamped.msg
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jxie/rossim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Generating Python code from SRV mav_planning_msgs/PolygonService"
 	cd /home/jxie/rossim/build/mav_comm/mav_planning_msgs && ../../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/gensrv_py.py /home/jxie/rossim/src/mav_comm/mav_planning_msgs/srv/PolygonService.srv -Imav_planning_msgs:/home/jxie/rossim/src/mav_comm/mav_planning_msgs/msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Isensor_msgs:/opt/ros/noetic/share/sensor_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Imav_msgs:/home/jxie/rossim/src/mav_comm/mav_msgs/msg -Itrajectory_msgs:/opt/ros/noetic/share/trajectory_msgs/cmake/../msg -Inav_msgs:/opt/ros/noetic/share/nav_msgs/cmake/../msg -Iactionlib_msgs:/opt/ros/noetic/share/actionlib_msgs/cmake/../msg -p mav_planning_msgs -o /home/jxie/rossim/devel/lib/python3/dist-packages/mav_planning_msgs/srv

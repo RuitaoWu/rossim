@@ -67,7 +67,7 @@ include mav_comm/mav_planning_msgs/CMakeFiles/_mav_planning_msgs_generate_messag
 include mav_comm/mav_planning_msgs/CMakeFiles/_mav_planning_msgs_generate_messages_check_deps_PolynomialTrajectory.dir/progress.make
 
 mav_comm/mav_planning_msgs/CMakeFiles/_mav_planning_msgs_generate_messages_check_deps_PolynomialTrajectory:
-	cd /home/jxie/rossim/build/mav_comm/mav_planning_msgs && ../../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py mav_planning_msgs /home/jxie/rossim/src/mav_comm/mav_planning_msgs/msg/PolynomialTrajectory.msg std_msgs/Header:mav_planning_msgs/PolynomialSegment
+	cd /home/jxie/rossim/build/mav_comm/mav_planning_msgs && ../../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py mav_planning_msgs /home/jxie/rossim/src/mav_comm/mav_planning_msgs/msg/PolynomialTrajectory.msg mav_planning_msgs/PolynomialSegment:std_msgs/Header
 
 _mav_planning_msgs_generate_messages_check_deps_PolynomialTrajectory: mav_comm/mav_planning_msgs/CMakeFiles/_mav_planning_msgs_generate_messages_check_deps_PolynomialTrajectory
 _mav_planning_msgs_generate_messages_check_deps_PolynomialTrajectory: mav_comm/mav_planning_msgs/CMakeFiles/_mav_planning_msgs_generate_messages_check_deps_PolynomialTrajectory.dir/build.make
