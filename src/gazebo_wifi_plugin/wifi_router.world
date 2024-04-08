@@ -1,0 +1,91 @@
+<?xml version="1.0"?>
+<sdf version="1.6">
+  <world name="default">
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+
+     <include>
+      <uri>model://sun</uri>
+    </include>
+
+    <model name="box1">
+      <link name="link">
+        <pose>0 0 0.5 0 0 0</pose>
+
+        <collision name="box_collision">
+          <geometry>
+            <box>
+              <size>1 1 1</size>
+            </box>
+          </geometry>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>1 1 1</size>
+            </box>
+          </geometry>
+        </visual>
+
+        <sensor name="wirelessTransmitter" type="wireless_transmitter">
+          <plugin name="wifi_router_plugin" filename="libwifirouter.so"/>
+          <pose>0 0 0.5 3.14 3.14 0</pose>
+          <always_on>1</always_on>
+          <update_rate>.01</update_rate>
+          <visualize>true</visualize>
+          <transceiver>
+            <essid>osrf</essid>
+            <frequency>1200</frequency>
+            <power>15</power>
+            <gain>1.5</gain>
+          </transceiver>
+        </sensor>
+
+
+      </link>
+    </model>
+
+    <model name="box2">
+      <link name="link">
+        <pose>0 0 0.5 0 0 0</pose>
+
+        <collision name="box_collision">
+          <geometry>
+            <box>
+              <size>1 1 1</size>
+            </box>
+          </geometry>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>1 1 1</size>
+            </box>
+          </geometry>
+        </visual>
+
+        <sensor name="wirelessReceiver" type="wireless_receiver">
+          <plugin name="wifi_receiver_plugin" filename="libwifireceiver.so"/>
+          <pose>0 0 0.5 3.14 3.14 0</pose>
+          <always_on>1</always_on>
+          <update_rate>.01</update_rate>
+          <visualize>true</visualize>
+          <transceiver>
+            <min_frequency>1200</min_frequency>
+            <max_frequency>1200</max_frequency>
+            <power>15</power>
+            <gain>1.5</gain>
+            <sensitivity>-80.0</sensitivity>
+          </transceiver>
+        </sensor>
+
+
+      </link>
+    </model>
+
+
+  </world>
+</sdf>
