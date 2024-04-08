@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+
+<launch>
+   <arg name="model" default="$(find hector_quadrotor_description)/urdf/quadrotor.gazebo.xacro" />
+   <arg name="paused" default="false"/>
+   <arg name="use_sim_time" default="true"/>
+   <arg name="gui" default="true"/>
+   <arg name="headless" default="false"/>
+   <arg name="debug" default="false"/>
+
+   <include file="$(find gazebo_ros)/launch/empty_world.launch">
+     <arg name="paused" value="$(arg paused)"/>
+     <arg name="use_sim_time" value="$(arg use_sim_time)"/>
+     <arg name="gui" value="$(arg gui)"/>
+     <arg name="headless" value="$(arg headless)"/>
+     <arg name="debug" value="$(arg debug)"/>
+   </include>
+
+   <group ns="uav1">
+     <include file="$(find hector_quadrotor_gazebo)/launch/spawn_quadrotor.launch">
+       <arg name="name" value="uav1" />
+       <arg name="tf_prefix" value="uav1" />
+       <arg name="model" value="$(arg model)" />
+       <arg name="wifi_receiver" value="true" />
+     </include>
+   </group>
+
+   <group ns="uav2">
+     <include file="$(find hector_quadrotor_gazebo)/launch/spawn_quadrotor.launch">
+       <arg name="name" value="uav2" />
+       <arg name="tf_prefix" value="uav2" />
+       <arg name="model" value="$(arg model)" />
+       <arg name="x" value="40" />
+       <arg name="y" value="0" />
+       <arg name="wifi_transmitter" value="true" />
+     </include>
+   </group> -->
+
+
+  <group ns="uav3">
+     <include file="$(find hector_quadrotor_gazebo)/launch/spawn_quadrotor.launch">
+       <arg name="name" value="uav3" />
+       <arg name="tf_prefix" value="uav3" />
+       <arg name="model" value="$(arg model)" />
+       <arg name="x" value="-40" />
+       <arg name="y" value="0" />
+       <arg name="wifi_transmitter" value="true" />
+     </include>
+   </group> -->
+
+   <group ns="uav4">
+     <include file="$(find hector_quadrotor_gazebo)/launch/spawn_quadrotor.launch">
+       <arg name="name" value="uav4" />
+       <arg name="tf_prefix" value="uav4" />
+       <arg name="model" value="$(arg model)" />
+       <arg name="x" value="-60" />
+       <arg name="y" value="0" />
+       <arg name="wifi_transmitter" value="true" />
+     </include>
+   </group> -->
+<!-- comment -->
+   <group ns="uav5">
+     <include file="$(find hector_quadrotor_gazebo)/launch/spawn_quadrotor.launch">
+       <arg name="name" value="uav5" />
+       <arg name="tf_prefix" value="uav5" />
+       <arg name="model" value="$(arg model)" />
+       <arg name="x" value="60" />
+       <arg name="y" value="0" />
+       <arg name="wifi_transmitter" value="true" />
+     </include>
+   </group> -->
+
+
+  <node name="rssi_data_recording" pkg="pos_controller" type="get_rssi.py" output="screen"/>
+  <node pkg="rosservice" type="rosservice" name="rosservice1" args="call --wait /uav1/enable_motors true"/>
+  <node pkg="rosservice" type="rosservice" name="rosservice2" args="call --wait /uav2/enable_motors true"/>
+  <node pkg="rosservice" type="rosservice" name="rosservice3" args="call --wait /uav3/enable_motors true"/>
+  <node pkg="rosservice" type="rosservice" name="rosservice4" args="call --wait /uav4/enable_motors true"/>
+  <node pkg="rosservice" type="rosservice" name="rosservice5" args="call --wait /uav5/enable_motors true"/>
+
+  <node type="rviz" name="rviz" pkg="rviz" args="-d /rossim/src/hector_quadrotor/hector_quadrotor_gazebo/rviz_cfg/nac0201.rviz" />
+
+</launch>
