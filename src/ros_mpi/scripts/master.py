@@ -76,39 +76,39 @@ node_id = comm.Get_rank()
 node_name = MPI.Get_processor_name()
 if taskType == 'Independent':
     #at begnining of each iteration it will define new empty task queue
-    # for x in range(0,5):
-    #     print(f'current iteration {x}')
-    #     try:
-    #         if node_id  == master_node:
-    #         # if node_id  == random.randint(0,numberOfComputingNode):
-    #             node_verify = "Master"
-    #             nodeMaster = Node(node_id+1,node_verify,[],int(random.randrange(int(min_cpu),int(max_cpu))),x,[])
-    #             nodeMaster.run()
-    #         else:
-    #             node_verify = "Worker%d"%(node_id+1)
-    #             nodeWorker = WorkerNode(node_id+1,node_verify,int(random.randrange(int(min_cpu),int(max_cpu))),x,[])
-    #             nodeWorker.run()
-    #     except:
-    #         print('done')
-    #     print(f'finished iteration {x}')
-    # taskgenerator = TaskGen(random.randint(numberOfTask // 2, numberOfTask),numberOfComputingNode,task_size_min,task_size_max,ipsMin,ipsMax)
-    # testorchest = Orchestrator([],taskgenerator.gen_comp_matrix(),100,200)
-    # # testorchest.indep_sch(taskgenerator.gen_indep())
-    # tempTask = taskgenerator.gen_indep()
+    for x in range(0,5):
+        print(f'current iteration {x}')
+        try:
+            if node_id  == master_node:
+            # if node_id  == random.randint(0,numberOfComputingNode):
+                node_verify = "Master"
+                nodeMaster = Node(node_id+1,node_verify,[],int(random.randrange(int(min_cpu),int(max_cpu))),x,[])
+                nodeMaster.run()
+            else:
+                node_verify = "Worker%d"%(node_id+1)
+                nodeWorker = WorkerNode(node_id+1,node_verify,int(random.randrange(int(min_cpu),int(max_cpu))),x,[])
+                nodeWorker.run()
+        except:
+            print('done')
+        print(f'finished iteration {x}')
+    taskgenerator = TaskGen(random.randint(numberOfTask // 2, numberOfTask),numberOfComputingNode,task_size_min,task_size_max,ipsMin,ipsMax)
+    testorchest = Orchestrator([],taskgenerator.gen_comp_matrix(),100,200)
+    # testorchest.indep_sch(taskgenerator.gen_indep())
+    tempTask = taskgenerator.gen_indep()
     
     
-    for i in range(3):
-        masterID = random.randint(1,3)
-        print('generating tasks')
-        taskgenerator = TaskGen(random.randint(numberOfTask // 2, numberOfTask),numberOfComputingNode,task_size_min,task_size_max,ipsMin,ipsMax)
-        testorchest = Orchestrator([],taskgenerator.gen_comp_matrix(),100,200)
-        tempTask = taskgenerator.gen_indep()
-        if masterID == (node_id+1):
-            uav = UAV((node_id+1),masterID,i,alltasks=testorchest.indep_sch(tempTask))
-            uav.run()
-        else:
-            uav = UAV((node_id+1),masterID,i)
-            uav.run()
+    # for i in range(3):
+    #     masterID = random.randint(1,3)
+    #     print('generating tasks')
+    #     taskgenerator = TaskGen(random.randint(numberOfTask // 2, numberOfTask),numberOfComputingNode,task_size_min,task_size_max,ipsMin,ipsMax)
+    #     testorchest = Orchestrator([],taskgenerator.gen_comp_matrix(),100,200)
+    #     tempTask = taskgenerator.gen_indep()
+    #     if masterID == (node_id+1):
+    #         uav = UAV((node_id+1),masterID,i,alltasks=testorchest.indep_sch(tempTask))
+    #         uav.run()
+    #     else:
+    #         uav = UAV((node_id+1),masterID,i)
+    #         uav.run()
         
 
     #     print(f'finished iteration {i} on master {node_id +1}')

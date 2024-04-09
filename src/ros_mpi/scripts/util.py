@@ -48,8 +48,8 @@ class UAV:
         # if data not in self.taskqueue:
         if data.processor_id +1 == self.uavId and data not in self.taskqueue:
             self.taskqueue.append(data)
-        with open('/home/jxie/rossim/src/ros_mpi/task_succ/tasks_REC%d_iter_%d.pkl'%(self.uavId,self.iteration),'wb') as file:
-            pickle.dump(self.taskqueue,file)
+        # with open('/home/jxie/rossim/src/ros_mpi/task_succ/tasks_REC%d_iter_%d.pkl'%(self.uavId,self.iteration),'wb') as file:
+        #     pickle.dump(self.taskqueue,file)
     def thread_callback(self):
         print('\nthread call back subscriber')
         rospy.Subscriber(self.pub_suc_topic,Task,self.sub_callback)
@@ -76,6 +76,8 @@ class UAV:
             print(f'current uav {len(self.alltasks)} is empty')
         with open('/home/jxie/rossim/src/ros_mpi/task_succ/tasks_local_REC%d_iter_%d.pkl'%(self.uavId,self.iteration),'wb') as file:
             pickle.dump(self.taskqueueLocal,file)
+        with open('/home/jxie/rossim/src/ros_mpi/task_succ/tasks_REC%d_iter_%d.pkl'%(self.uavId,self.iteration),'wb') as file:
+            pickle.dump(self.taskqueue,file)
 
 
 
