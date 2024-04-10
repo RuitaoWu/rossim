@@ -1,14 +1,15 @@
-# Author: Ruitao Wu
-# Date: 2024-03-01 12:32:53
+
 from cgi import test
+from collections import defaultdict
 from math import ceil
 from re import T
 import numpy as np
 from hector_uav_msgs.msg import Task
 # from taskgen import TaskGen
-import random
+import random,string
 from read_dag import read_dag
 from ipef import IPEFT
+from datarate import Datarate
 #TODO:
 # MinMin: min min algorithm in grid computing
 # MaxMin
@@ -26,6 +27,7 @@ class Orchestrator:
         self.AFT = [float('-inf')]*len(comp)
         self.task_schedule_list=  [[] for _ in range(len(comp[0]))]
         self.mes = []
+        self.task_size = defaultdict(list)
 
     def calculate_rank_up_recursive(self,comp, comm, i):
         # print(f'calculating rank up value for {i}')
@@ -114,6 +116,9 @@ class Orchestrator:
     def update_aft(self,eft,est,task):
         self.AFT[task] = min(eft)
         self.AST[task] = est[np.argmin(eft)]
+    def update_dy_heft_aft(self,eft,est,task):
+        self.AFT[task] = min(eft)
+        self.AST[task] = est[np.argmin(eft)]
     def locate_task(self,t):
         for row in self.task_schedule_list:
                 if t in row: return self.task_schedule_list.index(row)
@@ -168,8 +173,41 @@ class Orchestrator:
     #                 self.task_schedule_list[np.argmin(eft)].append(task) # append task to the processor with earliest finish time
     #                 TASK_FLAG[task] = True
     #                 incomplete_task.remove(task)
+        #find earliest idel time of current processor
+
+####################################################################################################
+# Author: Ruitao Wu
+# Date: 2024-04-10 13:06:40
+    def dy_earliest_avilable_time(self,idx):
+        if self.task_schedule_list[idx] is None or len(self.task_schedule_list[idx]) == 0:
+            return 0
+        else:
+            return max([self.AFT[x] for x in self.task_schedule_list[idx]])
+    # calculate the earliest start time for current task on each processor
+    def dy_earliest_start_time(self,idx,s):
+        predecessor_list = self.predecessor_task(idx)
+        start_time = []
+        if predecessor_list is None or len(predecessor_list) == 0:
+            return 0
+        else:    
+            #update transmission time
+            for p in predecessor_list:
+                if p in self.task_schedule_list[s]:
+                    start_time.append(self.AFT[p])
+                else:
+                    # start_time.append(self.AFT[p]+self.comm[p][idx])
+                    #transmission time
+                    # d = Datarate().data_rate(distance=random.randint(800,1000))
+                   # self.task_size[p]/Datarate().data_rate(distance=random.randint(100,200))
+                    start_time.append(self.AFT[p]+self.task_size[p]/Datarate().data_rate(distance=random.randint(100,200)))
+            return max(self.dy_earliest_avilable_time(s),max(start_time))
+        # calculate the earliest finish time for current task on each processor
+    def dy_earliest_finish_time(self,idx,s,est):
+        return est + self.comp[idx][s]
+    
+    
     def dy_heft(self,incomplete_task,task_status_flag):
-        
+    
         # TASK_FLAG=[False]*len(self.comp)
         TASK_FLAG=task_status_flag
         temp_task = np.argsort([self.calculate_rank_up_recursive(self.comp,self.comm,i) for i in incomplete_task]).tolist()
@@ -179,9 +217,10 @@ class Orchestrator:
             else:
                 est,eft=[],[]
                 for s in range(0,len(self.comp[0])):
-                    est.append(self.earliest_start_time(task,s))
-                    eft.append(self.earliest_finish_time(task,s,est[s]))
-                    self.update_aft(eft,est,task)
+                    est.append(self.dy_earliest_start_time(task,s))
+                    eft.append(self.dy_earliest_finish_time(task,s,est[s]))
+                    # self.update_aft(eft,est,task)
+                    self.update_dy_heft_aft(eft,est,task)
                 if TASK_FLAG[task] == False:
                     self.task_schedule_list[np.argmin(eft)].append(task) # append task to the processor with earliest finish time
                 else:
@@ -274,10 +313,25 @@ if __name__ == '__main__':
     testobj = Orchestrator(comm,comp,100,200)
     task_status_flag = [False]*len(comm)
     incomplete_task =np.argsort([testobj.calculate_rank_up_recursive(testobj.comp,testobj.comm,i) for i in range(len(testobj.comp))]).tolist()
-    print(f'before {testobj.task_schedule_list}')
+    app_name = "".join(random.choices(string.ascii_lowercase,k=5))
+    temp_task = defaultdict(list)
+    for t in incomplete_task:
+        task = Task()
+        task.task_idx = t
+        task.processor_id = -1
+        task.dependency=[]
+        task.size = random.randint(500000,1000000) #number of instructions
+        # task.size = random.randint(self.taskMin,self.taskMax) 
+        task.st = 0
+        task.et = 0
+        task.app_name = app_name
+        task.ci = random.randint(1000000,2000000) #instruction per second
+        task.delta = 0.05 #Watt
+        temp_task[t] = task
+        testobj.task_size[t] = task.size
     while incomplete_task and task_status_flag:
+        a,b,c =[],[],[]
         complete_list=[i for sub in testobj.dy_heft(incomplete_task,task_status_flag) for i in sub]
-
         for i in complete_list:
             task_status_flag[i] = True
         if not False in task_status_flag:
