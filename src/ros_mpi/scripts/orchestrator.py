@@ -3,6 +3,7 @@ from cgi import test
 from collections import defaultdict
 from math import ceil
 from re import T
+import tempfile
 import numpy as np
 from hector_uav_msgs.msg import Task
 # from taskgen import TaskGen
@@ -25,6 +26,7 @@ class Orchestrator:
         self.taskMax = taskMax
         self.AST = [float('-inf')]*len(comp)
         self.AFT = [float('-inf')]*len(comp)
+        self.task_flag = [False]*len(comp)
         self.task_schedule_list=  [[] for _ in range(len(comp[0]))]
         self.mes = []
         self.task_size = defaultdict(list)
@@ -206,13 +208,14 @@ class Orchestrator:
         return est + self.comp[idx][s]
     
     
-    def dy_heft(self,incomplete_task,task_status_flag):
+    def dy_heft(self,incomplete_task,time_slot):
     
         # TASK_FLAG=[False]*len(self.comp)
-        TASK_FLAG=task_status_flag
-        temp_task = np.argsort([self.calculate_rank_up_recursive(self.comp,self.comm,i) for i in incomplete_task]).tolist()
-        for task in temp_task:
-            if TASK_FLAG[task]:
+        # TASK_FLAG=task_status_flag
+        # temp_task = np.argsort([self.calculate_rank_up_recursive(self.comp,self.comm,i) for i in incomplete_task]).tolist()
+
+        for task in incomplete_task:
+            if self.task_flag[task]:
                 continue
             else:
                 est,eft=[],[]
@@ -221,10 +224,13 @@ class Orchestrator:
                     eft.append(self.dy_earliest_finish_time(task,s,est[s]))
                     # self.update_aft(eft,est,task)
                     self.update_dy_heft_aft(eft,est,task)
-                if TASK_FLAG[task] == False:
+                #if task in current time slot then schedule and skip otherwise
+                if eft[np.argmin(eft)]<= time_slot:
                     self.task_schedule_list[np.argmin(eft)].append(task) # append task to the processor with earliest finish time
+                    self.task_flag[task] = True
                 else:
                     continue
+        # print(f'at line 231 flag {self.task_flag}')
         return self.task_schedule_list
     #     print(f'scheduled list {self.task_schedule_list}')
     def indep_sch(self,tasklist):
@@ -329,12 +335,42 @@ if __name__ == '__main__':
         task.delta = 0.05 #Watt
         temp_task[t] = task
         testobj.task_size[t] = task.size
-    while incomplete_task and task_status_flag:
-        a,b,c =[],[],[]
-        complete_list=[i for sub in testobj.dy_heft(incomplete_task,task_status_flag) for i in sub]
-        for i in complete_list:
-            task_status_flag[i] = True
-        if not False in task_status_flag:
-            print(f'all flags: {task_status_flag}')
+    # while incomplete_task and task_status_flag:
+    timeslot =0
+    while True:
+        #call dynamic heft 
+        testobj.dy_heft(incomplete_task,timeslot)
+
+        # temp_task = [x for x in incomplete_task if testobj.task_flag[x]]
+        print(f'at line 344 { testobj.task_flag}')
+        timeslot += 1
+        # print(f'complete list: {complete_list}')
+        # for i in complete_list:
+        #     task_status_flag[i] = True
+
+        if not False in testobj.task_flag:
             break
-    print(f'after {testobj.task_schedule_list}')
+
+    # print(f'after {testobj.task_schedule_list}')
+    print(f'ast: {testobj.AST}')
+    print(f'aft: {testobj.AFT}')
+    import matplotlib.pyplot as plt
+
+    # Given data
+    ast = testobj.AST
+    aft = testobj.AFT
+
+    # Activities
+    activities = [f"Activity {i}" for i in range(1, len(ast) + 1)]
+
+    # Calculate durations
+    durations = [aft[i] - ast[i] for i in range(len(ast))]
+
+    # Plotting the Gantt chart
+    plt.figure(figsize=(10, 6))
+    plt.barh(activities, durations, left=ast, color="skyblue", edgecolor="black")
+    plt.xlabel("Time")
+    plt.ylabel("Activities")
+    plt.title("Gantt Chart")
+    plt.grid(axis='x')
+    # plt.show()
