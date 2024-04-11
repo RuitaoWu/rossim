@@ -5,6 +5,7 @@ from math import ceil
 from re import T
 import tempfile
 import numpy as np
+from torch import t
 from hector_uav_msgs.msg import Task
 # from taskgen import TaskGen
 import random,string
@@ -30,7 +31,35 @@ class Orchestrator:
         self.task_schedule_list=  [[] for _ in range(len(comp[0]))]
         self.mes = []
         self.task_size = defaultdict(list)
+        self.tasks = defaultdict(list)
+        app_name = "".join(random.choices(string.ascii_lowercase,k=5))
+        for t in np.argsort([self.calculate_rank_up_recursive(self.comp,self.comm,i) for i in range(len(self.comp))]).tolist():
+            task = Task()
+            task.task_idx = t
+            task.processor_id = -1
+            task.dependency=[]
+            task.size = random.randint(500000,1000000) #number of instructions
+            # task.size = random.randint(self.taskMin,self.taskMax) 
+            task.st = 0
+            task.et = 0
+            task.app_name = app_name
+            task.ci = random.randint(1000000,2000000) #instruction per second
+            task.delta = 0.05 #Watt
+            self.tasks[t] = task
+            self.task_size[t] = task.size
 
+    def __str__(self) -> str:
+        res = ''
+        for i in range(len(comp)):
+            if self.task_flag[i]:
+                res += '('+ str(self.tasks[i].task_idx)+', '+self.tasks[i].app_name+') '
+        return res
+    def get_items(self) -> list:
+        res = []
+        for i in range(len(comp)):
+            if self.task_flag[i]:
+                res.append(self.tasks[i].task_idx)
+        return res
     def calculate_rank_up_recursive(self,comp, comm, i):
         # print(f'calculating rank up value for {i}')
         # successors = [j for j in range(len(comp)) if comm[i][j] > 0]
@@ -230,9 +259,7 @@ class Orchestrator:
                     self.task_flag[task] = True
                 else:
                     continue
-        # print(f'at line 231 flag {self.task_flag}')
         return self.task_schedule_list
-    #     print(f'scheduled list {self.task_schedule_list}')
     def indep_sch(self,tasklist):
         computing_nodes = [[] for _ in range(len(self.comp[0]))]
         print(f'scheduling tasks...')
@@ -319,22 +346,9 @@ if __name__ == '__main__':
     testobj = Orchestrator(comm,comp,100,200)
     task_status_flag = [False]*len(comm)
     incomplete_task =np.argsort([testobj.calculate_rank_up_recursive(testobj.comp,testobj.comm,i) for i in range(len(testobj.comp))]).tolist()
-    app_name = "".join(random.choices(string.ascii_lowercase,k=5))
-    temp_task = defaultdict(list)
-    for t in incomplete_task:
-        task = Task()
-        task.task_idx = t
-        task.processor_id = -1
-        task.dependency=[]
-        task.size = random.randint(500000,1000000) #number of instructions
-        # task.size = random.randint(self.taskMin,self.taskMax) 
-        task.st = 0
-        task.et = 0
-        task.app_name = app_name
-        task.ci = random.randint(1000000,2000000) #instruction per second
-        task.delta = 0.05 #Watt
-        temp_task[t] = task
-        testobj.task_size[t] = task.size
+    
+    # temp_task = defaultdict(list)
+
     # while incomplete_task and task_status_flag:
     timeslot =0
     while True:
@@ -342,15 +356,15 @@ if __name__ == '__main__':
         testobj.dy_heft(incomplete_task,timeslot)
 
         # temp_task = [x for x in incomplete_task if testobj.task_flag[x]]
-        print(f'at line 344 { testobj.task_flag}')
+        # print(f'at line 344 { testobj.task_flag}')
+        
         timeslot += 1
         # print(f'complete list: {complete_list}')
         # for i in complete_list:
         #     task_status_flag[i] = True
-
+        print(testobj.get_items())
         if not False in testobj.task_flag:
             break
-
     # print(f'after {testobj.task_schedule_list}')
     print(f'ast: {testobj.AST}')
     print(f'aft: {testobj.AFT}')
@@ -373,4 +387,4 @@ if __name__ == '__main__':
     plt.ylabel("Activities")
     plt.title("Gantt Chart")
     plt.grid(axis='x')
-    # plt.show()
+    plt.show()
