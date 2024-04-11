@@ -1,8 +1,0 @@
-prefix=/home/jxie/rossim/devel
-
-Name: cpr_accessories_gazebo
-Description: Description of cpr_accessories_gazebo
-Version: 0.2.7
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: 
