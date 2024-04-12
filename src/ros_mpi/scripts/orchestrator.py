@@ -50,13 +50,13 @@ class Orchestrator:
 
     def __str__(self) -> str:
         res = ''
-        for i in range(len(comp)):
+        for i in range(len(self.comp)):
             if self.task_flag[i]:
                 res += '('+ str(self.tasks[i].task_idx)+', '+self.tasks[i].app_name+') '
         return res
     def get_items(self) -> list:
         res = []
-        for i in range(len(comp)):
+        for i in range(len(self.comp)):
             if self.task_flag[i]:
                 res.append(self.tasks[i].task_idx)
         return res
@@ -77,6 +77,7 @@ class Orchestrator:
             # Return cached result if available
             return self.memo[i]
 
+        print(f'len of comp {len(comp)} and len of comm {len(comm)}')
         successors = [j for j in range(len(comp)) if comm[i][j] > 0]
 
         if not successors:
@@ -256,6 +257,7 @@ class Orchestrator:
                 #if task in current time slot then schedule and skip otherwise
                 if eft[np.argmin(eft)]<= time_slot:
                     self.task_schedule_list[np.argmin(eft)].append(task) # append task to the processor with earliest finish time
+                    self.tasks[task].processor_id = np.argmin(eft)
                     self.task_flag[task] = True
                 else:
                     continue
@@ -309,7 +311,7 @@ if __name__ == '__main__':
     comp = [[14, 16, 9],
                     [13, 19, 18],
                     [11, 13, 19],
-                    [13, 8, 17],
+                    [13, 8, 17], 
                     [12, 13, 10],
                     [13, 16, 9],
                     [7, 15, 11],
@@ -362,7 +364,8 @@ if __name__ == '__main__':
         # print(f'complete list: {complete_list}')
         # for i in complete_list:
         #     task_status_flag[i] = True
-        print(testobj.get_items())
+        for x in testobj.get_items():
+            print(f'current task {x} at time slot {timeslot}')
         if not False in testobj.task_flag:
             break
     # print(f'after {testobj.task_schedule_list}')

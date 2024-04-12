@@ -1,6 +1,6 @@
 
 import numpy as np
-from torch import _test_autograd_multiple_dispatch
+# from torch import _test_autograd_multiple_dispatch
 from util import UAV, Master, Node,Worker, WorkerNode
 from orchestrator import Orchestrator
 from taskgen import TaskGen
@@ -9,7 +9,7 @@ import rospy,random,os
 # import threading
 import configparser
 from mpi4py import MPI
-from read_dag import read_dag
+# from read_dag import read_dag
 
 # comp = [[14, 16, 9],
 #         [13, 19, 18],
@@ -75,26 +75,35 @@ num_node = comm.Get_size()
 node_id = comm.Get_rank()
 node_name = MPI.Get_processor_name()
 if taskType == 'Independent':
+
+
+    if node_id == 0:
+        node_verify = "Master"
+        nodeMaster = Node(node_id+1,node_verify,[],int(random.randrange(int(min_cpu),int(max_cpu))),0,[])
+        nodeMaster.run()
     #at begnining of each iteration it will define new empty task queue
-    for x in range(0,5):
-        print(f'current iteration {x}')
-        try:
-            if node_id  == master_node:
-            # if node_id  == random.randint(0,numberOfComputingNode):
-                node_verify = "Master"
-                nodeMaster = Node(node_id+1,node_verify,[],int(random.randrange(int(min_cpu),int(max_cpu))),x,[])
-                nodeMaster.run()
-            else:
-                node_verify = "Worker%d"%(node_id+1)
-                nodeWorker = WorkerNode(node_id+1,node_verify,int(random.randrange(int(min_cpu),int(max_cpu))),x,[])
-                nodeWorker.run()
-        except:
-            print('done')
-        print(f'finished iteration {x}')
-    taskgenerator = TaskGen(random.randint(numberOfTask // 2, numberOfTask),numberOfComputingNode,task_size_min,task_size_max,ipsMin,ipsMax)
-    testorchest = Orchestrator([],taskgenerator.gen_comp_matrix(),100,200)
+    # for x in range(0,1):
+    #     print(f'current iteration {x}')
+    #     try:
+    #         if node_id  == master_node:
+    #         # if node_id  == random.randint(0,numberOfComputingNode):
+    #             node_verify = "Master"
+    #             nodeMaster = Node(node_id+1,node_verify,[],int(random.randrange(int(min_cpu),int(max_cpu))),x,[])
+    #             nodeMaster.run()
+    #         else:
+    #             node_verify = "Worker%d"%(node_id+1)
+    #             nodeWorker = WorkerNode(node_id+1,node_verify,int(random.randrange(int(min_cpu),int(max_cpu))),x,[])
+    #             nodeWorker.run()
+    #     except:
+    #         print('an error has occurred')
+    #     print(f'finished iteration {x}')
+
+
+
+    # taskgenerator = TaskGen(random.randint(numberOfTask // 2, numberOfTask),numberOfComputingNode,task_size_min,task_size_max,ipsMin,ipsMax)
+    # testorchest = Orchestrator([],taskgenerator.gen_comp_matrix(),100,200)
     # testorchest.indep_sch(taskgenerator.gen_indep())
-    tempTask = taskgenerator.gen_indep()
+    # tempTask = taskgenerator.gen_indep()
     
     
     # for i in range(3):

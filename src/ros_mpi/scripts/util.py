@@ -2,22 +2,23 @@
 from concurrent.futures import thread
 import pickle
 import random
-
+import numpy as np
+# from re import T
 import time,math
-from traceback import print_tb
-from turtle import pos
+# from traceback import print_tb
+# from turtle import pos
 from collections import defaultdict
-from cupshelpers import Printer
-from networkx import node_attribute_xy
+# from cupshelpers import Printer
+# from networkx import node_attribute_xy
 from numpy import save
 
-from torch import _euclidean_dist
-from hector_uav_msgs.msg import Task, FinishTime
+# from torch import _euclidean_dist
+from hector_uav_msgs.msg import Task
 from orchestrator import Orchestrator
 from datarate import Datarate
 import rospy,threading
 from geometry_msgs.msg import PoseStamped
-from std_msgs.msg import Float32MultiArray
+# from std_msgs.msg import Float32MultiArray
 from dataplot import PlotGraph
 import configparser
 from orchestrator import Orchestrator
@@ -106,11 +107,12 @@ class Node:
         ipsMax = int(config.get('Task','ips_max'))
         ipsMin = int(config.get('Task','ips_min'))
         taskgenerator = TaskGen(random.randint(numberOfTask // 2, numberOfTask),numberOfComputingNode,task_size_min,task_size_max,ipsMin,ipsMax)
-        testorchest = Orchestrator([],taskgenerator.gen_comp_matrix(),100,200)
+        self.comp,self.comm = taskgenerator.gen_comp_matrix(),taskgenerator.generate_random_dag(density=0.5)
+        self.testorchest = Orchestrator(self.comm,self.comp,100,200)
         # testorchest.indep_sch(taskgenerator.gen_indep())
         tempTask = taskgenerator.gen_indep()
         print('generating tasks')
-        self.allTasks = testorchest.indep_sch(tempTask)
+        self.allTasks = self.testorchest.indep_sch(tempTask)
         # for i in self.allTasks:
         #     print(f'task {i.task_idx} on processor {i.processor_id}')
         self.uav_capa = 1000000
@@ -132,9 +134,9 @@ class Node:
         rospy.init_node(self.nodeVerify, anonymous=True)
         self.pub = rospy.Publisher(self.pubTopic,Task,queue_size=10)
         self.rate = rospy.Rate(1) # 10hz
-        while True:
-            if rospy.wait_for_message('/uav%d/ground_truth_to_tf/pose'%self.node_id, PoseStamped).pose.position.z + 0.1 > 0:
-                break
+        # while True:
+        #     if rospy.wait_for_message('/uav%d/ground_truth_to_tf/pose'%self.node_id, PoseStamped).pose.position.z + 0.1 > 0:
+        #         break
             # else:
             #     print(f'master {self.node_id} not on position')
         print(f'Master construction completed node id {self.node_id}')
@@ -160,35 +162,62 @@ class Node:
         while sum(self.temp_capa) > self.uav_capa:
             self.temp_capa.pop(0)
         self.capacity.append(sum(self.temp_capa))
-        
-    def run(self):
 
-        for t in self.allTasks:
-            self.fly_energy.append([self.energy * (t.size / t.ci),t.task_idx])
-            if t.processor_id == self.node_id -1:
-                t.st = self.taskQueue [-1].et if self.taskQueue else 0
-                t.et = t.st + float(t.size / t.ci) 
-                self.taskQueue.append(t)
-                self.capc_usage(t)
-                self.comp_energy.append([t.delta * (t.size/t.ci),t.task_idx])
-                self.comp_time.append([(t.size/t.ci),t.task_idx])
-                self.completed.append([t.task_idx,rospy.get_time()])
-                rospy.sleep(t.size/t.ci)
+    def run(self):
+        task_status_flag = [False]*len(self.comm)
+
+        incomplete_task =np.argsort([self.testorchest.calculate_rank_up_recursive(self.comp,self.comm,i) for i in range(len(self.comp))]).tolist()
+    
+        # temp_task = defaultdict(list)
+
+        # while incomplete_task and task_status_flag:
+        print('****'*20)
+        timeslot =0
+        while True:
+            #call dynamic heft 
+            self.testorchest.dy_heft(incomplete_task,timeslot)
+
+            # temp_task = [x for x in incomplete_task if testobj.task_flag[x]]
+            # print(f'at line 344 { testobj.task_flag}')
+            
+            timeslot += 1
+            # print(f'complete list: {complete_list}')
+            # for i in complete_list:
+            #     task_status_flag[i] = True
+            for x in self.testorchest.get_items():
+                print(f'current task {self.testorchest.tasks[x].task_idx} and processor {self.testorchest.tasks[x].processor_id}')
+            if not False in self.testorchest.task_flag:
+                break
+
+
+    # def run(self):
+
+    #     for t in self.allTasks:
+    #         self.fly_energy.append([self.energy * (t.size / t.ci),t.task_idx])
+    #         if t.processor_id == self.node_id -1:
+    #             t.st = self.taskQueue [-1].et if self.taskQueue else 0
+    #             t.et = t.st + float(t.size / t.ci) 
+    #             self.taskQueue.append(t)
+    #             self.capc_usage(t)
+    #             self.comp_energy.append([t.delta * (t.size/t.ci),t.task_idx])
+    #             self.comp_time.append([(t.size/t.ci),t.task_idx])
+    #             self.completed.append([t.task_idx,rospy.get_time()])
+    #             rospy.sleep(t.size/t.ci)
                 
-            else: 
-                if self.range(self.node_id,t.processor_id+1) > 200:
-                    self.incompleted.append([t.task_idx,rospy.get_time()])
-                    print('Disconnected......')
-                    continue
-                else:
-                    print(f'publish task {t.task_idx} to worker {t.processor_id}')
-                    temp = self.comm_time(self.node_id,t.processor_id+1) if t.processor_id+1 > 0 else 1
-                    self.comm_energy.append([(t.size / temp)*self.energy,t.task_idx])
-                    self.communication_time.append(t.size / temp)
-                    print(f'energy cost at line 70 {self.comm_energy}')
-                    self.completed.append([t.task_idx,rospy.get_time()])
-                    self.pub.publish(t)
-                    rospy.sleep(0.25) 
+    #         else: 
+    #             if self.range(self.node_id,t.processor_id+1) > 200:
+    #                 self.incompleted.append([t.task_idx,rospy.get_time()])
+    #                 print('Disconnected......')
+    #                 continue
+    #             else:
+    #                 print(f'publish task {t.task_idx} to worker {t.processor_id}')
+    #                 temp = self.comm_time(self.node_id,t.processor_id+1) if t.processor_id+1 > 0 else 1
+    #                 self.comm_energy.append([(t.size / temp)*self.energy,t.task_idx])
+    #                 self.communication_time.append(t.size / temp)
+    #                 print(f'energy cost at line 70 {self.comm_energy}')
+    #                 self.completed.append([t.task_idx,rospy.get_time()])
+    #                 self.pub.publish(t)
+    #                 rospy.sleep(0.25) 
         #task on master
         # print(f'all tasks on master node {len(self.taskQueue)}')
         # print(f'total task {len(self.completed) + len(self.incompleted)}')
