@@ -77,7 +77,7 @@ class Orchestrator:
             # Return cached result if available
             return self.memo[i]
 
-        print(f'len of comp {len(comp)} and len of comm {len(comm)}')
+        # print(f'len of comp {len(comp)} and len of comm {len(comm)}')
         successors = [j for j in range(len(comp)) if comm[i][j] > 0]
 
         if not successors:

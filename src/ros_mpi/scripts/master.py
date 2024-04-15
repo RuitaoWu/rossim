@@ -1,4 +1,5 @@
 
+from ast import Raise
 import numpy as np
 # from torch import _test_autograd_multiple_dispatch
 from util import UAV, Master, Node,Worker, WorkerNode
@@ -76,11 +77,17 @@ node_id = comm.Get_rank()
 node_name = MPI.Get_processor_name()
 if taskType == 'Independent':
 
-
-    if node_id == 0:
-        node_verify = "Master"
-        nodeMaster = Node(node_id+1,node_verify,[],int(random.randrange(int(min_cpu),int(max_cpu))),0,[])
-        nodeMaster.run()
+    try:
+        if node_id == 0:
+            node_verify = "Master"
+            nodeMaster = Node(node_id+1,node_verify,[],int(random.randrange(int(min_cpu),int(max_cpu))),0,[])
+            nodeMaster.run()
+        else:
+            node_verify = "Worker%d"%(node_id+1)
+            nodeWorker = WorkerNode(node_id+1,node_verify,int(random.randrange(int(min_cpu),int(max_cpu))),0,[])
+            nodeWorker.run()
+    except rospy.ROSInterruptException:
+        print('ROS shutdown, key interruptted')
     #at begnining of each iteration it will define new empty task queue
     # for x in range(0,1):
     #     print(f'current iteration {x}')

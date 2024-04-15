@@ -175,19 +175,30 @@ class Node:
         timeslot =0
         while True:
             #call dynamic heft 
+            print(f'currrent time slot {timeslot}')
             self.testorchest.dy_heft(incomplete_task,timeslot)
 
             # temp_task = [x for x in incomplete_task if testobj.task_flag[x]]
             # print(f'at line 344 { testobj.task_flag}')
             
-            timeslot += 1
+            timeslot += 10
             # print(f'complete list: {complete_list}')
             # for i in complete_list:
             #     task_status_flag[i] = True
             for x in self.testorchest.get_items():
-                print(f'current task {self.testorchest.tasks[x].task_idx} and processor {self.testorchest.tasks[x].processor_id}')
+                if self.testorchest.tasks[x].processor_id == self.node_id - 1:
+                    self.taskQueue.append(x)
+                    self.completed.append([self.testorchest.tasks[x].task_idx,rospy.get_time()])
+                    rospy.sleep(self.testorchest.tasks[x].size / self.testorchest.tasks[x].ci)
+                else:
+                    self.pub.publish(self.testorchest.tasks[x])
+                    rospy.sleep(0.25)
+            # print(f'len of flags {len(self.testorchest.task_flag)}')
+            # print(f'at line 196 : {self.testorchest.task_flag.count(True)}')
             if not False in self.testorchest.task_flag:
                 break
+        print('finished')
+        print('*'*20)
 
 
     # def run(self):
@@ -285,7 +296,7 @@ class WorkerNode:
                 print(f'task {data.task_idx} on worker { self.node_id}')
                 data.st = self.taskQueue [-1].et if self.taskQueue else 0
                 data.et = data.st + float(data.size / data.ci) 
-                self.taskQueue.append(data)
+                if data not in self.taskQueue:self.taskQueue.append(data) 
                 self.comp_energy.append([data.delta * (data.size/data.ci),data.task_idx])
                 self.comp_time.append([(data.size/data.ci),data.task_idx])
             else:
