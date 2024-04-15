@@ -243,8 +243,10 @@ class Orchestrator:
         # TASK_FLAG=[False]*len(self.comp)
         # TASK_FLAG=task_status_flag
         # temp_task = np.argsort([self.calculate_rank_up_recursive(self.comp,self.comm,i) for i in incomplete_task]).tolist()
-
+        # print(f'temp task {temp_task}')
+        print(f'incomplete task {incomplete_task}')
         for task in incomplete_task:
+        # for task in temp_task:
             if self.task_flag[task]:
                 continue
             else:

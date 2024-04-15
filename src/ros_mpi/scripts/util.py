@@ -166,8 +166,8 @@ class Node:
     def run(self):
         task_status_flag = [False]*len(self.comm)
 
-        incomplete_task =np.argsort([self.testorchest.calculate_rank_up_recursive(self.comp,self.comm,i) for i in range(len(self.comp))]).tolist()
-    
+        incomplete_task =np.argsort([self.testorchest.calculate_rank_up_recursive(self.comp,self.comm,i) for i in range(len(self.comp))]).tolist()[::-1]
+        print(f'incomplete task {incomplete_task}')
         # temp_task = defaultdict(list)
 
         # while incomplete_task and task_status_flag:
@@ -185,6 +185,7 @@ class Node:
             # print(f'complete list: {complete_list}')
             # for i in complete_list:
             #     task_status_flag[i] = True
+            print(f'self.testorchest.get_items() {self.testorchest.get_items()}')
             for x in self.testorchest.get_items():
                 if self.testorchest.tasks[x].processor_id == self.node_id - 1:
                     self.taskQueue.append(x)
