@@ -165,17 +165,15 @@ class Node:
 
     def run(self):
         task_status_flag = [False]*len(self.comm)
-
-        incomplete_task =np.argsort([self.testorchest.calculate_rank_up_recursive(self.comp,self.comm,i) for i in range(len(self.comp))]).tolist()[::-1]
-        print(f'incomplete task {incomplete_task}')
         # temp_task = defaultdict(list)
-
         # while incomplete_task and task_status_flag:
         print('****'*20)
         timeslot =0
         while True:
-            #call dynamic heft 
-            print(f'currrent time slot {timeslot}')
+            incomplete_task =np.argsort([self.testorchest.calculate_rank_up_recursive(self.comp,self.comm,i) for i in range(len(self.comp))]).tolist()[::-1]
+            # print(f'incomplete_task{incomplete_task}')
+            #call dynamic heft             
+            # print(f'currrent time slot {timeslot}')
             self.testorchest.dy_heft(incomplete_task,timeslot)
 
             # temp_task = [x for x in incomplete_task if testobj.task_flag[x]]
@@ -187,6 +185,9 @@ class Node:
             #     task_status_flag[i] = True
             print(f'self.testorchest.get_items() {self.testorchest.get_items()}')
             for x in self.testorchest.get_items():
+                if self.testorchest.task_flag[x]:
+                    print(f'current task {x} is already scheduled {self.testorchest.task_flag[x]}')
+                    continue
                 if self.testorchest.tasks[x].processor_id == self.node_id - 1:
                     self.taskQueue.append(x)
                     self.completed.append([self.testorchest.tasks[x].task_idx,rospy.get_time()])

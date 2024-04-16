@@ -56,9 +56,11 @@ class Orchestrator:
         return res
     def get_items(self) -> list:
         res = []
-        for i in range(len(self.comp)):
+        
+        for i in self.tasks:
             if self.task_flag[i]:
                 res.append(self.tasks[i].task_idx)
+        # print("at line 64, all tasks: ",res)
         return res
     def calculate_rank_up_recursive(self,comp, comm, i):
         # print(f'calculating rank up value for {i}')
@@ -239,12 +241,14 @@ class Orchestrator:
     
     
     def dy_heft(self,incomplete_task,time_slot):
-    
+        # comm matrix is for the task dependnecy which will influence the priority list
+        # commuication among UAV's are only calculate during run time
+
         # TASK_FLAG=[False]*len(self.comp)
         # TASK_FLAG=task_status_flag
         # temp_task = np.argsort([self.calculate_rank_up_recursive(self.comp,self.comm,i) for i in incomplete_task]).tolist()
         # print(f'temp task {temp_task}')
-        print(f'incomplete task {incomplete_task}')
+        # print(f'incomplete task {incomplete_task}')
         for task in incomplete_task:
         # for task in temp_task:
             if self.task_flag[task]:

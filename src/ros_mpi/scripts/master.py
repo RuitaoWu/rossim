@@ -37,17 +37,18 @@ from mpi4py import MPI
 
 
 def create_folder_if_not_exists(folder_path):
-    if not os.path.exists(folder_path):
-        os.makedirs(folder_path)
-        print(f"Folder '{folder_path}' created.")
-    else:
+    try:
+        if not os.path.exists(folder_path):
+            os.makedirs(folder_path)
+            print(f"Folder '{folder_path}' created.")
+    except:
         print(f"Folder '{folder_path}' already exists.")
 
 # Example usage:
 # folder_path = '/home/jxie/rossim/src/ros_mpi/data'
 # task_succ_path = '/home/jxie/rossim/src/ros_mpi/task_succ'
-folder_path = 'src/ros_mpi/data'
-task_succ_path = 'src/ros_mpi/task_succ'
+folder_path = '../data'
+task_succ_path = '../task_succ'
 
 create_folder_if_not_exists(folder_path)
 create_folder_if_not_exists(task_succ_path)
