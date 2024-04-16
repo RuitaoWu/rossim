@@ -31,25 +31,24 @@
 
         <sensor name="wirelessTransmitter" type="wireless_transmitter">
           <plugin name="wifi_router_plugin" filename="libwifirouter.so"/>
-          <pose>0 0 0.5 3.14 3.14 0</pose>
           <always_on>1</always_on>
-          <update_rate>.01</update_rate>
+          <update_rate>1</update_rate>
           <visualize>true</visualize>
           <transceiver>
             <essid>osrf</essid>
-            <frequency>1200</frequency>
-            <power>15</power>
-            <gain>1.5</gain>
+            <frequency>2442.0</frequency>
+            <power>14.5</power>
+            <gain>2.6</gain>
           </transceiver>
         </sensor>
-
+	      
 
       </link>
     </model>
 
     <model name="box2">
       <link name="link">
-        <pose>0 0 0.5 0 0 0</pose>
+        <pose>100 100 0.5 0 0 0</pose>
 
         <collision name="box_collision">
           <geometry>
@@ -69,19 +68,19 @@
 
         <sensor name="wirelessReceiver" type="wireless_receiver">
           <plugin name="wifi_receiver_plugin" filename="libwifireceiver.so"/>
-          <pose>0 0 0.5 3.14 3.14 0</pose>
           <always_on>1</always_on>
-          <update_rate>.01</update_rate>
+          <update_rate>1</update_rate>
           <visualize>true</visualize>
+          <pose>100 100 0.5 0 0 0</pose>
           <transceiver>
-            <min_frequency>1200</min_frequency>
-            <max_frequency>1200</max_frequency>
-            <power>15</power>
-            <gain>1.5</gain>
-            <sensitivity>-80.0</sensitivity>
+            <min_frequency>2412.0</min_frequency>
+            <max_frequency>2484.0</max_frequency>
+            <power>14.5</power>
+            <gain>2.5</gain>
+            <sensitivity>-90.0</sensitivity>
           </transceiver>
         </sensor>
-
+        
 
       </link>
     </model>

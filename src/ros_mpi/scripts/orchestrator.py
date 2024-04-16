@@ -5,7 +5,7 @@ from math import ceil
 from re import T
 import tempfile
 import numpy as np
-from torch import t
+# from torch import t
 from hector_uav_msgs.msg import Task
 # from taskgen import TaskGen
 import random,string

@@ -32,7 +32,7 @@ void WifiRouterPlugin::Load(sensors::SensorPtr _sensor, sdf::ElementPtr /*_sdf*/
   this->parentSensor->SetActive(true);
 
   std::string essid;
-  essid = this->parentSensor->ESSID ();
+  essid = this->parentSensor->GetESSID ();
 
   std::cout << " ESSID:" << essid << "\n";
 }
@@ -40,6 +40,6 @@ void WifiRouterPlugin::Load(sensors::SensorPtr _sensor, sdf::ElementPtr /*_sdf*/
 void WifiRouterPlugin::OnUpdate()
 {
   std::string essid;
-  essid = this->parentSensor->ESSID ();
+  essid = this->parentSensor->GetESSID ();
   // std::cout << " ESSID:" << essid << "\n";
 }

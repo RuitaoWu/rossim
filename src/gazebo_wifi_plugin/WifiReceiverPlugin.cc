@@ -1,31 +1,18 @@
 #include "WifiReceiverPlugin.hh"
 #include "gazebo/sensors/SensorFactory.hh"
 #include "gazebo/sensors/SensorManager.hh"
-#include "ignition/math/Rand.hh"
+#include "gazebo/math/Rand.hh"
 #include "gazebo/msgs/msgs.hh"
 #include "gazebo/transport/Node.hh"
 #include "gazebo/transport/Publisher.hh"
 #include "gazebo/sensors/WirelessTransmitter.hh"
-#include "gazebo/util/system.hh"
-#include "ros/ros.h"
-#include "std_msgs/Float32.h"
-#include "std_msgs/Float32MultiArray.h"
 
-
-
-using namespace std;
 using namespace gazebo;
 using namespace sensors;
 GZ_REGISTER_SENSOR_PLUGIN(WifiReceiverPlugin)
 
-std::string ns = ros::this_node::getNamespace();
-ros::NodeHandle nh;
-ros::Publisher recv_signal = nh.advertise<std_msgs::Float32MultiArray>(ns + "recv_Signal", 1000);
-
-
 WifiReceiverPlugin::WifiReceiverPlugin() : SensorPlugin()
 {
-
 }
 
 WifiReceiverPlugin::~WifiReceiverPlugin()
@@ -57,44 +44,60 @@ void WifiReceiverPlugin::Load(sensors::SensorPtr _sensor, sdf::ElementPtr /*_sdf
 
 bool WifiReceiverPlugin::UpdateImpl()
 {
+  std::string txEssid;
+  // msgs::WirelessNodes msg;
+  double rxPower;
+  double txFreq;
 
-  std_msgs::Float32MultiArray rssi;
+  sensors::SensorPtr sensor_ptr;
+  sensor_ptr = SensorManager::Instance()->GetSensor("wirelessTransmitter");
 
-  vector<SensorPtr> currSensors;
-  currSensors = SensorManager::Instance()->GetSensors();
-  double time_value;
-  time_value = ros::Time::now().toSec();
-  // std::cout << time_value << endl;
-  rssi.data.push_back(time_value);
+  sensors::WirelessTransmitterPtr transmitSensor;
+  transmitSensor = std::dynamic_pointer_cast<sensors::WirelessTransmitter>(sensor_ptr);
 
-  for (int i = 0; i < currSensors.size(); i++)
+
+  std::cout << "Connected to: " + transmitSensor->GetESSID() + "\n";
+  double signal_strength;
+  signal_strength = transmitSensor->SignalStrength(this->parentSensor->Pose(), this->parentSensor->Gain());
+  std::cout << "Signal strengh: " << signal_strength << "\n";
+
+  math::Pose myPos = this->parentSensor->Pose();
+  std::cout << "Pose: " << myPos << "\n";
+
+
+  /*for (Sensor_V::iterator it = sensors.begin(); it != sensors.end(); ++it)
   {
-    std::string txEssid;
-    // msgs::WirelessNodes msg;
-    double rxPower;
-    double txFreq;
-
-    sensors::SensorPtr sensor_ptr;
-    sensor_ptr = SensorManager::Instance()->GetSensor("wirelessTransmitter");
-    if (currSensors[i]->Type() == "wireless_transmitter")
+    if ((*it)->GetType() == "wireless_transmitter")
     {
-      sensors::WirelessTransmitterPtr transmitSensor;
-      transmitSensor = std::dynamic_pointer_cast<sensors::WirelessTransmitter>(currSensors[i]);
-      // std::cout << "Connected to: " + transmitSensor->ESSID() + "\n";
-      double signal_strength;
-      signal_strength = transmitSensor->SignalStrength(this->parentSensor->Pose(), this->parentSensor->Gain());
-      // std::cout << "Signal strengh: " << signal_strength << "\n";
-      rssi.data.push_back(signal_strength);
+      
 
-      ignition::math::Pose3d myPos = this->parentSensor->Pose();
-      // std::cout << "Pose: " << myPos << "\n";
+      sensors::WirelessTransmitterPtr parentSensor;
+      this->parentSensor = (*it)->GetSensor("wireless_transmitter");
+      boost::shared_ptr<gazebo::sensors::WirelessTransmitter> transmitter =
+           boost::static_pointer_cast<WirelessTransmitter>(*it);
 
+      txFreq = transmitter->GetFreq();
+      rxPower = transmitter->GetSignalStrength(myPos, this->GetGain());
+
+      // Discard if the frequency received is out of our frequency range,
+      // or if the received signal strengh is lower than the sensivity
+      if ((txFreq < this->GetMinFreqFiltered()) ||
+           (txFreq > this->GetMaxFreqFiltered()) ||
+           (rxPower < this->GetSensitivity()))
+      {
+        continue;
+      }
+
+      txEssid = transmitter->GetESSID();
+
+      msgs::WirelessNode *wirelessNode = msg.add_node();
+      wirelessNode->set_essid(txEssid);
+      wirelessNode->set_frequency(txFreq);
+      std::cout << txEssid << "\n";
     }
+  }*/
 
 
-  }
-  // std::cout << "RSSI: " << rssi << "\n";
-  recv_signal.publish(rssi);
   return true;
-
+      
 }
