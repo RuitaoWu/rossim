@@ -44,8 +44,11 @@ def create_folder_if_not_exists(folder_path):
         print(f"Folder '{folder_path}' already exists.")
 
 # Example usage:
-folder_path = '/home/jxie/rossim/src/ros_mpi/data'
-task_succ_path = '/home/jxie/rossim/src/ros_mpi/task_succ'
+# folder_path = '/home/jxie/rossim/src/ros_mpi/data'
+# task_succ_path = '/home/jxie/rossim/src/ros_mpi/task_succ'
+folder_path = 'src/ros_mpi/data'
+task_succ_path = 'src/ros_mpi/task_succ'
+
 create_folder_if_not_exists(folder_path)
 create_folder_if_not_exists(task_succ_path)
 # if not os.path('/home/jxie/rossim/src/ros_mpi/data_indep'):
@@ -53,7 +56,8 @@ create_folder_if_not_exists(task_succ_path)
 # else:
 #     print(f"Folder '{'/home/jxie/rossim/src/ros_mpi/data_indep'}' already exists.")
 config = configparser.ConfigParser()
-config.read('/home/jxie/rossim/src/ros_mpi/scripts/property.properties')
+# config.read('/rossim/src/ros_mpi/scripts/property.properties')
+config.read('property.properties')
 max_cpu = int(config.get('UAV','max_cpu'))
 min_cpu = int(config.get('UAV','min_cpu'))
 sleep_time = float(config.get('UAV','sleep_time'))

@@ -24,7 +24,7 @@ import configparser
 from orchestrator import Orchestrator
 from taskgen import TaskGen
 config = configparser.ConfigParser()
-config.read('/home/jxie/rossim/src/ros_mpi/scripts/property.properties')
+config.read('property.properties')
 
 
 
