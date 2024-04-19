@@ -3,6 +3,7 @@ from cgi import test
 from collections import defaultdict
 from math import ceil
 from re import T
+from statistics import mean
 import tempfile
 import numpy as np
 # from torch import t
@@ -239,7 +240,15 @@ class Orchestrator:
     def dy_earliest_finish_time(self,idx,s,est):
         return est + self.comp[idx][s]
     
-    
+
+
+    def update_comm(self,mean_datarate):
+        for i in [self.tasks[t].task_idx for t in self.tasks]:
+            for j in range(len(self.comm[i])):
+                if self.comm[i][j] >0:
+                    self.comm[i][j] = self.tasks[i].size // mean_datarate
+                # print(f'comm [{i}][{i}]: {self.comm[i][j]}')
+        print(f'updated comm matrix: {self.comm}')
     def dy_heft(self,incomplete_task,time_slot):
         # comm matrix is for the task dependnecy which will influence the priority list
         # commuication among UAV's are only calculate during run time

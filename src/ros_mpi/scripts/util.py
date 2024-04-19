@@ -101,12 +101,12 @@ class Node:
                                  alpha=float(config.get('DatarateConfig','alpha')))
         print(self.datarate)
         numberOfTask = int(config.get('Task','numberOfTask'))
-        numberOfComputingNode = int(config.get('Task','computing'))
+        self.numberOfComputingNode = int(config.get('Task','computing'))
         task_size_min = int(config.get('Task','task_size_min'))
         task_size_max = int(config.get('Task','task_size_max'))
         ipsMax = int(config.get('Task','ips_max'))
         ipsMin = int(config.get('Task','ips_min'))
-        taskgenerator = TaskGen(random.randint(numberOfTask // 2, numberOfTask),numberOfComputingNode,task_size_min,task_size_max,ipsMin,ipsMax)
+        taskgenerator = TaskGen(random.randint(numberOfTask // 2, numberOfTask),self.numberOfComputingNode,task_size_min,task_size_max,ipsMin,ipsMax)
         self.comp,self.comm = taskgenerator.gen_comp_matrix(),taskgenerator.generate_random_dag(density=0.5)
         self.testorchest = Orchestrator(self.comm,self.comp,100,200)
         # testorchest.indep_sch(taskgenerator.gen_indep())
@@ -169,13 +169,17 @@ class Node:
         # while incomplete_task and task_status_flag:
         print('****'*20)
         timeslot =0
+        print(f'comm matrix {self.comm}')
         while True:
             incomplete_task =np.argsort([self.testorchest.calculate_rank_up_recursive(self.comp,self.comm,i) for i in range(len(self.comp))]).tolist()[::-1]
             # print(f'incomplete_task{incomplete_task}')
             #call dynamic heft             
             # print(f'currrent time slot {timeslot}')
             self.testorchest.dy_heft(incomplete_task,timeslot)
-
+            # self.testorchest.update_comm(np.mean([self.comm_time(self.node_id,u) for u in range(2,self.numberOfComputingNode+1)]))
+            self.testorchest.update_comm(np.mean([self.comm_time(self.node_id,u) for u in range(2,self.numberOfComputingNode+1)]))
+            # for u in range(2,self.numberOfComputingNode+1):
+            #     print(f'data rate between {self.node_id} and worker {u} is {self.comm_time(self.node_id,u)}')
             # temp_task = [x for x in incomplete_task if testobj.task_flag[x]]
             # print(f'at line 344 { testobj.task_flag}')
             
@@ -195,8 +199,7 @@ class Node:
                 else:
                     self.pub.publish(self.testorchest.tasks[x])
                     rospy.sleep(0.25)
-            # print(f'len of flags {len(self.testorchest.task_flag)}')
-            # print(f'at line 196 : {self.testorchest.task_flag.count(True)}')
+        
             if not False in self.testorchest.task_flag:
                 break
         print('finished')
