@@ -5,6 +5,7 @@ from math import ceil
 from re import T
 from statistics import mean
 import tempfile
+from tracemalloc import start
 import numpy as np
 # from torch import t
 from hector_uav_msgs.msg import Task
@@ -232,32 +233,30 @@ class Orchestrator:
                 else:
                     # start_time.append(self.AFT[p]+self.comm[p][idx])
                     #transmission time
+                    # d = Datarate().data_rate(distance=random.randint(800,100                    
+                    # start_time.append(self.AFT[p]+self.comm[p][idx])
+                    #transmission time
                     # d = Datarate().data_rate(distance=random.randint(800,1000))
+                   # self.task_size[p]/Datarate().data_rate(distance=random.randint(100,200))0))
                    # self.task_size[p]/Datarate().data_rate(distance=random.randint(100,200))
                     start_time.append(self.AFT[p]+self.task_size[p]/Datarate().data_rate(distance=random.randint(100,200)))
+            print(f'start time at line 241: {start_time}')
             return max(self.dy_earliest_avilable_time(s),max(start_time))
         # calculate the earliest finish time for current task on each processor
     def dy_earliest_finish_time(self,idx,s,est):
         return est + self.comp[idx][s]
-    
-
-
+    #update communication time
     def update_comm(self,mean_datarate):
+        
         for i in [self.tasks[t].task_idx for t in self.tasks]:
             for j in range(len(self.comm[i])):
                 if self.comm[i][j] >0:
                     self.comm[i][j] = self.tasks[i].size // mean_datarate
-                # print(f'comm [{i}][{i}]: {self.comm[i][j]}')
+                print(f' the current mean datarate {mean_datarate} and task size {self.tasks[i].size }')
         print(f'updated comm matrix: {self.comm}')
-    def dy_heft(self,incomplete_task,time_slot):
-        # comm matrix is for the task dependnecy which will influence the priority list
-        # commuication among UAV's are only calculate during run time
 
-        # TASK_FLAG=[False]*len(self.comp)
-        # TASK_FLAG=task_status_flag
-        # temp_task = np.argsort([self.calculate_rank_up_recursive(self.comp,self.comm,i) for i in incomplete_task]).tolist()
-        # print(f'temp task {temp_task}')
-        # print(f'incomplete task {incomplete_task}')
+    def dy_heft(self,incomplete_task,time_slot):
+        print(f'task list at line 257: {incomplete_task}')
         for task in incomplete_task:
         # for task in temp_task:
             if self.task_flag[task]:
@@ -266,14 +265,15 @@ class Orchestrator:
                 est,eft=[],[]
                 for s in range(0,len(self.comp[0])):
                     est.append(self.dy_earliest_start_time(task,s))
-                    eft.append(self.dy_earliest_finish_time(task,s,est[s]))
-                    # self.update_aft(eft,est,task)
-                    self.update_dy_heft_aft(eft,est,task)
+                    eft.append(self.dy_earliest_finish_time(task,s,est[s]))  
+                    self.update_dy_heft_aft(eft,est,task)                  
                 #if task in current time slot then schedule and skip otherwise
-                if eft[np.argmin(eft)]<= time_slot:
+                # if eft[np.argmin(eft)]<= time_slot:
+                if est[np.argmin(eft)] <= time_slot:
                     self.task_schedule_list[np.argmin(eft)].append(task) # append task to the processor with earliest finish time
                     self.tasks[task].processor_id = np.argmin(eft)
                     self.task_flag[task] = True
+                    
                 else:
                     continue
         return self.task_schedule_list
@@ -333,26 +333,26 @@ if __name__ == '__main__':
                     [5, 11, 4],
                     [18, 12, 20],
                     [21, 7, 16]]
-    comm = [[0, 1, 1, 1, 1, 1, 0, 0, 0, 0],
-                 [0, 0, 0, 0, 0, 0, 0, 1, 1, 0],
-                 [0, 0, 0, 0, 0, 0, 1, 0, 0, 0],
-                 [0, 0, 0, 0, 0, 0, 0, 1, 1, 0],
-                 [0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
-                 [0, 0, 0, 0, 0, 0, 0, 1, 0, 0],
-                 [0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-                 [0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-                 [0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-                 [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
-    # comm = [[0, 18, 12, 9, 11, 14, 0, 0, 0, 0],
-    #                 [0, 0, 0, 0, 0, 0, 0, 19, 16, 0],
-    #                 [0, 0, 0, 0, 0, 0, 23, 0, 0, 0],
-    #                 [0, 0, 0, 0, 0, 0, 0, 27, 23, 0],
-    #                 [0, 0, 0, 0, 0, 0, 0, 0, 13, 0],
-    #                 [0, 0, 0, 0, 0, 0, 0, 15, 0, 0],
-    #                 [0, 0, 0, 0, 0, 0, 0, 0, 0, 17],
-    #                 [0, 0, 0, 0, 0, 0, 0, 0, 0, 11],
-    #                 [0, 0, 0, 0, 0, 0, 0, 0, 0, 13],
-    #                 [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
+    # comm = [[0, 1, 1, 1, 1, 1, 0, 0, 0, 0],
+    #              [0, 0, 0, 0, 0, 0, 0, 1, 1, 0],
+    #              [0, 0, 0, 0, 0, 0, 1, 0, 0, 0],
+    #              [0, 0, 0, 0, 0, 0, 0, 1, 1, 0],
+    #              [0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
+    #              [0, 0, 0, 0, 0, 0, 0, 1, 0, 0],
+    #              [0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    #              [0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    #              [0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    #              [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
+    comm = [[0, 18, 12, 9, 11, 14, 0, 0, 0, 0],
+                    [0, 0, 0, 0, 0, 0, 0, 19, 16, 0],
+                    [0, 0, 0, 0, 0, 0, 23, 0, 0, 0],
+                    [0, 0, 0, 0, 0, 0, 0, 27, 23, 0],
+                    [0, 0, 0, 0, 0, 0, 0, 0, 13, 0],
+                    [0, 0, 0, 0, 0, 0, 0, 15, 0, 0],
+                    [0, 0, 0, 0, 0, 0, 0, 0, 0, 17],
+                    [0, 0, 0, 0, 0, 0, 0, 0, 0, 11],
+                    [0, 0, 0, 0, 0, 0, 0, 0, 0, 13],
+                    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
     # comm = np.where(read_dag('test.dot')[-1] >= 0, 1, 0).tolist()
     # taskgen = TaskGen(5,3)
     # comm = taskgen.generate_random_dag()
@@ -362,8 +362,11 @@ if __name__ == '__main__':
 
     testobj = Orchestrator(comm,comp,100,200)
     task_status_flag = [False]*len(comm)
-    incomplete_task =np.argsort([testobj.calculate_rank_up_recursive(testobj.comp,testobj.comm,i) for i in range(len(testobj.comp))]).tolist()
-    
+    incomplete_task =np.argsort([testobj.calculate_rank_up_recursive(testobj.comp,testobj.comm,i) for i in range(len(testobj.comp))]).tolist()[::-1]
+    print(f'incomplete task { incomplete_task}')
+    # testobj.heft()
+    # print(f'ast {testobj.AST}')
+    # print(f'aft {testobj.AFT}')
     # temp_task = defaultdict(list)
 
     # while incomplete_task and task_status_flag:
@@ -371,7 +374,8 @@ if __name__ == '__main__':
     while True:
         #call dynamic heft 
         testobj.dy_heft(incomplete_task,timeslot)
-
+        print(f'ast: {testobj.AST}')
+        print(f'aft: {testobj.AFT}')
         # temp_task = [x for x in incomplete_task if testobj.task_flag[x]]
         # print(f'at line 344 { testobj.task_flag}')
         
@@ -384,8 +388,7 @@ if __name__ == '__main__':
         if not False in testobj.task_flag:
             break
     # print(f'after {testobj.task_schedule_list}')
-    print(f'ast: {testobj.AST}')
-    print(f'aft: {testobj.AFT}')
+    
     import matplotlib.pyplot as plt
 
     # Given data

@@ -107,7 +107,29 @@ class Node:
         ipsMax = int(config.get('Task','ips_max'))
         ipsMin = int(config.get('Task','ips_min'))
         taskgenerator = TaskGen(random.randint(numberOfTask // 2, numberOfTask),self.numberOfComputingNode,task_size_min,task_size_max,ipsMin,ipsMax)
-        self.comp,self.comm = taskgenerator.gen_comp_matrix(),taskgenerator.generate_random_dag(density=0.5)
+        # self.comp,self.comm = taskgenerator.gen_comp_matrix(),taskgenerator.generate_random_dag(density=0.5)
+        comp = [[14,16,9],
+                 [13,19,18],
+                 [11,13,19],
+                 [13,8,17],
+                 [12,13,10],
+                 [13,16,9],
+                 [7,15,11],
+                 [5,11,4],
+                 [18,12,20],
+                 [21,7,16]]
+
+        comm = [[0,18,12,9,11,14,0,0,0,0],
+                 [0,0,0,0,0,0,0,19,16,0],
+                 [0,0,0,0,0,0,23,0,0,0],
+                 [0,0,0,0,0,0,0,27,23,0],
+                 [0,0,0,0,0,0,0,0,13,0],
+                 [0,0,0,0,0,0,0,15,0,0],
+                 [0,0,0,0,0,0,0,0,0,17],
+                 [0,0,0,0,0,0,0,0,0,11],
+                 [0,0,0,0,0,0,0,0,0,13],
+                 [0,0,0,0,0,0,0,0,0,0]]
+        self.comp,self.comm = comp,comm
         self.testorchest = Orchestrator(self.comm,self.comp,100,200)
         # testorchest.indep_sch(taskgenerator.gen_indep())
         tempTask = taskgenerator.gen_indep()
@@ -183,7 +205,7 @@ class Node:
             # temp_task = [x for x in incomplete_task if testobj.task_flag[x]]
             # print(f'at line 344 { testobj.task_flag}')
             
-            timeslot += 10
+            timeslot += 1
             # print(f'complete list: {complete_list}')
             # for i in complete_list:
             #     task_status_flag[i] = True
@@ -199,8 +221,11 @@ class Node:
                 else:
                     self.pub.publish(self.testorchest.tasks[x])
                     rospy.sleep(0.25)
-        
+            print(f'task flag {self.testorchest.task_flag}')
             if not False in self.testorchest.task_flag:
+                print(f'task scheduling {self.testorchest.task_schedule_list}')
+                print(f'ast {self.testorchest.AST}')
+                print(f'aft {self.testorchest.AFT}')
                 break
         print('finished')
         print('*'*20)
