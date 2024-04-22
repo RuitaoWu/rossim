@@ -251,7 +251,7 @@ class Orchestrator:
         for i in [self.tasks[t].task_idx for t in self.tasks]:
             for j in range(len(self.comm[i])):
                 if self.comm[i][j] >0:
-                    self.comm[i][j] = self.tasks[i].size // mean_datarate
+                    self.comm[i][j] = self.tasks[i].size // (mean_datarate / 10000)
                 print(f' the current mean datarate {mean_datarate} and task size {self.tasks[i].size }')
         print(f'updated comm matrix: {self.comm}')
 

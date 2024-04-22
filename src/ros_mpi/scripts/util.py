@@ -205,7 +205,7 @@ class Node:
             # temp_task = [x for x in incomplete_task if testobj.task_flag[x]]
             # print(f'at line 344 { testobj.task_flag}')
             
-            timeslot += 1
+            timeslot += 50
             # print(f'complete list: {complete_list}')
             # for i in complete_list:
             #     task_status_flag[i] = True
