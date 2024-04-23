@@ -198,14 +198,14 @@ class Node:
             #call dynamic heft             
             # print(f'currrent time slot {timeslot}')
             self.testorchest.dy_heft(incomplete_task,timeslot)
+            self.testorchest.update_comm(0.1)
             # self.testorchest.update_comm(np.mean([self.comm_time(self.node_id,u) for u in range(2,self.numberOfComputingNode+1)]))
-            self.testorchest.update_comm(np.mean([self.comm_time(self.node_id,u) for u in range(2,self.numberOfComputingNode+1)]))
             # for u in range(2,self.numberOfComputingNode+1):
             #     print(f'data rate between {self.node_id} and worker {u} is {self.comm_time(self.node_id,u)}')
             # temp_task = [x for x in incomplete_task if testobj.task_flag[x]]
             # print(f'at line 344 { testobj.task_flag}')
             
-            timeslot += 50
+            timeslot += 1
             # print(f'complete list: {complete_list}')
             # for i in complete_list:
             #     task_status_flag[i] = True
@@ -380,7 +380,7 @@ class Master:
         self.communication_time_rec=[]
         self.nodeid = node_id
         config = configparser.ConfigParser()
-        config.read('/home/jxie/rossim/src/ros_mpi/scripts/property.properties')
+        config.read('property.properties')
         self.comm_range = float(config.get('UAV','comm_range'))
         # noise=0.0000000000001,band_width=5000000 , transmission_power=0.5,alpha=4.0
         # density = float(config.get('Task','density'))
@@ -467,7 +467,8 @@ class Master:
                         x.st = max(self.master_task[-1].et, self.pred_aft(x)+trans_time) if self.master_task else self.pred_aft(x)+trans_time
                         x.et = x.st + ((x.size/x.ci)*10)
                         self.comp_energy.append([x.delta * (x.size/x.ci),x.task_idx])
-                        self.comp_time.append([(x.size/x.ci),x.task_idx])
+                        # self.comp_time.append([(x.size/x.ci),x.task_idx])
+                        self.comp_time.append([20,x.task_idx]) #computatin time
                         self.master_task.append(x)
                         if self.master_task[-1].st < 0:
                             continue
@@ -556,7 +557,7 @@ class Worker:
             # print('/uav%d/ground_truth_to_tf/pose'%(data.processor_id+1))
             worker_1 = rospy.wait_for_message('/uav%d/ground_truth_to_tf/pose'%(data.processor_id+1),PoseStamped)
             worker_2 = rospy.wait_for_message(self.loc,PoseStamped)
-
+ 
             distance = math.dist([worker_1.pose.position.x,worker_1.pose.position.y,worker_1.pose.position.z],
                                 [worker_2.pose.position.x,worker_2.pose.position.y,worker_2.pose.position.z])
             current_datarate = self.datarate.data_rate(distance)

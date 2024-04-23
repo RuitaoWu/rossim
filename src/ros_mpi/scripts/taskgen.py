@@ -67,7 +67,8 @@ class TaskGen():
             task.task_idx = i
             task.processor_id = -1
             task.dependency=[]
-            task.size = random.randint(self.taskMin,self.taskMax) #number of instructions
+            # task.size = random.randint(self.taskMin,self.taskMax) #number of instructions
+            task.size = 1
             # task.size = random.randint(self.taskMin,self.taskMax) 
             task.st = 0
             task.et = 0

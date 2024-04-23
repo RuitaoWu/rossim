@@ -378,6 +378,10 @@ class PlotGraph:
     
 if __name__ == '__main__':
 
+
+
+    plgraph = PlotGraph(3)
+    plgraph.gantt_chart()
     # data=[]
     # for i in range(5):
     #     with open('/home/jxie/rossim/src/ros_mpi/task_succ/capacity3_iter_%d.pkl'%i, 'rb') as file:
@@ -411,7 +415,7 @@ if __name__ == '__main__':
 
 
     ####
-    with open('/home/jxie/rossim/src/ros_mpi/data/uav2.pkl','rb') as file:
-        content = pickle.load(file)
-    print([x.task_idx for x in content])
+    # with open('/home/jxie/rossim/src/ros_mpi/data/uav2.pkl','rb') as file:
+    #     content = pickle.load(file)
+    # print([x.task_idx for x in content])
 

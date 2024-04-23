@@ -40,7 +40,8 @@ class Orchestrator:
             task.task_idx = t
             task.processor_id = -1
             task.dependency=[]
-            task.size = random.randint(500000,1000000) #number of instructions
+            # task.size = random.randint(500000,1000000) #number of instructions
+            task.size = 0.1
             # task.size = random.randint(self.taskMin,self.taskMax) 
             task.st = 0
             task.et = 0
@@ -183,7 +184,8 @@ class Orchestrator:
                 task.processor_id = self.locate_task(t)
                 task.dependency=self.predecessor_task(t)
                 # task.size = random.randint(self.taskMin,self.taskMax) #number of instructions
-                task.size = 5000000 #number of instructions
+                # task.size = 5000000 #number of instructions
+                task.size = 1
                 task.st = 0
                 task.et = 0
                 # task.ci = random.randint(4000000, 8000000) #instruction per second
@@ -379,7 +381,7 @@ if __name__ == '__main__':
         # temp_task = [x for x in incomplete_task if testobj.task_flag[x]]
         # print(f'at line 344 { testobj.task_flag}')
         
-        timeslot += 1
+        timeslot += 0.1
         # print(f'complete list: {complete_list}')
         # for i in complete_list:
         #     task_status_flag[i] = True
