@@ -388,9 +388,9 @@ class Master:
                                  band_width=float(config.get('DatarateConfig','band_width')),
                                  transmission_power=float(config.get('DatarateConfig','transmission_power')),
                                  alpha=float(config.get('DatarateConfig','alpha')))
-        while True:
-            if rospy.wait_for_message('/uav%d/ground_truth_to_tf/pose'%self.nodeid, PoseStamped).pose.position.z + 0.1 > 0:
-                break
+        # while True:
+        #     if rospy.wait_for_message('/uav%d/ground_truth_to_tf/pose'%self.nodeid, PoseStamped).pose.position.z + 0.1 > 0:
+        #         break
         print('master node is on position...')
     #locate sucessor location
     def locate_pred(self,t):
@@ -421,11 +421,11 @@ class Master:
             temp = self.comm_time(self.nodeid,data.processor_id+1) if data.processor_id+1 > 0 else 1
             self.comm_energy.append([(data.size / temp)*self.energy,data.task_idx]) 
             self.communication_time_rec.append([data.size / temp,data.task_idx])
-            print(f'at line 246 current task  received {data.task_idx} from {data.processor_id+1} with communication time {self.communication_time_offload[-1]}')
-        elif data:
-            print('at lint 248 received: ',data.task_idx)
-        else:
-            print('empty...')
+            # print(f'at line 246 current task  received {data.task_idx} from {data.processor_id+1} with communication time {self.communication_time_offload[-1]}')
+        # elif data:
+        #     print('at lint 248 received: ',data.task_idx)
+        # else:
+        #     print('empty...')
 
     def received_call_back(self):
         print('call receive threading...')
@@ -450,44 +450,43 @@ class Master:
         thread.start()
         for x in dt:
             self.fly_energy.append([self.energy * (x.size / self.cpu),x.task_idx])
-            if self.distance_between_nodes(self.nodeid,x.processor_id+1) > self.comm_range:
-                print('**'*20)
-                print('Communication Failed......')
-                print('**'*20)
+            # if self.distance_between_nodes(self.nodeid,x.processor_id+1) > self.comm_range:
+            #     print('**'*20)
+            #     print('Communication Failed......')
+            #     print('**'*20)
+            # else:
+            if x.processor_id == 0:
+                # if self.distance_between_nodes(self.nodeid,self.locate_pred(x)+1) > self.comm_range:
+                #     print('**'*20)
+                #     print('at line 291 Communication Failed......')
+                #     print('**'*20)
+                #     continue
+                # else:
+                location_predecessor = self.locate_pred(x)
+                trans_time = x.size / self.comm_time(self.nodeid,location_predecessor+1) if location_predecessor != 0 else 0
+                x.st = max(self.master_task[-1].et, self.pred_aft(x)+trans_time) if self.master_task else self.pred_aft(x)+trans_time
+                x.et = x.st + ((x.size/x.ci)*10)
+                self.comp_energy.append([x.delta * (x.size/x.ci),x.task_idx])
+                # self.comp_time.append([(x.size/x.ci),x.task_idx])
+                self.comp_time.append([20,x.task_idx]) #computatin time
+                self.master_task.append(x)
+                # if self.master_task[-1].st < 0:
+                #     continue
+                rospy.sleep(x.size/x.ci) #simulate computation time
+                self.pub.publish(x)
+                rospy.sleep(self.sleepTime) #communication delay
             else:
-                if x.processor_id == 0:
-                    if self.distance_between_nodes(self.nodeid,self.locate_pred(x)+1) > self.comm_range:
-                        print('**'*20)
-                        print('at line 291 Communication Failed......')
-                        print('**'*20)
-                        continue
-                    else:
-                        location_predecessor = self.locate_pred(x)
-                        trans_time = x.size / self.comm_time(self.nodeid,location_predecessor+1) if location_predecessor != 0 else 0
-                        x.st = max(self.master_task[-1].et, self.pred_aft(x)+trans_time) if self.master_task else self.pred_aft(x)+trans_time
-                        x.et = x.st + ((x.size/x.ci)*10)
-                        self.comp_energy.append([x.delta * (x.size/x.ci),x.task_idx])
-                        # self.comp_time.append([(x.size/x.ci),x.task_idx])
-                        self.comp_time.append([20,x.task_idx]) #computatin time
-                        self.master_task.append(x)
-                        if self.master_task[-1].st < 0:
-                            continue
-                        rospy.sleep(x.size/x.ci) #simulate computation time
-                        self.pub.publish(x)
-                        rospy.sleep(self.sleepTime) #communication delay
-                else:
-                    #plus communication time
-                    temp = self.comm_time(self.nodeid,x.processor_id+1)
-                    x.st = self.pred_aft(x) + (x.size / temp)
-                    self.communication_time_offload.append([x.size / temp,x.task_idx])
-                    # print(f'at line 261 current task {x.task_idx} not on master with communication time {self.communication_time_offload[-1]}')
-                    self.comm_energy.append([(x.size / temp)*self.energy,x.task_idx]) #units: mj
-                    # rospy.sleep(x.size/x.ci) #simulate computation time
-                    self.pub.publish(x)
-                    print(f'after pub task {x.task_idx} st is {x.st}')
-                    rospy.sleep(self.sleepTime) #communication delay
-        print(f'at line 268 total task{len(dt)}, and {len(self.communication_time_offload)}')
-        print(f'receied {[x.task_idx for x in self.task_received]}')
+                #plus communication time
+                temp = self.comm_time(self.nodeid,x.processor_id+1)
+                x.st = self.pred_aft(x) + (x.size / temp)
+                self.communication_time_offload.append([x.size / temp,x.task_idx])
+                # print(f'at line 261 current task {x.task_idx} not on master with communication time {self.communication_time_offload[-1]}')
+                self.comm_energy.append([(x.size / temp)*self.energy,x.task_idx]) #units: mj
+                # rospy.sleep(x.size/x.ci) #simulate computation time
+                self.pub.publish(x)
+                print(f'after pub task {x.task_idx} st is {x.st}')
+                rospy.sleep(self.sleepTime) #communication delay
+
         #all tasks
         with open('/home/jxie/rossim/src/ros_mpi/data/uav%d.pkl'%self.nodeid,'wb') as file:
             pickle.dump(self.master_task,file)
@@ -536,9 +535,9 @@ class Worker:
                                  band_width=float(config.get('DatarateConfig','band_width')),
                                  transmission_power=float(config.get('DatarateConfig','transmission_power')),
                                  alpha=float(config.get('DatarateConfig','alpha')))
-        while True: 
-            if rospy.wait_for_message('/uav%d/ground_truth_to_tf/pose'%self.worker_id, PoseStamped).pose.position.z + 0.1 > 0:
-                break
+        # while True: 
+        #     if rospy.wait_for_message('/uav%d/ground_truth_to_tf/pose'%self.worker_id, PoseStamped).pose.position.z + 0.1 > 0:
+        #         break
         rospy.Subscriber(self.topic, Task, self.callback_func)
 
     def pred_aft(self,t):
@@ -555,17 +554,19 @@ class Worker:
         self.all_task.append(data)
         if data.processor_id == self.worker_id - 1 :
             # print('/uav%d/ground_truth_to_tf/pose'%(data.processor_id+1))
-            worker_1 = rospy.wait_for_message('/uav%d/ground_truth_to_tf/pose'%(data.processor_id+1),PoseStamped)
-            worker_2 = rospy.wait_for_message(self.loc,PoseStamped)
+            # worker_1 = rospy.wait_for_message('/uav%d/ground_truth_to_tf/pose'%(data.processor_id+1),PoseStamped)
+            # worker_2 = rospy.wait_for_message(self.loc,PoseStamped)
  
-            distance = math.dist([worker_1.pose.position.x,worker_1.pose.position.y,worker_1.pose.position.z],
-                                [worker_2.pose.position.x,worker_2.pose.position.y,worker_2.pose.position.z])
+            # distance = math.dist([worker_1.pose.position.x,worker_1.pose.position.y,worker_1.pose.position.z],
+            #                     [worker_2.pose.position.x,worker_2.pose.position.y,worker_2.pose.position.z])
+            distance = 400
             current_datarate = self.datarate.data_rate(distance)
-            print(f'task {data.task_idx} on {data.processor_id}')
+
             data.st = max(self.worker_task[-1].et, self.pred_aft(data),data.st) if self.worker_task else max(self.pred_aft(data),data.st)
             data.et = data.st +((data.size / data.ci)*10) #add more computation time
             self.comp_energy.append([data.delta *(data.size/data.ci),data.task_idx]) #units: mj
-            self.comp_time.append([(data.size / data.ci),data.task_idx] )
+            # self.comp_time.append([(data.size / data.ci),data.task_idx] )
+            self.comp_time.append([20,data.task_idx] )
             self.comm_energy.append([(data.size / current_datarate) * self.energy,data.task_idx]) #units: j
             self.communication_time.append(data.size / current_datarate)
             rospy.sleep((data.size / data.ci)) #simulate computation time
