@@ -428,14 +428,14 @@ class Master:
 
     #
     def pred_aft(self,t):
-        temp =[-1]
-        print(f'predecessor list of task {t.task_idx} is {t.dependency} at line 237')
+        temp =[]
+        print(f'dependency {t.dependency}')
         for pre in t.dependency:
             for x in self.task_received :
                 if pre == x.task_idx and x.processor_id != t.processor_id:
                     temp.append(x.et)
         # print(f'at line 241 max finished time for task {t.task_idx} is {temp}')
-        return max(temp)
+        return max(temp) if temp else -1
     
     def sub_callback(self,data):
         if data not in self.task_received:
@@ -461,7 +461,7 @@ class Master:
         #                      [pos_2.pose.position.x,pos_2.pose.position.y,pos_2.pose.position.z])
         # dr = Datarate()
         # return self.datarate.data_rate(d)
-        return self.datarate.data_rate(4000)
+        return self.datarate.data_rate(400)
     def distance_between_nodes(self,u1,u2):
         pos_1= rospy.wait_for_message('/uav%d/ground_truth_to_tf/pose'%u1, PoseStamped)
         pos_2 = rospy.wait_for_message('/uav%d/ground_truth_to_tf/pose'%u2, PoseStamped)
@@ -474,15 +474,15 @@ class Master:
         for x in dt:
             self.fly_energy.append([self.energy * (x.size / self.cpu),x.task_idx])
             if x.processor_id == 0:
-                print(f'at line 459')
                 location_predecessor = self.locate_pred(x)
-                trans_time = x.size / self.comm_time(self.nodeid,location_predecessor+1) if location_predecessor != 0 else 0
+                # trans_time = x.size / self.comm_time(self.nodeid,location_predecessor+1) if location_predecessor != 0 else 0
+                trans_time = 0.1
                 x.st = max(self.master_task[-1].et, self.pred_aft(x)+trans_time) if self.master_task else self.pred_aft(x)+trans_time
                 # x.et = x.st + ((x.size/x.ci)*10)
                 x.et = x.st + self.comp[x.task_idx][x.processor_id]
                 self.comp_energy.append([x.delta * (x.size/x.ci),x.task_idx])
                 # self.comp_time.append([(x.size/x.ci),x.task_idx])
-                self.comp_time.append([self.comp[self.nodeid - 1][x.processor_id],x.task_idx]) #computatin time
+                self.comp_time.append([self.comp[x.task_idx][x.processor_id],x.task_idx]) #computatin time
                 self.master_task.append(x)
                 # if self.master_task[-1].st < 0:
                 #     continue
@@ -493,8 +493,8 @@ class Master:
                 #plus communication time
                 temp = self.comm_time(self.nodeid,x.processor_id+1)
                 # x.st = self.pred_aft(x) + (x.size / temp)
-                print(f'comp time at line 495 with nodeid {self.nodeid} and processor {x.processor_id}: {self.comp[self.nodeid - 1][x.processor_id]}')
                 x.st = self.pred_aft(x) + 0.1
+                print(f'at line  496 current task {x.task_idx} st {x.st}')
                 self.communication_time_offload.append([x.size / temp,x.task_idx])
                 self.comm_energy.append([(x.size / temp)*self.energy,x.task_idx]) #units: mj
                 # rospy.sleep(x.size/x.ci) #simulate computation time
@@ -599,7 +599,7 @@ class Worker:
             data.st = max(self.worker_task[-1].et, self.pred_aft(data),data.st) if self.worker_task else max(self.pred_aft(data),data.st)
             # data.et = data.st +((data.size / data.ci)*10) #add more computation time
             print(f'at line 603: {self.comp[data.task_idx][data.processor_id]}')
-            data.et = data.st + self.comp[data.task_idx][data.processor_id]#add more computation time
+            data.et = data.st + self.comp[data.task_idx][data.processor_id] #add more computation time
             self.comp_energy.append([data.delta *(data.size/data.ci),data.task_idx]) #units: mj
             # self.comp_time.append([(data.size / data.ci),data.task_idx] )
             print(f'comp time at line 607 with nodeid {data.et}')
