@@ -499,7 +499,6 @@ class Master:
                 self.comm_energy.append([(x.size / temp)*self.energy,x.task_idx]) #units: mj
                 # rospy.sleep(x.size/x.ci) #simulate computation time
                 self.pub.publish(x)
-                print(f'after pub task {x.task_idx} st is {x.st}')
                 rospy.sleep(self.sleepTime) #communication delay
 
         #all tasks
@@ -595,25 +594,26 @@ class Worker:
  
             # distance = math.dist([worker_1.pose.position.x,worker_1.pose.position.y,worker_1.pose.position.z],
             #                     [worker_2.pose.position.x,worker_2.pose.position.y,worker_2.pose.position.z])
-            distance = 400
-            current_datarate = self.datarate.data_rate(distance)
+            current_datarate = self.datarate.data_rate(400)
 
             data.st = max(self.worker_task[-1].et, self.pred_aft(data),data.st) if self.worker_task else max(self.pred_aft(data),data.st)
             # data.et = data.st +((data.size / data.ci)*10) #add more computation time
+            print(f'at line 603: {self.comp[data.task_idx][data.processor_id]}')
             data.et = data.st + self.comp[data.task_idx][data.processor_id]#add more computation time
             self.comp_energy.append([data.delta *(data.size/data.ci),data.task_idx]) #units: mj
             # self.comp_time.append([(data.size / data.ci),data.task_idx] )
-            print(f'comp time at line 605 with nodeid {self.nodeid} and processor {data.processor_id}: {self.comp[data.task_idx][data.processor_id]}')
+            print(f'comp time at line 607 with nodeid {data.et}')
 
-            self.comp_time.append([self.comp[data.task_idx][data.processor_id],data.task_idx] )
+            self.comp_time.append([self.comp[data.task_idx][data.processor_id],data.task_idx])
             self.comm_energy.append([(data.size / current_datarate) * self.energy,data.task_idx]) #units: j
             self.communication_time.append(data.size / current_datarate)
             # rospy.sleep((data.size / data.ci)) #simulate computation time
+            self.worker_task.append(data)
             self.pub.publish(data)
             rospy.sleep(self.sleepTime) #communication delay
-            self.worker_task.append(data)
+            
         else:
-            print('empty')
+            print(f'length of worker tasks {len(self.worker_task)}')
 
     def run(self):
         print('call worker%d'%self.worker_id )
@@ -633,8 +633,8 @@ class Worker:
         with open('/home/jxie/rossim/src/ros_mpi/data/uav%d_comm_time.pkl'%self.worker_id,'wb') as file:
             pickle.dump(self.communication_time,file)
         if rospy.is_shutdown():
-            print(f'at line 621 tasks: {self.worker_task}')
-            print(f'worker {self.worker_id} done')
+            print(f'at line 637 tasks: {self.comp_time}')
+
             print(f'node {self.worker_id} shutdown')
             # savegraph = PlotGraph(self.worker_id)
             # savegraph.run()
