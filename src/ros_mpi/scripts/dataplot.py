@@ -45,7 +45,7 @@ class PlotGraph:
 
         # Create a figure and axis
         fig, ax = plt.subplots()
-        fast,faft = [0]*20,[0]*20
+        fast,faft = [0]*10,[0]*10
         for x in task_time:
             for y in x:
                 fast[y['task_id']] = y['start_time']
