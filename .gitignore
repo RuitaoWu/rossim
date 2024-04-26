@@ -4,5 +4,6 @@ src/pos_controller/data/
 src/ros_mpi/scripts/__pycache__/
 build/
 devel/
+src/ros_mpi/scripts/graph
 src/ros_mpi/task_succ/
 .catkin_workspace
