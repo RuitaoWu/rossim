@@ -419,14 +419,13 @@ class Master:
         temp =[0]
         processor = [0]
         for pre in t.dependency:
-            for x in self.task_received :
+            for x in self.task_received:
                 if pre == x.task_idx and x.processor_id != t.processor_id:
                     temp.append(x.et)
                     processor.append(x.processor_id )
-        # print(f'at line 142 max finished time process location for task {t.task_idx} is {processor[temp.index(max(temp))]}')
         return processor[temp.index(max(temp))]
 
-    #
+    #predecessor actual finish time
     def pred_aft(self,t):
         temp =[]
         print(f'dependency {t.dependency}')
@@ -434,8 +433,7 @@ class Master:
             for x in self.task_received :
                 if pre == x.task_idx and x.processor_id != t.processor_id:
                     temp.append(x.et)
-        # print(f'at line 241 max finished time for task {t.task_idx} is {temp}')
-        return max(temp) if temp else -1
+        return max(temp) if temp else 0
     
     def sub_callback(self,data):
         if data not in self.task_received:
@@ -443,11 +441,6 @@ class Master:
             temp = self.comm_time(self.nodeid,data.processor_id+1) if data.processor_id+1 > 0 else 1
             self.comm_energy.append([(data.size / temp)*self.energy,data.task_idx]) 
             self.communication_time_rec.append([data.size / temp,data.task_idx])
-            # print(f'at line 246 current task  received {data.task_idx} from {data.processor_id+1} with communication time {self.communication_time_offload[-1]}')
-        # elif data:
-        #     print('at lint 248 received: ',data.task_idx)
-        # else:
-        #     print('empty...')
 
     def received_call_back(self):
         print('call receive threading...')
@@ -471,35 +464,27 @@ class Master:
         print(f'publishing...')
         thread = threading.Thread(target= self.received_call_back)
         thread.start()
+        self.pub.publish(Task())
+        rospy.sleep(self.sleepTime) 
         for x in dt:
             self.fly_energy.append([self.energy * (x.size / self.cpu),x.task_idx])
             if x.processor_id == 0:
-                location_predecessor = self.locate_pred(x)
-                # trans_time = x.size / self.comm_time(self.nodeid,location_predecessor+1) if location_predecessor != 0 else 0
                 trans_time = 0.1
                 x.st = max(self.master_task[-1].et, self.pred_aft(x)+trans_time) if self.master_task else self.pred_aft(x)+trans_time
-                # x.et = x.st + ((x.size/x.ci)*10)
                 x.et = x.st + self.comp[x.task_idx][x.processor_id]
                 self.comp_energy.append([x.delta * (x.size/x.ci),x.task_idx])
-                # self.comp_time.append([(x.size/x.ci),x.task_idx])
                 self.comp_time.append([self.comp[x.task_idx][x.processor_id],x.task_idx]) #computatin time
                 self.master_task.append(x)
-                # if self.master_task[-1].st < 0:
-                #     continue
-                # rospy.sleep(x.size/x.ci) #simulate computation time
-                self.pub.publish(x)
-                rospy.sleep(self.sleepTime) #communication delay
             else:
                 #plus communication time
                 temp = self.comm_time(self.nodeid,x.processor_id+1)
-                # x.st = self.pred_aft(x) + (x.size / temp)
                 x.st = self.pred_aft(x) + 0.1
-                print(f'at line  496 current task {x.task_idx} st {x.st}')
+                print(f'at line  483 current task {x.task_idx} st {x.st}')
                 self.communication_time_offload.append([x.size / temp,x.task_idx])
                 self.comm_energy.append([(x.size / temp)*self.energy,x.task_idx]) #units: mj
                 # rospy.sleep(x.size/x.ci) #simulate computation time
-                self.pub.publish(x)
-                rospy.sleep(self.sleepTime) #communication delay
+            self.pub.publish(x)
+            rospy.sleep(self.sleepTime) #communication delay
 
         #all tasks
         with open('/home/jxie/rossim/src/ros_mpi/data/uav%d.pkl'%self.nodeid,'wb') as file:
@@ -577,6 +562,7 @@ class Worker:
 
     def pred_aft(self,t):
         temp =[0]
+        # print(f'at line 580 {t.dependency}')
         for pre in t.dependency:
             for x in self.all_task:
                 if pre == x.task_idx and x.processor_id != t.processor_id:
@@ -584,7 +570,6 @@ class Worker:
         return max(temp)
     def callback_func(self,data):
 
-        print(f'at line 379 {data.task_idx}')
         self.fly_energy.append([self.energy * (data.size / self.cpu),data.task_idx])
         self.all_task.append(data)
         if data.processor_id == self.worker_id - 1 :
@@ -597,13 +582,9 @@ class Worker:
             current_datarate = self.datarate.data_rate(400)
 
             data.st = max(self.worker_task[-1].et, self.pred_aft(data),data.st) if self.worker_task else max(self.pred_aft(data),data.st)
-            # data.et = data.st +((data.size / data.ci)*10) #add more computation time
-            print(f'at line 603: {self.comp[data.task_idx][data.processor_id]}')
             data.et = data.st + self.comp[data.task_idx][data.processor_id] #add more computation time
+            print(f'data at line 589 current worker id {self.worker_id}:  task id {data.task_idx} start timee {data.st} and end time {data.et} with comp time {self.comp[data.task_idx][data.processor_id]}')
             self.comp_energy.append([data.delta *(data.size/data.ci),data.task_idx]) #units: mj
-            # self.comp_time.append([(data.size / data.ci),data.task_idx] )
-            print(f'comp time at line 607 with nodeid {data.et}')
-
             self.comp_time.append([self.comp[data.task_idx][data.processor_id],data.task_idx])
             self.comm_energy.append([(data.size / current_datarate) * self.energy,data.task_idx]) #units: j
             self.communication_time.append(data.size / current_datarate)
@@ -633,7 +614,7 @@ class Worker:
         with open('/home/jxie/rossim/src/ros_mpi/data/uav%d_comm_time.pkl'%self.worker_id,'wb') as file:
             pickle.dump(self.communication_time,file)
         if rospy.is_shutdown():
-            print(f'at line 637 tasks: {self.comp_time}')
+        #     print(f'at line 637 tasks: {self.comp_time}')
 
             print(f'node {self.worker_id} shutdown')
             # savegraph = PlotGraph(self.worker_id)
