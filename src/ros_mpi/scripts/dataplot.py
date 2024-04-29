@@ -17,7 +17,7 @@ from sympy import content, li
 from collections import defaultdict
 from datarate import Datarate
 config = configparser.ConfigParser()
-config.read('/home/jxie/rossim/src/ros_mpi/scripts/property.properties')
+config.read('property.properties')
 class PlotGraph:
     def __init__(self,uavid) -> None:
         self.uavid = uavid
@@ -35,6 +35,7 @@ class PlotGraph:
             sch = []
             with open('/home/jxie/rossim/src/ros_mpi/data/uav%d.pkl'%i, 'rb') as file:
                 content = pickle.load(file)
+            print(f'content: {content}')
             for j in content:
                 temp.append({'task_id': j.task_idx, 'start_time': j.st, 'end_time': j.et, 'duration': j.et - j.st})
                 sch.append(j.task_idx)

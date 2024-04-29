@@ -242,7 +242,7 @@ class Orchestrator:
                    # self.task_size[p]/Datarate().data_rate(distance=random.randint(100,200))0))
                    # self.task_size[p]/Datarate().data_rate(distance=random.randint(100,200))
                     start_time.append(self.AFT[p]+self.task_size[p]/Datarate().data_rate(distance=random.randint(100,200)))
-            print(f'start time at line 241: {start_time}')
+            # print(f'start time at line 241: {start_time}')
             return max(self.dy_earliest_avilable_time(s),max(start_time))
         # calculate the earliest finish time for current task on each processor
     def dy_earliest_finish_time(self,idx,s,est):
@@ -254,11 +254,11 @@ class Orchestrator:
             for j in range(len(self.comm[i])):
                 if self.comm[i][j] >0:
                     self.comm[i][j] = self.tasks[i].size // (mean_datarate / 10000)
-                print(f' the current mean datarate {mean_datarate} and task size {self.tasks[i].size }')
-        print(f'updated comm matrix: {self.comm}')
+                # print(f' the current mean datarate {mean_datarate} and task size {self.tasks[i].size }')
+        # print(f'updated comm matrix: {self.comm}')
 
     def dy_heft(self,incomplete_task,time_slot):
-        print(f'task list at line 257: {incomplete_task}')
+        # print(f'task list at line 257: {incomplete_task}')
         for task in incomplete_task:
         # for task in temp_task:
             if self.task_flag[task]:

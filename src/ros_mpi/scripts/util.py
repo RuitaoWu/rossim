@@ -99,7 +99,7 @@ class Node:
                                  band_width=float(config.get('DatarateConfig','band_width')),
                                  transmission_power=float(config.get('DatarateConfig','transmission_power')),
                                  alpha=float(config.get('DatarateConfig','alpha')))
-        print(self.datarate)
+        # print(self.datarate)
         numberOfTask = int(config.get('Task','numberOfTask'))
         self.numberOfComputingNode = int(config.get('Task','computing'))
         task_size_min = int(config.get('Task','task_size_min'))
@@ -186,42 +186,31 @@ class Node:
         self.capacity.append(sum(self.temp_capa))
 
     def run(self):
-        task_status_flag = [False]*len(self.comm)
-        # temp_task = defaultdict(list)
-        # while incomplete_task and task_status_flag:
         print('****'*20)
         timeslot =0
         print(f'comm matrix {self.comm}')
         while True:
             incomplete_task =np.argsort([self.testorchest.calculate_rank_up_recursive(self.comp,self.comm,i) for i in range(len(self.comp))]).tolist()[::-1]
-            # print(f'incomplete_task{incomplete_task}')
-            #call dynamic heft             
-            # print(f'currrent time slot {timeslot}')
             self.testorchest.dy_heft(incomplete_task,timeslot)
             self.testorchest.update_comm(0.1)
-            # self.testorchest.update_comm(np.mean([self.comm_time(self.node_id,u) for u in range(2,self.numberOfComputingNode+1)]))
-            # for u in range(2,self.numberOfComputingNode+1):
-            #     print(f'data rate between {self.node_id} and worker {u} is {self.comm_time(self.node_id,u)}')
-            # temp_task = [x for x in incomplete_task if testobj.task_flag[x]]
-            # print(f'at line 344 { testobj.task_flag}')
             
             timeslot += 1
-            # print(f'complete list: {complete_list}')
-            # for i in complete_list:
-            #     task_status_flag[i] = True
-            print(f'self.testorchest.get_items() {self.testorchest.get_items()}')
             for x in self.testorchest.get_items():
+                # print(f'at line 199 self.testorchest.task_flag[x]: {self.testorchest.task_flag[x]}')
                 if self.testorchest.task_flag[x]:
-                    print(f'current task {x} is already scheduled {self.testorchest.task_flag[x]}')
-                    continue
-                if self.testorchest.tasks[x].processor_id == self.node_id - 1:
-                    self.taskQueue.append(x)
-                    self.completed.append([self.testorchest.tasks[x].task_idx,rospy.get_time()])
-                    rospy.sleep(self.testorchest.tasks[x].size / self.testorchest.tasks[x].ci)
-                else:
-                    self.pub.publish(self.testorchest.tasks[x])
-                    rospy.sleep(0.25)
-            print(f'task flag {self.testorchest.task_flag}')
+                    if self.testorchest.tasks[x].processor_id == self.node_id - 1:
+                        self.taskQueue.append(x)
+                        self.completed.append([self.testorchest.tasks[x].task_idx,rospy.get_time()])
+                        # rospy.sleep(self.testorchest.tasks[x].size / self.testorchest.tasks[x].ci)
+                        rospy.sleep(0.25)
+
+                        # print(f'at line 221 finished task...')
+                    else:
+                        print(f'at line 207 : {self.testorchest.tasks[x]}')
+                        self.pub.publish(self.testorchest.tasks[x])
+                        # self.pub.publish(111)
+                        # print(f'at line 224 publish task {self.testorchest.tasks[x].task_idx}')
+                        rospy.sleep(0.25)
             if not False in self.testorchest.task_flag:
                 print(f'task scheduling {self.testorchest.task_schedule_list}')
                 print(f'ast {self.testorchest.AST}')
@@ -230,40 +219,7 @@ class Node:
         print('finished')
         print('*'*20)
 
-
-    # def run(self):
-
-    #     for t in self.allTasks:
-    #         self.fly_energy.append([self.energy * (t.size / t.ci),t.task_idx])
-    #         if t.processor_id == self.node_id -1:
-    #             t.st = self.taskQueue [-1].et if self.taskQueue else 0
-    #             t.et = t.st + float(t.size / t.ci) 
-    #             self.taskQueue.append(t)
-    #             self.capc_usage(t)
-    #             self.comp_energy.append([t.delta * (t.size/t.ci),t.task_idx])
-    #             self.comp_time.append([(t.size/t.ci),t.task_idx])
-    #             self.completed.append([t.task_idx,rospy.get_time()])
-    #             rospy.sleep(t.size/t.ci)
-                
-    #         else: 
-    #             if self.range(self.node_id,t.processor_id+1) > 200:
-    #                 self.incompleted.append([t.task_idx,rospy.get_time()])
-    #                 print('Disconnected......')
-    #                 continue
-    #             else:
-    #                 print(f'publish task {t.task_idx} to worker {t.processor_id}')
-    #                 temp = self.comm_time(self.node_id,t.processor_id+1) if t.processor_id+1 > 0 else 1
-    #                 self.comm_energy.append([(t.size / temp)*self.energy,t.task_idx])
-    #                 self.communication_time.append(t.size / temp)
-    #                 print(f'energy cost at line 70 {self.comm_energy}')
-    #                 self.completed.append([t.task_idx,rospy.get_time()])
-    #                 self.pub.publish(t)
-    #                 rospy.sleep(0.25) 
-        #task on master
-        # print(f'all tasks on master node {len(self.taskQueue)}')
-        # print(f'total task {len(self.completed) + len(self.incompleted)}')
-        # print(f'uav capacity usage {len(self.capacity)}')
-        with open('/home/jxie/rossim/src/ros_mpi/data/uav%d_iter_%d.pkl'%(self.node_id,self.iteration),'wb') as file:
+        with open('/home/jxie/rossim/src/ros_mpi/data/uav%d.pkl'%(self.node_id),'wb') as file:
             pickle.dump(self.taskQueue,file)
         with open('/home/jxie/rossim/src/ros_mpi/data/uav%d_comm_time_iter_%d.pkl'%(self.node_id,self.iteration),'wb') as file:
             pickle.dump(self.communication_time,file)
@@ -304,25 +260,24 @@ class WorkerNode:
 
             print(f'constructing worker node on {self.node_id}')
             rospy.init_node(self.nodeVerify, anonymous=True)
-            while True:
-                if rospy.wait_for_message('/uav%d/ground_truth_to_tf/pose'%self.node_id, PoseStamped).pose.position.z + 0.1 > 0:
-                    break
+            # while True:
+            #     if rospy.wait_for_message('/uav%d/ground_truth_to_tf/pose'%self.node_id, PoseStamped).pose.position.z + 0.1 > 0:
+            #         break
                 # else:
                 #     print(f'worker {self.node_id} not on position')
             rospy.Subscriber(self.pubTopic, Task, self.sub_callback)
         def comm_time(self,u1,u2):
             # print(f'uav {u1} and uav {u2}')
-            pos_1= rospy.wait_for_message('/uav%d/ground_truth_to_tf/pose'%u1, PoseStamped)
-            pos_2 = rospy.wait_for_message('/uav%d/ground_truth_to_tf/pose'%u2, PoseStamped)
-            distance = math.dist([pos_1.pose.position.x,pos_1.pose.position.y,pos_1.pose.position.z],
-                                [pos_2.pose.position.x,pos_2.pose.position.y,pos_2.pose.position.z])
-            return self.datarate.data_rate(distance)
+            # pos_1= rospy.wait_for_message('/uav%d/ground_truth_to_tf/pose'%u1, PoseStamped)
+            # pos_2 = rospy.wait_for_message('/uav%d/ground_truth_to_tf/pose'%u2, PoseStamped)
+            # distance = math.dist([pos_1.pose.position.x,pos_1.pose.position.y,pos_1.pose.position.z],
+            #                     [pos_2.pose.position.x,pos_2.pose.position.y,pos_2.pose.position.z])
+            return self.datarate.data_rate(400)
         def sub_callback(self,data):
             self.fly_energy.append([self.energy * (data.size / data.ci),data.task_idx])
-
             self.comm_energy.append([(data.size / self.comm_time(2,self.node_id))*self.energy,data.task_idx])
             self.communication_time.append(data.size / self.comm_time(2,self.node_id))
-            
+            print(f'hello world this is testing message')
             if data.processor_id == self.node_id -1 :
                 print(f'task {data.task_idx} on worker { self.node_id}')
                 data.st = self.taskQueue [-1].et if self.taskQueue else 0
@@ -479,8 +434,7 @@ class Master:
             else:
                 #plus communication time
                 temp = self.comm_time(self.nodeid,x.processor_id+1)
-                x.st = self.pred_aft(x) + 0.1
-                
+                x.st = self.pred_aft(x) + 0.1                
                 self.communication_time_offload.append([x.size / temp,x.task_idx])
                 self.comm_energy.append([(x.size / temp)*self.energy,x.task_idx]) #units: mj
                 # rospy.sleep(x.size/x.ci) #simulate computation time
