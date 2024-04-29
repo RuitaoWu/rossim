@@ -164,12 +164,12 @@ class Node:
         print(f'Master construction completed node id {self.node_id}')
     def comm_time(self,u1,u2):
             # print(f'uav {u1} and uav {u2}')
-            pos_1= rospy.wait_for_message('/uav%d/ground_truth_to_tf/pose'%u1, PoseStamped)
-            pos_2 = rospy.wait_for_message('/uav%d/ground_truth_to_tf/pose'%u2, PoseStamped)
-            distance = math.dist([pos_1.pose.position.x,pos_1.pose.position.y,pos_1.pose.position.z],
-                                [pos_2.pose.position.x,pos_2.pose.position.y,pos_2.pose.position.z])
+            # pos_1= rospy.wait_for_message('/uav%d/ground_truth_to_tf/pose'%u1, PoseStamped)
+            # pos_2 = rospy.wait_for_message('/uav%d/ground_truth_to_tf/pose'%u2, PoseStamped)
+            # distance = math.dist([pos_1.pose.position.x,pos_1.pose.position.y,pos_1.pose.position.z],
+            #                     [pos_2.pose.position.x,pos_2.pose.position.y,pos_2.pose.position.z])
 
-            return self.datarate .data_rate(distance)
+            return self.datarate .data_rate(400)
     def range(self,u1,u2):
         try:
             pos_1= rospy.wait_for_message('/uav%d/ground_truth_to_tf/pose'%u1, PoseStamped)
@@ -538,7 +538,7 @@ class Worker:
 
             data.st = max(self.worker_task[-1].et, self.pred_aft(data),data.st) if self.worker_task else max(self.pred_aft(data),data.st)
             data.et = data.st + self.comp[data.task_idx][data.processor_id] #add more computation time
-            print(f'data at line 589 current worker id {self.worker_id}:  task id {data.task_idx} start timee {data.st} and end time {data.et} with comp time {self.comp[data.task_idx][data.processor_id]}')
+            # print(f'data at line 589 current worker id {self.worker_id}:  task id {data.task_idx} start timee {data.st} and end time {data.et} with comp time {self.comp[data.task_idx][data.processor_id]}')
             self.comp_energy.append([data.delta *(data.size/data.ci),data.task_idx]) #units: mj
             self.comp_time.append([self.comp[data.task_idx][data.processor_id],data.task_idx])
             self.comm_energy.append([(data.size / current_datarate) * self.energy,data.task_idx]) #units: j

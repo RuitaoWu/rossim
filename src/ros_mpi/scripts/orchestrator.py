@@ -41,7 +41,7 @@ class Orchestrator:
             task.processor_id = -1
             task.dependency=[]
             # task.size = random.randint(500000,1000000) #number of instructions
-            task.size = 0.1
+            task.size = 1
             # task.size = random.randint(self.taskMin,self.taskMax) 
             task.st = 0
             task.et = 0
