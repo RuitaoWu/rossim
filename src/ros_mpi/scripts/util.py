@@ -424,7 +424,8 @@ class Master:
         for x in dt:
             self.fly_energy.append([self.energy * (x.size / self.cpu),x.task_idx])
             if x.processor_id == 0:
-                trans_time = 0.1
+                trans_time = self.comm_time(0,0)
+                print(f'data rate {trans_time}')
                 x.st = max(self.master_task[-1].et, self.pred_aft(x)+trans_time) if self.master_task else self.pred_aft(x)+trans_time
                 x.et = x.st + self.comp[x.task_idx][x.processor_id]
                 print(f'at line  483 current task {x.task_idx} st {x.st} with comp {self.comp[x.task_idx][x.processor_id]}')
