@@ -425,17 +425,18 @@ class Master:
             self.fly_energy.append([self.energy * (x.size / self.cpu),x.task_idx])
             if x.processor_id == 0:
                 trans_time = self.comm_time(0,0)
-                print(f'data rate {trans_time}')
-                x.st = max(self.master_task[-1].et, self.pred_aft(x)+trans_time) if self.master_task else self.pred_aft(x)+trans_time
+                print(f'data rate {x.size / trans_time}')
+                x.st = max(self.master_task[-1].et, self.pred_aft(x)+(x.size / trans_time)) if self.master_task else self.pred_aft(x)+(x.size / trans_time)
                 x.et = x.st + self.comp[x.task_idx][x.processor_id]
-                print(f'at line  483 current task {x.task_idx} st {x.st} with comp {self.comp[x.task_idx][x.processor_id]}')
+                print(f'at line  431 current task {x.task_idx} st {x.st} with comp {self.comp[x.task_idx][x.processor_id]}')
                 self.comp_energy.append([x.delta * (x.size/x.ci),x.task_idx])
                 self.comp_time.append([self.comp[x.task_idx][x.processor_id],x.task_idx]) #computatin time
                 self.master_task.append(x)
             else:
                 #plus communication time
+                # temp = self.comm_time(self.nodeid,x.processor_id+1)
                 temp = self.comm_time(self.nodeid,x.processor_id+1)
-                x.st = self.pred_aft(x) + 0.1                
+                x.st = self.pred_aft(x) + (x.size / temp)              
                 self.communication_time_offload.append([x.size / temp,x.task_idx])
                 self.comm_energy.append([(x.size / temp)*self.energy,x.task_idx]) #units: mj
                 # rospy.sleep(x.size/x.ci) #simulate computation time

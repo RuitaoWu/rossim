@@ -185,7 +185,7 @@ class Orchestrator:
                 task.dependency=self.predecessor_task(t)
                 # task.size = random.randint(self.taskMin,self.taskMax) #number of instructions
                 # task.size = 5000000 #number of instructions
-                task.size = 1
+                task.size = 100000
                 task.st = 0
                 task.et = 0
                 # task.ci = random.randint(4000000, 8000000) #instruction per second
