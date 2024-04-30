@@ -41,7 +41,7 @@ class Orchestrator:
             task.processor_id = -1
             task.dependency=[]
             # task.size = random.randint(500000,1000000) #number of instructions
-            task.size = 1
+            task.size = 100000
             # task.size = random.randint(self.taskMin,self.taskMax) 
             task.st = 0
             task.et = 0
@@ -241,7 +241,8 @@ class Orchestrator:
                     # d = Datarate().data_rate(distance=random.randint(800,1000))
                    # self.task_size[p]/Datarate().data_rate(distance=random.randint(100,200))0))
                    # self.task_size[p]/Datarate().data_rate(distance=random.randint(100,200))
-                    start_time.append(self.AFT[p]+self.task_size[p]/Datarate().data_rate(distance=random.randint(100,200)))
+                    # start_time.append(self.AFT[p]+self.task_size[p]/Datarate().data_rate(distance=random.randint(100,200)))
+                    start_time.append(self.AFT[p]+self.task_size[p]/Datarate().data_rate(distance=400))
             # print(f'start time at line 241: {start_time}')
             return max(self.dy_earliest_avilable_time(s),max(start_time))
         # calculate the earliest finish time for current task on each processor
@@ -254,7 +255,7 @@ class Orchestrator:
             for j in range(len(self.comm[i])):
                 if self.comm[i][j] >0:
                     self.comm[i][j] = self.tasks[i].size // (mean_datarate / 10000)
-                # print(f' the current mean datarate {mean_datarate} and task size {self.tasks[i].size }')
+                # print(f'self.tasks[i].size {self.tasks[i].size}')
         # print(f'updated comm matrix: {self.comm}')
 
     def dy_heft(self,incomplete_task,time_slot):

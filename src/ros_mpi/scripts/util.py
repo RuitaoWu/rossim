@@ -88,9 +88,9 @@ class UAV:
 
 
 #################################################################################
+#indepedent
 
-
-
+#################################################################################
 
 class Node:
     def __init__(self,node_id,nodeVerify,allTasks,cpu,iteration,taskqueue,energy=50) -> None:
@@ -192,24 +192,19 @@ class Node:
         while True:
             incomplete_task =np.argsort([self.testorchest.calculate_rank_up_recursive(self.comp,self.comm,i) for i in range(len(self.comp))]).tolist()[::-1]
             self.testorchest.dy_heft(incomplete_task,timeslot)
-            self.testorchest.update_comm(0.1)
+            self.testorchest.update_comm(self.comm_time(0,0))
             
             timeslot += 1
             for x in self.testorchest.get_items():
-                # print(f'at line 199 self.testorchest.task_flag[x]: {self.testorchest.task_flag[x]}')
                 if self.testorchest.task_flag[x]:
                     if self.testorchest.tasks[x].processor_id == self.node_id - 1:
-                        self.taskQueue.append(x)
-                        self.completed.append([self.testorchest.tasks[x].task_idx,rospy.get_time()])
-                        # rospy.sleep(self.testorchest.tasks[x].size / self.testorchest.tasks[x].ci)
+                        if self.testorchest.tasks[x] not in self.taskQueue:
+                            self.taskQueue.append(self.testorchest.tasks[x])
+                            self.completed.append([self.testorchest.tasks[x].task_idx,rospy.get_time()])
                         rospy.sleep(0.25)
-
-                        # print(f'at line 221 finished task...')
                     else:
-                        print(f'at line 207 : {self.testorchest.tasks[x]}')
+                        print(f'publish task')
                         self.pub.publish(self.testorchest.tasks[x])
-                        # self.pub.publish(111)
-                        # print(f'at line 224 publish task {self.testorchest.tasks[x].task_idx}')
                         rospy.sleep(0.25)
             if not False in self.testorchest.task_flag:
                 print(f'task scheduling {self.testorchest.task_schedule_list}')
@@ -260,11 +255,6 @@ class WorkerNode:
 
             print(f'constructing worker node on {self.node_id}')
             rospy.init_node(self.nodeVerify, anonymous=True)
-            # while True:
-            #     if rospy.wait_for_message('/uav%d/ground_truth_to_tf/pose'%self.node_id, PoseStamped).pose.position.z + 0.1 > 0:
-            #         break
-                # else:
-                #     print(f'worker {self.node_id} not on position')
             rospy.Subscriber(self.pubTopic, Task, self.sub_callback)
         def comm_time(self,u1,u2):
             # print(f'uav {u1} and uav {u2}')
@@ -277,21 +267,20 @@ class WorkerNode:
             self.fly_energy.append([self.energy * (data.size / data.ci),data.task_idx])
             self.comm_energy.append([(data.size / self.comm_time(2,self.node_id))*self.energy,data.task_idx])
             self.communication_time.append(data.size / self.comm_time(2,self.node_id))
-            print(f'hello world this is testing message')
+            # print(f'data.processor_id == self.node_id -1 { data.processor_id == self.node_id -1}')
             if data.processor_id == self.node_id -1 :
-                print(f'task {data.task_idx} on worker { self.node_id}')
-                data.st = self.taskQueue [-1].et if self.taskQueue else 0
-                data.et = data.st + float(data.size / data.ci) 
-                if data not in self.taskQueue:self.taskQueue.append(data) 
-                self.comp_energy.append([data.delta * (data.size/data.ci),data.task_idx])
-                self.comp_time.append([(data.size/data.ci),data.task_idx])
+                if data not in self.taskQueue:
+                    self.taskQueue.append(data) 
+                    data.st = self.taskQueue [-1].et if self.taskQueue else 0
+                    data.et = data.st + float(data.size / data.ci) 
+                    self.comp_energy.append([data.delta * (data.size/data.ci),data.task_idx])
+                    self.comp_time.append([(data.size/data.ci),data.task_idx])
             else:
-                print('nothing...')
+                print('at line 282 nothing...')
 
         
         def run(self):
             print('call worker%d'%self.node_id )
-
             
             rospy.spin()
             print(f'saveing task queue to file..')
@@ -512,10 +501,6 @@ class Worker:
                     [0,0,0,0,0,0,0,0,0,11],
                     [0,0,0,0,0,0,0,0,0,13],
                     [0,0,0,0,0,0,0,0,0,0]]
-        # while True: 
-        #     if rospy.wait_for_message('/uav%d/ground_truth_to_tf/pose'%self.worker_id, PoseStamped).pose.position.z + 0.1 > 0:
-        #         break
-        # rospy.Subscriber(self.topic, Task, self.callback_func)
 
     def pred_aft(self,t):
         temp =[0]

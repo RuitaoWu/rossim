@@ -35,13 +35,13 @@ class PlotGraph:
             sch = []
             with open('/home/jxie/rossim/src/ros_mpi/data/uav%d.pkl'%i, 'rb') as file:
                 content = pickle.load(file)
-            print(f'content: {content}')
+            # print(f'content: {content}')
             for j in content:
                 temp.append({'task_id': j.task_idx, 'start_time': j.st, 'end_time': j.et, 'duration': j.et - j.st})
                 sch.append(j.task_idx)
             task_time.append(temp)
             task_sch.append(sch)
-        
+        print(f'task time {task_time}')
         task_colors = ['b', 'g', 'r', 'c', 'm', 'y', 'k','black','white','gray']
 
         # Create a figure and axis
@@ -378,11 +378,13 @@ class PlotGraph:
     
     
 if __name__ == '__main__':
-
-
+    # with open('/home/jxie/rossim/src/ros_mpi/data/uav1.pkl', 'rb') as file:
+    #     content = pickle.load(file)
+    # print(content)
 
     plgraph = PlotGraph(3)
     plgraph.gantt_chart()
+
     # data=[]
     # for i in range(5):
     #     with open('/home/jxie/rossim/src/ros_mpi/task_succ/capacity3_iter_%d.pkl'%i, 'rb') as file:
