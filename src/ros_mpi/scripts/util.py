@@ -299,6 +299,27 @@ class WorkerNode:
                                  alpha=float(config.get('DatarateConfig','alpha')))
 
             print(f'constructing worker node on {self.node_id}')
+            self.comp = [[14,16,9],
+                    [13,19,18],
+                    [11,13,19],
+                    [13,8,17],
+                    [12,13,10],
+                    [13,16,9],
+                    [7,15,11],
+                    [5,11,4],
+                    [18,12,20],
+                    [21,7,16]]
+
+            self.comm = [[0,18,12,9,11,14,0,0,0,0],
+                        [0,0,0,0,0,0,0,19,16,0],
+                        [0,0,0,0,0,0,23,0,0,0],
+                        [0,0,0,0,0,0,0,27,23,0],
+                        [0,0,0,0,0,0,0,0,13,0],
+                        [0,0,0,0,0,0,0,15,0,0],
+                        [0,0,0,0,0,0,0,0,0,17],
+                        [0,0,0,0,0,0,0,0,0,11],
+                        [0,0,0,0,0,0,0,0,0,13],
+                        [0,0,0,0,0,0,0,0,0,0]]
             rospy.init_node(self.nodeVerify, anonymous=True)
             rospy.Subscriber(self.pubTopic, Task, self.sub_callback)
         def comm_time(self,u1,u2):
@@ -316,9 +337,9 @@ class WorkerNode:
             if data.processor_id == self.node_id -1 :
                 # print(f'at line 317 {len(self.taskQueue)}')
                 if data.task_idx not in [x.task_idx for x in self.taskQueue]:
-                    print(f'at line 317 {len(self.taskQueue)}')
-                    data.st = self.taskQueue [-1].et if self.taskQueue else 0
-                    data.et = data.st + float(data.size / data.ci) 
+                    if self.taskQueue:
+                        data.st = max(self.taskQueue [-1].et, self.pred_aft(data.task_idx)+(data.task_idx.size / 100000))
+                        data.et = data.st + self.comp[data.task_idx][data.processor_id]            
                     self.comp_energy.append([data.delta * (data.size/data.ci),data.task_idx])
                     self.comp_time.append([(data.size/data.ci),data.task_idx])
                     self.taskQueue.append(data) 
