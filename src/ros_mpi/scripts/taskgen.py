@@ -78,7 +78,7 @@ class TaskGen():
             temp_task.append(task)
         temp_task.sort(key=lambda x: x.size)
         return temp_task
-if __name__ == '__main__':
+# if __name__ == '__main__':
 # Example usage:
     # num_nodes = 20 #number of tasks
     # density = 0.8
@@ -93,6 +93,6 @@ if __name__ == '__main__':
     # print(random_dag.gen_comp_matrix())
     # test_dag = random_dag.generate_random_dag(density)
 
-    print(test_dag)
+    # print(test_dag)
 
 

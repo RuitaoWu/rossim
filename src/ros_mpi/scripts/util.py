@@ -131,10 +131,12 @@ class Node:
                  [0,0,0,0,0,0,0,0,0,0]]
         self.comp,self.comm = comp,comm
         self.testorchest = Orchestrator(self.comm,self.comp,100,200)
-        # testorchest.indep_sch(taskgenerator.gen_indep())
-        tempTask = taskgenerator.gen_indep()
-        print('generating tasks')
-        self.allTasks = self.testorchest.indep_sch(tempTask)
+        # # testorchest.indep_sch(taskgenerator.gen_indep())
+        # tempTask = [x for x in range(len(comp))]
+        # print('generating tasks')
+        # self.allTasks = self.testorchest.indep_sch([])
+        # for t in self.allTasks:
+        #     print(f't dependency of task {t.task_idx} is {t.dependency}')
         # for i in self.allTasks:
         #     print(f'task {i.task_idx} on processor {i.processor_id}')
         self.uav_capa = 1000000
@@ -162,6 +164,23 @@ class Node:
             # else:
             #     print(f'master {self.node_id} not on position')
         print(f'Master construction completed node id {self.node_id}')
+    
+     #find the predecessor of current task
+    def predecessor_task(self,task):
+        """
+        The function `predecessor_task` takes a task as input and returns a list of its predecessor tasks.
+        
+        :param task: The parameter "task" represents the index of a task in a list or array
+        :return: a list of predecessor tasks for the given task.
+        """
+
+        pre_decessor = []
+        for i in range(0, len(self.comm)):
+            if self.comm[i][task] > 0:
+                pre_decessor.append(i)
+        return pre_decessor
+
+    
     def comm_time(self,u1,u2):
             # print(f'uav {u1} and uav {u2}')
             # pos_1= rospy.wait_for_message('/uav%d/ground_truth_to_tf/pose'%u1, PoseStamped)
@@ -184,7 +203,26 @@ class Node:
         while sum(self.temp_capa) > self.uav_capa:
             self.temp_capa.pop(0)
         self.capacity.append(sum(self.temp_capa))
+    #locate sucessor location
+    def locate_pred(self,t):
+        temp =[0]
+        processor = [0]
+        for pre in t.dependency:
+            for x in self.task_received:
+                if pre == x.task_idx and x.processor_id != t.processor_id:
+                    temp.append(x.et)
+                    processor.append(x.processor_id )
+        return processor[temp.index(max(temp))]
 
+    #predecessor actual finish time
+    def pred_aft(self,t):
+        temp =[]
+        print(f'dependency {t.dependency}')
+        for pre in t.dependency:
+            for x in self.taskQueue :
+                if pre == x.task_idx and x.processor_id != t.processor_id:
+                    temp.append(x.et)
+        return max(temp) if temp else 0
     def run(self):
         print('****'*20)
         timeslot =0
@@ -199,11 +237,18 @@ class Node:
                 if self.testorchest.task_flag[x]:
                     if self.testorchest.tasks[x].processor_id == self.node_id - 1:
                         if self.testorchest.tasks[x] not in self.taskQueue:
+                            trans_time = 100000
+                            if self.taskQueue:
+                                self.testorchest.tasks[x].st=max(self.taskQueue[-1].et, self.pred_aft(self.testorchest.tasks[x])+(self.testorchest.tasks[x].size / trans_time)) 
+                                self.testorchest.tasks[x].et = self.testorchest.tasks[x].st+self.comp[self.testorchest.tasks[x].task_idx][self.testorchest.tasks[x].processor_id ]
+                            else:
+                                self.pred_aft(self.testorchest.tasks[x])+(self.testorchest.tasks[x].size/ trans_time)
+                            print(f'at line 223 self.testorchest.tasks[x].et {self.testorchest.tasks[x].et}')
                             self.taskQueue.append(self.testorchest.tasks[x])
                             self.completed.append([self.testorchest.tasks[x].task_idx,rospy.get_time()])
-                        rospy.sleep(0.25)
+                        # rospy.sleep(0.25)
                     else:
-                        print(f'publish task')
+                        # print(f'at 250 publish task {self.testorchest.tasks[x].task_idx}')
                         self.pub.publish(self.testorchest.tasks[x])
                         rospy.sleep(0.25)
             if not False in self.testorchest.task_flag:
@@ -267,14 +312,16 @@ class WorkerNode:
             self.fly_energy.append([self.energy * (data.size / data.ci),data.task_idx])
             self.comm_energy.append([(data.size / self.comm_time(2,self.node_id))*self.energy,data.task_idx])
             self.communication_time.append(data.size / self.comm_time(2,self.node_id))
-            # print(f'data.processor_id == self.node_id -1 { data.processor_id == self.node_id -1}')
+            print(f'data.processor_id == self.node_id -1 { data.processor_id == self.node_id -1}')
             if data.processor_id == self.node_id -1 :
-                if data not in self.taskQueue:
-                    self.taskQueue.append(data) 
+                # print(f'at line 317 {len(self.taskQueue)}')
+                if data.task_idx not in [x.task_idx for x in self.taskQueue]:
+                    print(f'at line 317 {len(self.taskQueue)}')
                     data.st = self.taskQueue [-1].et if self.taskQueue else 0
                     data.et = data.st + float(data.size / data.ci) 
                     self.comp_energy.append([data.delta * (data.size/data.ci),data.task_idx])
                     self.comp_time.append([(data.size/data.ci),data.task_idx])
+                    self.taskQueue.append(data) 
             else:
                 print('at line 282 nothing...')
 
@@ -284,6 +331,7 @@ class WorkerNode:
             
             rospy.spin()
             print(f'saveing task queue to file..')
+            print(f'at line 288 task queue {len(self.taskQueue)}')
             with open('/home/jxie/rossim/src/ros_mpi/data/uav%d.pkl'%self.node_id,'wb') as file:
                 pickle.dump(self.taskQueue,file)
             with open('/home/jxie/rossim/src/ros_mpi/data/uav%d_comm_energy.pkl'%self.node_id,'wb') as file:

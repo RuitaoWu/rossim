@@ -275,6 +275,7 @@ class Orchestrator:
                 if est[np.argmin(eft)] <= time_slot:
                     self.task_schedule_list[np.argmin(eft)].append(task) # append task to the processor with earliest finish time
                     self.tasks[task].processor_id = np.argmin(eft)
+                    self.tasks[task].dependency = self.predecessor_task(self.tasks[task].task_idx)
                     self.task_flag[task] = True
                     
                 else:
