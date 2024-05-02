@@ -27,7 +27,6 @@ config = configparser.ConfigParser()
 config.read('property.properties')
 
 
-
 #################################################################################
 class UAV:
     def __init__(self,uav_id,master_id,iter,alltasks=[]) -> None:
@@ -259,23 +258,42 @@ class Node:
         print('finished')
         print('*'*20)
 
-        with open('/home/jxie/rossim/src/ros_mpi/data/uav%d.pkl'%(self.node_id),'wb') as file:
+        # with open('/home/jxie/rossim/src/ros_mpi/data/uav%d.pkl'%(self.node_id),'wb') as file:
+        #     pickle.dump(self.taskQueue,file)
+        # with open('/home/jxie/rossim/src/ros_mpi/data/uav%d_comm_time_iter_%d.pkl'%(self.node_id,self.iteration),'wb') as file:
+        #     pickle.dump(self.communication_time,file)
+        # with open('/home/jxie/rossim/src/ros_mpi/data/uav%d_comm_energy_iter_%d.pkl'%(self.node_id,self.iteration),'wb') as file:
+        #     pickle.dump(self.comm_energy,file)
+        # with open('/home/jxie/rossim/src/ros_mpi/data/uav%d_comp_energy_iter_%d.pkl'%(self.node_id,self.iteration),'wb') as file:
+        #     pickle.dump(self.comp_energy,file)
+        # with open('/home/jxie/rossim/src/ros_mpi/data/uav%d_fly_energy_iter_%d.pkl'%(self.node_id,self.iteration),'wb') as file:
+        #     pickle.dump(self.fly_energy,file)
+        # with open('/home/jxie/rossim/src/ros_mpi/data/uav%d_comp_time_iter_%d.pkl'%(self.node_id,self.iteration),'wb') as file:
+        #     pickle.dump(self.comp_time,file)
+        # with open('/home/jxie/rossim/src/ros_mpi/task_succ/completed_%d_iter_%d.pkl'%(self.node_id,self.iteration),'wb') as file:
+        #     pickle.dump(self.completed,file)
+        # with open('/home/jxie/rossim/src/ros_mpi/task_succ/incompleted_%d_iter_%d.pkl'%(self.node_id,self.iteration),'wb') as file:
+        #     pickle.dump(self.incompleted,file)
+        # with open('/home/jxie/rossim/src/ros_mpi/task_succ/capacity%d_iter_%d.pkl'%(self.node_id,self.iteration),'wb') as file:
+        #     pickle.dump(self.capacity,file)
+
+        with open('../data/uav%d.pkl'%(self.node_id),'wb') as file:
             pickle.dump(self.taskQueue,file)
-        with open('/home/jxie/rossim/src/ros_mpi/data/uav%d_comm_time_iter_%d.pkl'%(self.node_id,self.iteration),'wb') as file:
+        with open('../data/uav%d_comm_time_iter_%d.pkl'%(self.node_id,self.iteration),'wb') as file:
             pickle.dump(self.communication_time,file)
-        with open('/home/jxie/rossim/src/ros_mpi/data/uav%d_comm_energy_iter_%d.pkl'%(self.node_id,self.iteration),'wb') as file:
+        with open('../data/uav%d_comm_energy_iter_%d.pkl'%(self.node_id,self.iteration),'wb') as file:
             pickle.dump(self.comm_energy,file)
-        with open('/home/jxie/rossim/src/ros_mpi/data/uav%d_comp_energy_iter_%d.pkl'%(self.node_id,self.iteration),'wb') as file:
+        with open('../data/uav%d_comp_energy_iter_%d.pkl'%(self.node_id,self.iteration),'wb') as file:
             pickle.dump(self.comp_energy,file)
-        with open('/home/jxie/rossim/src/ros_mpi/data/uav%d_fly_energy_iter_%d.pkl'%(self.node_id,self.iteration),'wb') as file:
+        with open('../data/uav%d_fly_energy_iter_%d.pkl'%(self.node_id,self.iteration),'wb') as file:
             pickle.dump(self.fly_energy,file)
-        with open('/home/jxie/rossim/src/ros_mpi/data/uav%d_comp_time_iter_%d.pkl'%(self.node_id,self.iteration),'wb') as file:
+        with open('data/uav%d_comp_time_iter_%d.pkl'%(self.node_id,self.iteration),'wb') as file:
             pickle.dump(self.comp_time,file)
-        with open('/home/jxie/rossim/src/ros_mpi/task_succ/completed_%d_iter_%d.pkl'%(self.node_id,self.iteration),'wb') as file:
+        with open('task_succ/completed_%d_iter_%d.pkl'%(self.node_id,self.iteration),'wb') as file:
             pickle.dump(self.completed,file)
-        with open('/home/jxie/rossim/src/ros_mpi/task_succ/incompleted_%d_iter_%d.pkl'%(self.node_id,self.iteration),'wb') as file:
+        with open('task_succ/incompleted_%d_iter_%d.pkl'%(self.node_id,self.iteration),'wb') as file:
             pickle.dump(self.incompleted,file)
-        with open('/home/jxie/rossim/src/ros_mpi/task_succ/capacity%d_iter_%d.pkl'%(self.node_id,self.iteration),'wb') as file:
+        with open('task_succ/capacity%d_iter_%d.pkl'%(self.node_id,self.iteration),'wb') as file:
             pickle.dump(self.capacity,file)
 
 class WorkerNode:
@@ -322,6 +340,15 @@ class WorkerNode:
                         [0,0,0,0,0,0,0,0,0,0]]
             rospy.init_node(self.nodeVerify, anonymous=True)
             rospy.Subscriber(self.pubTopic, Task, self.sub_callback)
+        #predecessor actual finish time
+        def pred_aft(self,t):
+            temp =[]
+            print(f'dependency {t.dependency}')
+            for pre in t.dependency:
+                for x in self.taskQueue :
+                    if pre == x.task_idx and x.processor_id != t.processor_id:
+                        temp.append(x.et)
+            return max(temp) if temp else 0
         def comm_time(self,u1,u2):
             # print(f'uav {u1} and uav {u2}')
             # pos_1= rospy.wait_for_message('/uav%d/ground_truth_to_tf/pose'%u1, PoseStamped)
@@ -338,7 +365,7 @@ class WorkerNode:
                 # print(f'at line 317 {len(self.taskQueue)}')
                 if data.task_idx not in [x.task_idx for x in self.taskQueue]:
                     if self.taskQueue:
-                        data.st = max(self.taskQueue [-1].et, self.pred_aft(data.task_idx)+(data.task_idx.size / 100000))
+                        data.st = max(self.taskQueue [-1].et, self.pred_aft(data)+(data.size / 100000))
                         data.et = data.st + self.comp[data.task_idx][data.processor_id]            
                     self.comp_energy.append([data.delta * (data.size/data.ci),data.task_idx])
                     self.comp_time.append([(data.size/data.ci),data.task_idx])
