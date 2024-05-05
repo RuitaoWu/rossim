@@ -9,7 +9,7 @@ from matplotlib.lines import lineStyles
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 import numpy as np
-import argparse
+import argparse,os
 from matplotlib.ticker import MaxNLocator
 import pickle,math
 from scipy.interpolate import interp1d
@@ -19,6 +19,17 @@ from datarate import Datarate
 config = configparser.ConfigParser()
 config.read('property.properties')
 class PlotGraph:
+    
+    def create_folder_if_not_exists(self,folder_path):
+        try:
+            if not os.path.exists(folder_path):
+                os.makedirs(folder_path)
+                print(f"Folder '{folder_path}' created.")
+        except:
+            print(f"Folder '{folder_path}' already exists.")
+
+    
+    
     def __init__(self,uavid) -> None:
         self.uavid = uavid
     #TODO:
@@ -28,12 +39,12 @@ class PlotGraph:
         task_time = []
         task_sch = []
         number_of_uav = 4
-
-
+        self.create_folder_if_not_exists('graph')
+        #'/home/jxie/rossim/src/ros_mpi/data/uav%d.pkl'%i
         for i in range(1,number_of_uav):
             temp =[]
             sch = []
-            with open('/home/jxie/rossim/src/ros_mpi/data/uav%d.pkl'%i, 'rb') as file:
+            with open('../data/uav%d.pkl'%i, 'rb') as file:
                 content = pickle.load(file)
             # print(f'content: {content}')
             for j in content:
@@ -79,7 +90,7 @@ class PlotGraph:
         # Show the plot
         # plt.grid(axis='x',color='r', linestyle='-', linewidth=2)
         plt.grid(axis='x')
-        plt.savefig('/home/jxie/rossim/src/ros_mpi/scripts/graph/gantt_chart.png')
+        plt.savefig('graph/gantt_chart.png')
         plt.close()
     def comm_graph(self):
         with open('/home/jxie/rossim/src/ros_mpi/data/uav%d_comm_energy.pkl'%self.uavid, 'rb') as file:
@@ -378,7 +389,7 @@ class PlotGraph:
     
     
 if __name__ == '__main__':
-    # with open('/home/jxie/rossim/src/ros_mpi/data/uav1.pkl', 'rb') as file:
+    # with open('../data/uav1.pkl', 'rb') as file:
     #     content = pickle.load(file)
     # print(content)
 
