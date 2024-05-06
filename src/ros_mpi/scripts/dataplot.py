@@ -52,7 +52,7 @@ class PlotGraph:
                 sch.append(j.task_idx)
             task_time.append(temp)
             task_sch.append(sch)
-        print(f'task time {task_time}')
+        for x in task_time:print(f'task {x} \n\n')
         task_colors = ['b', 'g', 'r', 'c', 'm', 'y', 'k','black','white','gray']
 
         # Create a figure and axis
