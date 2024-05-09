@@ -2,7 +2,7 @@
 from ast import Raise
 import numpy as np
 # from torch import _test_autograd_multiple_dispatch
-from util import UAV, Master, Node,Worker, WorkerNode
+from util import Master, Node,Worker, WorkerNode
 from orchestrator import Orchestrator
 from taskgen import TaskGen
 import rospy,random,os

@@ -26,66 +26,6 @@ from taskgen import TaskGen
 config = configparser.ConfigParser()
 config.read('property.properties')
 
-
-#################################################################################
-class UAV:
-    def __init__(self,uav_id,master_id,iter,alltasks=[]) -> None:
-        self.pub_suc_topic = '/uav1/tasks'
-        self.uavId = uav_id
-        self.masterId = master_id
-        self.alltasks = alltasks
-        self.taskqueue=[]
-        self.taskqueueLocal=[]
-        self.iteration=iter
-        rospy.init_node('uav%d'%self.uavId, anonymous=True)
-        self.pub = rospy.Publisher(self.pub_suc_topic,Task,queue_size=10)
-        # print(f'constructed uav {self.uavId} received task {self.alltasks}')
-        print(f'constructed uav {self.uavId}')
-        # print(f'current master is {self.masterId}')
-        # self.rate = rospy.Rate(1) # 10hz
-    def sub_callback(self,data):
-        print(f'currrent task id {data.task_idx} on {data.processor_id+1} current uav {self.uavId}')
-        # if data not in self.taskqueue:
-        if data.processor_id +1 == self.uavId and data not in self.taskqueue:
-            self.taskqueue.append(data)
-        # with open('/home/jxie/rossim/src/ros_mpi/task_succ/tasks_REC%d_iter_%d.pkl'%(self.uavId,self.iteration),'wb') as file:
-        #     pickle.dump(self.taskqueue,file)
-    def thread_callback(self):
-        print('\nthread call back subscriber')
-        rospy.Subscriber(self.pub_suc_topic,Task,self.sub_callback)
-        # with open('/home/jxie/rossim/src/ros_mpi/task_succ/tasks%d_iter_%d.pkl'%(self.uavId,self.iteration),'wb') as file:
-        #     pickle.dump(self.taskqueue,file)
-        rospy.spin()
-        # print(f'current uav-{self.uavId} finished......')
-
-    def run(self):
-        print(f'call the run method......')
-        thread = threading.Thread(target=self.thread_callback)
-        # thread_pub = threading.Thread(target=self.thread_pub)
-        thread.start()
-        # thread_pub.start()
-        if self.alltasks:
-            for i in self.alltasks:
-                self.pub.publish(i)
-                print(f'task {i.task_idx} is on {i.processor_id}')
-                if (i.processor_id +1)== self.uavId:
-                    self.taskqueueLocal.append(i)
-                rospy.sleep(0.25)
-            print(f'finished publish all tasks..')
-        else:
-            print(f'current uav {len(self.alltasks)} is empty')
-        with open('/home/jxie/rossim/src/ros_mpi/task_succ/tasks_local_REC%d_iter_%d.pkl'%(self.uavId,self.iteration),'wb') as file:
-            pickle.dump(self.taskqueueLocal,file)
-        with open('/home/jxie/rossim/src/ros_mpi/task_succ/tasks_REC%d_iter_%d.pkl'%(self.uavId,self.iteration),'wb') as file:
-            pickle.dump(self.taskqueue,file)
-
-
-
-
-
-
-
-
 #################################################################################
 #indepedent
 #dy heft
@@ -208,18 +148,25 @@ class Node:
 
     #predecessor actual finish time
     def pred_aft(self,t):
-        temp =[]
-        print(f'dependency {t.dependency}')
+        temp =[0]
+        # print(f'dependency {t.dependency}')
         for pre in t.dependency:
             for x in self.task_received :
                 if pre == x.task_idx and x.processor_id != t.processor_id:
                     temp.append(x.et)
-        return max(temp) if temp else 0
+        # print(f'at line 157 task id {t.task_idx} and temp {temp}')
+        return max(temp)
     
     def sub_callback(self,data):
-        print(f'receive tasks......')
-        if data not in self.task_received:
+        # print(f'receive tasks......')
+        id_list = [x.task_idx for x in self.task_received]
+        #update task time after received back from worker
+        if data.task_idx not in id_list:            
             self.task_received.append(data)
+        else:
+            print(f'at line 163 task index {self.task_received[self.task_received.index(data)].st}\
+                 {self.task_received[self.task_received.index(data)].et}')
+
             # temp = self.comm_time(self.node_id,data.processor_id+1) if data.processor_id+1 > 0 else 1
             # self.comm_energy.append([(data.size / temp)*self.energy,data.task_idx]) 
             # self.communication_time_rec.append([data.size / temp,data.task_idx])
@@ -242,25 +189,27 @@ class Node:
             self.testorchest.update_comm(self.comm_time(0,0))
             
             timeslot += 5
-            print(f'self.testorchest.get_items(): {self.testorchest.get_items()[::-1]}')
+            # print(f'self.testorchest.get_items(): {self.testorchest.get_items()[::-1]}')
             for x in self.testorchest.get_items()[::-1]:
                 if self.testorchest.task_flag[x]:
+                    # print(f'at line 187 {self.testorchest.task_flag[x]}')
                     if self.testorchest.tasks[x].processor_id == self.node_id - 1:
-                        if self.testorchest.tasks[x] not in self.taskQueue:
-                            trans_time = 100000
-                            if self.taskQueue:
-                                self.testorchest.tasks[x].st=max(self.taskQueue[-1].et, self.pred_aft(self.testorchest.tasks[x])+(self.testorchest.tasks[x].size / trans_time)) 
-                                self.testorchest.tasks[x].et = self.testorchest.tasks[x].st+self.comp[self.testorchest.tasks[x].task_idx][self.testorchest.tasks[x].processor_id ]
-                            else:
-                                self.testorchest.tasks[x].st=self.pred_aft(self.testorchest.tasks[x])+(self.testorchest.tasks[x].size/ trans_time)
-                                self.testorchest.tasks[x].et=self.testorchest.tasks[x].st+self.comp[self.testorchest.tasks[x].task_idx][self.testorchest.tasks[x].processor_id ]
-                            print(f'at line 223 self.testorchest.tasks[x].et: {self.testorchest.tasks[x].et}')
-                            self.taskQueue.append(self.testorchest.tasks[x])
-                            self.completed.append([self.testorchest.tasks[x].task_idx,rospy.get_time()])
+                        # if self.testorchest.tasks[x].task_idx not in [x.task_idx for x in self.taskQueue]:
+                        trans_time = 100000
+                        if self.taskQueue:
+                            self.testorchest.tasks[x].st=max(self.taskQueue[-1].et, self.pred_aft(self.testorchest.tasks[x])+(self.testorchest.tasks[x].size / trans_time)) 
+                            self.testorchest.tasks[x].et = self.testorchest.tasks[x].st+self.comp[self.testorchest.tasks[x].task_idx][self.testorchest.tasks[x].processor_id ]
+                        else:
+                            self.testorchest.tasks[x].st=self.pred_aft(self.testorchest.tasks[x])+(self.testorchest.tasks[x].size/ trans_time)
+                            self.testorchest.tasks[x].et=self.testorchest.tasks[x].st+self.comp[self.testorchest.tasks[x].task_idx][self.testorchest.tasks[x].processor_id ]
+                        # print(f'at line 223 self.testorchest.tasks[x].et: {self.testorchest.tasks[x].et}')
+                        self.taskQueue.append(self.testorchest.tasks[x])
+                        self.completed.append([self.testorchest.tasks[x].task_idx,rospy.get_time()])
                         # rospy.sleep(0.25)
                     else:
-                         self.testorchest.tasks[x].st = self.pred_aft( self.testorchest.tasks[x]) + 0.1  
+                        self.testorchest.tasks[x].st = self.pred_aft(self.testorchest.tasks[x]) + 0.1 
                     self.pub.publish(self.testorchest.tasks[x])
+                    print(f'at line 207 self.testorchest.tasks[x] {self.testorchest.tasks[x].task_idx} st {self.testorchest.tasks[x].st}and et {self.testorchest.tasks[x].et}')
                     rospy.sleep(0.25)
             if not False in self.testorchest.task_flag:
                 for x in self.task_received:
@@ -337,13 +286,15 @@ class WorkerNode:
             rospy.Subscriber(self.pubTopic, Task, self.sub_callback)
         #predecessor actual finish time
         def pred_aft(self,t):
-            temp =[]
-            print(f'dependency {t.dependency}')
+            temp =[-1]
+
             for pre in t.dependency:
                 for x in self.allTask :
                     if pre == x.task_idx and x.processor_id != t.processor_id:
+                        # print(f'at line 285 the et time is {x.et}')
                         temp.append(x.et)
-            return max(temp) if temp else 0
+            # print(f'at line 289 task id {t.task_idx} with temp {temp} ')
+            return max(temp)
         def comm_time(self,u1,u2):
             # print(f'uav {u1} and uav {u2}')
             # pos_1= rospy.wait_for_message('/uav%d/ground_truth_to_tf/pose'%u1, PoseStamped)
@@ -355,32 +306,27 @@ class WorkerNode:
             self.fly_energy.append([self.energy * (data.size / data.ci),data.task_idx])
             self.comm_energy.append([(data.size / self.comm_time(2,self.node_id))*self.energy,data.task_idx])
             self.communication_time.append(data.size / self.comm_time(2,self.node_id))
-            if data not in self.allTask:self.allTask.append(data)
-            print(f'at line 358 len of all task: {len(self.allTask)}')
+            self.allTask.append(data)
             if data.processor_id == self.node_id -1 :
-                # print(f'at line 317 {len(self.taskQueue)}')
-                if data.task_idx not in [x.task_idx for x in self.taskQueue]:
+                if data.task_idx not in self.taskQueue:
                     if self.taskQueue:
-                        
                         data.st = max(self.taskQueue [-1].et, self.pred_aft(data)+(data.size / 100000))
                         data.et = data.st + self.comp[data.task_idx][data.processor_id]
                     else:
                         data.st = self.pred_aft(data)+(data.size / 100000)
                         data.et = data.st + self.comp[data.task_idx][data.processor_id]
-                    print(f'task st time :{data.st} and end time {data.et}')
                     self.comp_energy.append([data.delta * (data.size/data.ci),data.task_idx])
                     self.comp_time.append([(data.size/data.ci),data.task_idx])
                     self.taskQueue.append(data) 
             self.workerpub.publish(data)
             rospy.sleep(0.25)
 
-        
         def run(self):
             print('call worker%d'%self.node_id )
             
             rospy.spin()
             print(f'saveing task queue to file..')
-            print(f'at line 288 task queue {len(self.taskQueue)}')
+            print(f'at line 325 task queue {len(self.taskQueue)}')
             with open('../data/uav%d.pkl'%self.node_id,'wb') as file:
                 pickle.dump(self.taskQueue,file)
             with open('../data/uav%d_comm_energy.pkl'%self.node_id,'wb') as file:
@@ -394,7 +340,11 @@ class WorkerNode:
             with open('../data/uav%d_comm_time.pkl'%self.node_id,'wb') as file:
                 pickle.dump(self.communication_time,file)
             print('saved')
-
+######################################################################################################
+######################################################################################################
+######################################################################################################
+######################################################################################################
+######################################################################################################
 ######################################################################################################
 ####                                     dependent task                                           ####
 ####                                                                                              ####

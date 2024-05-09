@@ -259,10 +259,11 @@ class Orchestrator:
         # print(f'updated comm matrix: {self.comm}')
 
     def dy_heft(self,incomplete_task,time_slot):
-        # print(f'task list at line 257: {incomplete_task}')
+        print(f'hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh')
         for task in incomplete_task:
-        # for task in temp_task:
+            print(f'task flag of task {task} is {self.task_flag[task]}')
             if self.task_flag[task]:
+                print(f'task flag of task {task} is self.task_flag[task]')
                 continue
             else:
                 est,eft=[],[]
@@ -277,10 +278,7 @@ class Orchestrator:
                     self.tasks[task].processor_id = np.argmin(eft)
                     self.tasks[task].dependency = self.predecessor_task(self.tasks[task].task_idx)
                     self.task_flag[task] = True
-                    
-                else:
-                    continue
-        return self.task_schedule_list
+        # return self.task_schedule_list
     def indep_sch(self,tasklist):
         computing_nodes = [[] for _ in range(len(self.comp[0]))]
         print(f'scheduling tasks...')
