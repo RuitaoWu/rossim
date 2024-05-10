@@ -159,13 +159,13 @@ class Node:
     
     def sub_callback(self,data):
         # print(f'receive tasks......')
+        print(f'at line 162 received task {data.task_idx} with st {data.st} and et {data.et}')
         id_list = [x.task_idx for x in self.task_received]
         #update task time after received back from worker
         if data.task_idx not in id_list:            
             self.task_received.append(data)
-        else:
-            print(f'at line 163 task index {self.task_received[self.task_received.index(data)].st}\
-                 {self.task_received[self.task_received.index(data)].et}')
+        # else:
+            # print(f'at line 163 task index {self.task_received[self.task_received.index(data)].st} {self.task_received[self.task_received.index(data)].et}')
 
             # temp = self.comm_time(self.node_id,data.processor_id+1) if data.processor_id+1 > 0 else 1
             # self.comm_energy.append([(data.size / temp)*self.energy,data.task_idx]) 
@@ -182,6 +182,7 @@ class Node:
         print('****'*20)
         timeslot =60
         print(f'comm matrix {self.comm}')
+        self.pub.publish(Task())
         rospy.sleep(0.25)
         while True:
             incomplete_task =np.argsort([self.testorchest.calculate_rank_up_recursive(self.comp,self.comm,i) for i in range(len(self.comp))]).tolist()[::-1]
@@ -209,7 +210,7 @@ class Node:
                     else:
                         self.testorchest.tasks[x].st = self.pred_aft(self.testorchest.tasks[x]) + 0.1 
                     self.pub.publish(self.testorchest.tasks[x])
-                    print(f'at line 207 self.testorchest.tasks[x] {self.testorchest.tasks[x].task_idx} st {self.testorchest.tasks[x].st}and et {self.testorchest.tasks[x].et}')
+                    # print(f'at line 207 self.testorchest.tasks[x] {self.testorchest.tasks[x].task_idx} st {self.testorchest.tasks[x].st}and et {self.testorchest.tasks[x].et}')
                     rospy.sleep(0.25)
             if not False in self.testorchest.task_flag:
                 for x in self.task_received:
@@ -307,7 +308,8 @@ class WorkerNode:
             self.comm_energy.append([(data.size / self.comm_time(2,self.node_id))*self.energy,data.task_idx])
             self.communication_time.append(data.size / self.comm_time(2,self.node_id))
             self.allTask.append(data)
-            if data.processor_id == self.node_id -1 :
+            # print(f'at line current uav-{self.node_id} and task id {data.task_idx} p_id {data.processor_id} is {data.processor_id == self.node_id -1}')
+            if data.processor_id == self.node_id -1:
                 if data.task_idx not in self.taskQueue:
                     if self.taskQueue:
                         data.st = max(self.taskQueue [-1].et, self.pred_aft(data)+(data.size / 100000))
@@ -318,8 +320,9 @@ class WorkerNode:
                     self.comp_energy.append([data.delta * (data.size/data.ci),data.task_idx])
                     self.comp_time.append([(data.size/data.ci),data.task_idx])
                     self.taskQueue.append(data) 
-            self.workerpub.publish(data)
-            rospy.sleep(0.25)
+                self.workerpub.publish(data)
+                print(f'at line 323 current uav-{self.node_id} and task id {data.task_idx} with st {data.st} and et {data.et}')
+                rospy.sleep(0.25)
 
         def run(self):
             print('call worker%d'%self.node_id )
