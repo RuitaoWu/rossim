@@ -160,10 +160,11 @@ class Node:
     def sub_callback(self,data):
         # print(f'receive tasks......')
         print(f'at line 162 received task {data.task_idx} with st {data.st} and et {data.et}')
-        id_list = [x.task_idx for x in self.task_received]
+        # id_list = [x.task_idx for x in self.task_received]
         #update task time after received back from worker
-        if data.task_idx not in id_list:            
+        if data.task_idx not in self.task_received:            
             self.task_received.append(data)
+            print(f'at line 167 the length of task received {len(self.task_received)}')
         # else:
             # print(f'at line 163 task index {self.task_received[self.task_received.index(data)].st} {self.task_received[self.task_received.index(data)].et}')
 
@@ -321,7 +322,8 @@ class WorkerNode:
                     self.comp_time.append([(data.size/data.ci),data.task_idx])
                     self.taskQueue.append(data) 
                 self.workerpub.publish(data)
-                print(f'at line 323 current uav-{self.node_id} and task id {data.task_idx} with st {data.st} and et {data.et}')
+                # print(f'at line 323 current uav-{self.node_id} and task id {data.task_idx} with st {data.st} and et {data.et}')
+                print(f'at line 326 current uav-{self.node_id} and task id {data.task_idx} with comp {self.comp[data.task_idx][data.processor_id]} dep {data.dependency}')
                 rospy.sleep(0.25)
 
         def run(self):
