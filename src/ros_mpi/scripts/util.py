@@ -149,22 +149,24 @@ class Node:
     #predecessor actual finish time
     def pred_aft(self,t):
         temp =[0]
-        # print(f'dependency {t.dependency}')
         for pre in t.dependency:
-            for x in self.task_received :
+            for x in self.task_received:
                 if pre == x.task_idx and x.processor_id != t.processor_id:
                     temp.append(x.et)
-        # print(f'at line 157 task id {t.task_idx} and temp {temp}')
+            for x in self.taskQueue:
+                if pre == x.task_idx and x.processor_id != t.processor_id:
+                    temp.append(x.et)
+        print(f'at line 157 task id {t.task_idx} and temp {temp}')
         return max(temp)
     
     def sub_callback(self,data):
         # print(f'receive tasks......')
-        print(f'at line 162 received task {data.task_idx} with st {data.st} and et {data.et}')
+        # print(f'at line 162 received task {data.task_idx} with st {data.st} and et {data.et}')
         # id_list = [x.task_idx for x in self.task_received]
         #update task time after received back from worker
         if data.task_idx not in self.task_received:            
             self.task_received.append(data)
-            print(f'at line 167 the length of task received {len(self.task_received)}')
+            # print(f'at line 167 current task recevied from worerk {data.task_idx} depn {data.dependency} \ with st {data.st} and et {data.et}')
         # else:
             # print(f'at line 163 task index {self.task_received[self.task_received.index(data)].st} {self.task_received[self.task_received.index(data)].et}')
 
@@ -208,7 +210,8 @@ class Node:
                         self.taskQueue.append(self.testorchest.tasks[x])
                         self.completed.append([self.testorchest.tasks[x].task_idx,rospy.get_time()])
                         # rospy.sleep(0.25)
-                    else:
+                    else: 
+                        print(f'at line 214 : {self.pred_aft(self.testorchest.tasks[x])}')
                         self.testorchest.tasks[x].st = self.pred_aft(self.testorchest.tasks[x]) + 0.1 
                     self.pub.publish(self.testorchest.tasks[x])
                     # print(f'at line 207 self.testorchest.tasks[x] {self.testorchest.tasks[x].task_idx} st {self.testorchest.tasks[x].st}and et {self.testorchest.tasks[x].et}')
@@ -313,17 +316,17 @@ class WorkerNode:
             if data.processor_id == self.node_id -1:
                 if data.task_idx not in self.taskQueue:
                     if self.taskQueue:
-                        data.st = max(self.taskQueue [-1].et, self.pred_aft(data)+(data.size / 100000))
+                        data.st = max(data.st,self.taskQueue [-1].et, self.pred_aft(data)+(data.size / 100000))
                         data.et = data.st + self.comp[data.task_idx][data.processor_id]
                     else:
-                        data.st = self.pred_aft(data)+(data.size / 100000)
+                        data.st = max(data.st,self.pred_aft(data)) + (data.size / 100000)
                         data.et = data.st + self.comp[data.task_idx][data.processor_id]
                     self.comp_energy.append([data.delta * (data.size/data.ci),data.task_idx])
                     self.comp_time.append([(data.size/data.ci),data.task_idx])
                     self.taskQueue.append(data) 
                 self.workerpub.publish(data)
                 # print(f'at line 323 current uav-{self.node_id} and task id {data.task_idx} with st {data.st} and et {data.et}')
-                print(f'at line 326 current uav-{self.node_id} and task id {data.task_idx} with comp {self.comp[data.task_idx][data.processor_id]} dep {data.dependency}')
+                # print(f'at line 326 current uav-{self.node_id} and task id {data.task_idx} with comp {self.comp[data.task_idx][data.processor_id]} dep {data.dependency}')
                 rospy.sleep(0.25)
 
         def run(self):
