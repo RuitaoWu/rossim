@@ -263,7 +263,7 @@ class Orchestrator:
         for task in incomplete_task:
             print(f'task flag of task {task} is {self.task_flag[task]}')
             if self.task_flag[task]:
-                print(f'task flag of task {task} is self.task_flag[task]')
+                print(f'task flag of task {task} is {self.task_flag[task]}')
                 continue
             else:
                 est,eft=[],[]

@@ -70,6 +70,7 @@ class Node:
                  [0,0,0,0,0,0,0,0,0,0]]
         self.comp,self.comm = comp,comm
         self.testorchest = Orchestrator(self.comm,self.comp,100,200)
+        self.pub_flag = [None]*len(self.testorchest.task_flag)
         self.uav_capa = 1000000
         self.node_id = node_id
         self.taskQueue = taskqueue
@@ -183,7 +184,7 @@ class Node:
         thread = threading.Thread(target= self.received_call_back)
         thread.start()
         print('****'*20)
-        timeslot =60
+        timeslot =10
         print(f'comm matrix {self.comm}')
         self.pub.publish(Task())
         rospy.sleep(0.25)
@@ -194,9 +195,13 @@ class Node:
             
             timeslot += 5
             # print(f'self.testorchest.get_items(): {self.testorchest.get_items()[::-1]}')
+            print(f'at line 198 task pub flag {self.pub_flag}')
             for x in self.testorchest.get_items()[::-1]:
+                # TODO:
+                # avoid duplicate publish
                 if self.testorchest.task_flag[x]:
-                    # print(f'at line 187 {self.testorchest.task_flag[x]}')
+                    if self.pub_flag[self.testorchest.tasks[x].task_idx]:
+                        continue
                     if self.testorchest.tasks[x].processor_id == self.node_id - 1:
                         # if self.testorchest.tasks[x].task_idx not in [x.task_idx for x in self.taskQueue]:
                         trans_time = 100000
@@ -214,6 +219,8 @@ class Node:
                         print(f'at line 214 : {self.pred_aft(self.testorchest.tasks[x])}')
                         self.testorchest.tasks[x].st = self.pred_aft(self.testorchest.tasks[x]) + 0.1 
                     self.pub.publish(self.testorchest.tasks[x])
+                    self.pub_flag[self.testorchest.tasks[x].task_idx] = True
+                    # print(f'at line 223 {self.pub_flag[self.testorchest.tasks[x].task_idx]}')
                     # print(f'at line 207 self.testorchest.tasks[x] {self.testorchest.tasks[x].task_idx} st {self.testorchest.tasks[x].st}and et {self.testorchest.tasks[x].et}')
                     rospy.sleep(0.25)
             if not False in self.testorchest.task_flag:
