@@ -255,17 +255,10 @@ class Orchestrator:
             for j in range(len(self.comm[i])):
                 if self.comm[i][j] >0:
                     self.comm[i][j] = self.tasks[i].size // (mean_datarate / 10000)
-                # print(f'self.tasks[i].size {self.tasks[i].size}')
-        # print(f'updated comm matrix: {self.comm}')
 
     def dy_heft(self,incomplete_task,time_slot):
-        print(f'hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh')
         for task in incomplete_task:
-            print(f'task flag of task {task} is {self.task_flag[task]}')
-            if self.task_flag[task]:
-                print(f'task flag of task {task} is {self.task_flag[task]}')
-                continue
-            else:
+            if self.task_flag[task] == False:
                 est,eft=[],[]
                 for s in range(0,len(self.comp[0])):
                     est.append(self.dy_earliest_start_time(task,s))
@@ -273,11 +266,13 @@ class Orchestrator:
                     self.update_dy_heft_aft(eft,est,task)                  
                 #if task in current time slot then schedule and skip otherwise
                 # if eft[np.argmin(eft)]<= time_slot:
+                # if est[np.argmin(eft)] <= time_slot:
                 if est[np.argmin(eft)] <= time_slot:
                     self.task_schedule_list[np.argmin(eft)].append(task) # append task to the processor with earliest finish time
                     self.tasks[task].processor_id = np.argmin(eft)
                     self.tasks[task].dependency = self.predecessor_task(self.tasks[task].task_idx)
                     self.task_flag[task] = True
+        print(f"at line 276 task schedule {self.task_schedule_list}")
         # return self.task_schedule_list
     def indep_sch(self,tasklist):
         computing_nodes = [[] for _ in range(len(self.comp[0]))]

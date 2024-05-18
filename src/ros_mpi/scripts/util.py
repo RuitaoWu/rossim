@@ -167,13 +167,7 @@ class Node:
         #update task time after received back from worker
         if data.task_idx not in self.task_received:            
             self.task_received.append(data)
-            # print(f'at line 167 current task recevied from worerk {data.task_idx} depn {data.dependency} \ with st {data.st} and et {data.et}')
-        # else:
-            # print(f'at line 163 task index {self.task_received[self.task_received.index(data)].st} {self.task_received[self.task_received.index(data)].et}')
-
-            # temp = self.comm_time(self.node_id,data.processor_id+1) if data.processor_id+1 > 0 else 1
-            # self.comm_energy.append([(data.size / temp)*self.energy,data.task_idx]) 
-            # self.communication_time_rec.append([data.size / temp,data.task_idx])
+            print(f'at line 170 data st: {data.st} and et {data.et}')
 
     def received_call_back(self):
         print('call receive threading...')
@@ -184,7 +178,7 @@ class Node:
         thread = threading.Thread(target= self.received_call_back)
         thread.start()
         print('****'*20)
-        timeslot =10
+        timeslot =0
         print(f'comm matrix {self.comm}')
         self.pub.publish(Task())
         rospy.sleep(0.25)
@@ -192,10 +186,7 @@ class Node:
             incomplete_task =np.argsort([self.testorchest.calculate_rank_up_recursive(self.comp,self.comm,i) for i in range(len(self.comp))]).tolist()[::-1]
             self.testorchest.dy_heft(incomplete_task,timeslot)
             self.testorchest.update_comm(self.comm_time(0,0))
-            
-            timeslot += 5
-            # print(f'self.testorchest.get_items(): {self.testorchest.get_items()[::-1]}')
-            print(f'at line 198 task pub flag {self.pub_flag}')
+            timeslot += 10
             for x in self.testorchest.get_items()[::-1]:
                 # TODO:
                 # avoid duplicate publish
@@ -203,7 +194,6 @@ class Node:
                     if self.pub_flag[self.testorchest.tasks[x].task_idx]:
                         continue
                     if self.testorchest.tasks[x].processor_id == self.node_id - 1:
-                        # if self.testorchest.tasks[x].task_idx not in [x.task_idx for x in self.taskQueue]:
                         trans_time = 100000
                         if self.taskQueue:
                             self.testorchest.tasks[x].st=max(self.taskQueue[-1].et, self.pred_aft(self.testorchest.tasks[x])+(self.testorchest.tasks[x].size / trans_time)) 
@@ -211,21 +201,15 @@ class Node:
                         else:
                             self.testorchest.tasks[x].st=self.pred_aft(self.testorchest.tasks[x])+(self.testorchest.tasks[x].size/ trans_time)
                             self.testorchest.tasks[x].et=self.testorchest.tasks[x].st+self.comp[self.testorchest.tasks[x].task_idx][self.testorchest.tasks[x].processor_id ]
-                        # print(f'at line 223 self.testorchest.tasks[x].et: {self.testorchest.tasks[x].et}')
                         self.taskQueue.append(self.testorchest.tasks[x])
                         self.completed.append([self.testorchest.tasks[x].task_idx,rospy.get_time()])
-                        # rospy.sleep(0.25)
                     else: 
-                        print(f'at line 214 : {self.pred_aft(self.testorchest.tasks[x])}')
                         self.testorchest.tasks[x].st = self.pred_aft(self.testorchest.tasks[x]) + 0.1 
                     self.pub.publish(self.testorchest.tasks[x])
                     self.pub_flag[self.testorchest.tasks[x].task_idx] = True
-                    # print(f'at line 223 {self.pub_flag[self.testorchest.tasks[x].task_idx]}')
-                    # print(f'at line 207 self.testorchest.tasks[x] {self.testorchest.tasks[x].task_idx} st {self.testorchest.tasks[x].st}and et {self.testorchest.tasks[x].et}')
                     rospy.sleep(0.25)
             if not False in self.testorchest.task_flag:
-                for x in self.task_received:
-                    print(f'x id {x.task_idx} with {x.st} and {x.et}')
+                print(f'end')
                 break
         print('finished')
         print('*'*20)
@@ -319,7 +303,6 @@ class WorkerNode:
             self.comm_energy.append([(data.size / self.comm_time(2,self.node_id))*self.energy,data.task_idx])
             self.communication_time.append(data.size / self.comm_time(2,self.node_id))
             self.allTask.append(data)
-            # print(f'at line current uav-{self.node_id} and task id {data.task_idx} p_id {data.processor_id} is {data.processor_id == self.node_id -1}')
             if data.processor_id == self.node_id -1:
                 if data.task_idx not in self.taskQueue:
                     if self.taskQueue:
@@ -332,8 +315,6 @@ class WorkerNode:
                     self.comp_time.append([(data.size/data.ci),data.task_idx])
                     self.taskQueue.append(data) 
                 self.workerpub.publish(data)
-                # print(f'at line 323 current uav-{self.node_id} and task id {data.task_idx} with st {data.st} and et {data.et}')
-                # print(f'at line 326 current uav-{self.node_id} and task id {data.task_idx} with comp {self.comp[data.task_idx][data.processor_id]} dep {data.dependency}')
                 rospy.sleep(0.25)
 
         def run(self):
@@ -589,7 +570,6 @@ class Worker:
 
             data.st = max(self.worker_task[-1].et, self.pred_aft(data),data.st) if self.worker_task else max(self.pred_aft(data),data.st)
             data.et = data.st + self.comp[data.task_idx][data.processor_id] #add more computation time
-            print(f'data at line 589 current worker id {self.worker_id}:  task id {data.task_idx} start timee {data.st} and end time {data.et} with comp time {self.comp[data.task_idx][data.processor_id]}')
             self.comp_energy.append([data.delta *(data.size/data.ci),data.task_idx]) #units: mj
             self.comp_time.append([self.comp[data.task_idx][data.processor_id],data.task_idx])
             self.comm_energy.append([(data.size / current_datarate) * self.energy,data.task_idx]) #units: j
