@@ -22,18 +22,23 @@ pos_x = []
 pos_y = []
 pos_z = []
 #/home/jxie/rossim/src/pos_controller/data
-folder_path = "/home/jxie/rossim/src/pos_controller/data"
-
+# folder_path = "/home/jxie/rossim/src/pos_controller/data"
+folder_path = '/home/ad/rossim/src/pos_controller/data'
 if not os.path.exists(folder_path):
     os.makedirs(folder_path)
     print("Folder created.")
 else:
     print("Folder already exists. Skipping.")
     
-time_file_name = '/home/jxie/rossim/src/pos_controller/data/path_time%d.pkl' %index
-path_x_name = '/home/jxie/rossim/src/pos_controller/data/path_x%d.pkl' %index
-path_y_name = '/home/jxie/rossim/src/pos_controller/data/path_y%d.pkl' %index
-path_z_name = '/home/jxie/rossim/src/pos_controller/data/path_z%d.pkl' %index
+# time_file_name = '/home/jxie/rossim/src/pos_controller/data/path_time%d.pkl' %index
+# path_x_name = '/home/jxie/rossim/src/pos_controller/data/path_x%d.pkl' %index
+# path_y_name = '/home/jxie/rossim/src/pos_controller/data/path_y%d.pkl' %index
+# path_z_name = '/home/jxie/rossim/src/pos_controller/data/path_z%d.pkl' %index
+
+time_file_name = '/home/ad/rossim/src/pos_controller/data/path_time%d.pkl' %index
+path_x_name = '/home/ad/rossim/src/pos_controller/data/path_x%d.pkl' %index
+path_y_name = '/home/ad/rossim/src/pos_controller/data/path_y%d.pkl' %index
+path_z_name = '/home/ad/rossim/src/pos_controller/data/path_z%d.pkl' %index
 
 
 def path_cb(data):

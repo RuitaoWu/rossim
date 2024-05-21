@@ -120,7 +120,8 @@ class Node:
             # pos_2 = rospy.wait_for_message('/uav%d/ground_truth_to_tf/pose'%u2, PoseStamped)
             # distance = math.dist([pos_1.pose.position.x,pos_1.pose.position.y,pos_1.pose.position.z],
             #                     [pos_2.pose.position.x,pos_2.pose.position.y,pos_2.pose.position.z])
-
+            # print(f'at line 123 current distance is {distance}')
+            # print(f'at line 124 position 2 x is {pos_2.pose.position}')
             return self.datarate .data_rate(400)
     def range(self,u1,u2):
         try:
@@ -185,7 +186,7 @@ class Node:
         while True:
             incomplete_task =np.argsort([self.testorchest.calculate_rank_up_recursive(self.comp,self.comm,i) for i in range(len(self.comp))]).tolist()[::-1]
             self.testorchest.dy_heft(incomplete_task,timeslot)
-            self.testorchest.update_comm(self.comm_time(0,0))
+            self.testorchest.update_comm(self.comm_time(1,2))
             timeslot += 10
             for x in self.testorchest.get_items()[::-1]:
                 # TODO:
@@ -209,7 +210,8 @@ class Node:
                     self.pub_flag[self.testorchest.tasks[x].task_idx] = True
                     rospy.sleep(0.25)
             if not False in self.testorchest.task_flag:
-                print(f'end')
+                print(f'at line 213 ast {self.testorchest.AST}')
+                print(f'at line 214 aft {self.testorchest.AFT}')
                 break
         print('finished')
         print('*'*20)

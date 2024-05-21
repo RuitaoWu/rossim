@@ -1,4 +1,4 @@
-#! /usr/bin/env python
+#! /usr/bin/env python3
 from fileinput import filename
 import rospy
 from visualization_msgs.msg import Marker
@@ -19,7 +19,8 @@ rospy.init_node('rviz_marker_array%d' %index)
 # filename = '/home/smile/nac_sim/src/pos_controller/scripts/path.txt'
 # filename ='/home/jxie/Workspace/hzhang3986/nac_sim/src/pos_controller/scripts/path.txt'
 #/home/jxie/rossim/src/pos_controller/scripts
-filename ='/home/jxie/rossim/src/pos_controller/scripts/path.txt'
+# filename ='/home/jxie/rossim/src/pos_controller/scripts/path.txt' 
+filename ='/home/ad/rossim/src/pos_controller/scripts/path.txt'
 with open(filename, 'r') as fd:
     path = json.load(fd)
 

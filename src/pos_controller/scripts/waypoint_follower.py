@@ -58,7 +58,8 @@ class WaypoingFollower:
 
         #mobility configuration
         self.config = configparser.ConfigParser()
-        self.config.read('/home/jxie/rossim/src/ros_mpi/scripts/property.properties')
+        # self.config.read('/home/jxie/rossim/src/ros_mpi/scripts/property.properties')
+        self.config.read('/home/ad/rossim/src/ros_mpi/scripts/property.properties')
         self.xMax = float(self.config.get('Mobile','xMax'))
         self.xMin = float(self.config.get('Mobile','xMin'))
         self.yMax = float(self.config.get('Mobile','yMax'))
@@ -174,10 +175,10 @@ class WaypoingFollower:
             pub.publish(msg) # control frequency
 
 
-if __name__ == "__main__":
-    sleep(10)
-    print("namespace: ")
-    print(ns)
-    waypoint_follower = WaypoingFollower([0, 0, 0.3])
-    waypoint_follower.run()
-    rospy.spin()
+# if __name__ == "__main__":
+#     sleep(10)
+#     print("namespace: ")
+#     print(ns)
+#     waypoint_follower = WaypoingFollower([0, 0, 0.3])
+#     waypoint_follower.run()
+#     rospy.spin()

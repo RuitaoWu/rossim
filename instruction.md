@@ -50,7 +50,11 @@ if it is not compiler successfully caused by this reason, I have re-clone the so
 ``` 
 https://github.com/Lakshadeep/gazebo_wifi_plugin.git
 ```
+##
 
+Resource not found: xacro
+
+```sudo apt-get install ros-<rosdistro>-xacro```
 ## the flag
 
 ```
@@ -59,6 +63,6 @@ https://github.com/Lakshadeep/gazebo_wifi_plugin.git
 
 ```
 
-Personally I do not have soluation nor why it occures, but according to the answer from the following forum it said out of memory, thus you cou rerun catkin_make
+One answer from the following forum it said out of memory, thus you cou rerun catkin_make
 https://unix.stackexchange.com/questions/710460/invoking-make-j16-l16-failed
 
