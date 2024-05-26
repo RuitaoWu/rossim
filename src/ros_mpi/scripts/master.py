@@ -3,6 +3,7 @@ from ast import Raise
 import numpy as np
 # from torch import _test_autograd_multiple_dispatch
 from util import Master, Node,Worker, WorkerNode
+from indep import Parent, Child
 from orchestrator import Orchestrator
 from taskgen import TaskGen
 import rospy,random,os
@@ -93,75 +94,38 @@ if taskType == 'Independent':
             nodeWorker.run()
     except rospy.ROSInterruptException:
         print('ROS shutdown, key interruptted')
-    #at begnining of each iteration it will define new empty task queue
-    # for x in range(0,1):
-    #     print(f'current iteration {x}')
-    #     try:
-    #         if node_id  == master_node:
-    #         # if node_id  == random.randint(0,numberOfComputingNode):
-    #             node_verify = "Master"
-    #             nodeMaster = Node(node_id+1,node_verify,[],int(random.randrange(int(min_cpu),int(max_cpu))),x,[])
-    #             nodeMaster.run()
-    #         else:
-    #             node_verify = "Worker%d"%(node_id+1)
-    #             nodeWorker = WorkerNode(node_id+1,node_verify,int(random.randrange(int(min_cpu),int(max_cpu))),x,[])
-    #             nodeWorker.run()
-    #     except:
-    #         print('an error has occurred')
-    #     print(f'finished iteration {x}')
-
-
-
-    # taskgenerator = TaskGen(random.randint(numberOfTask // 2, numberOfTask),numberOfComputingNode,task_size_min,task_size_max,ipsMin,ipsMax)
-    # testorchest = Orchestrator([],taskgenerator.gen_comp_matrix(),100,200)
-    # testorchest.indep_sch(taskgenerator.gen_indep())
-    # tempTask = taskgenerator.gen_indep()
-    
-    
-    # for i in range(3):
-    #     masterID = random.randint(1,3)
-    #     print('generating tasks')
-    #     taskgenerator = TaskGen(random.randint(numberOfTask // 2, numberOfTask),numberOfComputingNode,task_size_min,task_size_max,ipsMin,ipsMax)
-    #     testorchest = Orchestrator([],taskgenerator.gen_comp_matrix(),100,200)
-    #     tempTask = taskgenerator.gen_indep()
-    #     if masterID == (node_id+1):
-    #         uav = UAV((node_id+1),masterID,i,alltasks=testorchest.indep_sch(tempTask))
-    #         uav.run()
-    #     else:
-    #         uav = UAV((node_id+1),masterID,i)
-    #         uav.run()
-        
-
-    #     print(f'finished iteration {i} on master {node_id +1}')
-
 
 elif taskType == 'Dependent':
 
     if node_id == 0:
         taskgenerator = TaskGen(numberOfTask,numberOfComputingNode,task_size_min,task_size_max,ipsMin,ipsMax)
-        comp = [[14,16,9],
-                        [13,19,18],
-                        [11,13,19],
-                        [13,8,17],
-                        [12,13,10],
-                        [13,16,9],
-                        [7,15,11],
-                        [5,11,4],
-                        [18,12,20],
-                        [21,7,16]]
+        # comp = [[14,16,9],
+        #                 [13,19,18],
+        #                 [11,13,19],
+        #                 [13,8,17],
+        #                 [12,13,10],
+        #                 [13,16,9],
+        #                 [7,15,11],
+        #                 [5,11,4],
+        #                 [18,12,20],
+        #                 [21,7,16]]
 
-        comm = [[0,18,12,9,11,14,0,0,0,0],
-                [0,0,0,0,0,0,0,19,16,0],
-                [0,0,0,0,0,0,23,0,0,0],
-                [0,0,0,0,0,0,0,27,23,0],
-                [0,0,0,0,0,0,0,0,13,0],
-                [0,0,0,0,0,0,0,15,0,0],
-                [0,0,0,0,0,0,0,0,0,17],
-                [0,0,0,0,0,0,0,0,0,11],
-                [0,0,0,0,0,0,0,0,0,13],
-                [0,0,0,0,0,0,0,0,0,0]]
+        # comm = [[0,18,12,9,11,14,0,0,0,0],
+        #         [0,0,0,0,0,0,0,19,16,0],
+        #         [0,0,0,0,0,0,23,0,0,0],
+        #         [0,0,0,0,0,0,0,27,23,0],
+        #         [0,0,0,0,0,0,0,0,13,0],
+        #         [0,0,0,0,0,0,0,15,0,0],
+        #         [0,0,0,0,0,0,0,0,0,17],
+        #         [0,0,0,0,0,0,0,0,0,11],
+        #         [0,0,0,0,0,0,0,0,0,13],
+        #         [0,0,0,0,0,0,0,0,0,0]]
+        comp = [[0.0, 0.0, 0.0], [92.0, 83.0, 72.0], [73.0, 63.0, 72.0], [26.0, 24.0, 28.0], [95.0, 84.0, 95.0], [58.0, 63.0, 78.0], [34.0, 33.0, 31.0], [86.0, 93.0, 95.0], [48.0, 42.0, 31.0], [75.0, 63.0, 70.0], [28.0, 23.0, 22.0], [24.0, 36.0, 26.0], [37.0, 54.0, 50.0], [97.0, 103.0, 101.0], [113.0, 87.0, 103.0], [83.0, 62.0, 58.0], [54.0, 55.0, 41.0], [38.0, 29.0, 39.0], [97.0, 81.0, 90.0], [98.0, 111.0, 160.0], [49.0, 77.0, 64.0], [0.0, 0.0, 0.0]]
+        comm =[[-1, 0, 0, 0, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 0], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 0], [-1, -1, -1, -1, -1, -1, 46, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1], [-1, -1, -1, -1, -1, 55, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 0], [-1, -1, -1, -1, -1, -1, -1, 42, 41, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1], [-1, -1, -1, -1, -1, -1, -1, -1, -1, 40, -1, 26, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 36, -1, 48, -1, -1, -1, -1, -1, -1, -1, -1, -1], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 20, -1, 45, -1, -1, -1, -1, -1, -1], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 49, -1, -1, -1], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 0], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 61, -1, 27, 50, -1, -1, -1, -1], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 0], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 38, -1, -1], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 41, -1], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 0], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 0], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 0], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 0], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 0], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]]
+    
         testOchestrator = Orchestrator(comm,comp,task_size_min,task_size_max)
-        testOchestrator.heft()
+        # testOchestrator.heft()
+        testOchestrator.orch_ipef()
         print('list: ', testOchestrator.task_schedule_list)
         master = Master(node_id+1,int(random.randrange(min_cpu,max_cpu)),sleep_time)
         print('waiting....')
@@ -172,7 +136,12 @@ elif taskType == 'Dependent':
         print('worker ',node_id+1,' waiting....')
         worker.run()
 else:
-    print(f'The input task type {taskType} is invalid, either Dependant or Independent')
+    if node_id == 0:
+        parent = Parent((node_id+1))
+        parent.run()
+    else:
+        child = Child((node_id+1))
+        child.run()
 
 print('All parallel tasks are done!')
 

@@ -12,7 +12,7 @@ from hector_uav_msgs.msg import Task
 # from taskgen import TaskGen
 import random,string
 # from read_dag import read_dag
-# from ipef import IPEFT
+from ipef import IPEFT
 from datarate import Datarate
 #TODO:
 # MinMin: min min algorithm in grid computing
@@ -242,7 +242,10 @@ class Orchestrator:
                    # self.task_size[p]/Datarate().data_rate(distance=random.randint(100,200))0))
                    # self.task_size[p]/Datarate().data_rate(distance=random.randint(100,200))
                     # start_time.append(self.AFT[p]+self.task_size[p]/Datarate().data_rate(distance=random.randint(100,200)))
+                    # print(f'at line 245 orchestratorPython communication time {self.comm[p][idx]}')
                     start_time.append(self.AFT[p]+self.task_size[p]/Datarate().data_rate(distance=400))
+                    # print(f'at line 247 orchestratorPython {self.comm[p][idx]}')
+                    # start_time.append(self.AFT[p]+0.1)
             # print(f'start time at line 241: {start_time}')
             return max(self.dy_earliest_avilable_time(s),max(start_time))
         # calculate the earliest finish time for current task on each processor
@@ -254,11 +257,12 @@ class Orchestrator:
         for i in [self.tasks[t].task_idx for t in self.tasks]:
             for j in range(len(self.comm[i])):
                 if self.comm[i][j] >0:
-                    self.comm[i][j] = self.tasks[i].size // (mean_datarate / 10000)
-
+                    # self.comm[i][j] = self.tasks[i].size // (mean_datarate / 10000)
+                    self.comm[i][j] = self.tasks[i].size / 10000000
+                    # print(f'at line 259 orchestratorPython comm time {self.tasks[i].size / 1000000 }')
     def dy_heft(self,incomplete_task,time_slot):
         for task in incomplete_task:
-            if self.task_flag[task] == False:
+            if not self.task_flag[task]:
                 est,eft=[],[]
                 for s in range(0,len(self.comp[0])):
                     est.append(self.dy_earliest_start_time(task,s))
@@ -266,7 +270,6 @@ class Orchestrator:
                     self.update_dy_heft_aft(eft,est,task)                  
                 #if task in current time slot then schedule and skip otherwise
                 # if eft[np.argmin(eft)]<= time_slot:
-                # if est[np.argmin(eft)] <= time_slot:
                 if est[np.argmin(eft)] <= time_slot:
                     self.task_schedule_list[np.argmin(eft)].append(task) # append task to the processor with earliest finish time
                     self.tasks[task].processor_id = np.argmin(eft)
@@ -320,16 +323,16 @@ class Orchestrator:
                 self.mes.append(task)
 if __name__ == '__main__':
 
-    comp = [[14, 16, 9],
-                    [13, 19, 18],
-                    [11, 13, 19],
-                    [13, 8, 17], 
-                    [12, 13, 10],
-                    [13, 16, 9],
-                    [7, 15, 11],
-                    [5, 11, 4],
-                    [18, 12, 20],
-                    [21, 7, 16]]
+    # comp = [[14, 16, 9],
+    #                 [13, 19, 18],
+    #                 [11, 13, 19],
+    #                  [13, 8, 17], 
+    #                 [12, 13, 10],
+    #                 [13, 16, 9],
+    #                 [7, 15, 11],
+    #                 [5, 11, 4],
+    #                 [18, 12, 20],
+    #                 [21, 7, 16]]
     # comm = [[0, 1, 1, 1, 1, 1, 0, 0, 0, 0],
     #              [0, 0, 0, 0, 0, 0, 0, 1, 1, 0],
     #              [0, 0, 0, 0, 0, 0, 1, 0, 0, 0],
@@ -340,16 +343,19 @@ if __name__ == '__main__':
     #              [0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
     #              [0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
     #              [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
-    comm = [[0, 18, 12, 9, 11, 14, 0, 0, 0, 0],
-                    [0, 0, 0, 0, 0, 0, 0, 19, 16, 0],
-                    [0, 0, 0, 0, 0, 0, 23, 0, 0, 0],
-                    [0, 0, 0, 0, 0, 0, 0, 27, 23, 0],
-                    [0, 0, 0, 0, 0, 0, 0, 0, 13, 0],
-                    [0, 0, 0, 0, 0, 0, 0, 15, 0, 0],
-                    [0, 0, 0, 0, 0, 0, 0, 0, 0, 17],
-                    [0, 0, 0, 0, 0, 0, 0, 0, 0, 11],
-                    [0, 0, 0, 0, 0, 0, 0, 0, 0, 13],
-                    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
+    # comm = [[0, 18, 12, 9, 11, 14, 0, 0, 0, 0],
+    #                 [0, 0, 0, 0, 0, 0, 0, 19, 16, 0],
+    #                 [0, 0, 0, 0, 0, 0, 23, 0, 0, 0],
+    #                 [0, 0, 0, 0, 0, 0, 0, 27, 23, 0],
+    #                 [0, 0, 0, 0, 0, 0, 0, 0, 13, 0],
+    #                 [0, 0, 0, 0, 0, 0, 0, 15, 0, 0],
+    #                 [0, 0, 0, 0, 0, 0, 0, 0, 0, 17],
+    #                 [0, 0, 0, 0, 0, 0, 0, 0, 0, 11],
+    #                 [0, 0, 0, 0, 0, 0, 0, 0, 0, 13],
+    #                 [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
+    comp = [[0.0, 0.0, 0.0], [92.0, 83.0, 72.0], [73.0, 63.0, 72.0], [26.0, 24.0, 28.0], [95.0, 84.0, 95.0], [58.0, 63.0, 78.0], [34.0, 33.0, 31.0], [86.0, 93.0, 95.0], [48.0, 42.0, 31.0], [75.0, 63.0, 70.0], [28.0, 23.0, 22.0], [24.0, 36.0, 26.0], [37.0, 54.0, 50.0], [97.0, 103.0, 101.0], [113.0, 87.0, 103.0], [83.0, 62.0, 58.0], [54.0, 55.0, 41.0], [38.0, 29.0, 39.0], [97.0, 81.0, 90.0], [98.0, 111.0, 160.0], [49.0, 77.0, 64.0], [0.0, 0.0, 0.0]]
+    comm =[[-1, 0, 0, 0, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 0], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 0], [-1, -1, -1, -1, -1, -1, 46, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1], [-1, -1, -1, -1, -1, 55, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 0], [-1, -1, -1, -1, -1, -1, -1, 42, 41, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1], [-1, -1, -1, -1, -1, -1, -1, -1, -1, 40, -1, 26, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 36, -1, 48, -1, -1, -1, -1, -1, -1, -1, -1, -1], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 20, -1, 45, -1, -1, -1, -1, -1, -1], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 49, -1, -1, -1], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 0], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 61, -1, 27, 50, -1, -1, -1, -1], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 0], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 38, -1, -1], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 41, -1], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 0], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 0], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 0], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 0], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 0], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]]
+    
     # comm = np.where(read_dag('test.dot')[-1] >= 0, 1, 0).tolist()
     # taskgen = TaskGen(5,3)
     # comm = taskgen.generate_random_dag()
@@ -367,7 +373,7 @@ if __name__ == '__main__':
     # temp_task = defaultdict(list)
 
     # while incomplete_task and task_status_flag:
-    timeslot =0
+    timeslot =5
     while True:
         #call dynamic heft 
         testobj.dy_heft(incomplete_task,timeslot)
@@ -376,7 +382,8 @@ if __name__ == '__main__':
         # temp_task = [x for x in incomplete_task if testobj.task_flag[x]]
         # print(f'at line 344 { testobj.task_flag}')
         
-        timeslot += 0.1
+        timeslot += 3
+        
         # print(f'complete list: {complete_list}')
         # for i in complete_list:
         #     task_status_flag[i] = True
@@ -384,13 +391,15 @@ if __name__ == '__main__':
             print(f'current task {x} at time slot {timeslot}')
         if not False in testobj.task_flag:
             break
-    # print(f'after {testobj.task_schedule_list}')
+    print(f'after {testobj.task_schedule_list}')
     
     import matplotlib.pyplot as plt
 
     # Given data
     ast = testobj.AST
     aft = testobj.AFT
+    print(f'ast {ast}')
+    print(f'aft {aft}')
 
     # Activities
     activities = [f"Activity {i}" for i in range(1, len(ast) + 1)]
@@ -405,4 +414,5 @@ if __name__ == '__main__':
     plt.ylabel("Activities")
     plt.title("Gantt Chart")
     plt.grid(axis='x')
-    plt.show()
+    # plt.show()
+    # plt.savefig('/home/ad/rossim/src/ros_mpi/scripts/graph/test.png')

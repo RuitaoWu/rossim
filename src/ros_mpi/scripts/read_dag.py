@@ -60,6 +60,6 @@ def read_dag(filename, p=3, b=0.5, ccr=0.5):
 
 
 if __name__ == "__main__":
-    n_nodes, p, comp_matrix, adj_matrix = read_dag('dag/10_0.1_0.2_0.2_1.dot')
+    n_nodes, p, comp_matrix, adj_matrix = read_dag('test.dot')
     print('No. of nodes: {}\nNo. pf processors: {}\nComputation Matrix:\n{}\nAdjacency Matrix:\n{}\n'.format(
-        n_nodes, p, comp_matrix, adj_matrix))
+        n_nodes, p, comp_matrix.tolist(), adj_matrix.tolist()))

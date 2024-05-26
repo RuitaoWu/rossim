@@ -1,0 +1,5 @@
+{
+    "python.analysis.extraPaths": [
+        "./src/ros_mpi/scripts/src"
+    ]
+}

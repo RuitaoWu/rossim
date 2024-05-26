@@ -47,27 +47,30 @@ class Node:
         ipsMin = int(config.get('Task','ips_min'))
         taskgenerator = TaskGen(random.randint(numberOfTask // 2, numberOfTask),self.numberOfComputingNode,task_size_min,task_size_max,ipsMin,ipsMax)
         # self.comp,self.comm = taskgenerator.gen_comp_matrix(),taskgenerator.generate_random_dag(density=0.5)
-        comp = [[14,16,9],
-                 [13,19,18],
-                 [11,13,19],
-                 [13,8,17],
-                 [12,13,10],
-                 [13,16,9],
-                 [7,15,11],
-                 [5,11,4],
-                 [18,12,20],
-                 [21,7,16]]
+        # comp = [[14,16,9],
+        #          [13,19,18],
+        #          [11,13,19],
+        #          [13,8,17],
+        #          [12,13,10],
+        #          [13,16,9],
+        #          [7,15,11],
+        #          [5,11,4],
+        #          [18,12,20],
+        #          [21,7,16]]
 
-        comm = [[0,18,12,9,11,14,0,0,0,0],
-                 [0,0,0,0,0,0,0,19,16,0],
-                 [0,0,0,0,0,0,23,0,0,0],
-                 [0,0,0,0,0,0,0,27,23,0],
-                 [0,0,0,0,0,0,0,0,13,0],
-                 [0,0,0,0,0,0,0,15,0,0],
-                 [0,0,0,0,0,0,0,0,0,17],
-                 [0,0,0,0,0,0,0,0,0,11],
-                 [0,0,0,0,0,0,0,0,0,13],
-                 [0,0,0,0,0,0,0,0,0,0]]
+        # comm = [[0,18,12,9,11,14,0,0,0,0],
+        #          [0,0,0,0,0,0,0,19,16,0],
+        #          [0,0,0,0,0,0,23,0,0,0],
+        #          [0,0,0,0,0,0,0,27,23,0],
+        #          [0,0,0,0,0,0,0,0,13,0],
+        #          [0,0,0,0,0,0,0,15,0,0],
+        #          [0,0,0,0,0,0,0,0,0,17],
+        #          [0,0,0,0,0,0,0,0,0,11],
+        #          [0,0,0,0,0,0,0,0,0,13],
+        #          [0,0,0,0,0,0,0,0,0,0]]
+        comp = [[0.0, 0.0, 0.0], [92.0, 83.0, 72.0], [73.0, 63.0, 72.0], [26.0, 24.0, 28.0], [95.0, 84.0, 95.0], [58.0, 63.0, 78.0], [34.0, 33.0, 31.0], [86.0, 93.0, 95.0], [48.0, 42.0, 31.0], [75.0, 63.0, 70.0], [28.0, 23.0, 22.0], [24.0, 36.0, 26.0], [37.0, 54.0, 50.0], [97.0, 103.0, 101.0], [113.0, 87.0, 103.0], [83.0, 62.0, 58.0], [54.0, 55.0, 41.0], [38.0, 29.0, 39.0], [97.0, 81.0, 90.0], [98.0, 111.0, 160.0], [49.0, 77.0, 64.0], [0.0, 0.0, 0.0]]
+        comm =[[-1, 0, 0, 0, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 0], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 0], [-1, -1, -1, -1, -1, -1, 46, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1], [-1, -1, -1, -1, -1, 55, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 0], [-1, -1, -1, -1, -1, -1, -1, 42, 41, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1], [-1, -1, -1, -1, -1, -1, -1, -1, -1, 40, -1, 26, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 36, -1, 48, -1, -1, -1, -1, -1, -1, -1, -1, -1], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 20, -1, 45, -1, -1, -1, -1, -1, -1], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 49, -1, -1, -1], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 0], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 61, -1, 27, 50, -1, -1, -1, -1], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 0], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 38, -1, -1], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 41, -1], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 0], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 0], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 0], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 0], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 0], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]]
+    
         self.comp,self.comm = comp,comm
         self.testorchest = Orchestrator(self.comm,self.comp,100,200)
         self.pub_flag = [None]*len(self.testorchest.task_flag)
@@ -121,8 +124,8 @@ class Node:
             # distance = math.dist([pos_1.pose.position.x,pos_1.pose.position.y,pos_1.pose.position.z],
             #                     [pos_2.pose.position.x,pos_2.pose.position.y,pos_2.pose.position.z])
             # print(f'at line 123 current distance is {distance}')
-            # print(f'at line 124 position 2 x is {pos_2.pose.position}')
-            return self.datarate .data_rate(400)
+            # print(f'at line 124 datarate {self.datarate.data_rate(4000)}')
+            return self.datarate.data_rate(400)
     def range(self,u1,u2):
         try:
             pos_1= rospy.wait_for_message('/uav%d/ground_truth_to_tf/pose'%u1, PoseStamped)
@@ -168,7 +171,7 @@ class Node:
         #update task time after received back from worker
         if data.task_idx not in self.task_received:            
             self.task_received.append(data)
-            print(f'at line 170 data st: {data.st} and et {data.et}')
+            # print(f'at line 170 data st: {data.st} and et {data.et}')
 
     def received_call_back(self):
         print('call receive threading...')
@@ -179,7 +182,7 @@ class Node:
         thread = threading.Thread(target= self.received_call_back)
         thread.start()
         print('****'*20)
-        timeslot =0
+        timeslot = 3
         print(f'comm matrix {self.comm}')
         self.pub.publish(Task())
         rospy.sleep(0.25)
@@ -187,7 +190,7 @@ class Node:
             incomplete_task =np.argsort([self.testorchest.calculate_rank_up_recursive(self.comp,self.comm,i) for i in range(len(self.comp))]).tolist()[::-1]
             self.testorchest.dy_heft(incomplete_task,timeslot)
             self.testorchest.update_comm(self.comm_time(1,2))
-            timeslot += 10
+            timeslot += 4
             for x in self.testorchest.get_items()[::-1]:
                 # TODO:
                 # avoid duplicate publish
@@ -195,44 +198,51 @@ class Node:
                     if self.pub_flag[self.testorchest.tasks[x].task_idx]:
                         continue
                     if self.testorchest.tasks[x].processor_id == self.node_id - 1:
-                        trans_time = 100000
+                        trans_time = self.comm_time(1,2)
+                        # print(f'at line  200 utilPython trans time {self.testorchest.tasks[x].size / trans_time}')
                         if self.taskQueue:
                             self.testorchest.tasks[x].st=max(self.taskQueue[-1].et, self.pred_aft(self.testorchest.tasks[x])+(self.testorchest.tasks[x].size / trans_time)) 
                             self.testorchest.tasks[x].et = self.testorchest.tasks[x].st+self.comp[self.testorchest.tasks[x].task_idx][self.testorchest.tasks[x].processor_id ]
                         else:
                             self.testorchest.tasks[x].st=self.pred_aft(self.testorchest.tasks[x])+(self.testorchest.tasks[x].size/ trans_time)
+                            # self.testorchest.tasks[x].st=self.pred_aft(self.testorchest.tasks[x])
                             self.testorchest.tasks[x].et=self.testorchest.tasks[x].st+self.comp[self.testorchest.tasks[x].task_idx][self.testorchest.tasks[x].processor_id ]
                         self.taskQueue.append(self.testorchest.tasks[x])
                         self.completed.append([self.testorchest.tasks[x].task_idx,rospy.get_time()])
                     else: 
-                        self.testorchest.tasks[x].st = self.pred_aft(self.testorchest.tasks[x]) + 0.1 
+                        self.testorchest.tasks[x].st = self.pred_aft(self.testorchest.tasks[x]) + (self.testorchest.tasks[x].size/ self.comm_time(1,2))
                     self.pub.publish(self.testorchest.tasks[x])
                     self.pub_flag[self.testorchest.tasks[x].task_idx] = True
                     rospy.sleep(0.25)
-            if not False in self.testorchest.task_flag:
-                print(f'at line 213 ast {self.testorchest.AST}')
-                print(f'at line 214 aft {self.testorchest.AFT}')
+            if all(self.pub_flag):
+                print(f'all task published......')
                 break
+            # if not False in self.testorchest.task_flag:
+            #     print(f'at line 213 ast {self.testorchest.AST}')
+            #     print(f'at line 214 aft {self.testorchest.AFT}')
+            #     break
         print('finished')
+        for tk in self.task_received:
+            print(f'task id: {tk.task_idx} st {tk.st} and et {tk.et}')
         print('*'*20)
 
         with open('../data/uav%d.pkl'%(self.node_id),'wb') as file:
             pickle.dump(self.taskQueue,file)
-        with open('../data/uav%d_comm_time_iter_%d.pkl'%(self.node_id,self.iteration),'wb') as file:
+        with open('../data/uav%d_comm_time.pkl'%(self.node_id),'wb') as file:
             pickle.dump(self.communication_time,file)
-        with open('../data/uav%d_comm_energy_iter_%d.pkl'%(self.node_id,self.iteration),'wb') as file:
+        with open('../data/uav%d_comm_energy.pkl'%(self.node_id),'wb') as file:
             pickle.dump(self.comm_energy,file)
-        with open('../data/uav%d_comp_energy_iter_%d.pkl'%(self.node_id,self.iteration),'wb') as file:
+        with open('../data/uav%d_comp_energy.pkl'%(self.node_id),'wb') as file:
             pickle.dump(self.comp_energy,file)
-        with open('../data/uav%d_fly_energy_iter_%d.pkl'%(self.node_id,self.iteration),'wb') as file:
+        with open('../data/uav%d_fly_energy.pkl'%(self.node_id),'wb') as file:
             pickle.dump(self.fly_energy,file)
-        with open('../data/uav%d_comp_time_iter_%d.pkl'%(self.node_id,self.iteration),'wb') as file:
+        with open('../data/uav%d_comp_time.pkl'%(self.node_id),'wb') as file:
             pickle.dump(self.comp_time,file)
-        with open('../task_succ/completed_%d_iter_%d.pkl'%(self.node_id,self.iteration),'wb') as file:
+        with open('../task_succ/completed_%d.pkl'%(self.node_id),'wb') as file:
             pickle.dump(self.completed,file)
-        with open('../task_succ/incompleted_%d_iter_%d.pkl'%(self.node_id,self.iteration),'wb') as file:
+        with open('../task_succ/incompleted_%d.pkl'%(self.node_id),'wb') as file:
             pickle.dump(self.incompleted,file)
-        with open('../task_succ/capacity%d_iter_%d.pkl'%(self.node_id,self.iteration),'wb') as file:
+        with open('../task_succ/capacity%d.pkl'%(self.node_id),'wb') as file:
             pickle.dump(self.capacity,file)
 
 class WorkerNode:
@@ -259,27 +269,31 @@ class WorkerNode:
                                  alpha=float(config.get('DatarateConfig','alpha')))
 
             print(f'constructing worker node on {self.node_id}')
-            self.comp = [[14,16,9],
-                    [13,19,18],
-                    [11,13,19],
-                    [13,8,17],
-                    [12,13,10],
-                    [13,16,9],
-                    [7,15,11],
-                    [5,11,4],
-                    [18,12,20],
-                    [21,7,16]]
+            # self.comp = [[14,16,9],
+            #         [13,19,18],
+            #         [11,13,19],
+            #         [13,8,17],
+            #         [12,13,10],
+            #         [13,16,9],
+            #         [7,15,11],
+            #         [5,11,4],
+            #         [18,12,20],
+            #         [21,7,16]]
 
-            self.comm = [[0,18,12,9,11,14,0,0,0,0],
-                        [0,0,0,0,0,0,0,19,16,0],
-                        [0,0,0,0,0,0,23,0,0,0],
-                        [0,0,0,0,0,0,0,27,23,0],
-                        [0,0,0,0,0,0,0,0,13,0],
-                        [0,0,0,0,0,0,0,15,0,0],
-                        [0,0,0,0,0,0,0,0,0,17],
-                        [0,0,0,0,0,0,0,0,0,11],
-                        [0,0,0,0,0,0,0,0,0,13],
-                        [0,0,0,0,0,0,0,0,0,0]]
+            # self.comm = [[0,18,12,9,11,14,0,0,0,0],
+            #             [0,0,0,0,0,0,0,19,16,0],
+            #             [0,0,0,0,0,0,23,0,0,0],
+            #             [0,0,0,0,0,0,0,27,23,0],
+            #             [0,0,0,0,0,0,0,0,13,0],
+            #             [0,0,0,0,0,0,0,15,0,0],
+            #             [0,0,0,0,0,0,0,0,0,17],
+            #             [0,0,0,0,0,0,0,0,0,11],
+            #             [0,0,0,0,0,0,0,0,0,13],
+            #             [0,0,0,0,0,0,0,0,0,0]]
+            
+            self.comp = [[0.0, 0.0, 0.0], [92.0, 83.0, 72.0], [73.0, 63.0, 72.0], [26.0, 24.0, 28.0], [95.0, 84.0, 95.0], [58.0, 63.0, 78.0], [34.0, 33.0, 31.0], [86.0, 93.0, 95.0], [48.0, 42.0, 31.0], [75.0, 63.0, 70.0], [28.0, 23.0, 22.0], [24.0, 36.0, 26.0], [37.0, 54.0, 50.0], [97.0, 103.0, 101.0], [113.0, 87.0, 103.0], [83.0, 62.0, 58.0], [54.0, 55.0, 41.0], [38.0, 29.0, 39.0], [97.0, 81.0, 90.0], [98.0, 111.0, 160.0], [49.0, 77.0, 64.0], [0.0, 0.0, 0.0]]
+            self.comm =[[-1, 0, 0, 0, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 0], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 0], [-1, -1, -1, -1, -1, -1, 46, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1], [-1, -1, -1, -1, -1, 55, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 0], [-1, -1, -1, -1, -1, -1, -1, 42, 41, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1], [-1, -1, -1, -1, -1, -1, -1, -1, -1, 40, -1, 26, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 36, -1, 48, -1, -1, -1, -1, -1, -1, -1, -1, -1], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 20, -1, 45, -1, -1, -1, -1, -1, -1], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 49, -1, -1, -1], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 0], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 61, -1, 27, 50, -1, -1, -1, -1], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 0], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 38, -1, -1], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 41, -1], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 0], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 0], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 0], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 0], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 0], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]]
+    
             rospy.init_node(self.nodeVerify, anonymous=True)
             rospy.Subscriber(self.pubTopic, Task, self.sub_callback)
         #predecessor actual finish time
@@ -308,10 +322,11 @@ class WorkerNode:
             if data.processor_id == self.node_id -1:
                 if data.task_idx not in self.taskQueue:
                     if self.taskQueue:
-                        data.st = max(data.st,self.taskQueue [-1].et, self.pred_aft(data)+(data.size / 100000))
+                        data.st = max(data.st,self.taskQueue [-1].et, self.pred_aft(data)+(data.size / self.comm_time(1,2)))
                         data.et = data.st + self.comp[data.task_idx][data.processor_id]
                     else:
-                        data.st = max(data.st,self.pred_aft(data)) + (data.size / 100000)
+                        # print(f'at line 317 data id {data.task_idx}, st {data.st} and {data.size / self.comm_time(1,2)}')
+                        data.st = max(data.st,self.pred_aft(data)) + (data.size / self.comm_time(1,2))
                         data.et = data.st + self.comp[data.task_idx][data.processor_id]
                     self.comp_energy.append([data.delta * (data.size/data.ci),data.task_idx])
                     self.comp_time.append([(data.size/data.ci),data.task_idx])
@@ -378,27 +393,31 @@ class Master:
                                  band_width=float(config.get('DatarateConfig','band_width')),
                                  transmission_power=float(config.get('DatarateConfig','transmission_power')),
                                  alpha=float(config.get('DatarateConfig','alpha')))
-        self.comp = [[14,16,9],
-                    [13,19,18],
-                    [11,13,19],
-                    [13,8,17],
-                    [12,13,10],
-                    [13,16,9],
-                    [7,15,11],
-                    [5,11,4],
-                    [18,12,20],
-                    [21,7,16]]
+        # self.comp = [[14,16,9],
+        #             [13,19,18],
+        #             [11,13,19],
+        #             [13,8,17],
+        #             [12,13,10],
+        #             [13,16,9],
+        #             [7,15,11],
+        #             [5,11,4],
+        #             [18,12,20],
+        #             [21,7,16]]
 
-        self.comm = [[0,18,12,9,11,14,0,0,0,0],
-                    [0,0,0,0,0,0,0,19,16,0],
-                    [0,0,0,0,0,0,23,0,0,0],
-                    [0,0,0,0,0,0,0,27,23,0],
-                    [0,0,0,0,0,0,0,0,13,0],
-                    [0,0,0,0,0,0,0,15,0,0],
-                    [0,0,0,0,0,0,0,0,0,17],
-                    [0,0,0,0,0,0,0,0,0,11],
-                    [0,0,0,0,0,0,0,0,0,13],
-                    [0,0,0,0,0,0,0,0,0,0]]
+        # self.comm = [[0,18,12,9,11,14,0,0,0,0],
+        #             [0,0,0,0,0,0,0,19,16,0],
+        #             [0,0,0,0,0,0,23,0,0,0],
+        #             [0,0,0,0,0,0,0,27,23,0],
+        #             [0,0,0,0,0,0,0,0,13,0],
+        #             [0,0,0,0,0,0,0,15,0,0],
+        #             [0,0,0,0,0,0,0,0,0,17],
+        #             [0,0,0,0,0,0,0,0,0,11],
+        #             [0,0,0,0,0,0,0,0,0,13],
+        #             [0,0,0,0,0,0,0,0,0,0]]
+        
+        self.comp = [[0.0, 0.0, 0.0], [92.0, 83.0, 72.0], [73.0, 63.0, 72.0], [26.0, 24.0, 28.0], [95.0, 84.0, 95.0], [58.0, 63.0, 78.0], [34.0, 33.0, 31.0], [86.0, 93.0, 95.0], [48.0, 42.0, 31.0], [75.0, 63.0, 70.0], [28.0, 23.0, 22.0], [24.0, 36.0, 26.0], [37.0, 54.0, 50.0], [97.0, 103.0, 101.0], [113.0, 87.0, 103.0], [83.0, 62.0, 58.0], [54.0, 55.0, 41.0], [38.0, 29.0, 39.0], [97.0, 81.0, 90.0], [98.0, 111.0, 160.0], [49.0, 77.0, 64.0], [0.0, 0.0, 0.0]]
+        self.comm =[[-1, 0, 0, 0, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 0], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 0], [-1, -1, -1, -1, -1, -1, 46, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1], [-1, -1, -1, -1, -1, 55, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 0], [-1, -1, -1, -1, -1, -1, -1, 42, 41, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1], [-1, -1, -1, -1, -1, -1, -1, -1, -1, 40, -1, 26, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 36, -1, 48, -1, -1, -1, -1, -1, -1, -1, -1, -1], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 20, -1, 45, -1, -1, -1, -1, -1, -1], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 49, -1, -1, -1], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 0], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 61, -1, 27, 50, -1, -1, -1, -1], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 0], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 38, -1, -1], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 41, -1], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 0], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 0], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 0], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 0], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 0], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]]
+    
         # while True:
         #     if rospy.wait_for_message('/uav%d/ground_truth_to_tf/pose'%self.nodeid, PoseStamped).pose.position.z + 0.1 > 0:
         #         break
@@ -461,17 +480,17 @@ class Master:
             self.fly_energy.append([self.energy * (x.size / self.cpu),x.task_idx])
             if x.processor_id == 0:
                 trans_time = self.comm_time(0,0)
-                print(f'data rate {x.size / trans_time}')
+                # print(f'data rate {x.size / trans_time}')
                 x.st = max(self.master_task[-1].et, self.pred_aft(x)+(x.size / trans_time)) if self.master_task else self.pred_aft(x)+(x.size / trans_time)
                 x.et = x.st + self.comp[x.task_idx][x.processor_id]
-                print(f'at line  431 current task {x.task_idx} st {x.st} with comp {self.comp[x.task_idx][x.processor_id]}')
+                # print(f'at line  431 current task {x.task_idx} st {x.st} with comp {self.comp[x.task_idx][x.processor_id]}')
                 self.comp_energy.append([x.delta * (x.size/x.ci),x.task_idx])
                 self.comp_time.append([self.comp[x.task_idx][x.processor_id],x.task_idx]) #computatin time
                 self.master_task.append(x)
             else:
                 #plus communication time
                 # temp = self.comm_time(self.nodeid,x.processor_id+1)
-                temp = self.comm_time(self.nodeid,x.processor_id+1)
+                temp = self.comm_time(1,2)
                 x.st = self.pred_aft(x) + (x.size / temp)              
                 self.communication_time_offload.append([x.size / temp,x.task_idx])
                 self.comm_energy.append([(x.size / temp)*self.energy,x.task_idx]) #units: mj
@@ -480,21 +499,35 @@ class Master:
             rospy.sleep(self.sleepTime) #communication delay
 
         #all tasks
-        with open('/home/jxie/rossim/src/ros_mpi/data/uav%d.pkl'%self.nodeid,'wb') as file:
+        # with open('/home/jxie/rossim/src/ros_mpi/data/uav%d.pkl'%self.nodeid,'wb') as file:
+        #     pickle.dump(self.master_task,file)
+        # with open('/home/jxie/rossim/src/ros_mpi/data/uav%d_comm_energy.pkl'%self.nodeid,'wb') as file:
+        #     pickle.dump(self.comm_energy,file)
+        # with open('/home/jxie/rossim/src/ros_mpi/data/uav%d_comp_energy.pkl'%self.nodeid,'wb') as file:
+        #     pickle.dump(self.comp_energy,file)
+        # with open('/home/jxie/rossim/src/ros_mpi/data/uav%d_fly_energy.pkl'%self.nodeid,'wb') as file:
+        #     pickle.dump(self.fly_energy,file)
+        # with open('/home/jxie/rossim/src/ros_mpi/data/uav%d_comp_time.pkl'%self.nodeid,'wb') as file:
+        #     pickle.dump(self.comp_time,file)
+        # with open('/home/jxie/rossim/src/ros_mpi/data/uav%d_comm_time_offload.pkl'%self.nodeid,'wb') as file:
+        #     pickle.dump(self.communication_time_offload,file)
+        # with open('/home/jxie/rossim/src/ros_mpi/data/uav%d_comm_time_recived.pkl'%self.nodeid,'wb') as file:
+        #     pickle.dump(self.communication_time_rec,file)
+        print(f'at line 516...................')
+        with open('../data/uav%d.pkl'%self.nodeid,'wb') as file:
             pickle.dump(self.master_task,file)
-        with open('/home/jxie/rossim/src/ros_mpi/data/uav%d_comm_energy.pkl'%self.nodeid,'wb') as file:
+        with open('../data/uav%d_comm_energy.pkl'%self.nodeid,'wb') as file:
             pickle.dump(self.comm_energy,file)
-        with open('/home/jxie/rossim/src/ros_mpi/data/uav%d_comp_energy.pkl'%self.nodeid,'wb') as file:
+        with open('../data/uav%d_comp_energy.pkl'%self.nodeid,'wb') as file:
             pickle.dump(self.comp_energy,file)
-        with open('/home/jxie/rossim/src/ros_mpi/data/uav%d_fly_energy.pkl'%self.nodeid,'wb') as file:
+        with open('../data/uav%d_fly_energy.pkl'%self.nodeid,'wb') as file:
             pickle.dump(self.fly_energy,file)
-        with open('/home/jxie/rossim/src/ros_mpi/data/uav%d_comp_time.pkl'%self.nodeid,'wb') as file:
+        with open('../data/uav%d_comp_time.pkl'%self.nodeid,'wb') as file:
             pickle.dump(self.comp_time,file)
-        with open('/home/jxie/rossim/src/ros_mpi/data/uav%d_comm_time_offload.pkl'%self.nodeid,'wb') as file:
+        with open('../data/uav%d_comm_time_offload.pkl'%self.nodeid,'wb') as file:
             pickle.dump(self.communication_time_offload,file)
-        with open('/home/jxie/rossim/src/ros_mpi/data/uav%d_comm_time_recived.pkl'%self.nodeid,'wb') as file:
+        with open('../data/uav%d_comm_time_recived.pkl'%self.nodeid,'wb') as file:
             pickle.dump(self.communication_time_rec,file)
-        
 
 
 
@@ -520,35 +553,37 @@ class Worker:
         self.comp_time = []
         self.communication_time=[]
         config = configparser.ConfigParser()
-        config.read('/home/jxie/rossim/src/ros_mpi/scripts/property.properties')
+        config.read('property.properties')
         # noise=0.0000000000001,band_width=5000000 , transmission_power=0.5,alpha=4.0
         # density = float(config.get('Task','density'))
         self.datarate = Datarate(noise=float(config.get('DatarateConfig','noise')),
                                  band_width=float(config.get('DatarateConfig','band_width')),
                                  transmission_power=float(config.get('DatarateConfig','transmission_power')),
                                  alpha=float(config.get('DatarateConfig','alpha')))
-        self.comp = [[14,16,9],
-                    [13,19,18],
-                    [11,13,19],
-                    [13,8,17],
-                    [12,13,10],
-                    [13,16,9],
-                    [7,15,11],
-                    [5,11,4],
-                    [18,12,20],
-                    [21,7,16]]
+        # self.comp = [[14,16,9],
+        #             [13,19,18],
+        #             [11,13,19],
+        #             [13,8,17],
+        #             [12,13,10],
+        #             [13,16,9],
+        #             [7,15,11],
+        #             [5,11,4],
+        #             [18,12,20],
+        #             [21,7,16]]
 
-        self.comm = [[0,18,12,9,11,14,0,0,0,0],
-                    [0,0,0,0,0,0,0,19,16,0],
-                    [0,0,0,0,0,0,23,0,0,0],
-                    [0,0,0,0,0,0,0,27,23,0],
-                    [0,0,0,0,0,0,0,0,13,0],
-                    [0,0,0,0,0,0,0,15,0,0],
-                    [0,0,0,0,0,0,0,0,0,17],
-                    [0,0,0,0,0,0,0,0,0,11],
-                    [0,0,0,0,0,0,0,0,0,13],
-                    [0,0,0,0,0,0,0,0,0,0]]
-
+        # self.comm = [[0,18,12,9,11,14,0,0,0,0],
+        #             [0,0,0,0,0,0,0,19,16,0],
+        #             [0,0,0,0,0,0,23,0,0,0],
+        #             [0,0,0,0,0,0,0,27,23,0],
+        #             [0,0,0,0,0,0,0,0,13,0],
+        #             [0,0,0,0,0,0,0,15,0,0],
+        #             [0,0,0,0,0,0,0,0,0,17],
+        #             [0,0,0,0,0,0,0,0,0,11],
+        #             [0,0,0,0,0,0,0,0,0,13],
+        #             [0,0,0,0,0,0,0,0,0,0]]
+        self.comp = [[0.0, 0.0, 0.0], [92.0, 83.0, 72.0], [73.0, 63.0, 72.0], [26.0, 24.0, 28.0], [95.0, 84.0, 95.0], [58.0, 63.0, 78.0], [34.0, 33.0, 31.0], [86.0, 93.0, 95.0], [48.0, 42.0, 31.0], [75.0, 63.0, 70.0], [28.0, 23.0, 22.0], [24.0, 36.0, 26.0], [37.0, 54.0, 50.0], [97.0, 103.0, 101.0], [113.0, 87.0, 103.0], [83.0, 62.0, 58.0], [54.0, 55.0, 41.0], [38.0, 29.0, 39.0], [97.0, 81.0, 90.0], [98.0, 111.0, 160.0], [49.0, 77.0, 64.0], [0.0, 0.0, 0.0]]
+        self.comm =[[-1, 0, 0, 0, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 0], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 0], [-1, -1, -1, -1, -1, -1, 46, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1], [-1, -1, -1, -1, -1, 55, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 0], [-1, -1, -1, -1, -1, -1, -1, 42, 41, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1], [-1, -1, -1, -1, -1, -1, -1, -1, -1, 40, -1, 26, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 36, -1, 48, -1, -1, -1, -1, -1, -1, -1, -1, -1], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 20, -1, 45, -1, -1, -1, -1, -1, -1], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 49, -1, -1, -1], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 0], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 61, -1, 27, 50, -1, -1, -1, -1], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 0], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 38, -1, -1], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 41, -1], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 0], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 0], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 0], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 0], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 0], [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]]
+    
     def pred_aft(self,t):
         temp =[0]
         # print(f'at line 580 {t.dependency}')
@@ -589,17 +624,30 @@ class Worker:
         rospy.Subscriber(self.topic, Task, self.callback_func)
         
         rospy.spin()
-        with open('/home/jxie/rossim/src/ros_mpi/data/uav%d.pkl'%self.worker_id,'wb') as file:
+        # with open('/home/jxie/rossim/src/ros_mpi/data/uav%d.pkl'%self.worker_id,'wb') as file:
+        #     pickle.dump(self.worker_task,file)
+        # with open('/home/jxie/rossim/src/ros_mpi/data/uav%d_comm_energy.pkl'%self.worker_id,'wb') as file:
+        #     pickle.dump(self.comm_energy,file)
+        # with open('/home/jxie/rossim/src/ros_mpi/data/uav%d_comp_energy.pkl'%self.worker_id,'wb') as file:
+        #     pickle.dump(self.comp_energy,file)
+        # with open('/home/jxie/rossim/src/ros_mpi/data/uav%d_fly_energy.pkl'%self.worker_id,'wb') as file:
+        #     pickle.dump(self.fly_energy,file)
+        # with open('/home/jxie/rossim/src/ros_mpi/data/uav%d_comp_time.pkl'%self.worker_id,'wb') as file:
+        #     pickle.dump(self.comp_time,file)
+        # with open('/home/jxie/rossim/src/ros_mpi/data/uav%d_comm_time.pkl'%self.worker_id,'wb') as file:
+        #     pickle.dump(self.communication_time,file)
+        
+        with open('../data/uav%d.pkl'%self.worker_id,'wb') as file:
             pickle.dump(self.worker_task,file)
-        with open('/home/jxie/rossim/src/ros_mpi/data/uav%d_comm_energy.pkl'%self.worker_id,'wb') as file:
+        with open('../data/uav%d_comm_energy.pkl'%self.worker_id,'wb') as file:
             pickle.dump(self.comm_energy,file)
-        with open('/home/jxie/rossim/src/ros_mpi/data/uav%d_comp_energy.pkl'%self.worker_id,'wb') as file:
+        with open('../data/uav%d_comp_energy.pkl'%self.worker_id,'wb') as file:
             pickle.dump(self.comp_energy,file)
-        with open('/home/jxie/rossim/src/ros_mpi/data/uav%d_fly_energy.pkl'%self.worker_id,'wb') as file:
+        with open('../data/uav%d_fly_energy.pkl'%self.worker_id,'wb') as file:
             pickle.dump(self.fly_energy,file)
-        with open('/home/jxie/rossim/src/ros_mpi/data/uav%d_comp_time.pkl'%self.worker_id,'wb') as file:
+        with open('../data/uav%d_comp_time.pkl'%self.worker_id,'wb') as file:
             pickle.dump(self.comp_time,file)
-        with open('/home/jxie/rossim/src/ros_mpi/data/uav%d_comm_time.pkl'%self.worker_id,'wb') as file:
+        with open('../data/uav%d_comm_time.pkl'%self.worker_id,'wb') as file:
             pickle.dump(self.communication_time,file)
         if rospy.is_shutdown():
         #     print(f'at line 637 tasks: {self.comp_time}')
